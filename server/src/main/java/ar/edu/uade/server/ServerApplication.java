@@ -1,4 +1,4 @@
-package com.example.server;
+package ar.edu.uade.server;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

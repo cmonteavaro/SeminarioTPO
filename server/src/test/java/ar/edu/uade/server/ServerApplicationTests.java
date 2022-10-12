@@ -1,4 +1,4 @@
-package com.example.server;
+package ar.edu.uade.server;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
