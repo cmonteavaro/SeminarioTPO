@@ -8,45 +8,15 @@ import java.util.*;
 @Setter
 public class Direccion {
 
-    /**
-     * Default constructor
-     */
+    private String calle;
+    private Integer altura;
+    private String localidad;
+    private String codigoPostal;
+    private String provincia;
+    private String latitud;
+    private String longitud;
+
     public Direccion() {
     }
-
-    /**
-     * 
-     */
-    private String calle;
-
-    /**
-     * 
-     */
-    private Integer altura;
-
-    /**
-     * 
-     */
-    private String localidad;
-
-    /**
-     * 
-     */
-    private String codigoPostal;
-
-    /**
-     * 
-     */
-    private String provincia;
-
-    /**
-     * 
-     */
-    private String latitud;
-
-    /**
-     * 
-     */
-    private String longitud;
 
 }

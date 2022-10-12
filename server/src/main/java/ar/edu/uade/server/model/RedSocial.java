@@ -1,27 +1,20 @@
 package ar.edu.uade.server.model;
+import ar.edu.uade.server.model.enums.TipoRedSocialEnum;
 import lombok.Getter;
 import lombok.Setter;
-
-import java.util.*;
 
 @Getter
 @Setter
 public class RedSocial {
 
-    /**
-     * Default constructor
-     */
-    public RedSocial() {
+    private String link;
+    private TipoRedSocialEnum redSocial;
+
+    public RedSocial(String link, TipoRedSocialEnum red) {
+        this.link = link;
+        this.redSocial = red;
     }
 
-    /**
-     * 
-     */
-    private String link;
 
-    /**
-     * 
-     */
-    private TipoRedSocial redSocial;
 
 }
