@@ -1,10 +1,8 @@
 package ar.edu.uade.server.model;
+
 import java.util.*;
 
-/**
- * 
- */
-public class PublicacionAnimal {
+public abstract class PublicacionAnimal {
 
     /**
      * Default constructor

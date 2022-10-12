@@ -1,10 +1,12 @@
 package ar.edu.uade.server.model;
+import lombok.Getter;
+import lombok.Setter;
+
 import java.util.*;
 
-/**
- * 
- */
-public class Adopcion extends TipoPublicacion {
+@Getter
+@Setter
+public class Adopcion extends PublicacionAnimal {
 
     /**
      * Default constructor
