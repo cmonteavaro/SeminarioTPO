@@ -39,10 +39,8 @@ server/.springBeans
 server/.sts4-cache
 
 ### IntelliJ IDEA ###
-server/.idea
-server/*.iws
 server/*.iml
-server/*.ipr
+
 
 ### NetBeans ###
 server//nbproject/private/
