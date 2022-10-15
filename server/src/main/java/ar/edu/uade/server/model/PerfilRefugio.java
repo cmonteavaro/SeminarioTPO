@@ -7,43 +7,27 @@ import java.util.*;
 import java.util.List;
 
 @Getter
-@Setter
 public class PerfilRefugio {
 
-    /**
-     * Default constructor
-     */
-    public PerfilRefugio() {
-    }
+    @Setter
+    private String fotoPerfil;
+    @Setter
+    private String banner;
+    @Setter
+    private String descripcionCorta;
+    @Setter
+    private String descripcionLarga;
+    @Setter
+    private Color color;
 
-    /**
-     * 
-     */
     private List<String> galeriaImagenes;
 
-    /**
-     * 
-     */
-    private String fotoPerfil;
+    public PerfilRefugio() {
+        this.galeriaImagenes = new ArrayList<String>();
+    }
 
-    /**
-     * 
-     */
-    private String banner;
+    public void agregarImagenes(String ... imagenes) { Collections.addAll(galeriaImagenes, imagenes); }
 
-    /**
-     * 
-     */
-    private String descripcionCorta;
-
-    /**
-     * 
-     */
-    private String descripcionLarga;
-
-    /**
-     * 
-     */
-    private Color color;
+    public void eliminarImagen(String imagen) { if(this.galeriaImagenes.contains(imagen)) this.galeriaImagenes.remove(imagen); }
 
 }

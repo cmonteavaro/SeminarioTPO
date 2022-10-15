@@ -7,10 +7,7 @@ import java.util.*;
 @Getter
 @Setter
 public class Adopcion extends PublicacionAnimal {
-
-    /**
-     * Default constructor
-     */
+    
     public Adopcion() {
     }
 

@@ -8,25 +8,12 @@ import java.util.*;
 @Setter
 public class Transito extends PublicacionAnimal {
 
-    /**
-     * Default constructor
-     */
+    private Boolean gastosAlimentacionCubiertos;
+    private Boolean gastosMedicosCubiertos;
+    private Integer duracionMinima;
+
+
     public Transito() {
     }
-
-    /**
-     * 
-     */
-    private Boolean gastosAlimentacionCubiertos;
-
-    /**
-     * 
-     */
-    private Boolean gastosMedicosCubiertos;
-
-    /**
-     * 
-     */
-    private Integer duracionMinima;
 
 }
