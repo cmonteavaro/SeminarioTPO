@@ -1,10 +1,13 @@
 package ar.edu.uade.server.repository;
 
+import org.springframework.stereotype.Repository;
+
 import java.util.List;
 import java.util.Optional;
 
 import javax.persistence.*;
 
+@Repository
 public class RepositoryODB {
 
     private static RepositoryODB instancia;

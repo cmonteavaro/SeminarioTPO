@@ -3,8 +3,11 @@ package ar.edu.uade.server;
 import ar.edu.uade.server.model.*;
 import ar.edu.uade.server.model.enums.EstadoPublicacionAnimalEnum;
 import ar.edu.uade.server.model.enums.TipoAnimalEnum;
+import ar.edu.uade.server.model.enums.TipoRedSocialEnum;
 import ar.edu.uade.server.repository.RepositoryODB;
+import ar.edu.uade.server.service.RefugioService;
 import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import javax.persistence.Persistence;
@@ -16,6 +19,9 @@ import java.util.Optional;
 
 @SpringBootTest
 class ServerApplicationTests {
+
+    @Autowired
+    RefugioService refugioService;
 
     @Test
     void contextLoads() {
@@ -38,7 +44,7 @@ class ServerApplicationTests {
 //        ---- Recuperacion de todos ----
         for (Animal a: RepositoryODB.getInstancia().findAll(Animal.class)){
             System.out.println(a.getNombre());
-            System.out.println(a.getFechaNac().getDay());
+            System.out.println(a.getFechaNac().getDayOfMonth());
             System.out.println(a.getTamanioActual());
             System.out.println(a.getId());
         };
@@ -58,18 +64,18 @@ class ServerApplicationTests {
 
     @Test
     void refugioTest(){
-//        Refugio refugio = new Refugio();
-//        refugio.setNombre("Patitas Glew");
-//        Direccion d = new Direccion();
-//        d.setCalle("Lima");
-//        d.setLocalidad("Monserrat");
-//        refugio.setDireccion(d);
-//        RedSocial rs1 = new RedSocial("https://ig.com", TipoRedSocialEnum.INSTAGRAM);
-//        RedSocial rs2 = new RedSocial("https://fb.com", TipoRedSocialEnum.FACEBOOK);
-//        refugio.agregarRedesSociales(rs1,rs2);
-//        RepositoryODB.getInstancia().saveOBD(refugio);
-        for (Refugio r: RepositoryODB.getInstancia().findAll(Refugio.class)){
-//            System.out.println(r.getDireccion().getCalle());
+        Refugio refugio = new Refugio();
+        refugio.setNombre("Patitas Glew");
+        Direccion d = new Direccion();
+        d.setCalle("Lima");
+        d.setLocalidad("Monserrat");
+        refugio.setDireccion(d);
+        RedSocial rs1 = new RedSocial("https://ig.com", TipoRedSocialEnum.INSTAGRAM);
+        RedSocial rs2 = new RedSocial("https://fb.com", TipoRedSocialEnum.FACEBOOK);
+        refugio.agregarRedesSociales(rs1,rs2);
+        RepositoryODB.getInstancia().saveOBD(refugio);
+        for (Refugio r: refugioService.findAll()){
+            System.out.println(r.getDireccion().getCalle());
             System.out.println(r.getId());
             System.out.println(r.getNombre());
             for (RedSocial rs : r.getRedesSociales()){
