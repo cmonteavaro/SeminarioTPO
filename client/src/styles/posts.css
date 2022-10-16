@@ -1,0 +1,15 @@
+.loading {
+  margin-top: 35vh;
+  margin-bottom: 35vh;
+}
+
+.loader {
+  display: flex;
+  justify-content: center;
+  margin: 2vh;
+}
+
+.loading h3 {
+  margin: 1vh;
+  text-align: center;
+}

@@ -8,11 +8,11 @@ import { BrowserRouter } from "react-router-dom";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
-  <React.StrictMode>
-    <MantineProvider>
-      <BrowserRouter>
-        <App />
-      </BrowserRouter>
-    </MantineProvider>
-  </React.StrictMode>
+  // <React.StrictMode>
+  <MantineProvider theme={{ loader: "bars" }}>
+    <BrowserRouter>
+      <App />
+    </BrowserRouter>
+  </MantineProvider>
+  // </React.StrictMode>
 );

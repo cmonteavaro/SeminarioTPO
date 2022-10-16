@@ -1,0 +1,49 @@
+.card {
+  width: 400px;
+  border: 1px lightgrey solid;
+  border-radius: 10px;
+  padding: 0.5vw;
+  margin: 2vh;
+}
+
+.card-heading {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.card-center {
+  display: flex;
+  justify-content: center;
+  margin: 1vh;
+}
+
+.card-img-animal {
+  width: 250px;
+  height: 300px;
+  border-radius: 10px;
+}
+
+.card-bottom {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.card-shelter {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.card-shelter p {
+  margin-left: 10px;
+}
+
+.card-img-shelter {
+  width: 40px;
+  height: 40px;
+  border-radius: 20px;
+}
