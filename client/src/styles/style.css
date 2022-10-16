@@ -1,5 +1,20 @@
+@import url("https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@300;400;700&display=swap");
+
+/* 
+  font-weight: 300; LIVIANA
+  font-weight: 400; NORMAL
+  font-weight: 700; NEGRITA
+*/
+
 * {
   margin: 0;
   padding: 0;
+  font-family: "Nunito Sans", sans-serif;
   --accent-color: green;
+  --tag-available-background: #a2f2a0;
+  --tag-available-text: #4bc348;
+  --tag-warning-background: #f2efa0;
+  --tag-warning-text: #c3b748;
+  --tag-closed-background: #f2a0a0;
+  --tag-closed-text: #c34848;
 }
