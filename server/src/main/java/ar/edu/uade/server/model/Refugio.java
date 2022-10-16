@@ -19,6 +19,9 @@ public class Refugio {
     @Setter
     @Embedded
     private Direccion direccion;
+
+    @Embedded
+    private PerfilRefugio perfilRefugio;
     @Setter
     private String usuario;
     @Setter

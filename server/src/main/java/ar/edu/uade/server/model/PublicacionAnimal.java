@@ -39,6 +39,8 @@ public abstract class PublicacionAnimal {
     private Boolean requiereHogarAmplio;
     @Setter
     private Boolean transporteCubierto;
+
+    private Boolean esUrgente;
     @Setter
     @Temporal(TemporalType.DATE)
     private LocalDate fechaPublicacion;
