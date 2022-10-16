@@ -14,25 +14,17 @@ public class Refugio {
     @Id
     @GeneratedValue
     private long id;
-    @Setter
     private String nombre;
-    @Setter
     @Embedded
     private Direccion direccion;
 
     @Embedded
     private PerfilRefugio perfilRefugio;
-    @Setter
     private String usuario;
-    @Setter
     private String password;
-    @Setter
     private String responsable;
-    @Setter
     private Integer telefono;
-    @Setter
     private String linkDonacionesMonetarias;
-    @Setter
     private Integer radioAlcance;
     @ElementCollection(fetch = FetchType.EAGER)
     private List<RedSocial> redesSociales;

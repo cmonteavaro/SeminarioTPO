@@ -14,15 +14,10 @@ import java.util.List;
 @Embeddable
 public class PerfilRefugio {
 
-    @Setter
     private String fotoPerfil;
-    @Setter
     private String banner;
-    @Setter
     private String descripcionCorta;
-    @Setter
     private String descripcionLarga;
-    @Setter
     @Enumerated
     private Color color;
 

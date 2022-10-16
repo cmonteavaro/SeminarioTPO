@@ -19,6 +19,7 @@ public class PublicacionDonacion {
     private String descripcion;
     @Enumerated
     private TipoDonacionEnum tipo;
+    @OneToOne
     private Refugio refugio;
     @Temporal(TemporalType.DATE)
     private LocalDate fechaPublicacion;

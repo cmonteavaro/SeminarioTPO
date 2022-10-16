@@ -112,19 +112,24 @@ class ServerApplicationTests {
     public void AdopcionTestFull(){
 //        RepositoryODB.getInstancia().deleteAll(Adopcion.class);
         Refugio r = RepositoryODB.getInstancia().findById(Refugio.class,6).get();
+        Animal an = new Animal();
+        an.setNombre("Boneco");
+        an.setTipoAnimal(TipoAnimalEnum.PERRO);
+        RepositoryODB.getInstancia().saveOBD(an);
         Adopcion pub = new Adopcion();
-        pub.setAnimal(RepositoryODB.getInstancia().findById(Animal.class,1).get());
+        pub.setAnimal(an);
         pub.setEstado(EstadoPublicacionAnimalEnum.DISPONIBLE);
         pub.setNecesitaPatio(true);
-        pub.agregarImagenes("/home/jdieguez/img1.jpg","/home/jdieguez/img2.jpg");
+        pub.agregarImagenes("/home/jdieguez/img7.jpg");
         pub.setRefugio(r);
         r.agregarPublicacionAdopcion(pub);
-//        RepositoryODB.getInstancia().saveOBD(pub);
         RepositoryODB.getInstancia().updateOBD(r);
         Refugio ref = RepositoryODB.getInstancia().findById(Refugio.class,6).get();
         System.out.println("------ Refugio -------");
         System.out.println("Nombre: "+ref.getNombre());
         for (Adopcion a: ref.getPublicacionesAdopcion()){
+            System.out.println("--- Publicacion ---");
+            System.out.println(a.getId());
             System.out.println(a.getAnimal().getNombre());
             System.out.println(a.getEstado());
         }

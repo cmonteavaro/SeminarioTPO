@@ -17,34 +17,22 @@ public abstract class PublicacionAnimal {
     @Id @GeneratedValue
     private Long id;
 
-    @Setter
     private String descripcion;
-    @Setter
     @OneToOne
     private Animal animal;
-    @Setter
     @OneToOne(fetch = FetchType.EAGER)
     private Refugio refugio;
-    @Setter
     private Boolean necesitaPatio;
-    @Setter
     private Boolean puedeConvivirConInfantes;
-    @Setter
     private Boolean puedeConvivirConGatos;
-    @Setter
     private Boolean puedeConvivirConCachorros;
-    @Setter
     private Boolean puedeConvivirConPerrosAdultos;
-    @Setter
     private Boolean requiereHogarAmplio;
-    @Setter
     private Boolean transporteCubierto;
 
     private Boolean esUrgente;
-    @Setter
     @Temporal(TemporalType.DATE)
     private LocalDate fechaPublicacion;
-    @Setter
     @Enumerated
     private EstadoPublicacionAnimalEnum estado;
     @ElementCollection(fetch = FetchType.EAGER)
