@@ -1,0 +1,28 @@
+footer {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+
+.dedication {
+  margin-top: auto;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.icons-link {
+  margin-top: 0.5vh;
+}
+
+.icons-footer {
+  margin: 0.5vw;
+}
+
+.icon:hover {
+  color: var(--accent-color);
+}
