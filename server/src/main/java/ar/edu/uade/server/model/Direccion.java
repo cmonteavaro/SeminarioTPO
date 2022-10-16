@@ -2,10 +2,12 @@ package ar.edu.uade.server.model;
 import lombok.Getter;
 import lombok.Setter;
 
+import javax.persistence.Embeddable;
 import java.util.*;
 
 @Getter
 @Setter
+@Embeddable
 public class Direccion {
 
     private String calle;

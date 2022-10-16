@@ -2,11 +2,16 @@ package ar.edu.uade.server.model;
 import lombok.Getter;
 import lombok.Setter;
 
+import javax.persistence.ElementCollection;
+import javax.persistence.Embeddable;
+import javax.persistence.Enumerated;
 import java.awt.*;
 import java.util.*;
 import java.util.List;
 
 @Getter
+@Setter
+@Embeddable
 public class PerfilRefugio {
 
     @Setter
@@ -18,8 +23,10 @@ public class PerfilRefugio {
     @Setter
     private String descripcionLarga;
     @Setter
+    @Enumerated
     private Color color;
 
+    @ElementCollection
     private List<String> galeriaImagenes;
 
     public PerfilRefugio() {
