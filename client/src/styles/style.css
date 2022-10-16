@@ -18,3 +18,13 @@
   --tag-closed-background: #f2a0a0;
   --tag-closed-text: #c34848;
 }
+
+h1,
+h2 {
+  color: var(--accent-color);
+}
+
+.basic {
+  margin-left: 1vw;
+  margin-right: 1vw;
+}
