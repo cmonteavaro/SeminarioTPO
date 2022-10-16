@@ -1,20 +1,54 @@
+// Import estilos
 import "../styles/home.css";
 
+// Import imagenes
 import Mila from "../images/mila.webp";
 import Coco from "../images/coco.webp";
 import Paws from "../images/pawsBack.png";
 import House from "../images/petHouse.png";
 import Milo from "../images/milo.webp";
-import Donation from "../images/donation.webp";
-import HappyDog from "../images/happyDog.webp";
-import TY from "../images/ty.webp";
-import Volunteer from "../images/volunteer.webp";
-import Transit from "../images/transit.webp";
+
+// Import iconos
+import Donation from "../images/icons/donation.webp";
+import HappyDog from "../images/icons/happyDog.webp";
+import TY from "../images/icons/ty.webp";
+import Volunteer from "../images/icons/volunteer.webp";
+import Transit from "../images/icons/transit.webp";
+
+// Import carousel
+import { Carousel } from "@mantine/carousel";
+
+// Import imagenes carousel
+import One from "../images/carousel/1.jpg";
+import Two from "../images/carousel/2.jpg";
+import Three from "../images/carousel/3.jpg";
+import Four from "../images/carousel/4.jpg";
 
 export default function Home() {
   return (
     <section className="basic">
-      <section className="caroussel"></section>
+      <section className="caroussel">
+        <Carousel
+          slideSize="70%"
+          height={400}
+          slideGap="md"
+          loop
+          withIndicators
+        >
+          <Carousel.Slide>
+            <img className="carousel" src={One} />
+          </Carousel.Slide>
+          <Carousel.Slide>
+            <img className="carousel" src={Two} />
+          </Carousel.Slide>
+          <Carousel.Slide>
+            <img className="carousel" src={Three} />
+          </Carousel.Slide>
+          <Carousel.Slide>
+            <img className="carousel" src={Four} />
+          </Carousel.Slide>
+        </Carousel>
+      </section>
       <section className="row  row-left">
         <img
           className="image-row"
