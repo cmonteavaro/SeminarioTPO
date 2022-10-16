@@ -4,16 +4,25 @@ import ar.edu.uade.server.model.enums.TipoAnimalEnum;
 import lombok.Getter;
 import lombok.Setter;
 
+import javax.persistence.*;
+import java.time.LocalDate;
 import java.util.*;
 
 @Getter
 @Setter
+@Entity
 public class Animal {
-
+    @Id
+    @GeneratedValue
+    private long id;
     private String nombre;
+    @Enumerated
     private TamanioEnum tamanioActual;
+    @Enumerated
     private TamanioEnum tamanioEsperado;
-    private Date fechaNac;
+    @Temporal(TemporalType.DATE)
+    private LocalDate fechaNac;
+    @Enumerated
     private TipoAnimalEnum tipoAnimal;
     private Boolean castrado;
     private Boolean esquemaCompletoVacunas;
@@ -22,5 +31,9 @@ public class Animal {
     public Animal(String nombre, TipoAnimalEnum tipoAnimal) {
         this.nombre = nombre;
         this.tipoAnimal = tipoAnimal;
+    }
+
+    public Animal() {
+
     }
 }
