@@ -14,6 +14,7 @@ public class Transito extends PublicacionAnimal {
     private Integer duracionMinima;
 
     public Transito() {
+        super();
     }
 
 }
