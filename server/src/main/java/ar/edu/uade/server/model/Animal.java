@@ -5,6 +5,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.time.LocalDate;
 import java.util.*;
 
 @Getter
@@ -20,7 +21,7 @@ public class Animal {
     @Enumerated
     private TamanioEnum tamanioEsperado;
     @Temporal(TemporalType.DATE)
-    private Date fechaNac;
+    private LocalDate fechaNac;
     @Enumerated
     private TipoAnimalEnum tipoAnimal;
     private Boolean castrado;

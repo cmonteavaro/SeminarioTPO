@@ -16,7 +16,6 @@ public abstract class PublicacionAnimal {
 
     @Id @GeneratedValue
     private Long id;
-
     private String descripcion;
     @OneToOne
     private Animal animal;
@@ -29,7 +28,6 @@ public abstract class PublicacionAnimal {
     private Boolean puedeConvivirConPerrosAdultos;
     private Boolean requiereHogarAmplio;
     private Boolean transporteCubierto;
-
     private Boolean esUrgente;
     @Temporal(TemporalType.DATE)
     private LocalDate fechaPublicacion;
