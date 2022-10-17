@@ -6,6 +6,7 @@ import Posts from "./pages/posts";
 import Refugees from "./pages/refugees";
 import About from "./pages/about";
 import Footer from "./components/footer/footer";
+import NotFound from "./pages/notFound";
 
 function App() {
   return (
@@ -13,10 +14,11 @@ function App() {
       <NavBar />
       <main>
         <Routes>
-          <Route path="/" element={<Home />}></Route>
-          <Route path="/posts" element={<Posts />}></Route>
-          <Route path="/refugees" element={<Refugees />}></Route>
-          <Route path="/about" element={<About />}></Route>
+          <Route exact path="/" element={<Home />} />
+          <Route path="/posts" element={<Posts />} />
+          <Route path="/refugees" element={<Refugees />} />
+          <Route path="/about" element={<About />} />
+          <Route path="*" element={<NotFound />} />
         </Routes>
       </main>
       <Footer />
