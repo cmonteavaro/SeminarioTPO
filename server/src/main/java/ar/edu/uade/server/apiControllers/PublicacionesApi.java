@@ -23,9 +23,8 @@ public class PublicacionesApi {
 
     @GetMapping("/adopciones")
     public ResponseEntity<?> getAllAdopciones() {
-        //List<AdopcionCortaView> resultado = new ArrayList<>();
-        //adopcionService.findAll().forEach(adopcion -> resultado.add(AdopcionCortaView.toView(adopcion)));
-        List<Adopcion> resultado = adopcionService.findAll();
+        List<AdopcionCortaView> resultado = new ArrayList<>();
+        adopcionService.findAll().forEach(adopcion -> resultado.add(AdopcionCortaView.toView(adopcion)));
         return ResponseEntity.ok(resultado);
     }
 
