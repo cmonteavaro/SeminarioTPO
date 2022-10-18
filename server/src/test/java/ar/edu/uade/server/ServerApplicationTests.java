@@ -2,9 +2,11 @@ package ar.edu.uade.server;
 
 import ar.edu.uade.server.model.*;
 import ar.edu.uade.server.model.enums.EstadoPublicacionAnimalEnum;
+import ar.edu.uade.server.model.enums.TamanioEnum;
 import ar.edu.uade.server.model.enums.TipoAnimalEnum;
 import ar.edu.uade.server.model.enums.TipoRedSocialEnum;
 import ar.edu.uade.server.repository.RepositoryODB;
+import ar.edu.uade.server.service.AnimalService;
 import ar.edu.uade.server.service.RefugioService;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,8 +15,10 @@ import org.springframework.boot.test.context.SpringBootTest;
 import javax.persistence.Persistence;
 import javax.persistence.PersistenceUtil;
 import java.sql.Ref;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.Locale;
 import java.util.Optional;
 
 @SpringBootTest
@@ -23,6 +27,9 @@ class ServerApplicationTests {
     @Autowired
     RefugioService refugioService;
 
+    @Autowired
+    AnimalService animalService;
+
     @Test
     void contextLoads() {
     }
@@ -30,36 +37,44 @@ class ServerApplicationTests {
     @Test
     void animalTest(){
 //        ---- Creacion ----
-//        Animal a = new Animal();
-//        a.setNombre("Kali");
-//        a.setTamanioActual(TamanioEnum.CHICO);
-//        a.setTamanioEsperado(TamanioEnum.CHICO);
-//        a.setFechaNac(new Date(2021,11,21));
-//        a.setTipoAnimal(TipoAnimalEnum.PERRO);
-//        a.setCastrado(false);
-//        a.setEsquemaCompletoVacunas(true);
-//        a.setDesparasitado(true);
-//        RepositoryODB.getInstancia().saveOBD(a);
+/*
+        Animal a = new Animal();
+        a.setNombre("Kali");
+        a.setTamanioActual(TamanioEnum.CHICO);
+        a.setTamanioEsperado(TamanioEnum.CHICO);
+        //a.setFechaNac(new LocalDate(2021,11,21));
+        a.setTipoAnimal(TipoAnimalEnum.PERRO);
+        a.setCastrado(false);
+        a.setEsquemaCompletoVacunas(true);
+        a.setDesparasitado(true);
+        RepositoryODB.getInstancia().saveOBD(a);
+
+
+ */
 
 //        ---- Recuperacion de todos ----
-        for (Animal a: RepositoryODB.getInstancia().findAll(Animal.class)){
+        for (Animal a: animalService.findAll()){
             System.out.println(a.getNombre());
-            System.out.println(a.getFechaNac().getDayOfMonth());
+            //System.out.println(a.getFechaNac().getDayOfMonth());
             System.out.println(a.getTamanioActual());
             System.out.println(a.getId());
         };
 
+
+
 //        ---- Recuperacion de uno ----
-//        Optional<Animal> oa = RepositoryODB.getInstancia().findById(Animal.class,1);
-//        if (oa.isPresent()) {
-//            Animal a = oa.get();
-//            System.out.println(a.getNombre());
-//            System.out.println(a.getFechaNac().getDay());
-//            System.out.println(a.getTamanioActual());
-//            System.out.println(a.getId());
-//        }else{
-//            System.err.println("Animal no encontrado");
-//        }
+        /*
+        Optional<Animal> oa = RepositoryODB.getInstancia().findById(Animal.class,1);
+        if (oa.isPresent()) {
+            Animal a = oa.get();
+            System.out.println(a.getNombre());
+            System.out.println(a.getFechaNac().getDay());
+            System.out.println(a.getTamanioActual());
+            System.out.println(a.getId());
+        }else{
+            System.err.println("Animal no encontrado");
+        }
+        */
     }
 
     @Test
@@ -87,6 +102,7 @@ class ServerApplicationTests {
 
     @Test
     void AdopcionTestAislada(){
+        /*
         RepositoryODB.getInstancia().deleteAll(Adopcion.class);
         Adopcion pub = new Adopcion();
 //        pub.setAnimal(new Animal("Boneco", TipoAnimalEnum.PERRO));
@@ -101,13 +117,14 @@ class ServerApplicationTests {
         for (String img: pub.getGaleriaImagenes()){
             System.out.println("Imagen: "+img);
         }
+        */
         for (Adopcion pa: RepositoryODB.getInstancia().findAll(Adopcion.class)){
             System.out.println("ID: "+pa.getId());
             System.out.println("Estado: "+pa.getEstado());
             System.out.println("Patio: "+pa.getNecesitaPatio());
             System.out.println(pa.getRefugio().getNombre());
             System.out.println(pa.getAnimal().getNombre());
-            System.out.println("Dia: "+pa.getFechaPublicacion().getDayOfMonth());
+            //System.out.println("Dia: "+pa.getFechaPublicacion().getDayOfMonth());
             for (String img: pa.getGaleriaImagenes()){
                 System.out.println("Imagen: "+img);
             }

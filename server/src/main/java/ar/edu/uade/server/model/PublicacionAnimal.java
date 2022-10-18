@@ -17,7 +17,7 @@ public abstract class PublicacionAnimal {
     @Id @GeneratedValue
     private Long id;
     private String descripcion;
-    @OneToOne
+    @ManyToOne
     private Animal animal;
     @OneToOne(fetch = FetchType.EAGER)
     private Refugio refugio;
