@@ -18,7 +18,7 @@ public class AdopcionServiceODB implements AdopcionService{
 
     RepositoryODB repositoryODB = RepositoryODB.getInstancia();
 
-    final AnimalService animalService;
+    private final AnimalService animalService;
 
     final RefugioService refugioService;
 
