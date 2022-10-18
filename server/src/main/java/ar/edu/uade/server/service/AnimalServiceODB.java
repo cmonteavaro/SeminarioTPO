@@ -14,8 +14,8 @@ public class AnimalServiceODB implements AnimalService {
 
     private RepositoryODB repositoryODB = RepositoryODB.getInstancia();
 
-    public void save(Animal animal) {
-        repositoryODB.saveOBD(animal);
+    public Long save(Animal animal) {
+        return repositoryODB.saveOBD(animal).getId();
     }
 
     @Override

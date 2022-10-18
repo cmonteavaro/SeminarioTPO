@@ -20,7 +20,6 @@ public class PerfilRefugio {
     private String descripcionLarga;
     @Enumerated
     private Color color;
-
     @ElementCollection
     private List<String> galeriaImagenes;
 
