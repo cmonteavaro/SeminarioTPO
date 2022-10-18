@@ -11,4 +11,6 @@ public interface AdopcionService {
 
     Optional<Adopcion> findById(Long id);
 
+    void save(Adopcion adopcion);
+
 }

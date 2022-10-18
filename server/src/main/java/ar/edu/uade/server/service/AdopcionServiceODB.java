@@ -19,4 +19,9 @@ public class AdopcionServiceODB implements AdopcionService{
     public Optional<Adopcion> findById(Long id) {
         return RepositoryODB.getInstancia().findById(Adopcion.class,id);
     }
+
+    @Override
+    public void save(Adopcion adopcion) {
+        RepositoryODB.getInstancia().saveOBD(adopcion);
+    }
 }
