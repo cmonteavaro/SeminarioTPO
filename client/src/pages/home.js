@@ -23,6 +23,8 @@ import One from "../images/carousel/1.jpg";
 import Two from "../images/carousel/2.jpg";
 import Three from "../images/carousel/3.jpg";
 import Four from "../images/carousel/4.jpg";
+import Five from "../images/carousel/5.jpg";
+import Six from "../images/carousel/6.jpg";
 
 export default function Home() {
   return (
@@ -30,8 +32,8 @@ export default function Home() {
       <section className="caroussel">
         <Carousel
           slideSize="70%"
-          height={400}
-          slideGap="md"
+          height={550}
+          slideGap="xl"
           loop
           withIndicators
         >
@@ -46,6 +48,12 @@ export default function Home() {
           </Carousel.Slide>
           <Carousel.Slide>
             <img className="carousel" src={Four} />
+          </Carousel.Slide>
+          <Carousel.Slide>
+            <img className="carousel" src={Five} />
+          </Carousel.Slide>
+          <Carousel.Slide>
+            <img className="carousel" src={Six} />
           </Carousel.Slide>
         </Carousel>
       </section>

@@ -6,6 +6,8 @@ import Posts from "./pages/posts";
 import About from "./pages/about";
 import Footer from "./components/footer/footer";
 import Profile from "./pages/PerfilRefugio";
+import NotFound from "./pages/notFound";
+import AnimalDetail from "./pages/animalDetail";
 
 function App() {
   return (
@@ -13,10 +15,12 @@ function App() {
       <NavBar />
       <main>
         <Routes>
-          <Route path="/" element={<Home />}></Route>
-          <Route path="/posts" element={<Posts />}></Route>
-          <Route path="/refugees" element={<Profile />}></Route>
-          <Route path="/about" element={<About />}></Route>
+          <Route exact path="/" element={<Home />} />
+          <Route path="/posts" element={<Posts />} />
+          <Route path="/posts/coco" element={<AnimalDetail />} />
+          <Route path="/refugees" element={<Profile />} />
+          <Route path="/about" element={<About />} />
+          <Route path="*" element={<NotFound />} />
         </Routes>
       </main>
       <Footer />

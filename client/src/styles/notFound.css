@@ -1,0 +1,29 @@
+.notFound {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: 3vw;
+  margin-bottom: 3vw;
+}
+
+.notFound img {
+  margin: 2vw;
+}
+
+.goBack {
+  font-size: small;
+  background-color: var(--accent-color);
+  padding: 1vw;
+  border-radius: 1vw;
+  color: white;
+  margin: 0.5vw;
+}
+
+.goBack:visited {
+  color: white;
+}
+
+.goBack:hover {
+  background-color: var(--tag-available-text);
+}

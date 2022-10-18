@@ -30,16 +30,16 @@ li {
   margin: 0.5vw;
 }
 
-a {
+.links {
   text-decoration: none;
   color: black;
 }
 
-a:visited {
+.links:visited {
   color: black;
 }
 
-a:hover {
+.links:hover {
   color: var(--accent-color);
 }
 

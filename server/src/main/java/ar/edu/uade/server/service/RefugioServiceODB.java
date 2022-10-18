@@ -9,13 +9,20 @@ import java.util.Optional;
 @Service
 public class RefugioServiceODB implements RefugioService{
 
+    RepositoryODB repositoryODB = RepositoryODB.getInstancia();
+
     @Override
     public List<Refugio> findAll() {
-        return RepositoryODB.getInstancia().findAll(Refugio.class);
+        return repositoryODB.findAll(Refugio.class);
     }
 
     @Override
     public Optional<Refugio> findById(Long id) {
-        return RepositoryODB.getInstancia().findById(Refugio.class, id);
+        return repositoryODB.findById(Refugio.class, id);
+    }
+
+    @Override
+    public void save(Refugio refugio) {
+        repositoryODB.saveOBD(refugio);
     }
 }
