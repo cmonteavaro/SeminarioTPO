@@ -32,7 +32,7 @@ export default function Home() {
       <section className="caroussel">
         <Carousel
           slideSize="70%"
-          height={450}
+          height={550}
           slideGap="xl"
           loop
           withIndicators

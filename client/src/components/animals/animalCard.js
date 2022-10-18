@@ -40,7 +40,9 @@ export default function AnimalCard({ animal }) {
           <img src={animal.shelter.logo} className="card-img-shelter" alt="" />
           <p>{animal.shelter.name}</p>
         </div>
-        <Link to="/posts/coco">Adoptar</Link>
+        <Link to="/posts/coco" className="btn-info">
+          Adoptar
+        </Link>
       </div>
     </div>
   );
