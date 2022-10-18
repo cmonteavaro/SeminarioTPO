@@ -19,7 +19,7 @@ public abstract class PublicacionAnimal {
     private String descripcion;
     @ManyToOne
     private Animal animal;
-    @OneToOne(fetch = FetchType.EAGER)
+    @ManyToOne(fetch = FetchType.EAGER)
     private Refugio refugio;
     private Boolean necesitaPatio;
     private Boolean puedeConvivirConInfantes;
