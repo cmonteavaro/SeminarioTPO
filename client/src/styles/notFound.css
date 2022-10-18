@@ -12,7 +12,7 @@
 }
 
 .goBack {
-  font-size: large;
+  font-size: small;
   background-color: var(--accent-color);
   padding: 1vw;
   border-radius: 1vw;

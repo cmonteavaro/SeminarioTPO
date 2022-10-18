@@ -1,6 +1,8 @@
 .animal-detail {
   display: flex;
   flex-direction: column;
+  margin-bottom: 60px;
+  margin-top: 30px;
 }
 
 
@@ -37,8 +39,7 @@
 .info-detail-properties {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  grid-template-rows: 1fr;
-  width: 100%;
+  margin-bottom: 50px;
 }
 
 .fecha-publicacion {
@@ -82,6 +83,10 @@
 
 .info-detail-shelter-links svg {
   margin: 0.5vw;
+}
+
+.info-detail-description{
+  margin-bottom: 40px;
 }
 
 .btn-adopt {
