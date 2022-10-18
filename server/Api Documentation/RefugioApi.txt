@@ -1,0 +1,7 @@
+Obtener perfil del refugio
+Metodo: GET
+Endpoint: http://localhost:8080/api/refugios/{id}/perfil
+
+Obtener Lista de publicaciones de adopcion
+Metodo: GET
+Endpoint: http://localhost:8080/api/refugios/{id}/publicacionesAdopcion

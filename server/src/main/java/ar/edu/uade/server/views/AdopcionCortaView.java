@@ -5,6 +5,9 @@ import ar.edu.uade.server.model.enums.EstadoPublicacionAnimalEnum;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /*
 Forma de uso:
 
@@ -45,6 +48,14 @@ public class AdopcionCortaView {
         view.idRefugio = adopcion.getRefugio().getId();
         view.idPublicacion = adopcion.getId();
         return view;
+    }
+
+    public static List<AdopcionCortaView> toView(List<Adopcion> adopciones){
+        List<AdopcionCortaView> adopcionesView = new ArrayList<AdopcionCortaView>();
+        for (Adopcion adop : adopciones){
+            adopcionesView.add(toView(adop));
+        }
+        return adopcionesView;
     }
 
     private AdopcionCortaView(){}
