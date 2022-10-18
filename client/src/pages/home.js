@@ -26,15 +26,14 @@ import Four from "../images/carousel/4.jpg";
 import Five from "../images/carousel/5.jpg";
 import Six from "../images/carousel/6.jpg";
 
-
 export default function Home() {
   return (
     <section className="basic">
       <section className="caroussel">
         <Carousel
           slideSize="70%"
-          height={400}
-          slideGap="md"
+          height={450}
+          slideGap="xl"
           loop
           withIndicators
         >

@@ -7,6 +7,7 @@ import Refugees from "./pages/refugees";
 import About from "./pages/about";
 import Footer from "./components/footer/footer";
 import NotFound from "./pages/notFound";
+import AnimalDetail from "./pages/animalDetail";
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
         <Routes>
           <Route exact path="/" element={<Home />} />
           <Route path="/posts" element={<Posts />} />
+          <Route path="/posts/coco" element={<AnimalDetail />} />
           <Route path="/refugees" element={<Refugees />} />
           <Route path="/about" element={<About />} />
           <Route path="*" element={<NotFound />} />
