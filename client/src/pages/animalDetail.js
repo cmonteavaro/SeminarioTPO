@@ -27,7 +27,7 @@ const db = [
       medicacion: "No",
       vacunas: "Completo",
       nacimiento: "24/06/2022",
-      fechaPublicacion: "10/10/2022",
+      fechaPublicacion: "12/10/2022",
       puedeConvivir: {
         animalesAdultos: "Si",
         infantes: "Si",
@@ -54,7 +54,7 @@ export default function AnimalDetail() {
           <div className="info-detail-wrapper">
             <div className="info-detail-heading">
               <h2>{db[0].name}</h2>
-              <p>sdkjaskldjalksjd</p>
+              <p className="fecha-publicacion">Fecha de Publicacion: {db[0].properties.fechaPublicacion}</p>
             </div>
             <div className="info-detail-status">
               <Badge color={"lime"} variant={"dark"}>
@@ -65,8 +65,45 @@ export default function AnimalDetail() {
           <article className="info-detail-properties">
             <div className="property-wrapper">
               <p className="property">
-                Tamanio actual:
-                {db[0].properties.tamanioActual}
+                Tamanio Actual:
+                <p className="property-info">{db[0].properties.tamanioActual}</p>
+              </p>
+              <p className="property">
+                Tamanio Esperado:
+                <p className="property-info">{db[0].properties.tamanioEsperado}</p>
+              </p>
+              <p className="property">
+                Edad: 
+                <p className="property-info">{db[0].properties.edad}</p>
+              </p>
+              <p className="property">
+                Nacimiento:
+                <p className="property-info">{db[0].properties.nacimiento}</p>
+              </p>
+              <p className="property">
+                Castrado:
+                <p className="property-info">{db[0].properties.castrado}</p>
+              </p>
+              <p className="property">
+                Desparasitado:
+                <p className="property-info">{db[0].properties.desparasitado}</p>
+              </p>
+              <p className="property">
+                Medicacion:
+                <p className="property-info">{db[0].properties.medicacion}</p>
+              </p>
+              <p className="property">
+                Vacunas:
+                <p className="property-info">{db[0].properties.vacunas}</p>
+              </p>
+              <p className="property">
+                Puede convivir con:
+                <ul className="convivencia-animal">
+                  <li className="property-info convivencia-item">Infantes: {db[0].properties.puedeConvivir.infantes}</li>
+                  <li className="property-info convivencia-item">Gatos: {db[0].properties.puedeConvivir.gatos}</li>
+                  <li className="property-info convivencia-item">Perros Cachorros: {db[0].properties.puedeConvivir.animalesCachorros}</li>
+                  <li className="property-info convivencia-item">Perros Adultos: {db[0].properties.puedeConvivir.animalesAdultos}</li>
+                </ul>
               </p>
             </div>
             <div></div>
