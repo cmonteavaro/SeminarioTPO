@@ -62,7 +62,7 @@ export default function AnimalDetail() {
               </Badge>
             </div>
           </div>
-          <article className="info-detail-properties">
+          <article>
             <div className="property-wrapper">
               <p className="property">
                 Tamanio Actual:
@@ -106,7 +106,6 @@ export default function AnimalDetail() {
                 </ul>
               </p>
             </div>
-            <div></div>
           </article>
           <article className="info-detail-description">
             {db[0].description}
