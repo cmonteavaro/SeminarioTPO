@@ -51,6 +51,7 @@ public class Refugio {
         this.publicacionesTransito = new ArrayList<Transito>();
         this.publicacionesVoluntariado = new ArrayList<PublicacionVoluntariado>();
         this.publicacionesDonacionesNoMonetarias = new ArrayList<PublicacionDonacion>();
+        this.perfilRefugio = new PerfilRefugio();
     }
 
     public Refugio() {
@@ -59,6 +60,7 @@ public class Refugio {
         this.publicacionesTransito = new ArrayList<Transito>();
         this.publicacionesVoluntariado = new ArrayList<PublicacionVoluntariado>();
         this.publicacionesDonacionesNoMonetarias = new ArrayList<PublicacionDonacion>();
+        this.perfilRefugio = new PerfilRefugio();
     }
 
     public void agregarRedesSociales(RedSocial ... redes) { Collections.addAll(redesSociales, redes); }
