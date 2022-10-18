@@ -20,7 +20,7 @@ public class AdopcionServiceODB implements AdopcionService{
 
     private final AnimalService animalService;
 
-    final RefugioService refugioService;
+    private final RefugioService refugioService;
 
     @Autowired
     public AdopcionServiceODB(AnimalService animalService, RefugioService refugioService) {
