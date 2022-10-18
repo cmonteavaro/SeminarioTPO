@@ -5,9 +5,12 @@ import { Loader } from "@mantine/core";
 
 import Coco from "../images/coco.webp";
 import Mila from "../images/mila.webp";
+import Juan from "../images/juan.webp";
+import Noba from "../images/noba.webp";
 
 import Zaguates from "../images/shelters/zaguates.webp";
 import PatitasAccion from "../images/shelters/patitasAccion.webp";
+import PatitasGlew from "../images/shelters/patitasGlew.webp";
 
 export default function Posts() {
   const db = [
@@ -31,6 +34,26 @@ export default function Posts() {
         logo: PatitasAccion,
       },
     },
+    {
+      name: "Noba",
+      image: Noba,
+      state: "En proceso",
+      location: "Glew",
+      shelter: {
+        name: "Patitas Glew",
+        logo: PatitasGlew,
+      },
+    },
+    {
+      name: "Juan",
+      image: Juan,
+      state: "Disponible",
+      location: "Glew",
+      shelter: {
+        name: "Patitas Glew",
+        logo: PatitasGlew,
+      },
+    },
   ];
 
   const [data, setData] = useState([]);
@@ -40,7 +63,7 @@ export default function Posts() {
     setLoading(true);
     setTimeout(() => {
       setLoading(false);
-    }, 5000);
+    }, 2500);
   }, []);
 
   useEffect(() => {
@@ -67,7 +90,8 @@ export default function Posts() {
 
   return (
     <div className="container">
-      <section className="filters"></section>
+      <section className="filters">
+      </section>
       <section className="cards">
         <ListAnimals props={data} />
       </section>

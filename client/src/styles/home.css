@@ -1,6 +1,7 @@
 .carousel {
   display: flex;
-  height: 150%;
+  height: 100%;
+  width: 100%;
 }
 
 .image-row {

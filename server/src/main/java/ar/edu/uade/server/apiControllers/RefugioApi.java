@@ -56,4 +56,14 @@ public class RefugioApi {
         //TODO Tenemos que ver que vamos a mostrar para poder realizar el metodo
     }
 
+    @PostMapping
+    public ResponseEntity<?> crearRefugio(@RequestBody Refugio refugio) {
+        try {
+            refugioService.save(refugio);
+            return ResponseEntity.status(HttpStatus.CREATED).build();
+        }
+        catch (Exception e) {
+            return ResponseEntity.badRequest().eTag(e.getMessage()).build();
+        }
+    }
 }

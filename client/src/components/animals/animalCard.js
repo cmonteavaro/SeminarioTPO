@@ -1,4 +1,5 @@
-import { Badge, Button } from "@mantine/core";
+import { Badge } from "@mantine/core";
+import { Link } from "react-router-dom";
 import "../../styles/card.css";
 
 export default function AnimalCard({ animal }) {
@@ -39,9 +40,9 @@ export default function AnimalCard({ animal }) {
           <img src={animal.shelter.logo} className="card-img-shelter" alt="" />
           <p>{animal.shelter.name}</p>
         </div>
-        <Button disabled variant="dark" color="lime" mt="md" radius="md">
-          A implementar
-        </Button>
+        <Link to="/posts/coco" className="btn-info">
+          Adoptar
+        </Link>
       </div>
     </div>
   );
