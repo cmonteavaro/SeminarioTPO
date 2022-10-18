@@ -37,12 +37,6 @@
   margin-bottom: 15px;
 }
 
-.info-detail-properties {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  margin-bottom: 50px;
-}
-
 .fecha-publicacion {
     display: flex;
     color: grey;
@@ -88,6 +82,7 @@
 }
 
 .info-detail-description{
+  margin-top: 50px;
   margin-bottom: 40px;
 }
 
@@ -102,11 +97,9 @@
 }
 
 .property-wrapper {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-around;
-  flex-wrap: wrap;
-  width: 100%;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-auto-columns: max-content;
 }
 
 
