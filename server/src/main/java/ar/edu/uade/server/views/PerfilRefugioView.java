@@ -6,13 +6,6 @@ import lombok.Setter;
 import java.util.ArrayList;
 import java.util.List;
 
-/*
-Forma de uso:
-
-Refugio a = #Objeto de modelo adopcion
-PerfilRefugioView av = new PerfilRefugioView(a);
-
- */
 @Getter
 @Setter
 public class PerfilRefugioView {
