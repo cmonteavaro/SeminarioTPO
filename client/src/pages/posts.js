@@ -5,6 +5,7 @@ import { Loader } from "@mantine/core";
 
 import Coco from "../images/coco.webp";
 import Mila from "../images/mila.webp";
+import Milo from "../images/milo.webp";
 
 import Zaguates from "../images/shelters/zaguates.webp";
 import PatitasAccion from "../images/shelters/patitasAccion.webp";

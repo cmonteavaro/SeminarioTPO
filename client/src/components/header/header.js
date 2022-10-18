@@ -2,6 +2,7 @@ import "./header.css";
 import { Link, useMatch, useResolvedPath } from "react-router-dom";
 import logo from "../../images/logo.png";
 
+
 export default function NavBar() {
   return (
     <nav className="nav">
