@@ -18,7 +18,6 @@ public class PerfilRefugio {
     private String banner;
     private String descripcionCorta;
     private String descripcionLarga;
-    @Enumerated
     private String color;
     @ElementCollection
     private List<String> galeriaImagenes;
