@@ -112,7 +112,6 @@ class ServerApplicationTests {
 
     @Test
     void AdopcionTestAislada(){
-//        RepositoryODB.getInstancia().deleteAll(Adopcion.class);
         Adopcion pub = new Adopcion();
 //        pub.setAnimal(new Animal("Boneco", TipoAnimalEnum.PERRO));
         pub.setAnimal(animalService.findById((long) 1).get());
