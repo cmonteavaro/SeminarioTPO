@@ -102,6 +102,8 @@ class ServerApplicationTests {
 
     @Test
     void AdopcionTestAislada(){
+        //RepositoryODB.getInstancia().deleteAll(Animal.class);
+        //RepositoryODB.getInstancia().deleteAll(Adopcion.class);
         /*
         RepositoryODB.getInstancia().deleteAll(Adopcion.class);
         Adopcion pub = new Adopcion();

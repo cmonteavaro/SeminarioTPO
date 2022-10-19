@@ -3,11 +3,15 @@ package ar.edu.uade.server.DTO;
 import ar.edu.uade.server.model.Animal;
 import ar.edu.uade.server.model.enums.TamanioEnum;
 import ar.edu.uade.server.model.enums.TipoAnimalEnum;
+import lombok.Getter;
+import lombok.Setter;
 
 import java.time.DateTimeException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
+@Setter
+@Getter
 public class AnimalDTO {
 
     private String nombre;
@@ -31,7 +35,7 @@ public class AnimalDTO {
         animal.setCastrado(this.castrado);
         animal.setEsquemaCompletoVacunas(this.esquemaCompletoVacunas);
         animal.setDesparasitado(this.desparasitado);
-        
+
         return animal;
     }
 }

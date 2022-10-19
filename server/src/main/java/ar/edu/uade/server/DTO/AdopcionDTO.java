@@ -18,9 +18,6 @@ import java.util.Optional;
 @Setter
 public class AdopcionDTO {
 
-    @Autowired
-    AdopcionService adopcionService;
-
     private String descripcion;
     private Long idAnimal;
     private Long idRefugio;
@@ -52,7 +49,6 @@ public class AdopcionDTO {
         adopcion.setFechaPublicacion(LocalDate.parse(this.fechaPublicacion, dateFormatter));
         adopcion.setEstado(this.estado);
         adopcion.setGaleriaImagenes(this.galeriaImagenes);
-
         return adopcion;
     }
 }

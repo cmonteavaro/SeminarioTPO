@@ -52,5 +52,6 @@ public class AdopcionServiceODB implements AdopcionService{
         Optional<Refugio> oRefugio = refugioService.findById(adopcionDTO.getIdRefugio());
         if (oRefugio.isEmpty()) throw new RefugioException("El refugio no fue encontrado");
         adopcion.setRefugio(oRefugio.get());
+        this.save(adopcion);
     }
 }
