@@ -39,12 +39,12 @@ public class AdopcionServiceODB implements AdopcionService{
     }
 
     @Override
-    public void save(Adopcion adopcion) {
-        repositoryODB.saveOBD(adopcion);
+    public Long save(Adopcion adopcion) {
+        return repositoryODB.saveOBD(adopcion).getId();
     }
 
     @Override
-    public void saveDTO(AdopcionDTO adopcionDTO) throws AnimalException, RefugioException {
+    public Long saveDTO(AdopcionDTO adopcionDTO) throws AnimalException, RefugioException {
         Adopcion adopcion = adopcionDTO.toModel();
         Optional<Animal> oAnimal = animalService.findById(adopcionDTO.getIdAnimal());
         if (oAnimal.isEmpty()) throw new AnimalException("El animal no fue encontrado");
@@ -52,5 +52,6 @@ public class AdopcionServiceODB implements AdopcionService{
         Optional<Refugio> oRefugio = refugioService.findById(adopcionDTO.getIdRefugio());
         if (oRefugio.isEmpty()) throw new RefugioException("El refugio no fue encontrado");
         adopcion.setRefugio(oRefugio.get());
+        return this.save(adopcion);
     }
 }

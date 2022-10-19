@@ -22,7 +22,7 @@ public class RefugioServiceODB implements RefugioService{
     }
 
     @Override
-    public void save(Refugio refugio) {
-        repositoryODB.saveOBD(refugio);
+    public Long save(Refugio refugio) {
+        return repositoryODB.saveOBD(refugio).getId();
     }
 }

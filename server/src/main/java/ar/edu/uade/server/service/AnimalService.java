@@ -7,7 +7,7 @@ import java.util.Optional;
 
 public interface AnimalService {
 
-    void save(Animal animal);
+    Long save(Animal animal);
 
     Optional<Animal> findById(Long id);
 
