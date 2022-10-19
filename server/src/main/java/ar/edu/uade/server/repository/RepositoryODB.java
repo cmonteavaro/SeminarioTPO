@@ -38,20 +38,14 @@ public class RepositoryODB {
     }
 
     //Persistir
-    public void saveOBD(Object aux){
+    public <T> T saveOBD(T aux){
+        T retorno;
         this.conexionOBD();
         this.em.getTransaction().begin();
-        this.em.persist(aux);
+        retorno = this.em.merge(aux);
         this.em.getTransaction().commit();
         this.desconexionOBD();
-    }
-
-    public void updateOBD(Object aux){
-        this.conexionOBD();
-        this.em.getTransaction().begin();
-        this.em.merge(aux);
-        this.em.getTransaction().commit();
-        this.desconexionOBD();
+        return retorno;
     }
 
     public <T> Optional<T> findById(Class<T> clase, long id){

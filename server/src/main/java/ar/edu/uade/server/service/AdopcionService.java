@@ -15,8 +15,8 @@ public interface AdopcionService {
 
     Optional<Adopcion> findById(Long id);
 
-    void save(Adopcion adopcion);
+    Long save(Adopcion adopcion);
 
-    void saveDTO(AdopcionDTO adopcionDTO) throws AnimalException, RefugioException;
+    Long saveDTO(AdopcionDTO adopcionDTO) throws AnimalException, RefugioException;
 
 }

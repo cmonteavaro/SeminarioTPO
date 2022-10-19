@@ -12,5 +12,5 @@ public interface RefugioService {
 
     Optional<Refugio> findById(Long id);
 
-    void save(Refugio refugio);
+    Long save(Refugio refugio);
 }
