@@ -39,7 +39,7 @@ public class PublicacionesApi {
         }
     }
 
-    @PostMapping
+    @PostMapping("/adopciones")
     public ResponseEntity<?> crearPublicacionAdopcion(@RequestBody AdopcionDTO adopcionDTO){
         try {
             adopcionService.saveDTO(adopcionDTO);
