@@ -1,6 +1,7 @@
 package ar.edu.uade.server.service;
 
 import ar.edu.uade.server.DTO.VoluntarioDTO;
+import ar.edu.uade.server.exceptions.RefugioException;
 import ar.edu.uade.server.exceptions.VoluntarioException;
 import ar.edu.uade.server.model.PublicacionVoluntariado;
 import ar.edu.uade.server.model.Refugio;
@@ -39,10 +40,10 @@ public class VoluntarioServiceODB implements VoluntarioService{
     }
 
     @Override
-    public Long saveDTO(VoluntarioDTO voluntarioDTO) throws VoluntarioException{
+    public Long saveDTO(VoluntarioDTO voluntarioDTO) throws RefugioException{
         PublicacionVoluntariado publicacionVoluntariado = voluntarioDTO.toModel();
         Optional<Refugio> oRefugio = refugioService.findById(voluntarioDTO.getIdRefugio());
-        if(oRefugio.isEmpty()) throw new VoluntarioException("El refugio no fue encontrado");
+        if(oRefugio.isEmpty()) throw new RefugioException("El refugio no fue encontrado");
         publicacionVoluntariado.setRefugio(oRefugio.get());
         return this.save(publicacionVoluntariado);
     }
