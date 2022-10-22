@@ -32,3 +32,31 @@
 .logo-name-location {
   display: flex;
 }
+
+.description-shelter {
+  display: flex;
+  flex-direction: column;
+  margin: 0 5vw 0 5vw;
+  justify-content: space-evenly;
+}
+
+.description-shelter article {
+  margin: 2vh 0 2vh 0;
+}
+
+.description-shelter .caroussel {
+}
+
+.hero {
+  height: 700px;
+  width: 100%;
+}
+
+.posts-shelter {
+  margin: 0 2vw 0 2vw;
+  padding: 1vh 2vw 1vh 2vw;
+}
+
+.posts-shelter article {
+  margin: 1vh 0 1vh 0;
+}
