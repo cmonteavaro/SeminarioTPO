@@ -28,7 +28,7 @@ public class AdopcionView {
 
 
     //Animal
-    private Animal animal;
+    private AnimalView animal;
     //Refugio
     private Long idRefugio;
     private String nombreRefugio;
@@ -53,7 +53,7 @@ public class AdopcionView {
     public static AdopcionView toView(Adopcion adopcion){
         AdopcionView view = new AdopcionView();
         //Animal
-        view.animal = adopcion.getAnimal();
+        view.animal = AnimalView.toView(adopcion.getAnimal());
         //Refugio
         view.idRefugio = adopcion.getRefugio().getId();
         view.nombreRefugio = adopcion.getRefugio().getNombre();

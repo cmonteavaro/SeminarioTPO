@@ -2,7 +2,7 @@ package ar.edu.uade.server.apiControllers;
 
 import ar.edu.uade.server.model.*;
 import ar.edu.uade.server.service.RefugioService;
-import ar.edu.uade.server.views.AdopcionCortaView;
+import ar.edu.uade.server.views.PublicacionAnimalCortaView;
 import ar.edu.uade.server.views.PerfilRefugioView;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -33,8 +33,8 @@ public class RefugioApi {
     public ResponseEntity<?> GetPublicacionesAdopcion(@PathVariable Long id){
         Optional<Refugio> oRefugio = refugioService.findById(id);
         if (oRefugio.isPresent()){
-            List<Adopcion> adopciones = oRefugio.get().getPublicacionesAdopcion();
-            return ResponseEntity.ok(AdopcionCortaView.toView(adopciones));
+            List<PublicacionAnimal> adopciones = oRefugio.get().getPublicacionesAdopcion();
+            return ResponseEntity.ok(PublicacionAnimalCortaView.toView(adopciones));
         }
         return ResponseEntity.notFound().build();
     }
