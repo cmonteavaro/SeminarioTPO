@@ -8,6 +8,7 @@ import ar.edu.uade.server.service.AdopcionService;
 import ar.edu.uade.server.service.VoluntarioService;
 import ar.edu.uade.server.views.AdopcionCortaView;
 import ar.edu.uade.server.views.AdopcionView;
+import ar.edu.uade.server.views.VoluntariadoCortaView;
 import ar.edu.uade.server.views.VoluntariadoView;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -74,8 +75,8 @@ public class PublicacionesApi {
 
     @GetMapping("/voluntariados")
     public ResponseEntity<?> getAllVoluntariados() {
-        List<VoluntariadoView> resultado = new ArrayList<>();
-        voluntarioService.findAll().forEach(voluntariado -> resultado.add(VoluntariadoView.toView(voluntariado)));
+        List<VoluntariadoCortaView> resultado = new ArrayList<>();
+        voluntarioService.findAll().forEach(voluntariado -> resultado.add(VoluntariadoCortaView.toView(voluntariado)));
         return ResponseEntity.ok(resultado);
     }
 
