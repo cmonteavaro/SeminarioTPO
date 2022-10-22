@@ -1,8 +1,7 @@
 import AnimalCard from "./animalCard";
-import "../../styles/grid-animals.css"
+import "../../styles/grid-animals.css";
 
 export default function ListAnimals({ props }) {
-  console.log(props);
   return (
     <div>
       <h2>Conocelos</h2>

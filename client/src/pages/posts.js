@@ -90,8 +90,7 @@ export default function Posts() {
 
   return (
     <div className="container">
-      <section className="filters">
-      </section>
+      <section className="filters"></section>
       <section className="cards">
         <ListAnimals props={data} />
       </section>

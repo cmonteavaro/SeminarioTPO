@@ -8,6 +8,7 @@ import About from "./pages/about";
 import Footer from "./components/footer/footer";
 import NotFound from "./pages/notFound";
 import AnimalDetail from "./pages/animalDetail";
+import Shelters from "./pages/shelters";
 
 function App() {
   return (
@@ -18,7 +19,8 @@ function App() {
           <Route exact path="/" element={<Home />} />
           <Route path="/posts" element={<Posts />} />
           <Route path="/posts/coco" element={<AnimalDetail />} />
-          <Route path="/refugees" element={<Profile />} />
+          <Route path="/refugees/" element={<Shelters />} />
+          <Route path="/refugees/:id" element={<Profile />} />
           <Route path="/about" element={<About />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
