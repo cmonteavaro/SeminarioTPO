@@ -18,6 +18,7 @@ import java.util.Optional;
 @Setter
 public class AdopcionDTO {
 
+    private Long idPublicacion;
     private String descripcion;
     private Long idAnimal;
     private Long idRefugio;
@@ -37,6 +38,7 @@ public class AdopcionDTO {
         DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 
         Adopcion adopcion = new Adopcion();
+        adopcion.setId(this.idPublicacion);
         adopcion.setDescripcion(this.descripcion);
         adopcion.setNecesitaPatio(this.necesitaPatio);
         adopcion.setPuedeConvivirConInfantes(this.puedeConvivirConInfantes);

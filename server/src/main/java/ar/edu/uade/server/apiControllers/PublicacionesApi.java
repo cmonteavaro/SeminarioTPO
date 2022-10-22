@@ -61,6 +61,16 @@ public class PublicacionesApi {
         }
     }
 
+    @PutMapping("/adopciones")
+    public ResponseEntity<?> modificarPublicacionAdopcion(@RequestBody AdopcionDTO adopcionDTO){
+        try {
+            adopcionService.saveDTO(adopcionDTO);
+            return ResponseEntity.status(HttpStatus.CREATED).build();
+        }catch (Exception e){
+            return ResponseEntity.badRequest().eTag(e.getMessage()).build();
+        }
+    }
+
 
     @GetMapping("/voluntariados")
     public ResponseEntity<?> getAllVoluntariados() {
