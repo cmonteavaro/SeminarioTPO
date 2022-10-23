@@ -30,10 +30,10 @@ public class Refugio {
     private List<RedSocial> redesSociales;
 
     @OneToMany(fetch = FetchType.EAGER, cascade = {CascadeType.PERSIST, CascadeType.MERGE})
-    private List<PublicacionAnimal> publicacionesAdopcion;
+    private List<Adopcion> publicacionesAdopcion;
 
     @OneToMany(fetch = FetchType.EAGER, cascade = {CascadeType.PERSIST, CascadeType.MERGE})
-    private List<PublicacionAnimal> publicacionesTransito;
+    private List<Transito> publicacionesTransito;
 
     @OneToMany(fetch = FetchType.EAGER, cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     private List<PublicacionVoluntariado> publicacionesVoluntariado;

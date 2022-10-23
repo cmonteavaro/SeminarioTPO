@@ -52,7 +52,7 @@ public class PublicacionAnimalCortaView {
     }
 
     public static List<PublicacionAnimalCortaView> toView(List<PublicacionAnimal> publicaciones){
-        List<PublicacionAnimalCortaView> adopcionesView = new ArrayList<PublicacionAnimalCortaView>();
+        List<PublicacionAnimalCortaView> adopcionesView = new ArrayList<>();
         for (PublicacionAnimal pub : publicaciones){
             adopcionesView.add(toView(pub));
         }
