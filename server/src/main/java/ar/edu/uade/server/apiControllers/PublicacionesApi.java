@@ -5,6 +5,7 @@ import ar.edu.uade.server.DTO.FormularioDTO;
 import ar.edu.uade.server.DTO.VoluntarioDTO;
 import ar.edu.uade.server.model.Adopcion;
 import ar.edu.uade.server.model.PublicacionVoluntariado;
+import ar.edu.uade.server.model.Transito;
 import ar.edu.uade.server.service.AdopcionService;
 import ar.edu.uade.server.service.EmailServiceImpl;
 import ar.edu.uade.server.service.VoluntarioService;
@@ -130,4 +131,33 @@ public class PublicacionesApi {
         }
     }
 
+    @PostMapping("/transitos/{id}/postular")
+    public ResponseEntity<?> postulacionTransito(@PathVariable Long id, @RequestBody FormularioDTO formularioDTO) {
+        Optional<Transito> oTransito = null;
+        if (oTransito.isPresent()) {
+            if (emailService.sendMailDTO(formularioDTO,oTransito.get())){
+                return ResponseEntity.ok().build();
+            }else {
+                return ResponseEntity.internalServerError().build();
+            }
+        }
+        else {
+            return ResponseEntity.notFound().build();
+        }
+    }
+
+    @PostMapping("/voluntariados/{id}/postular")
+    public ResponseEntity<?> postulacionVoluntariado(@PathVariable Long id, @RequestBody FormularioDTO formularioDTO) {
+        Optional<PublicacionVoluntariado> oVoluntariado = voluntarioService.findById(id);
+        if (oVoluntariado.isPresent()) {
+            if (emailService.sendMailDTO(formularioDTO,oVoluntariado.get())){
+                return ResponseEntity.ok().build();
+            }else {
+                return ResponseEntity.internalServerError().build();
+            }
+        }
+        else {
+            return ResponseEntity.notFound().build();
+        }
+    }
 }

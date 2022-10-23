@@ -5,6 +5,8 @@ import ar.edu.uade.server.exceptions.AdopcionException;
 import ar.edu.uade.server.exceptions.AnimalException;
 import ar.edu.uade.server.model.Adopcion;
 import ar.edu.uade.server.model.Animal;
+import ar.edu.uade.server.model.PublicacionVoluntariado;
+import ar.edu.uade.server.model.Transito;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.mail.SimpleMailMessage;
@@ -39,5 +41,17 @@ public class EmailServiceImpl {
         String subject = "Solicitud de adopcion: "+adopcion.getAnimal().getNombre();
         String msg = adopcion.getAnimal().getNombre()+" ha recibido una solicitud de adopcion por parte de "+formularioDTO.getNombrePostulante()+". \nContacto: "+formularioDTO.getTelefonoPostulante();
         return this.sendSimpleMail(adopcion.getRefugio().getUsuario(),subject,msg);
+    }
+
+    public Boolean sendMailDTO(FormularioDTO formularioDTO, Transito transito){
+        String subject = "Solicitud de transito: "+transito.getAnimal().getNombre();
+        String msg = transito.getAnimal().getNombre()+" ha recibido una solicitud de transito por parte de "+formularioDTO.getNombrePostulante()+". \nContacto: "+formularioDTO.getTelefonoPostulante();
+        return this.sendSimpleMail(transito.getRefugio().getUsuario(),subject,msg);
+    }
+
+    public Boolean sendMailDTO(FormularioDTO formularioDTO, PublicacionVoluntariado voluntariado){
+        String subject = "Solicitud de voluntariado: "+voluntariado.getTitulo();
+        String msg = " Ha recibido una solicitud de voluntariado por parte de "+formularioDTO.getNombrePostulante()+". \nContacto: "+formularioDTO.getTelefonoPostulante();
+        return this.sendSimpleMail(voluntariado.getRefugio().getUsuario(),subject,msg);
     }
 }
