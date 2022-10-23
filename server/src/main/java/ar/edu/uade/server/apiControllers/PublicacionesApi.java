@@ -14,6 +14,7 @@ import ar.edu.uade.server.views.AdopcionView;
 import ar.edu.uade.server.views.VoluntariadoCortaView;
 import ar.edu.uade.server.views.VoluntariadoView;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -77,6 +78,11 @@ public class PublicacionesApi {
         Optional<Transito> oTransito = transitoService.findById(id);
         if (oTransito.isPresent()) {
             return ResponseEntity.ok(TransitoView.toView(oTransito.get()));
+        }
+        else {
+            return ResponseEntity.notFound().build();
+        }
+    }
 
     @PutMapping("/adopciones")
     public ResponseEntity<?> modificarPublicacionAdopcion(@RequestBody AdopcionDTO adopcionDTO){
