@@ -1,0 +1,62 @@
+.heading-shelter {
+  display: flex;
+  justify-content: space-between;
+  margin: 0 5vw 0 5vw;
+}
+
+.links-shelter {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.links-container-shelter {
+  display: flex;
+  justify-content: space-around;
+  padding: 1vh;
+}
+
+.donate {
+  background-color: lightgray;
+  width: 10vw;
+  height: 5vh;
+  border-radius: 1vh;
+  font-weight: bold;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.logo-name-location {
+  display: flex;
+}
+
+.description-shelter {
+  display: flex;
+  flex-direction: column;
+  margin: 0 5vw 0 5vw;
+  justify-content: space-evenly;
+}
+
+.description-shelter article {
+  margin: 2vh 0 2vh 0;
+}
+
+.description-shelter .caroussel {
+}
+
+.hero {
+  height: 700px;
+  width: 100%;
+}
+
+.posts-shelter {
+  margin: 0 2vw 0 2vw;
+  padding: 1vh 2vw 1vh 2vw;
+}
+
+.posts-shelter article {
+  margin: 1vh 0 1vh 0;
+}
