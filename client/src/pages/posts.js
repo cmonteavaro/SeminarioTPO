@@ -54,6 +54,16 @@ export default function Posts() {
         logo: PatitasGlew,
       },
     },
+    {
+      name: "Juan",
+      image: Juan,
+      state: "Disponible",
+      location: "Glew",
+      shelter: {
+        name: "Patitas Glew",
+        logo: PatitasGlew,
+      },
+    }
   ];
 
   const [data, setData] = useState([]);

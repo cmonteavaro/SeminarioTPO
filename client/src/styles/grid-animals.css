@@ -4,3 +4,15 @@
   grid-template-rows: 1fr 1fr;
   align-items: stretch;
 }
+
+@media (max-width: 1024px) {
+  .grid-animales{
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (max-width: 768px){
+  .grid-animales{
+    grid-template-columns: 1fr;
+  }
+}
