@@ -8,9 +8,8 @@
 .detail {
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
   padding: 1vw;
-  margin-left: 10vw;
+  justify-content: center;
 }
 
 .images-detail {
@@ -27,6 +26,7 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  width: 700px;
 }
 
 .info-detail-heading {
@@ -133,4 +133,39 @@
 .go-back-detail {
   margin-left: 2vw;
   font-weight: bold;
+}
+
+@media (max-width: 1024px){
+  .detail{
+    flex-direction: column;
+    align-items: center;
+  }
+  .info-detail{
+    width: 70vw;
+  }
+
+  .btn-adopt{
+    width: 15vw;
+  }
+}
+
+@media (max-width: 768px){
+  .image-detail-big{
+    width: 70vw;
+  }
+  
+  .info-detail-description{
+    margin-top: 2vh;
+  }
+
+  .convivencia-animal {
+    display: inline;
+  }
+
+  .convivencia-animal li{
+    float: left;
+    clear: left;
+    margin: 1vh 0;
+  }
+
 }

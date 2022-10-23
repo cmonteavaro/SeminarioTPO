@@ -107,15 +107,15 @@ export default function AnimalDetail() {
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(false);
 
-  const publicacion = useParams();
+  const {id} = useParams();
 
   useEffect(() => {
     setLoading(true);
-    fetch(`http://localhost:8080/api/publicaciones/adopciones/${publicacion}`)
+    fetch(`http://localhost:8080/api/publicaciones/adopciones/${id}`)
       .then((e) => e.json())
       .then((d) => {
         console.log(d);
-        return setData([d]);
+        return setData(d);
       })
       .finally(() => setLoading(false));
   }, []);
@@ -188,9 +188,9 @@ export default function AnimalDetail() {
 
             <div className="property-wrapper">
               <p className="property">
-                Tamaño Actual:
+                Tamaño Actual:{" "}
                 <span className="property-info">
-                  {data.animal.tamanioActual}
+                   {data.animal.tamanioActual}
                 </span>
               </p>
               <p className="property">
