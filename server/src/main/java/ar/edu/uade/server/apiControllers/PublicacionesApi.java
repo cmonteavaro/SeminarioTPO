@@ -1,10 +1,12 @@
 package ar.edu.uade.server.apiControllers;
 
 import ar.edu.uade.server.DTO.AdopcionDTO;
+import ar.edu.uade.server.DTO.FormularioDTO;
 import ar.edu.uade.server.DTO.VoluntarioDTO;
 import ar.edu.uade.server.model.Adopcion;
 import ar.edu.uade.server.model.PublicacionVoluntariado;
 import ar.edu.uade.server.service.AdopcionService;
+import ar.edu.uade.server.service.EmailServiceImpl;
 import ar.edu.uade.server.service.VoluntarioService;
 import ar.edu.uade.server.views.AdopcionCortaView;
 import ar.edu.uade.server.views.AdopcionView;
@@ -26,11 +28,13 @@ public class PublicacionesApi {
 
     private AdopcionService adopcionService;
     private VoluntarioService voluntarioService;
+    private EmailServiceImpl emailService;
 
     @Autowired
-    public PublicacionesApi (VoluntarioService vs, AdopcionService as){
+    public PublicacionesApi (VoluntarioService vs, AdopcionService as, EmailServiceImpl es){
             this.adopcionService = as;
             this.voluntarioService = vs;
+            this.emailService = es;
     }
 
 
@@ -111,5 +115,19 @@ public class PublicacionesApi {
         }
     }
 
+    @PostMapping("/adopciones/{id}/postular")
+    public ResponseEntity<?> postulacionAdopcion(@PathVariable Long id, @RequestBody FormularioDTO formularioDTO) {
+        Optional<Adopcion> oAdopcion = adopcionService.findById(id);
+        if (oAdopcion.isPresent()) {
+            if (emailService.sendMailDTO(formularioDTO,oAdopcion.get())){
+                return ResponseEntity.ok().build();
+            }else {
+                return ResponseEntity.internalServerError().build();
+            }
+        }
+        else {
+            return ResponseEntity.notFound().build();
+        }
+    }
 
 }
