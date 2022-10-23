@@ -16,7 +16,8 @@ public class VoluntariadoCortaView {
     //Refugio
     private String nombreRefugio;
     private String fotoPerfilRefugio;
-    private Direccion direccionRefugio;
+    private String localidad;
+    private String provincia;
 
     //Publicacion
     private long idPublicacion;
@@ -30,7 +31,8 @@ public class VoluntariadoCortaView {
         //Refugio
         vv.nombreRefugio = publicacionVoluntariado.getRefugio().getNombre();
         vv.fotoPerfilRefugio = publicacionVoluntariado.getRefugio().getPerfilRefugio().getFotoPerfil();
-        vv.direccionRefugio = publicacionVoluntariado.getRefugio().getDireccion();
+        vv.provincia = publicacionVoluntariado.getRefugio().getDireccion().getProvincia();
+        vv.localidad = publicacionVoluntariado.getRefugio().getDireccion().getLocalidad();
 
         //Publicacion
         vv.idPublicacion = publicacionVoluntariado.getId();
