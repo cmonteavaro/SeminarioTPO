@@ -30,3 +30,30 @@ Body:
         "imagen3.jpg"
     ]
 }
+
+Modificar una publicacion de adopcion
+Método: PUT
+Endpoint: http://localhost:8080/api/publicaciones/adopciones
+Body:
+{
+    "idPublicacion": 19
+    "descripcion":"Carlitos es muy tranquilo, le encanta jugar con chicos y que lo saquen a pasear",
+    "idAnimal":12,
+    "idRefugio":2,
+    "necesitaPatio":true,
+    "puedeConvivirConInfantes":true,
+    "puedeConvivirConGatos":false,
+    "puedeConvivirConCachorros":true,
+    "puedeConvivirConPerrosAdultos":true,
+    "requiereHogarAmplio":true,
+    "transporteCubierto":true,
+    "esUrgente":false,
+    "fechaPublicacion":"07/06/2022",
+    "estado":"EN_PROCESO",
+    "galeriaImagenes":[
+        "imagen1.jpg",
+        "imagen2.jpg",
+        "imagen3.jpg"
+    ]
+}
+

@@ -25,8 +25,14 @@ import Three from "../images/carousel/3.jpg";
 import Four from "../images/carousel/4.jpg";
 import Five from "../images/carousel/5.jpg";
 import Six from "../images/carousel/6.jpg";
+import { useEffect } from "react";
 
 export default function Home() {
+  useEffect(() => {
+    const url = "http://localhost:8080/api/refugios/1/perfil";
+    fetch(url).then((e) => console.log(e.json()));
+  }, []);
+
   return (
     <section className="basic">
       <section className="caroussel">
