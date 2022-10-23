@@ -14,7 +14,6 @@ const Profile = () => {
     fetch(`http://localhost:8080/api/refugios/${shelter.id}/perfil`)
       .then((e) => e.json())
       .then((d) => {
-        console.log(d);
         return setData([d]);
       })
       .finally(() => setLoading(false));
