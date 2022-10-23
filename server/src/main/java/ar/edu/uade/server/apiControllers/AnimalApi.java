@@ -3,6 +3,7 @@ package ar.edu.uade.server.apiControllers;
 import ar.edu.uade.server.DTO.AnimalDTO;
 import ar.edu.uade.server.model.Animal;
 import ar.edu.uade.server.service.AnimalService;
+import ar.edu.uade.server.views.AnimalView;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -19,7 +20,7 @@ public class AnimalApi {
 
     @GetMapping
     public ResponseEntity<?> getAllAnimales() {
-        return ResponseEntity.ok(animalService.findAll());
+        return ResponseEntity.ok(AnimalView.toView(animalService.findAll()));
     }
 
     @PostMapping

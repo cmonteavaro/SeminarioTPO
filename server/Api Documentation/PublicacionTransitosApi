@@ -1,0 +1,7 @@
+Obtener todas las publicaciones de Transitos
+Método: GET
+Endpoint: http://localhost:8080/api/publicaciones/transitos
+
+Obtener una publicacion de Transito en particular (ID)
+Método: GET
+Endpoint: http://localhost:8080/api/publicaciones/transitos/{id}

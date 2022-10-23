@@ -8,6 +8,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
 @Getter
 @Setter
@@ -24,12 +25,13 @@ public class VoluntariadoView {
     private TipoVoluntariadoEnum tipoVoluntariado;
     private String titulo;
     private String descripcion;
-    private LocalDate fechaPublicacion;
+    private String fechaPublicacion;
 
     private VoluntariadoView(){}
 
     public static VoluntariadoView toView(PublicacionVoluntariado publicacionVoluntariado){
         VoluntariadoView vv = new VoluntariadoView();
+        DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
         //Refugio
         vv.idRefugio = publicacionVoluntariado.getRefugio().getId();
         vv.nombreRefugio = publicacionVoluntariado.getRefugio().getNombre();
@@ -41,7 +43,7 @@ public class VoluntariadoView {
         vv.tipoVoluntariado = publicacionVoluntariado.getTipo();
         vv.titulo = publicacionVoluntariado.getTitulo();
         vv.descripcion = publicacionVoluntariado.getDescripcion();
-        vv.fechaPublicacion = publicacionVoluntariado.getFechaPublicacion();
+        vv.fechaPublicacion = publicacionVoluntariado.getFechaPublicacion().format(dateFormatter);
 
         return vv;
     }

@@ -11,6 +11,7 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.Date;
 import java.util.List;
 
@@ -28,7 +29,7 @@ public class AdopcionView {
 
 
     //Animal
-    private Animal animal;
+    private AnimalView animal;
     //Refugio
     private Long idRefugio;
     private String nombreRefugio;
@@ -46,14 +47,16 @@ public class AdopcionView {
     private Boolean requiereHogarAmplio;
     private Boolean transporteCubierto;
     private Boolean esUrgente;
-    private LocalDate fechaPublicacion;
+    private String fechaPublicacion;
     private EstadoPublicacionAnimalEnum estadoPublicacion;
     private List<String> galeriaImagenesPublicacion;
 
     public static AdopcionView toView(Adopcion adopcion){
         AdopcionView view = new AdopcionView();
+        DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+
         //Animal
-        view.animal = adopcion.getAnimal();
+        view.animal = AnimalView.toView(adopcion.getAnimal());
         //Refugio
         view.idRefugio = adopcion.getRefugio().getId();
         view.nombreRefugio = adopcion.getRefugio().getNombre();
@@ -70,7 +73,7 @@ public class AdopcionView {
         view.requiereHogarAmplio = adopcion.getRequiereHogarAmplio();
         view.transporteCubierto = adopcion.getTransporteCubierto();
         view.esUrgente = adopcion.getEsUrgente();
-        view.fechaPublicacion = adopcion.getFechaPublicacion();
+        view.fechaPublicacion = adopcion.getFechaPublicacion().format(dateFormatter);
         view.estadoPublicacion = adopcion.getEstado();
         view.galeriaImagenesPublicacion = adopcion.getGaleriaImagenes();
 

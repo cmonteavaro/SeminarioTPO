@@ -37,7 +37,7 @@ public abstract class PublicacionAnimal {
     private List<String> galeriaImagenes;
 
     public PublicacionAnimal() {
-        this.galeriaImagenes = new ArrayList<String>();
+        this.galeriaImagenes = new ArrayList<>();
         fechaPublicacion = LocalDate.now();
     }
 
