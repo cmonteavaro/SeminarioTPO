@@ -8,6 +8,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 @Getter
@@ -33,7 +34,7 @@ public class TransitoView {
     private Boolean requiereHogarAmplio;
     private Boolean transporteCubierto;
     private Boolean esUrgente;
-    private LocalDate fechaPublicacion;
+    private String fechaPublicacion;
     private EstadoPublicacionAnimalEnum estadoPublicacion;
     private List<String> galeriaImagenesPublicacion;
 
@@ -44,6 +45,8 @@ public class TransitoView {
 
     public static TransitoView toView(Transito transito){
         TransitoView view = new TransitoView();
+        DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+
         //Animal
         view.animal = AnimalView.toView(transito.getAnimal());
         //Refugio
@@ -62,7 +65,7 @@ public class TransitoView {
         view.requiereHogarAmplio = transito.getRequiereHogarAmplio();
         view.transporteCubierto = transito.getTransporteCubierto();
         view.esUrgente = transito.getEsUrgente();
-        view.fechaPublicacion = transito.getFechaPublicacion();
+        view.fechaPublicacion = transito.getFechaPublicacion().format(dateFormatter);
         view.estadoPublicacion = transito.getEstado();
         view.galeriaImagenesPublicacion = transito.getGaleriaImagenes();
         //Transito
