@@ -146,7 +146,7 @@ class ServerApplicationTests {
             System.out.println("-------- Refugio ---------");
             System.out.println(re.getNombre());
             System.out.println(re.getId());
-            for (Adopcion ad: re.getPublicacionesAdopcion()){
+            for (PublicacionAnimal ad: re.getPublicacionesAdopcion()){
                 System.out.println("-------- Publicaciones ---------");
                 System.out.println(ad.getDescripcion());
                 System.out.println(ad.getId());
@@ -173,7 +173,7 @@ class ServerApplicationTests {
         Refugio ref = refugioService.findById((long)20).get();
         System.out.println("------ Refugio -------");
         System.out.println("Nombre: "+ref.getNombre());
-        for (Adopcion a: ref.getPublicacionesAdopcion()){
+        for (PublicacionAnimal a: ref.getPublicacionesAdopcion()){
             System.out.println("--- Publicacion ---");
             System.out.println(a.getId());
             System.out.println(a.getAnimal().getNombre());

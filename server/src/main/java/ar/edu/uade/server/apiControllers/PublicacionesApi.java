@@ -4,12 +4,15 @@ import ar.edu.uade.server.DTO.AdopcionDTO;
 import ar.edu.uade.server.DTO.FormularioDTO;
 import ar.edu.uade.server.DTO.VoluntarioDTO;
 import ar.edu.uade.server.model.Adopcion;
+import ar.edu.uade.server.model.Transito;
+import ar.edu.uade.server.service.TransitoService;
+import ar.edu.uade.server.views.PublicacionAnimalCortaView;
+import ar.edu.uade.server.views.TransitoView;
 import ar.edu.uade.server.model.PublicacionVoluntariado;
 import ar.edu.uade.server.model.Transito;
 import ar.edu.uade.server.service.AdopcionService;
 import ar.edu.uade.server.service.EmailServiceImpl;
 import ar.edu.uade.server.service.VoluntarioService;
-import ar.edu.uade.server.views.AdopcionCortaView;
 import ar.edu.uade.server.views.AdopcionView;
 import ar.edu.uade.server.views.VoluntariadoCortaView;
 import ar.edu.uade.server.views.VoluntariadoView;
@@ -28,21 +31,22 @@ import java.util.Optional;
 public class PublicacionesApi {
 
     private AdopcionService adopcionService;
+    private TransitoService transitoService;
     private VoluntarioService voluntarioService;
     private EmailServiceImpl emailService;
 
     @Autowired
-    public PublicacionesApi (VoluntarioService vs, AdopcionService as, EmailServiceImpl es){
+    public PublicacionesApi (VoluntarioService vs, AdopcionService as, EmailServiceImpl es, TransitoService ts){
             this.adopcionService = as;
             this.voluntarioService = vs;
             this.emailService = es;
+            this.transitoService = ts;
     }
-
 
     @GetMapping("/adopciones")
     public ResponseEntity<?> getAllAdopciones() {
-        List<AdopcionCortaView> resultado = new ArrayList<>();
-        adopcionService.findAll().forEach(adopcion -> resultado.add(AdopcionCortaView.toView(adopcion)));
+        List<PublicacionAnimalCortaView> resultado = new ArrayList<>();
+        adopcionService.findAll().forEach(adopcion -> resultado.add(PublicacionAnimalCortaView.toView(adopcion)));
         return ResponseEntity.ok(resultado);
     }
 
@@ -62,8 +66,26 @@ public class PublicacionesApi {
         try {
             adopcionService.saveDTO(adopcionDTO);
             return ResponseEntity.status(HttpStatus.CREATED).build();
-        }catch (Exception e){
+        } catch (Exception e) {
             return ResponseEntity.badRequest().eTag(e.getMessage()).build();
+        }
+    }
+
+    @GetMapping("/transitos")
+    public ResponseEntity<?> getAllTransitos() {
+        List<PublicacionAnimalCortaView> resultado = new ArrayList<>();
+        transitoService.findAll().forEach(transito -> resultado.add(PublicacionAnimalCortaView.toView(transito)));
+        return ResponseEntity.ok(resultado);
+    }
+
+    @GetMapping("/transitos/{id}")
+    public ResponseEntity<?> getTransitoById(@PathVariable Long id) {
+        Optional<Transito> oTransito = transitoService.findById(id);
+        if (oTransito.isPresent()) {
+            return ResponseEntity.ok(TransitoView.toView(oTransito.get()));
+        }
+        else {
+            return ResponseEntity.notFound().build();
         }
     }
 

@@ -47,8 +47,8 @@ public class Refugio {
         this.usuario = usuario;
         this.password = password;
         this.redesSociales = new ArrayList<RedSocial>();
-        this.publicacionesAdopcion = new ArrayList<Adopcion>();
-        this.publicacionesTransito = new ArrayList<Transito>();
+        this.publicacionesAdopcion = new ArrayList<>();
+        this.publicacionesTransito = new ArrayList<>();
         this.publicacionesVoluntariado = new ArrayList<PublicacionVoluntariado>();
         this.publicacionesDonacionesNoMonetarias = new ArrayList<PublicacionDonacion>();
         this.perfilRefugio = new PerfilRefugio();
@@ -56,8 +56,8 @@ public class Refugio {
 
     public Refugio() {
         this.redesSociales = new ArrayList<RedSocial>();
-        this.publicacionesAdopcion = new ArrayList<Adopcion>();
-        this.publicacionesTransito = new ArrayList<Transito>();
+        this.publicacionesAdopcion = new ArrayList<>();
+        this.publicacionesTransito = new ArrayList<>();
         this.publicacionesVoluntariado = new ArrayList<PublicacionVoluntariado>();
         this.publicacionesDonacionesNoMonetarias = new ArrayList<PublicacionDonacion>();
         this.perfilRefugio = new PerfilRefugio();

@@ -6,6 +6,7 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.time.Period;
 import java.util.*;
 
 @Getter
@@ -36,4 +37,9 @@ public class Animal {
     public Animal() {
 
     }
+
+    public Integer getEdad() {
+        return Period.between(this.fechaNac, LocalDate.now()).getYears();
+    }
+
 }
