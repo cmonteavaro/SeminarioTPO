@@ -1,0 +1,29 @@
+Crear una Publicacion de Voluntariado
+Método: POST
+Endpoint: http://localhost:8080/api/publicaciones/voluntariados
+Body: {
+          "tipo":"FOTOGRAFIA",
+          "titulo":"Buscamos voluntarios!",
+          "descripcion":"En nuestro refugio estamos necesitando voluntarios para sacarle fotos a nuestros animalitos",
+          "idRefugio":1,
+          "fechaPublicacion":"14/10/2022"
+      }
+
+Modificar una Publicación de Voluntariado
+Método: PUT
+Endpoint: http://localhost:8080/api/publicaciones/voluntariados
+Body:{
+          "tipo":"TRANSPORTE",
+          "titulo":"Buscamos Transporte!",
+          "descripcion":"En nuestro refugio estamos necesitando voluntarios para sacarle fotos a nuestros animalitos",
+          "idRefugio":1,
+          "fechaPublicacion":"14/10/2022"
+     }
+
+Obtener todas las publicaciones de voluntariados
+Método: GET
+Endpoint: http://localhost:8080/api/publicaciones/voluntariados
+
+Obtener una publicacion de voluntariado
+Método: GET
+Endpoint: http://localhost:8080/api/publicaciones/voluntariados/{id}
