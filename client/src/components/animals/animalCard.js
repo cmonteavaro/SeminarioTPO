@@ -1,21 +1,29 @@
 import { Badge } from "@mantine/core";
 import { Link } from "react-router-dom";
 import "../../styles/card.css";
+import One from "../../images/juan.webp";
+import Logo from "../../images/shelters/zaguates.webp";
 
 export default function AnimalCard({ animal }) {
+  const route = `/posts/${animal.idPublicacion}`;
   let color;
   let variant;
   let text;
-  switch (animal.state) {
+  switch (animal.estadoPublicacion) {
     case "Disponible":
       color = "lime";
       variant = "dark";
-      text = `${animal.state}`;
+      text = `${animal.estadoPublicacion}`;
       break;
-    case "En proceso":
+    case "En_proceso":
       color = "yellow";
       variant = "dark";
-      text = `${animal.state}`;
+      text = "En proceso";
+      break;
+    case "Finalizada":
+      color = "red";
+      variant = "dark";
+      text = `${animal.estadoPublicacion}`;
       break;
     default:
       color = "gray";
@@ -26,21 +34,20 @@ export default function AnimalCard({ animal }) {
   return (
     <div className="card">
       <div className="card-heading">
-        <h2>{animal.name}</h2>
+        <h2>{animal.nombreAnimal}</h2>
         <Badge color={color} variant={variant}>
           {text}
         </Badge>
       </div>
-      {/* Arreglar ruta */}
       <div className="card-center">
-        <img src={animal.image} className="card-img-animal" alt="Imagen aqui" />
+        <img src={One} className="card-img-animal" alt="Imagen animal" />
       </div>
       <div className="card-bottom">
         <div className="card-shelter">
-          <img src={animal.shelter.logo} className="card-img-shelter" alt="" />
-          <p>{animal.shelter.name}</p>
+          <img src={Logo} className="card-img-shelter" alt="Imagen refugio" />
+          <p>{animal.nombreRefugio}</p>
         </div>
-        <Link to="/posts/coco" className="btn-info">
+        <Link to={route} className="btn-info">
           Adoptar
         </Link>
       </div>
