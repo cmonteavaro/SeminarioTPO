@@ -8,7 +8,7 @@ Endpoint: http://localhost:8080/api/refugios/{id}/publicacionesAdopcion
 
 Obtener Lista de publicaciones de transito de un refugio
 Metodo: GET
-Endpoint: http://localhost:8080/api/refugios/{id}/publicacionesVoluntariado
+Endpoint: http://localhost:8080/api/refugios/{id}/publicacionesTransito
 
 Obtener Lista de publicaciones de voluntariado de un refugio
 Metodo: GET
