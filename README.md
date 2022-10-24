@@ -12,7 +12,7 @@ https://jdieguez.atlassian.net/jira/software/projects/SR/boards/1
 https://miro.com/app/board/uXjVPbe2wTA=/
 
 ### Figma
-TODO
+https://www.figma.com/file/Jwn4YliaJq730FsuOujdyy/Refugios
 
 ## Data
 
