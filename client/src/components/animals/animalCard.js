@@ -4,23 +4,47 @@ import "../../styles/card.css";
 import One from "../../images/juan.webp";
 import Logo from "../../images/shelters/zaguates.webp";
 
+
+const urgencia = (urg) => {
+  let text;
+  let color;
+  let variant;
+  if (urg) {
+    color = "red";
+    variant = "dark";
+    text = "URGENTE";
+    return (
+      <Badge color={color} variant={variant}>
+        {text}
+      </Badge>
+    );
+  }else{
+    return (
+      <></>
+    );
+  }
+
+  
+}
+
 export default function AnimalCard({ animal }) {
   const route = `/posts/${animal.idPublicacion}`;
+  //const urgente = urgencia(animal.esUrgente);
   let color;
   let variant;
   let text;
   switch (animal.estadoPublicacion) {
-    case "Disponible":
+    case "DISPONIBLE":
       color = "lime";
       variant = "dark";
       text = `${animal.estadoPublicacion}`;
       break;
-    case "En_proceso":
+    case "EN_PROCESO":
       color = "yellow";
       variant = "dark";
       text = "En proceso";
       break;
-    case "Finalizada":
+    case "FINALIZADA":
       color = "red";
       variant = "dark";
       text = `${animal.estadoPublicacion}`;
@@ -40,6 +64,9 @@ export default function AnimalCard({ animal }) {
         </Badge>
       </div>
       <div className="card-center">
+        <div className="tag-urgente">
+          {urgencia(animal.esUrgente)}
+        </div>
         <img src={One} className="card-img-animal" alt="Imagen animal" />
       </div>
       <div className="card-bottom">
