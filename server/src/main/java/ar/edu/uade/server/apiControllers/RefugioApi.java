@@ -40,7 +40,7 @@ public class RefugioApi {
         return ResponseEntity.notFound().build();
     }
 
-    @GetMapping("/perfilCorto")
+    @GetMapping
     public ResponseEntity<?> GetAllPerfilCortoRefugio(){
         List<PerfilCortoRefugioView> pcorto = refugioService.findAll().stream().map(r -> PerfilCortoRefugioView.toView(r)).collect(Collectors.toList());
         return ResponseEntity.ok(pcorto);
