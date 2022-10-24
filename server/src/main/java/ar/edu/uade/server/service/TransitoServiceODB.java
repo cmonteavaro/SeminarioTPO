@@ -21,4 +21,9 @@ public class TransitoServiceODB implements TransitoService {
     public Optional<Transito> findById(Long id) {
         return repositoryODB.findById(Transito.class, id);
     }
+
+    @Override
+    public Long save(Transito transito) {
+        return repositoryODB.saveOBD(transito).getId();
+    }
 }
