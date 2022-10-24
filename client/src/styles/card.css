@@ -50,9 +50,9 @@
 
 .btn-info {
   background-color: green;
-  width: 4vw;
-  height: 3vh;
-  border-radius: 0.3vw;
+  width: 70px;
+  height: 30px;
+  border-radius: 0.5vw;
   color: white;
   font-weight: bold;
   display: flex;
