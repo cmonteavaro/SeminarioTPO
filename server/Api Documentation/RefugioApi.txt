@@ -2,6 +2,14 @@ Obtener perfil de un refugio
 Metodo: GET
 Endpoint: http://localhost:8080/api/refugios/{id}/perfil
 
+Obtener perfil corto de un refugio
+Metodo: GET
+Endpoint: http://localhost:8080/api/refugios/{id}/perfilCorto
+
+Obtener perfil corto de todos los refugio
+Metodo: GET
+Endpoint: http://localhost:8080/api/refugios/perfilCorto
+
 Obtener Lista de publicaciones de adopcion de un refugio
 Metodo: GET
 Endpoint: http://localhost:8080/api/refugios/{id}/publicacionesAdopcion
