@@ -8,6 +8,10 @@ import lombok.Setter;
 @Getter
 @Setter
 public class FormularioDTO {
-    String nombrePostulante;
-    String telefonoPostulante;
+    String nombre;
+    String apellido;
+    String telefono;
+    String direccion;
+    String correo;
+    String notas;
 }
