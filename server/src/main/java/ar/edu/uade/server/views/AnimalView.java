@@ -22,6 +22,7 @@ public class AnimalView {
     private Boolean castrado;
     private Boolean esquemaCompletoVacunas;
     private Boolean desparasitado;
+    private List<String> galeriaImagenes;
 
     public static AnimalView toView(Animal animal) {
         AnimalView view = new AnimalView();
@@ -35,6 +36,7 @@ public class AnimalView {
         view.castrado = animal.getCastrado();
         view.esquemaCompletoVacunas = animal.getEsquemaCompletoVacunas();
         view.desparasitado = animal.getDesparasitado();
+        view.galeriaImagenes = animal.getGaleriaImagenes();
 
         return view;
     }

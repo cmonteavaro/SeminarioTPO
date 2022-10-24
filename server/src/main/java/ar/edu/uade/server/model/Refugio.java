@@ -23,7 +23,7 @@ public class Refugio {
     private String usuario;
     private String password;
     private String responsable;
-    private Integer telefono;
+    private String telefono;
     private String linkDonacionesMonetarias;
     private Integer radioAlcance;
     @ElementCollection(fetch = FetchType.EAGER)

@@ -13,7 +13,7 @@ public class PerfilRefugioView {
     private long id;
     private String nombre;
     private Direccion direccion;
-    private Integer telefono;
+    private String telefono;
     private String linkDonacionesMonetarias;
     private Integer radioAlcance;
     private List<RedSocial> redesSociales;

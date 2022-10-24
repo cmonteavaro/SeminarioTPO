@@ -67,7 +67,7 @@ public class TransitoView {
         view.esUrgente = transito.getEsUrgente();
         view.fechaPublicacion = transito.getFechaPublicacion().format(dateFormatter);
         view.estadoPublicacion = transito.getEstado();
-        view.galeriaImagenesPublicacion = transito.getGaleriaImagenes();
+        view.galeriaImagenesPublicacion = transito.getAnimal().getGaleriaImagenes();
         //Transito
         view.gastosAlimentacionCubiertos = transito.getGastosAlimentacionCubiertos();
         view.gastosMedicosCubiertos = transito.getGastosMedicosCubiertos();
