@@ -24,11 +24,6 @@ Body:
     "esUrgente":false,
     "fechaPublicacion":"07/06/2022",
     "estado":"EN_PROCESO",
-    "galeriaImagenes":[
-        "imagen1.jpg",
-        "imagen2.jpg",
-        "imagen3.jpg"
-    ]
 }
 
 Modificar una publicacion de adopcion
@@ -50,10 +45,5 @@ Body:
     "esUrgente":false,
     "fechaPublicacion":"07/06/2022",
     "estado":"EN_PROCESO",
-    "galeriaImagenes":[
-        "imagen1.jpg",
-        "imagen2.jpg",
-        "imagen3.jpg"
-    ]
 }
 
