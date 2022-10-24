@@ -11,6 +11,7 @@ import "./footer.css";
 export default function Footer() {
   return (
     <footer>
+      <hr />
       <div className="container">
         <h3>Siguenos</h3>
         <div className="icons-link">

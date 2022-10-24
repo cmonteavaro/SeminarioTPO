@@ -58,6 +58,11 @@ const ProfileBody = ({ refugio }) => {
   const redes = socialMedia(refugio.redesSociales);
   return (
     <section className="basic">
+      <div>
+        <Link to="/publicaciones" className="go-back-detail">
+          {"<"} Volver atras
+        </Link>
+      </div>
       <img className="hero" src={Five} />
 
       <section className="heading-shelter">

@@ -7,6 +7,8 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { Loader } from "@mantine/core";
 import NotFound from "./notFound";
+import { LazyLoadImage } from "react-lazy-load-image-component";
+import "react-lazy-load-image-component/src/effects/blur.css";
 
 import "../styles/animalDetail.css";
 
@@ -107,7 +109,7 @@ export default function AnimalDetail() {
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(false);
 
-  const {id} = useParams();
+  const { id } = useParams();
 
   useEffect(() => {
     setLoading(true);
@@ -162,13 +164,20 @@ export default function AnimalDetail() {
 
     return (
       <main className="animal-detail">
-        <div className="">
-          <Link to="/posts" className="go-back-detail">
+        <div>
+          <Link to="/publicaciones" className="go-back-detail">
             {"<"} Volver atras
           </Link>
         </div>
         <section className="detail">
           <section className="images-detail">
+            <LazyLoadImage
+              alt={"Imagen animal"}
+              height={"600px"}
+              src={Coco}
+              width={"500px"}
+              effect="blur"
+            />
             <img src={Coco} className="image-detail-big" />
           </section>
           <section className="info-detail">
@@ -190,7 +199,7 @@ export default function AnimalDetail() {
               <p className="property">
                 Tamaño Actual:{" "}
                 <span className="property-info">
-                   {data.animal.tamanioActual}
+                  {data.animal.tamanioActual}
                 </span>
               </p>
               <p className="property">

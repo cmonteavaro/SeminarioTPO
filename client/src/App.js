@@ -17,11 +17,11 @@ function App() {
       <main>
         <Routes>
           <Route exact path="/" element={<Home />} />
-          <Route path="/posts" element={<Posts />} />
-          <Route path="/posts/:id" element={<AnimalDetail />} />
-          <Route path="/refugees/" element={<Shelters />} />
-          <Route path="/refugees/:id" element={<Profile />} />
-          <Route path="/about" element={<About />} />
+          <Route path="/publicaciones" element={<Posts />} />
+          <Route path="/publicaciones/:id" element={<AnimalDetail />} />
+          <Route path="/refugios/" element={<Shelters />} />
+          <Route path="/refugios/:id" element={<Profile />} />
+          <Route path="/acerca" element={<About />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </main>

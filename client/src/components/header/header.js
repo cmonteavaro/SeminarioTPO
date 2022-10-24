@@ -4,29 +4,31 @@ import logo from "../../images/logo.png";
 
 export default function NavBar() {
   return (
-    <nav className="nav">
-      <div className="logo">
+    <header class="header">
+      <nav className="navegacion">
         <Link to="/" className="link">
           <img className="logo-img" src={logo} alt="Perro y Gato mirandose" />
         </Link>
-      </div>
-      <div className="navigation">
-        <ul>
+        <input class="menu-btn" type="checkbox" id="menu-btn" />
+        <label class="menu-icon" for="menu-btn">
+          <span class="navicon"></span>
+        </label>
+        <ul class="menu">
           <li>
             <CustomLink to="/">Inicio</CustomLink>
           </li>
           <li>
-            <CustomLink to="/posts">Publicaciones</CustomLink>
+            <CustomLink to="/publicaciones">Publicaciones</CustomLink>
           </li>
           <li>
-            <CustomLink to="/refugees">Refugios</CustomLink>
+            <CustomLink to="/refugios">Refugios</CustomLink>
           </li>
           <li>
-            <CustomLink to="/about">Acerca de</CustomLink>
+            <CustomLink to="/acerca">Acerca de</CustomLink>
           </li>
         </ul>
-      </div>
-    </nav>
+      </nav>
+    </header>
   );
 }
 
@@ -38,10 +40,8 @@ function CustomLink({ to, children, ...props }) {
   const isActive = useMatch({ path: resolvedPath.pathname, end: true });
 
   return (
-    <li className={isActive ? "active" : "links"}>
-      <Link to={to} {...props}>
-        {children}
-      </Link>
-    </li>
+    <Link className={isActive ? "active" : "links"} to={to} {...props}>
+      {children}
+    </Link>
   );
 }

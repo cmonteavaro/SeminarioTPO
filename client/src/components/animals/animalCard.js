@@ -3,9 +3,11 @@ import { Link } from "react-router-dom";
 import "../../styles/card.css";
 import One from "../../images/juan.webp";
 import Logo from "../../images/shelters/zaguates.webp";
+import { LazyLoadImage } from "react-lazy-load-image-component";
+import "react-lazy-load-image-component/src/effects/blur.css";
 
 export default function AnimalCard({ animal }) {
-  const route = `/posts/${animal.idPublicacion}`;
+  const route = `/publicaciones/${animal.idPublicacion}`;
   let color;
   let variant;
   let text;
@@ -40,7 +42,13 @@ export default function AnimalCard({ animal }) {
         </Badge>
       </div>
       <div className="card-center">
-        <img src={One} className="card-img-animal" alt="Imagen animal" />
+        <LazyLoadImage
+          alt={"Imagen animal"}
+          height={"300px"}
+          src={One}
+          width={"250px"}
+          effect="blur"
+        />
       </div>
       <div className="card-bottom">
         <div className="card-shelter">
