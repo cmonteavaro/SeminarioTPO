@@ -33,16 +33,8 @@ public abstract class PublicacionAnimal {
     private LocalDate fechaPublicacion;
     @Enumerated
     private EstadoPublicacionAnimalEnum estado;
-    @ElementCollection(fetch = FetchType.EAGER)
-    private List<String> galeriaImagenes;
 
     public PublicacionAnimal() {
-        this.galeriaImagenes = new ArrayList<>();
         fechaPublicacion = LocalDate.now();
     }
-
-    public void agregarImagenes(String ... imagenes) { Collections.addAll(galeriaImagenes, imagenes); }
-
-    public void eliminarImagen(String imagen) { if(this.galeriaImagenes.contains(imagen)) this.galeriaImagenes.remove(imagen); }
-
 }

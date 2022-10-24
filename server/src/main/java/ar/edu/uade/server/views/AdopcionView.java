@@ -75,7 +75,6 @@ public class AdopcionView {
         view.esUrgente = adopcion.getEsUrgente();
         view.fechaPublicacion = adopcion.getFechaPublicacion().format(dateFormatter);
         view.estadoPublicacion = adopcion.getEstado();
-        view.galeriaImagenesPublicacion = adopcion.getGaleriaImagenes();
 
         return view;
     }
