@@ -29,7 +29,6 @@ const urgencia = (urg) => {
 
 export default function AnimalCard({ animal }) {
   const route = `/posts/${animal.idPublicacion}`;
-  //const urgente = urgencia(animal.esUrgente);
   let color;
   let variant;
   let text;
