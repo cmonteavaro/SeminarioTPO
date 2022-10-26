@@ -6,6 +6,15 @@
   margin: 2vh;
 }
 
+.volunteer-card {
+  width: 250px;
+  border: 1px lightgrey solid;
+  border-radius: 10px;
+  padding: 0.5vw;
+  margin: 10vh;
+}
+
+
 .card:hover {
   transition-duration: 0.2s;
   transform: scale(1.005);
@@ -24,6 +33,20 @@
   position: relative;
   display: flex;
   justify-content: center;
+  margin: 1vh;
+}
+
+.card-left {
+  position: relative;
+  display: flex;
+  justify-content: left;
+  margin: 1vh;
+}
+
+.card-right {
+  position: relative;
+  display: flex;
+  justify-content: right;
   margin: 1vh;
 }
 
@@ -47,6 +70,29 @@
   align-items: center;
 }
 
+.card-center-info {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.card-left-info {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: left;
+  margin: 1vh;
+}
+
+.card-right-info {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: rightß;
+  margin: 1vh;
+}
+
 .card-shelter {
   display: flex;
   justify-content: flex-start;
@@ -55,6 +101,16 @@
 
 .card-shelter p {
   margin-left: 10px;
+}
+
+.card-volunteer-info {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.card-volunteer-info p {
+  margin: 20px;
 }
 
 .card-img-shelter {
@@ -78,4 +134,10 @@
 
 .btn-info:hover {
   opacity: 0.7;
+}
+
+.card-volunteer {
+  width: 60px;
+  height: 60px;
+  border-radius: 10px;
 }

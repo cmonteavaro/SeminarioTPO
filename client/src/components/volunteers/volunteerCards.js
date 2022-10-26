@@ -5,7 +5,7 @@ export default function ListVolunteers({ props }) {
     return (
       <div>
         <h2>Publicaciones</h2>
-        <div className="grid-voluntarios">
+        <div className="grid-animales">
           {voluntarios && voluntarios.length > 0
             ? voluntarios.map((voluntario) => <VolunteerCard voluntario={voluntario} />)
             : null}
