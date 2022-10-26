@@ -10,7 +10,7 @@ export default function VolunteerPosts() {
 
   useEffect(() => {
     setLoading(true);
-    fetch(`http://localhost:8080/api/publicaciones/adopciones`)
+    fetch(`http://localhost:8080/api/publicaciones/voluntariados`)
       .then((e) => e.json())
       .then((d) => {
         return setData([d]);
@@ -24,7 +24,7 @@ export default function VolunteerPosts() {
         <div className="loader">
           <Loader color="lime" />
         </div>
-        <h3>Estamos buscando a todos los animalitos para presentarte 😊</h3>
+        <h3>Estamos buscando a todos los posteos de voluntarios para presentarte 😊</h3>
       </div>
     );
   }
