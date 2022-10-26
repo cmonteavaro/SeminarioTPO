@@ -105,6 +105,26 @@ function ageCalculator(date) {
   return ageString;
 }
 
+function urgencia (urg) {
+  let text;
+  let color;
+  let variant;
+  if (urg) {
+    color = "red";
+    variant = "dark";
+    text = "URGENTE";
+    return (
+      <Badge color={color} variant={variant} className="estado-urgencia">
+        {text}
+      </Badge>
+    );
+  }else{
+    return (
+      <></>
+    );
+  }
+}
+
 export default function AnimalDetail() {
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(false);
@@ -149,17 +169,17 @@ export default function AnimalDetail() {
     let variant;
     let text;
     switch (data.estadoPublicacion) {
-      case "Disponible":
+      case "DISPONIBLE":
         color = "lime";
         variant = "dark";
         text = `${data.estadoPublicacion}`;
         break;
-      case "En_proceso":
+      case "EN_PROCESO":
         color = "yellow";
         variant = "dark";
         text = "En proceso";
         break;
-      case "Finalizada":
+      case "FINALIZADA":
         color = "red";
         variant = "dark";
         text = `${data.estadoPublicacion}`;
@@ -189,6 +209,9 @@ export default function AnimalDetail() {
                 <p className="fecha-publicacion">
                   Fecha de Publicacion: {data.fechaPublicacion}
                 </p>
+              </div>
+              <div className="info-urgente">
+                {urgencia(data.esUrgente)}
               </div>
               <div className="info-detail-status">
                 <Badge color={color} variant={variant}>
