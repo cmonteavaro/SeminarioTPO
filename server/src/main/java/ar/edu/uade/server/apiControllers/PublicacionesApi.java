@@ -155,6 +155,33 @@ public class PublicacionesApi {
         }
     }
 
+    @PutMapping("/transitos/{id}/cambiarUrgencia")
+    public ResponseEntity<?> cambiarUrgenciaPublicacionTransito(@RequestBody Boolean urgencia, @PathVariable Long id){
+        try {
+            Optional<Transito> optionalTransito = transitoService.findById(id);
+            if(optionalTransito.isEmpty()) return ResponseEntity.notFound().build();
+            Transito transito = optionalTransito.get();
+            if (transito.getEsUrgente() != urgencia){
+                if (urgencia){
+                    if (refugioService.puedeAgregarUrgentes(transito.getRefugio())){
+                        transito.setEsUrgente(urgencia);
+                        Refugio refugio = transito.getRefugio();
+                        refugio.setCantidadUrgentes(refugio.getCantidadUrgentes() + 1);
+                    }
+                }
+                else{
+                    transito.setEsUrgente(urgencia);
+                    Refugio refugio = transito.getRefugio();
+                    refugio.setCantidadUrgentes(refugio.getCantidadUrgentes() - 1);
+                }
+                transitoService.save(transito);
+            }
+            return ResponseEntity.status(HttpStatus.ACCEPTED).build();
+        }catch (Exception e){
+            return ResponseEntity.badRequest().eTag(e.getMessage()).build();
+        }
+    }
+
     @GetMapping("/voluntariados")
     public ResponseEntity<?> getAllVoluntariados() {
         List<VoluntariadoView> resultado = new ArrayList<>();
@@ -195,11 +222,15 @@ public class PublicacionesApi {
 
     @GetMapping("adopciones/urgentes")
     public ResponseEntity<?> getAllAdopcionesUrgentes() {
-        return ResponseEntity.ok(adopcionService.findAll().stream().filter(x -> x.getEsUrgente()).map(PublicacionAnimalCortaView::toView).collect(Collectors.toList()));
+        List<AdopcionView> resultado = new ArrayList<>();
+        adopcionService.findAll().stream().filter(x -> x.getEsUrgente()).forEach(adopcion -> resultado.add(AdopcionView.toView(adopcion)));
+        return ResponseEntity.ok(resultado);
     }
 
     @GetMapping("transitos/urgentes")
     public ResponseEntity<?> getAllTransitosUrgentes() {
-        return ResponseEntity.ok(transitoService.findAll().stream().filter(x -> x.getEsUrgente()).map(PublicacionAnimalCortaView::toView).collect(Collectors.toList()));
+        List<TransitoView> resultado = new ArrayList<>();
+        transitoService.findAll().stream().filter(x -> x.getEsUrgente()).forEach(transito -> resultado.add(TransitoView.toView(transito)));
+        return ResponseEntity.ok(resultado);
     }
 }
