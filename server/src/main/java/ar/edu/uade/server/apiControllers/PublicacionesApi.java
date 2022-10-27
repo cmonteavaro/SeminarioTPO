@@ -3,8 +3,10 @@ package ar.edu.uade.server.apiControllers;
 import ar.edu.uade.server.DTO.AdopcionDTO;
 import ar.edu.uade.server.DTO.VoluntarioDTO;
 import ar.edu.uade.server.model.Adopcion;
+import ar.edu.uade.server.model.Refugio;
 import ar.edu.uade.server.model.Transito;
 import ar.edu.uade.server.model.enums.EstadoPublicacionAnimalEnum;
+import ar.edu.uade.server.service.RefugioService;
 import ar.edu.uade.server.service.TransitoService;
 import ar.edu.uade.server.views.PublicacionAnimalCortaView;
 import ar.edu.uade.server.views.TransitoView;
@@ -13,6 +15,7 @@ import ar.edu.uade.server.service.AdopcionService;
 import ar.edu.uade.server.service.VoluntarioService;
 import ar.edu.uade.server.views.AdopcionView;
 import ar.edu.uade.server.views.VoluntariadoView;
+import org.apache.coyote.Response;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -21,6 +24,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @CrossOrigin
 @RestController
@@ -30,12 +34,14 @@ public class PublicacionesApi {
     private final AdopcionService adopcionService;
     private final TransitoService transitoService;
     private final VoluntarioService voluntarioService;
+    private final RefugioService refugioService;
 
     @Autowired
-    public PublicacionesApi (VoluntarioService vs, AdopcionService as, TransitoService ts){
+    public PublicacionesApi (VoluntarioService vs, AdopcionService as, TransitoService ts, RefugioService rs){
             this.adopcionService = as;
             this.voluntarioService = vs;
             this.transitoService = ts;
+            this.refugioService = rs;
     }
 
     @GetMapping("/adopciones")
@@ -84,6 +90,33 @@ public class PublicacionesApi {
             Adopcion adopcion = optionalAdopcion.get();
             adopcion.setEstado(estado);
             adopcionService.save(adopcion);
+            return ResponseEntity.status(HttpStatus.ACCEPTED).build();
+        }catch (Exception e){
+            return ResponseEntity.badRequest().eTag(e.getMessage()).build();
+        }
+    }
+
+    @PutMapping("/adopciones/{id}/cambiarUrgencia")
+    public ResponseEntity<?> cambiarUrgenciaPublicacionAdopcion(@RequestBody Boolean urgencia, @PathVariable Long id){
+        try {
+            Optional<Adopcion> optionalAdopcion = adopcionService.findById(id);
+            if(optionalAdopcion.isEmpty()) return ResponseEntity.notFound().build();
+            Adopcion adopcion = optionalAdopcion.get();
+            if (adopcion.getEsUrgente() != urgencia){
+                if (urgencia){
+                    if (refugioService.puedeAgregarUrgentes(adopcion.getRefugio())){
+                        adopcion.setEsUrgente(urgencia);
+                        Refugio refugio = adopcion.getRefugio();
+                        refugio.setCantidadUrgentes(refugio.getCantidadUrgentes() + 1);
+                    }
+                }
+                else{
+                    adopcion.setEsUrgente(urgencia);
+                    Refugio refugio = adopcion.getRefugio();
+                    refugio.setCantidadUrgentes(refugio.getCantidadUrgentes() - 1);
+                }
+                adopcionService.save(adopcion);
+            }
             return ResponseEntity.status(HttpStatus.ACCEPTED).build();
         }catch (Exception e){
             return ResponseEntity.badRequest().eTag(e.getMessage()).build();
@@ -158,5 +191,15 @@ public class PublicacionesApi {
         } catch (Exception e) {
             return ResponseEntity.badRequest().eTag(e.getMessage()).build();
         }
+    }
+
+    @GetMapping("adopciones/urgentes")
+    public ResponseEntity<?> getAllAdopcionesUrgentes() {
+        return ResponseEntity.ok(adopcionService.findAll().stream().filter(x -> x.getEsUrgente()).map(PublicacionAnimalCortaView::toView).collect(Collectors.toList()));
+    }
+
+    @GetMapping("transitos/urgentes")
+    public ResponseEntity<?> getAllTransitosUrgentes() {
+        return ResponseEntity.ok(transitoService.findAll().stream().filter(x -> x.getEsUrgente()).map(PublicacionAnimalCortaView::toView).collect(Collectors.toList()));
     }
 }

@@ -26,6 +26,7 @@ public class Refugio {
     private String telefono;
     private String linkDonacionesMonetarias;
     private Integer radioAlcance;
+    private Integer cantidadUrgentes;
     @ElementCollection(fetch = FetchType.EAGER)
     private List<RedSocial> redesSociales;
 
@@ -40,7 +41,6 @@ public class Refugio {
 
     @OneToMany(fetch = FetchType.EAGER, cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     private List<PublicacionDonacion> publicacionesDonacionesNoMonetarias;
-
 
     public Refugio(String nombre, String usuario, String password) {
         this.nombre = nombre;
