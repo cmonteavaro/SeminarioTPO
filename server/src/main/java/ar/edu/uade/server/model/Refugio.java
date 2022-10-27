@@ -52,6 +52,7 @@ public class Refugio {
         this.publicacionesVoluntariado = new ArrayList<PublicacionVoluntariado>();
         this.publicacionesDonacionesNoMonetarias = new ArrayList<PublicacionDonacion>();
         this.perfilRefugio = new PerfilRefugio();
+        this.cantidadUrgentes = 0;
     }
 
     public Refugio() {
