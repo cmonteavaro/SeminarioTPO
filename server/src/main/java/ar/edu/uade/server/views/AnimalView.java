@@ -15,9 +15,9 @@ public class AnimalView {
 
     private long id;
     private String nombre;
-    private TamanioEnum tamanioActual;
-    private TamanioEnum tamanioEsperado;
-    private Integer edad;
+    private String tamanioActual;
+    private String tamanioEsperado;
+    private String edad;
     private TipoAnimalEnum tipoAnimal;
     private Boolean castrado;
     private Boolean esquemaCompletoVacunas;
@@ -29,8 +29,8 @@ public class AnimalView {
 
         view.id = animal.getId();
         view.nombre = animal.getNombre();
-        view.tamanioActual = animal.getTamanioActual();
-        view.tamanioEsperado = animal.getTamanioEsperado();
+        view.tamanioActual = animal.getTamanioActual().getNombre();
+        view.tamanioEsperado = animal.getTamanioEsperado().getNombre();
         view.edad = animal.getEdad();
         view.tipoAnimal = animal.getTipoAnimal();
         view.castrado = animal.getCastrado();

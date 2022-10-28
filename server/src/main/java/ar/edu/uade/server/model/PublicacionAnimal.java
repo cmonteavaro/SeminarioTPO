@@ -29,7 +29,7 @@ public abstract class PublicacionAnimal {
     private Boolean requiereHogarAmplio;
     private Boolean transporteCubierto;
     private Boolean esUrgente;
-    @Temporal(TemporalType.DATE)
+    @Temporal(TemporalType.TIMESTAMP)
     private LocalDate fechaPublicacion;
     @Enumerated
     private EstadoPublicacionAnimalEnum estado;
