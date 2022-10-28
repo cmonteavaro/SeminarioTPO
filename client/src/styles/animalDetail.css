@@ -48,14 +48,12 @@
   font-size: small;
 }
 
-.estado-urgencia {
-  width: 100%;
-  height: 50px;
-  font-size:large;
+.info-detail-status {
+  display: flex;
 }
-
-.estado-urgencia:hover {
-  opacity: 0.8;
+.mantine-Badge-root {
+  width: 100px;
+  height: 30px;
 }
 
 .info-urgente {
@@ -63,6 +61,8 @@
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
+  justify-self: end;
+  margin-right: 1vw;
 }
 
 .info-detail-footer {

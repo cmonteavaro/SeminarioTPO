@@ -8,9 +8,11 @@ import { useParams } from "react-router-dom";
 import { Loader } from "@mantine/core";
 import NotFound from "./notFound";
 import Modal from "../components/animals/modalPreForm"
+import AnimalCard from "../components/animals/animalCard.js";
 
 import "../styles/animalDetail.css";
 import { useSetState } from "@mantine/hooks";
+import { Urgencia } from "../components/animals/animalCard";
 
 function isTrue(estado) {
   if (estado) return "Si";
@@ -105,26 +107,6 @@ function ageCalculator(date) {
   return ageString;
 }
 
-function urgencia (urg) {
-  let text;
-  let color;
-  let variant;
-  if (urg) {
-    color = "red";
-    variant = "dark";
-    text = "URGENTE";
-    return (
-      <Badge color={color} variant={variant} className="estado-urgencia">
-        {text}
-      </Badge>
-    );
-  }else{
-    return (
-      <></>
-    );
-  }
-}
-
 export default function AnimalDetail() {
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(false);
@@ -210,10 +192,10 @@ export default function AnimalDetail() {
                   Fecha de Publicacion: {data.fechaPublicacion}
                 </p>
               </div>
-              <div className="info-urgente">
-                {urgencia(data.esUrgente)}
-              </div>
               <div className="info-detail-status">
+                <div className="info-urgente">
+                  <Urgencia urg={data.esUrgente}></Urgencia>
+                </div>
                 <Badge color={color} variant={variant}>
                   {text}
                 </Badge>
