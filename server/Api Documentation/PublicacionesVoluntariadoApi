@@ -27,3 +27,9 @@ Endpoint: http://localhost:8080/api/publicaciones/voluntariados
 Obtener una publicacion de voluntariado
 Método: GET
 Endpoint: http://localhost:8080/api/publicaciones/voluntariados/{id}
+
+Cambiar estado de la publicacion de voluntariados (activa/cerrada)
+Método: PUT
+Endpoint: http://localhost:8080/api/publicaciones/voluntariados/{id}/cambiarEstado
+Ejemplo Body (raw-JSON):
+    true

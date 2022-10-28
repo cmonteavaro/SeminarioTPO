@@ -108,7 +108,7 @@ public class PublicacionesApi {
         }
     }
 
-    @PutMapping("/transito/{id}/cambiarEstado")
+    @PutMapping("/transitos/{id}/cambiarEstado")
     public ResponseEntity<?> cambiarEstadoPublicacionTransito(@RequestBody EstadoPublicacionAnimalEnum estado, @PathVariable Long id){
         try {
             Optional<Transito> optionalTransito = transitoService.findById(id);
@@ -125,7 +125,7 @@ public class PublicacionesApi {
     @GetMapping("/voluntariados")
     public ResponseEntity<?> getAllVoluntariados() {
         List<VoluntariadoView> resultado = new ArrayList<>();
-        voluntarioService.findAll().forEach(voluntariado -> resultado.add(VoluntariadoView.toView(voluntariado)));
+        voluntarioService.findAll().stream().filter(PublicacionVoluntariado::getEstado).forEach(voluntariado -> resultado.add(VoluntariadoView.toView(voluntariado)));
         return ResponseEntity.ok(resultado);
     }
 
@@ -159,4 +159,19 @@ public class PublicacionesApi {
             return ResponseEntity.badRequest().eTag(e.getMessage()).build();
         }
     }
+
+    @PutMapping("/voluntariados/{id}/cambiarEstado")
+    public ResponseEntity<?> cambiarEstadoPublicacionVoluntariado(@RequestBody Boolean estado, @PathVariable Long id) {
+        try {
+            Optional<PublicacionVoluntariado> optionalVoluntariado = voluntarioService.findById(id);
+            if(optionalVoluntariado.isEmpty()) return ResponseEntity.notFound().build();
+            PublicacionVoluntariado publicacionVoluntariado = optionalVoluntariado.get();
+            publicacionVoluntariado.setEstado(estado);
+            voluntarioService.save(publicacionVoluntariado);
+            return ResponseEntity.status(HttpStatus.ACCEPTED).build();
+        }catch (Exception e){
+            return ResponseEntity.badRequest().eTag(e.getMessage()).build();
+        }
+    }
+
 }
