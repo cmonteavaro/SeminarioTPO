@@ -222,10 +222,6 @@ export default function AnimalDetail() {
                 </span>
               </p>
               <p className="property">
-                Nacimiento:{" "}
-                <span className="property-info">{data.animal.fechaNac}</span>
-              </p>
-              <p className="property">
                 Castrado:{" "}
                 <span className="property-info">
                   {isTrue(data.animal.castrado)}
@@ -239,12 +235,6 @@ export default function AnimalDetail() {
               </p>
               <p className="property">
                 Medicacion: <span className="property-info">{"Si"}</span>
-              </p>
-              <p className="property">
-                Vacunas:{" "}
-                <span className="property-info">
-                  {isTrue(data.animal.esquemaCompletoVacunas)}
-                </span>
               </p>
               <div>
                 <p className="property">
@@ -268,6 +258,12 @@ export default function AnimalDetail() {
                   </div>
                 </p>
               </div>
+              <p className="property">
+                Vacunas:{" "}
+                <span className="property-info">
+                  {isTrue(data.animal.esquemaCompletoVacunas)}
+                </span>
+              </p>
             </div>
 
             <article className="info-detail-description">
