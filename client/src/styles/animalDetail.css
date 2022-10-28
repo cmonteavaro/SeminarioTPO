@@ -52,8 +52,9 @@
   display: flex;
 }
 .mantine-Badge-root {
-  width: 100px;
+  width: 110px;
   height: 30px;
+  font-size:small;
 }
 
 .info-urgente {
