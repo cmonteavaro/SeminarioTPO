@@ -77,12 +77,12 @@ public class PublicacionesApi {
     }
 
     @PutMapping("/adopciones/{id}/cambiarEstado")
-    public ResponseEntity<?> cambiarEstadoPublicacionAdopcion(@RequestBody EstadoPublicacionAnimalEnum estado, @PathVariable Long id){
+    public ResponseEntity<?> cambiarEstadoPublicacionAdopcion(@RequestBody String estado, @PathVariable Long id){
         try {
             Optional<Adopcion> optionalAdopcion = adopcionService.findById(id);
             if(optionalAdopcion.isEmpty()) return ResponseEntity.notFound().build();
             Adopcion adopcion = optionalAdopcion.get();
-            adopcion.setEstado(estado);
+            adopcion.setEstado(EstadoPublicacionAnimalEnum.getEnum(estado));
             adopcionService.save(adopcion);
             return ResponseEntity.status(HttpStatus.ACCEPTED).build();
         }catch (Exception e){
@@ -109,12 +109,12 @@ public class PublicacionesApi {
     }
 
     @PutMapping("/transito/{id}/cambiarEstado")
-    public ResponseEntity<?> cambiarEstadoPublicacionTransito(@RequestBody EstadoPublicacionAnimalEnum estado, @PathVariable Long id){
+    public ResponseEntity<?> cambiarEstadoPublicacionTransito(@RequestBody String estado, @PathVariable Long id){
         try {
             Optional<Transito> optionalTransito = transitoService.findById(id);
             if(optionalTransito.isEmpty()) return ResponseEntity.notFound().build();
             Transito transito = optionalTransito.get();
-            transito.setEstado(estado);
+            transito.setEstado(EstadoPublicacionAnimalEnum.getEnum(estado));
             transitoService.save(transito);
             return ResponseEntity.status(HttpStatus.ACCEPTED).build();
         }catch (Exception e){

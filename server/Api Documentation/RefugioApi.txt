@@ -57,11 +57,11 @@ Body: {
           "redesSociales":[
               {
               "link":"facebook.com",
-              "redSocial":"FACEBOOK"
+              "redSocial":"Facebook"
               },
               {
               "link":"instagram.com",
-              "redSocial":"INSTAGRAM"
+              "redSocial":"Instagram"
               }
           ]
       }

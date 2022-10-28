@@ -10,7 +10,7 @@ Cambiar estado a una publicacion de Adopcion en particular (ID)
 Método: PUT
 Endpoint: http://localhost:8080/api/publicaciones/adopciones/{id}/cambiarEstado
 Body (JSON):
-    "EN_PROCESO"
+    "EN PROCESO"
 
 Crear una publicacion de adopcion
 Método: POST
@@ -29,7 +29,7 @@ Body:
     "transporteCubierto":true,
     "esUrgente":false,
     "fechaPublicacion":"07/06/2022",
-    "estado":"EN_PROCESO",
+    "estado":"EN PROCESO",
 }
 
 Modificar una publicacion de adopcion
@@ -50,6 +50,6 @@ Body:
     "transporteCubierto":true,
     "esUrgente":false,
     "fechaPublicacion":"07/06/2022",
-    "estado":"EN_PROCESO",
+    "estado":"EN PROCESO",
 }
 
