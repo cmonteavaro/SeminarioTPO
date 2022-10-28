@@ -31,8 +31,8 @@
 
 .tag-urgente {
   position: absolute;
-  bottom: -8px;
-  right: -8px;
+  bottom: -5px;
+  right: -5px;
 }
 
 
@@ -40,6 +40,8 @@
   width: 250px;
   height: 300px;
   border-radius: 10px;
+  padding-top: 2px;
+  padding-bottom: 2px;
 }
 
 .card-bottom {
