@@ -6,11 +6,22 @@ Obtener una publicacion de Adopcion en particular (ID)
 Método: GET
 Endpoint: http://localhost:8080/api/publicaciones/adopciones/id
 
+Obtener todas las publicaciones de Adopciones urgentes
+Método: GET
+Endpoint: http://localhost:8080/api/publicaciones/adopciones/urgentes
+
 Cambiar estado a una publicacion de Adopcion en particular (ID)
 Método: PUT
 Endpoint: http://localhost:8080/api/publicaciones/adopciones/{id}/cambiarEstado
 Body (JSON):
     "EN_PROCESO"
+
+
+Cambiar urgencia a una publicacion de Adopcion en particular (ID)
+Método: PUT
+Endpoint: http://localhost:8080/api/publicaciones/adopciones/{id}/cambiarUrgencia
+Body (JSON):
+    true
 
 Crear una publicacion de adopcion
 Método: POST

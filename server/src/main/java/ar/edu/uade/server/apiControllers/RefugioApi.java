@@ -2,15 +2,14 @@ package ar.edu.uade.server.apiControllers;
 
 import ar.edu.uade.server.model.*;
 import ar.edu.uade.server.service.RefugioService;
-import ar.edu.uade.server.views.PerfilCortoRefugioView;
-import ar.edu.uade.server.views.PublicacionAnimalCortaView;
-import ar.edu.uade.server.views.PerfilRefugioView;
+import ar.edu.uade.server.views.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -48,21 +47,45 @@ public class RefugioApi {
     }
 
     @GetMapping("/{id}/publicacionesAdopcion")
-    public ResponseEntity<?> GetPublicacionesAdopcion(@PathVariable Long id){
+    public ResponseEntity<?> getPublicacionesAdopcion(@PathVariable Long id){
         Optional<Refugio> oRefugio = refugioService.findById(id);
         if (oRefugio.isPresent()){
-            List<Adopcion> adopciones = oRefugio.get().getPublicacionesAdopcion();
-            return ResponseEntity.ok(PublicacionAnimalCortaView.toView((PublicacionAnimal) adopciones));
+            List<AdopcionView> resultado = new ArrayList<>();
+            oRefugio.get().getPublicacionesAdopcion().forEach(adopcion -> resultado.add(AdopcionView.toView(adopcion)));
+            return ResponseEntity.ok(resultado);
+        }
+        return ResponseEntity.notFound().build();
+    }
+
+    @GetMapping("/{id}/publicacionesAdopcion/urgentes")
+    public ResponseEntity<?> getPublicacionesAdopcionUrgentes(@PathVariable Long id) {
+        Optional<Refugio> oRefugio = refugioService.findById(id);
+        if (oRefugio.isPresent()){
+            List<AdopcionView> resultado = new ArrayList<>();
+            oRefugio.get().getPublicacionesAdopcion().stream().filter(x -> x.getEsUrgente()).forEach(adopcion -> resultado.add(AdopcionView.toView(adopcion)));
+            return ResponseEntity.ok(resultado);
         }
         return ResponseEntity.notFound().build();
     }
 
     @GetMapping("/{id}/publicacionesTransito")
-    public ResponseEntity<?> GetPublicacionesTransito(@PathVariable Long id){
+    public ResponseEntity<?> getPublicacionesTransito(@PathVariable Long id){
         Optional<Refugio> oRefugio = refugioService.findById(id);
         if (oRefugio.isPresent()){
-            List<Transito> transitos = oRefugio.get().getPublicacionesTransito();
-            return ResponseEntity.ok(PublicacionAnimalCortaView.toView((PublicacionAnimal) transitos));
+            List<PublicacionAnimalCortaView> resultado = new ArrayList<>();
+            oRefugio.get().getPublicacionesTransito().forEach(transito -> resultado.add(PublicacionAnimalCortaView.toView(transito)));
+            return ResponseEntity.ok(resultado);
+        }
+        return ResponseEntity.notFound().build();
+    }
+
+    @GetMapping("/{id}/publicacionesTransito/urgentes")
+    public ResponseEntity<?> getPublicacionesTransitoUrgentes(@PathVariable Long id) {
+        Optional<Refugio> oRefugio = refugioService.findById(id);
+        if (oRefugio.isPresent()){
+            List<TransitoView> resultado = new ArrayList<>();
+            oRefugio.get().getPublicacionesTransito().stream().filter(x -> x.getEsUrgente()).forEach(transito -> resultado.add(TransitoView.toView(transito)));
+            return ResponseEntity.ok(resultado);
         }
         return ResponseEntity.notFound().build();
     }

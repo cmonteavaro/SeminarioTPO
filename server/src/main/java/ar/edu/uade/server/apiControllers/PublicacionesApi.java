@@ -62,6 +62,13 @@ public class PublicacionesApi {
         }
     }
 
+    @GetMapping("adopciones/urgentes")
+    public ResponseEntity<?> getAllAdopcionesUrgentes() {
+        List<AdopcionView> resultado = new ArrayList<>();
+        adopcionService.findAll().stream().filter(x -> x.getEsUrgente()).forEach(adopcion -> resultado.add(AdopcionView.toView(adopcion)));
+        return ResponseEntity.ok(resultado);
+    }
+
     @PostMapping("/adopciones")
     public ResponseEntity<?> crearPublicacionAdopcion(@RequestBody AdopcionDTO adopcionDTO){
         try {
@@ -139,6 +146,13 @@ public class PublicacionesApi {
         else {
             return ResponseEntity.notFound().build();
         }
+    }
+
+    @GetMapping("transitos/urgentes")
+    public ResponseEntity<?> getAllTransitosUrgentes() {
+        List<TransitoView> resultado = new ArrayList<>();
+        transitoService.findAll().stream().filter(x -> x.getEsUrgente()).forEach(transito -> resultado.add(TransitoView.toView(transito)));
+        return ResponseEntity.ok(resultado);
     }
 
     @PutMapping("/transito/{id}/cambiarEstado")
@@ -220,17 +234,4 @@ public class PublicacionesApi {
         }
     }
 
-    @GetMapping("adopciones/urgentes")
-    public ResponseEntity<?> getAllAdopcionesUrgentes() {
-        List<AdopcionView> resultado = new ArrayList<>();
-        adopcionService.findAll().stream().filter(x -> x.getEsUrgente()).forEach(adopcion -> resultado.add(AdopcionView.toView(adopcion)));
-        return ResponseEntity.ok(resultado);
-    }
-
-    @GetMapping("transitos/urgentes")
-    public ResponseEntity<?> getAllTransitosUrgentes() {
-        List<TransitoView> resultado = new ArrayList<>();
-        transitoService.findAll().stream().filter(x -> x.getEsUrgente()).forEach(transito -> resultado.add(TransitoView.toView(transito)));
-        return ResponseEntity.ok(resultado);
-    }
 }

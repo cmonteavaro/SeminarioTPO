@@ -36,7 +36,7 @@ public class RefugioServiceODB implements RefugioService{
             }
         }
         else{
-            Integer cantidadUrgentesAdmitidos = (int) Math.round((cantidadPublicaciones*0.2));
+            Integer cantidadUrgentesAdmitidos = (int) Math.ceil(cantidadPublicaciones*0.2);
             if (cantidadUrgentesAdmitidos < (refugio.getCantidadUrgentes() + 1)){
                 habilitar = false;
             }
