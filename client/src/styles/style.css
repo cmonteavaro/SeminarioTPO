@@ -20,6 +20,11 @@
   --tag-closed-text: #c34848;
 }
 
+#root{
+  background-color: #F2F2F2;
+
+}
+ 
 h1,
 h2,
 h3,
@@ -28,7 +33,7 @@ h4 {
 }
 
 h6 {
-  color:#999999
+  color:#999999;
 }
 
 .basic {
@@ -38,5 +43,5 @@ h6 {
 
 a {
   text-decoration: none;
-  color: black;
+  color: white;
 }
