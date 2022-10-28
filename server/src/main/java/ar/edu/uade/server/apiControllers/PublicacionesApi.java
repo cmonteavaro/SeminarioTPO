@@ -102,20 +102,20 @@ public class PublicacionesApi {
             Optional<Adopcion> optionalAdopcion = adopcionService.findById(id);
             if(optionalAdopcion.isEmpty()) return ResponseEntity.notFound().build();
             Adopcion adopcion = optionalAdopcion.get();
+            Refugio refugio = adopcion.getRefugio();
             if (adopcion.getEsUrgente() != urgencia){
                 if (urgencia){
-                    if (refugioService.puedeAgregarUrgentes(adopcion.getRefugio())){
+                    if (refugioService.puedeAgregarUrgentes(refugio)){
                         adopcion.setEsUrgente(urgencia);
-                        Refugio refugio = adopcion.getRefugio();
                         refugio.setCantidadUrgentes(refugio.getCantidadUrgentes() + 1);
                     }
                 }
                 else{
                     adopcion.setEsUrgente(urgencia);
-                    Refugio refugio = adopcion.getRefugio();
                     refugio.setCantidadUrgentes(refugio.getCantidadUrgentes() - 1);
                 }
                 adopcionService.save(adopcion);
+                refugioService.save(refugio);
             }
             return ResponseEntity.status(HttpStatus.ACCEPTED).build();
         }catch (Exception e){

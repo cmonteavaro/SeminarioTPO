@@ -41,7 +41,6 @@ public class RefugioServiceODB implements RefugioService{
                 habilitar = false;
             }
         }
-        save(refugio);
         return habilitar;
     }
 }
