@@ -18,14 +18,26 @@ import "./profileBody.css";
 import { Link } from "react-router-dom";
 import ListAnimals from "../animals/animalCards";
 
-const getTag = (tagName) => {
+const getTag = (tagName, link) => {
   switch (tagName) {
     case "FaInstagram":
-      return <FaInstagram size={30} className="icon" title="Icono Instagram" />;
+      return (
+        <a href={link}>
+          <FaInstagram size={30} className="icon" title="Icono Instagram" />
+        </a>
+      );
     case "FaFacebook":
-      return <FaFacebook size={30} className="icon" title="Icono Facebook" />;
+      return (
+        <a href={link}>
+          <FaFacebook size={30} className="icon" title="Icono Facebook" />
+        </a>
+      );
     case "FaTwitter":
-      return <FaTwitter size={30} className="icon" title="Icono Twitter" />;
+      return (
+        <a href={link}>
+          <FaTwitter size={30} className="icon" title="Icono Twitter" />
+        </a>
+      );
     default:
       return null;
   }
@@ -37,11 +49,10 @@ const socialMedia = (rrss) => {
   let current = "";
   for (let index = 0; index < rrss.length; index++) {
     current = rrss[index].redSocial.toLowerCase();
-
     if (names.includes(current)) {
       current = current[0].toUpperCase() + current.substring(1);
       current = "Fa" + current;
-      arrayLinks.push(getTag(current));
+      arrayLinks.push(getTag(current, rrss[index].link));
     }
   }
 
@@ -57,68 +68,67 @@ const socialMedia = (rrss) => {
 const ProfileBody = ({ refugio }) => {
   const redes = socialMedia(refugio.redesSociales);
   return (
-    <section className="basic">
-      <div>
-        <Link to="/publicaciones" className="go-back-detail">
-          {"<"} Volver atras
-        </Link>
-      </div>
+    <section>
+      <Link to="/publicaciones" className="go-back-profile">
+        {"<"} Volver atras
+      </Link>
       <img className="hero" src={Five} />
-
-      <section className="heading-shelter">
-        <div className="logo-name-location">
-          <Avatar src={logorefugio} size={200} radius={100} mt={-80} />
-          <div style={{ flex: 1, marginLeft: 20 }}>
-            <Text size="40px" weight={500}>
-              {refugio.nombre}
-            </Text>
-            <Group spacing={5} position="left" wrap>
-              <IconMapPin color="gray" size={20} stroke={2} />
-              <Text color="gray" size="m">
-                {refugio.direccion.localidad}
+      <section className="basic">
+        <section className="heading-shelter">
+          <div className="logo-name-location">
+            <Avatar src={logorefugio} size={200} radius={100} mt={-80} />
+            <div style={{ flex: 1, marginLeft: 20 }}>
+              <Text size="40px" weight={500}>
+                {refugio.nombre}
               </Text>
-            </Group>
+              <Group spacing={5} position="left" wrap>
+                <IconMapPin color="gray" size={20} stroke={2} />
+                <Text color="gray" size="m">
+                  {refugio.direccion.localidad}
+                </Text>
+              </Group>
+            </div>
           </div>
-        </div>
-        <div className="links-shelter">
-          {redes}
-          <Link className="donate" to="/">
-            Donar
-          </Link>
-        </div>
-      </section>
-
-      <section className="description-shelter">
-        <article>
-          <h2>Quienes somos</h2>
-          <p>{refugio.perfilRefugio.descripcionLarga}</p>
-        </article>
-        <section className="caroussel">
-          <Carousel slideSize="100%" height={500} slideGap="md" loop>
-            <Carousel.Slide>
-              <img className="carousel" src={One} />
-            </Carousel.Slide>
-            <Carousel.Slide>
-              <img className="carousel" src={Two} />
-            </Carousel.Slide>
-            <Carousel.Slide>
-              <img className="carousel" src={Three} />
-            </Carousel.Slide>
-            <Carousel.Slide>
-              <img className="carousel" src={Four} />
-            </Carousel.Slide>
-          </Carousel>
+          <div className="links-shelter">
+            {redes}
+            <a className="donate" href={refugio.linkDonacionesMonetarias}>
+              Donar
+            </a>
+          </div>
         </section>
-      </section>
-      <section className="posts-shelter">
-        <article>
-          <h2>Urgentes</h2>
-          {/* <ListAnimals /> */}
-        </article>
-        <article>
-          <h2>Nuestros Animales</h2>
-          {/* <ListAnimals /> */}
-        </article>
+
+        <section className="description-shelter">
+          <article>
+            <h2>Quienes somos</h2>
+            <p>{refugio.perfilRefugio.descripcionLarga}</p>
+          </article>
+          <section className="caroussel">
+            <Carousel slideSize="100%" height={500} slideGap="md" loop>
+              <Carousel.Slide>
+                <img className="carousel" src={One} />
+              </Carousel.Slide>
+              <Carousel.Slide>
+                <img className="carousel" src={Two} />
+              </Carousel.Slide>
+              <Carousel.Slide>
+                <img className="carousel" src={Three} />
+              </Carousel.Slide>
+              <Carousel.Slide>
+                <img className="carousel" src={Four} />
+              </Carousel.Slide>
+            </Carousel>
+          </section>
+        </section>
+        <section className="posts-shelter">
+          <article>
+            <h2>Urgentes</h2>
+            {/* <ListAnimals /> */}
+          </article>
+          <article>
+            <h2>Nuestros Animales</h2>
+            {/* <ListAnimals /> */}
+          </article>
+        </section>
       </section>
     </section>
   );

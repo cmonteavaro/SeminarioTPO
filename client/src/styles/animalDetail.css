@@ -17,7 +17,6 @@
 }
 
 .image-detail-big {
-  width: 500px;
   border-radius: 1vh;
   margin-right: 4vw;
 }
@@ -135,26 +134,26 @@
   font-weight: bold;
 }
 
-@media (max-width: 1024px){
-  .detail{
+@media (max-width: 1024px) {
+  .detail {
     flex-direction: column;
     align-items: center;
   }
-  .info-detail{
+  .info-detail {
     width: 70vw;
   }
 
-  .btn-adopt{
+  .btn-adopt {
     width: 15vw;
   }
 }
 
-@media (max-width: 768px){
-  .image-detail-big{
+@media (max-width: 768px) {
+  .image-detail-big {
     width: 70vw;
   }
-  
-  .info-detail-description{
+
+  .info-detail-description {
     margin-top: 2vh;
   }
 
@@ -162,10 +161,9 @@
     display: inline;
   }
 
-  .convivencia-animal li{
+  .convivencia-animal li {
     float: left;
     clear: left;
     margin: 1vh 0;
   }
-
 }

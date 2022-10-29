@@ -6,26 +6,25 @@ import Logo from "../../images/shelters/zaguates.webp";
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import "react-lazy-load-image-component/src/effects/blur.css";
 
-export default function AnimalCard({ animal }) {
-  const route = `/publicaciones/${animal.idPublicacion}`;
+function getState(state) {
   let color;
   let variant;
   let text;
-  switch (animal.estadoPublicacion) {
-    case "Disponible":
+  switch (state) {
+    case "DISPONIBLE":
       color = "lime";
       variant = "dark";
-      text = `${animal.estadoPublicacion}`;
+      text = `${state}`;
       break;
-    case "En_proceso":
+    case "EN_PROCESO":
       color = "yellow";
       variant = "dark";
       text = "En proceso";
       break;
-    case "Finalizada":
+    case "FINALIZADA":
       color = "red";
       variant = "dark";
-      text = `${animal.estadoPublicacion}`;
+      text = `${state}`;
       break;
     default:
       color = "gray";
@@ -33,12 +32,19 @@ export default function AnimalCard({ animal }) {
       text = "Sin info";
       break;
   }
+  const result = [color, variant, text];
+  return result;
+}
+
+export default function AnimalCard({ animal }) {
+  const route = `/publicaciones/${animal.idPublicacion}`;
+  const badgeValues = getState(animal.estadoPublicacion);
   return (
     <div className="card">
       <div className="card-heading">
         <h2>{animal.nombreAnimal}</h2>
-        <Badge color={color} variant={variant}>
-          {text}
+        <Badge color={badgeValues[0]} variant={badgeValues[1]}>
+          {badgeValues[2]}
         </Badge>
       </div>
       <div className="card-center">

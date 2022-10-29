@@ -105,6 +105,36 @@ function ageCalculator(date) {
   return ageString;
 }
 
+function getState(state) {
+  let color;
+  let variant;
+  let text;
+  switch (state) {
+    case "DISPONIBLE":
+      color = "lime";
+      variant = "dark";
+      text = `${state}`;
+      break;
+    case "EN_PROCESO":
+      color = "yellow";
+      variant = "dark";
+      text = "En proceso";
+      break;
+    case "FINALIZADA":
+      color = "red";
+      variant = "dark";
+      text = `${state}`;
+      break;
+    default:
+      color = "gray";
+      variant = "dark";
+      text = "Sin info";
+      break;
+  }
+  const result = [color, variant, text];
+  return result;
+}
+
 export default function AnimalDetail() {
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(false);
@@ -133,158 +163,129 @@ export default function AnimalDetail() {
     );
   }
 
-  if (data.length < 1) {
-    return <NotFound />;
-  } else {
-    let color;
-    let variant;
-    let text;
-    switch (data.estadoPublicacion) {
-      case "Disponible":
-        color = "lime";
-        variant = "dark";
-        text = `${data.estadoPublicacion}`;
-        break;
-      case "En_proceso":
-        color = "yellow";
-        variant = "dark";
-        text = "En proceso";
-        break;
-      case "Finalizada":
-        color = "red";
-        variant = "dark";
-        text = `${data.estadoPublicacion}`;
-        break;
-      default:
-        color = "gray";
-        variant = "dark";
-        text = "Sin info";
-        break;
-    }
+  if (data.length < 1) return <NotFound />;
 
-    return (
-      <main className="animal-detail">
-        <div>
-          <Link to="/publicaciones" className="go-back-detail">
-            {"<"} Volver atras
-          </Link>
-        </div>
-        <section className="detail">
-          <section className="images-detail">
-            <LazyLoadImage
-              alt={"Imagen animal"}
-              height={"600px"}
-              src={Coco}
-              width={"500px"}
-              effect="blur"
-            />
-            <img src={Coco} className="image-detail-big" />
-          </section>
-          <section className="info-detail">
-            <div className="info-detail-wrapper">
-              <div className="info-detail-heading">
-                <h2>{data.animal.nombre}</h2>
-                <p className="fecha-publicacion">
-                  Fecha de Publicacion: {data.fechaPublicacion}
-                </p>
-              </div>
-              <div className="info-detail-status">
-                <Badge color={color} variant={variant}>
-                  {text}
-                </Badge>
-              </div>
-            </div>
-
-            <div className="property-wrapper">
-              <p className="property">
-                Tamaño Actual:{" "}
-                <span className="property-info">
-                  {data.animal.tamanioActual}
-                </span>
-              </p>
-              <p className="property">
-                Tamaño Esperado:{" "}
-                <span className="property-info">
-                  {data.animal.tamanioEsperado}
-                </span>
-              </p>
-              <p className="property">
-                Edad:{" "}
-                <span className="property-info">
-                  {ageCalculator(data.animal.fechaNac)}
-                </span>
-              </p>
-              <p className="property">
-                Nacimiento:{" "}
-                <span className="property-info">{data.animal.fechaNac}</span>
-              </p>
-              <p className="property">
-                Castrado:{" "}
-                <span className="property-info">
-                  {isTrue(data.animal.castrado)}
-                </span>
-              </p>
-              <p className="property">
-                Desparasitado:{" "}
-                <span className="property-info">
-                  {isTrue(data.animal.desparasitado)}
-                </span>
-              </p>
-              <p className="property">
-                Medicacion: <span className="property-info">{"Si"}</span>
-              </p>
-              <p className="property">
-                Vacunas:{" "}
-                <span className="property-info">
-                  {isTrue(data.animal.esquemaCompletoVacunas)}
-                </span>
-              </p>
-              <div>
-                <p className="property">
-                  Puede convivir con:
-                  <div>
-                    <ul className="convivencia-animal">
-                      <li className="property-info convivencia-item">
-                        Infantes: {isTrue(data.puedeConvivirConInfantes)}
-                      </li>
-                      <li className="property-info convivencia-item">
-                        Gatos: {isTrue(data.puedeConvivirConGatos)}
-                      </li>
-                      <li className="property-info convivencia-item">
-                        Cachorros: {isTrue(data.puedeConvivirConCachorros)}
-                      </li>
-                      <li className="property-info convivencia-item">
-                        Perros Adultos:{" "}
-                        {isTrue(data.puedeConvivirConPerrosAdultos)}
-                      </li>
-                    </ul>
-                  </div>
-                </p>
-              </div>
-            </div>
-
-            <article className="info-detail-description">
-              {data.descripcion}
-            </article>
-            <div className="info-detail-footer">
-              <div className="info-detail-shelter">
-                <div className="info-detail-shelter-name">
-                  <img src={Zaguates} />
-                  <h5>{data.nombreRefugio}</h5>
-                </div>
-                <div className="info-detail-shelter-links">
-                  <FaFacebook size={30} />
-                  <FaInstagram size={30} />
-                  <FaTwitter size={30} />
-                </div>
-              </div>
-              <div className="info-detail-button">
-                <button className="btn-adopt"> Adoptar</button>
-              </div>
-            </div>
-          </section>
+  const badgeValues = getState(data.estadoPublicacion);
+  return (
+    <main className="animal-detail">
+      <div>
+        <Link to="/publicaciones" className="go-back-detail">
+          {"<"} Volver atras
+        </Link>
+      </div>
+      <section className="detail">
+        <section className="images-detail">
+          <LazyLoadImage
+            alt={"Imagen animal"}
+            height={"600px"}
+            src={Coco}
+            width={"500px"}
+            effect="blur"
+            className="image-detail-big"
+          />
         </section>
-      </main>
-    );
-  }
+        <section className="info-detail">
+          <div className="info-detail-wrapper">
+            <div className="info-detail-heading">
+              <h2>{data.animal.nombre}</h2>
+              <p className="fecha-publicacion">
+                Fecha de Publicacion: {data.fechaPublicacion}
+              </p>
+            </div>
+            <div className="info-detail-status">
+              <Badge color={badgeValues[0]} variant={badgeValues[1]}>
+                {badgeValues[2]}
+              </Badge>
+            </div>
+          </div>
+
+          <div className="property-wrapper">
+            <p className="property">
+              Tamaño Actual:{" "}
+              <span className="property-info">{data.animal.tamanioActual}</span>
+            </p>
+            <p className="property">
+              Tamaño Esperado:{" "}
+              <span className="property-info">
+                {data.animal.tamanioEsperado}
+              </span>
+            </p>
+            <p className="property">
+              Edad:{" "}
+              <span className="property-info">
+                {ageCalculator(data.animal.fechaNac)}
+              </span>
+            </p>
+            <p className="property">
+              Nacimiento:{" "}
+              <span className="property-info">{data.animal.fechaNac}</span>
+            </p>
+            <p className="property">
+              Castrado:{" "}
+              <span className="property-info">
+                {isTrue(data.animal.castrado)}
+              </span>
+            </p>
+            <p className="property">
+              Desparasitado:{" "}
+              <span className="property-info">
+                {isTrue(data.animal.desparasitado)}
+              </span>
+            </p>
+            <p className="property">
+              Medicacion: <span className="property-info">{"Si"}</span>
+            </p>
+            <p className="property">
+              Vacunas:{" "}
+              <span className="property-info">
+                {isTrue(data.animal.esquemaCompletoVacunas)}
+              </span>
+            </p>
+            <div>
+              <p className="property">
+                Puede convivir con:
+                <div>
+                  <ul className="convivencia-animal">
+                    <li className="property-info convivencia-item">
+                      Infantes: {isTrue(data.puedeConvivirConInfantes)}
+                    </li>
+                    <li className="property-info convivencia-item">
+                      Gatos: {isTrue(data.puedeConvivirConGatos)}
+                    </li>
+                    <li className="property-info convivencia-item">
+                      Cachorros: {isTrue(data.puedeConvivirConCachorros)}
+                    </li>
+                    <li className="property-info convivencia-item">
+                      Perros Adultos:{" "}
+                      {isTrue(data.puedeConvivirConPerrosAdultos)}
+                    </li>
+                  </ul>
+                </div>
+              </p>
+            </div>
+          </div>
+
+          <article className="info-detail-description">
+            {data.descripcion}
+          </article>
+          <div className="info-detail-footer">
+            <div className="info-detail-shelter">
+              <div className="info-detail-shelter-name">
+                <img src={Zaguates} />
+                <h5>{data.nombreRefugio}</h5>
+              </div>
+              <div className="info-detail-shelter-links">
+                <FaFacebook size={30} />
+                <FaInstagram size={30} />
+                <FaTwitter size={30} />
+              </div>
+            </div>
+            <div className="info-detail-button">
+              <button className="btn-adopt"> Adoptar</button>
+            </div>
+          </div>
+        </section>
+      </section>
+    </main>
+  );
 }
