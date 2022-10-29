@@ -23,7 +23,7 @@ public class PublicacionVoluntariado {
     private Refugio refugio;
     @Temporal(TemporalType.DATE)
     private LocalDate fechaPublicacion;
-    private Boolean estado;
+    private Boolean estaActiva;
 
     public PublicacionVoluntariado(String titulo, Refugio refugio) {
         this.fechaPublicacion = LocalDate.now();

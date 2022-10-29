@@ -26,7 +26,7 @@ public class VoluntariadoView {
     private String titulo;
     private String descripcion;
     private String fechaPublicacion;
-    private Boolean estado;
+    private Boolean estaActiva;
 
     private VoluntariadoView(){}
 
@@ -45,7 +45,7 @@ public class VoluntariadoView {
         vv.titulo = publicacionVoluntariado.getTitulo();
         vv.descripcion = publicacionVoluntariado.getDescripcion();
         vv.fechaPublicacion = publicacionVoluntariado.getFechaPublicacion().format(dateFormatter);
-        vv.estado = publicacionVoluntariado.getEstado();
+        vv.estaActiva = publicacionVoluntariado.getEstaActiva();
 
         return vv;
     }
