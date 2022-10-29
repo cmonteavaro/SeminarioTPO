@@ -43,7 +43,7 @@ public class PublicacionesApi {
     @GetMapping("/adopciones")
     public ResponseEntity<?> getAllAdopciones() {
         List<PublicacionAnimalCortaView> resultado = new ArrayList<>();
-        adopcionService.findAll().forEach(adopcion -> resultado.add(PublicacionAnimalCortaView.toView(adopcion)));
+        adopcionService.findAll().stream().filter(adopcion -> !adopcion.getEstado().equals(EstadoPublicacionAnimalEnum.FINALIZADA)).forEach(adopcion -> resultado.add(PublicacionAnimalCortaView.toView(adopcion)));
         return ResponseEntity.ok(resultado);
     }
 
@@ -95,7 +95,7 @@ public class PublicacionesApi {
     @GetMapping("/transitos")
     public ResponseEntity<?> getAllTransitos() {
         List<PublicacionAnimalCortaView> resultado = new ArrayList<>();
-        transitoService.findAll().forEach(transito -> resultado.add(PublicacionAnimalCortaView.toView(transito)));
+        transitoService.findAll().stream().filter(transito -> !transito.getEstado().equals(EstadoPublicacionAnimalEnum.FINALIZADA)).forEach(transito -> resultado.add(PublicacionAnimalCortaView.toView(transito)));
         return ResponseEntity.ok(resultado);
     }
 
@@ -164,8 +164,8 @@ public class PublicacionesApi {
 
     @GetMapping("/donaciones")
     public ResponseEntity<?> getAllDonaciones() {
-        List<PublicacionDonacionView> resultado = new ArrayList<>();
-        donacionService.findAll().forEach(donacion -> resultado.add(PublicacionDonacionView.toView(donacion)));
+        List<DonacionView> resultado = new ArrayList<>();
+        donacionService.findAll().stream().filter(PublicacionDonacion::getEstaActiva).forEach(donacion -> resultado.add(DonacionView.toView(donacion)));
         return ResponseEntity.ok(resultado);
     }
 
@@ -173,7 +173,7 @@ public class PublicacionesApi {
     public ResponseEntity<?> getDonacionById(@PathVariable Long id) {
         Optional<PublicacionDonacion> oDonacion = donacionService.findById(id);
         if (oDonacion.isPresent()) {
-            return ResponseEntity.ok(PublicacionDonacionView.toView(oDonacion.get()));
+            return ResponseEntity.ok(DonacionView.toView(oDonacion.get()));
         }
         else {
             return ResponseEntity.notFound().build();
@@ -195,6 +195,20 @@ public class PublicacionesApi {
         try {
             donacionService.saveDTO(donacionDTO);
             return ResponseEntity.status(HttpStatus.CREATED).build();
+        }catch (Exception e){
+            return ResponseEntity.badRequest().eTag(e.getMessage()).build();
+        }
+    }
+
+    @PutMapping("/donaciones/{id}/cambiarEstado")
+    public ResponseEntity<?> cambiarEstadoPublicacionDonacion(@RequestBody Boolean estaActiva, @PathVariable Long id) {
+        try {
+            Optional<PublicacionDonacion> oDonacion = donacionService.findById(id);
+            if(oDonacion.isEmpty()) return ResponseEntity.notFound().build();
+            PublicacionDonacion publicacionDonacion = oDonacion.get();
+            publicacionDonacion.setEstaActiva(estaActiva);
+            donacionService.save(publicacionDonacion);
+            return ResponseEntity.status(HttpStatus.ACCEPTED).build();
         }catch (Exception e){
             return ResponseEntity.badRequest().eTag(e.getMessage()).build();
         }

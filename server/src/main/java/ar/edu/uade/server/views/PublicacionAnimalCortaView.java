@@ -19,7 +19,7 @@ AdopcionCortaView av = AdopcionCortaView.toView(a)
 
 @Getter
 @Setter
-public class PublicacionAnimalCortaView {
+public class  PublicacionAnimalCortaView {
 
     private String nombreAnimal;
     private String paisRefugio;
