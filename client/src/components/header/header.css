@@ -3,6 +3,17 @@
   flex-direction: row;
   justify-content: center;
   align-items: center;
+  background-color: rgb(84, 142, 165);
+  margin-bottom: 3vh;
+}
+
+nav a {
+  color: white;
+}
+
+.logo {
+  margin-right: auto;
+  margin-left: 1vw;
 }
 
 .logo-img {
@@ -10,6 +21,20 @@
   border-radius: 50%;
   padding: 10px 10px;
   min-width: 3vw;
+}
+
+.navigation {
+  margin-right: auto;
+}
+
+ul {
+  padding: 0;
+}
+
+li {
+  list-style: none;
+  display: inline;
+  margin: 0.8vw;
 }
 
 .links {

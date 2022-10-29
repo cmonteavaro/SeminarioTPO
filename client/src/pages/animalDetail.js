@@ -1,6 +1,6 @@
 import Zaguates from "../images/shelters/zaguates.webp";
 import Coco from "../images/coco.webp";
-import { Badge } from "@mantine/core";
+import Tag from "../components/badge/badge";
 import { FaInstagram, FaFacebook, FaTwitter } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
@@ -9,6 +9,7 @@ import { Loader } from "@mantine/core";
 import NotFound from "./notFound";
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import "react-lazy-load-image-component/src/effects/blur.css";
+import Modal from "../components/animals/modalPreForm";
 
 import "../styles/animalDetail.css";
 
@@ -105,39 +106,10 @@ function ageCalculator(date) {
   return ageString;
 }
 
-function getState(state) {
-  let color;
-  let variant;
-  let text;
-  switch (state) {
-    case "DISPONIBLE":
-      color = "lime";
-      variant = "dark";
-      text = `${state}`;
-      break;
-    case "EN_PROCESO":
-      color = "yellow";
-      variant = "dark";
-      text = "En proceso";
-      break;
-    case "FINALIZADA":
-      color = "red";
-      variant = "dark";
-      text = `${state}`;
-      break;
-    default:
-      color = "gray";
-      variant = "dark";
-      text = "Sin info";
-      break;
-  }
-  const result = [color, variant, text];
-  return result;
-}
-
 export default function AnimalDetail() {
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(false);
+  const [showModal, setShowModal] = useState(false);
 
   const { id } = useParams();
 
@@ -146,7 +118,6 @@ export default function AnimalDetail() {
     fetch(`http://localhost:8080/api/publicaciones/adopciones/${id}`)
       .then((e) => e.json())
       .then((d) => {
-        console.log(d);
         return setData(d);
       })
       .finally(() => setLoading(false));
@@ -163,9 +134,21 @@ export default function AnimalDetail() {
     );
   }
 
-  if (data.length < 1) return <NotFound />;
+  // retrieve the restrictions
+  var animalRestrictions = {
+    convivirConCachorros: data.puedeConvivirConCachorros,
+    convivirConInfantes: data.puedeConvivirConInfantes,
+    convivirConGatos: data.puedeConvivirConGatos,
+    convivirConPerrosAdultos: data.puedeConvivirConPerrosAdultos,
+  };
 
-  const badgeValues = getState(data.estadoPublicacion);
+  // if the animal has any restriction we need to show the modal before going to the form
+  var animalRestrictionsFiltered = Object.entries(animalRestrictions).filter(
+    ([key, value]) => value == false
+  );
+
+  if (data.length < 1) return <NotFound />;
+  console.log(data);
   return (
     <main className="animal-detail">
       <div>
@@ -193,9 +176,7 @@ export default function AnimalDetail() {
               </p>
             </div>
             <div className="info-detail-status">
-              <Badge color={badgeValues[0]} variant={badgeValues[1]}>
-                {badgeValues[2]}
-              </Badge>
+              <Tag state={data.estadoPublicacion} />
             </div>
           </div>
 
@@ -211,10 +192,7 @@ export default function AnimalDetail() {
               </span>
             </p>
             <p className="property">
-              Edad:{" "}
-              <span className="property-info">
-                {ageCalculator(data.animal.fechaNac)}
-              </span>
+              Edad: <span className="property-info">{data.animal.edad}</span>
             </p>
             <p className="property">
               Nacimiento:{" "}
@@ -281,10 +259,25 @@ export default function AnimalDetail() {
               </div>
             </div>
             <div className="info-detail-button">
-              <button className="btn-adopt"> Adoptar</button>
+              <button
+                className="btn-adopt"
+                onClick={() =>
+                  animalRestrictionsFiltered.length > 0
+                    ? setShowModal(true)
+                    : console.log("IR AL FORM")
+                }
+              >
+                {" "}
+                Adoptar
+              </button>
             </div>
           </div>
         </section>
+        <Modal
+          show={showModal}
+          animalRestrictions={animalRestrictions}
+          onClose={() => setShowModal(false)}
+        />
       </section>
     </main>
   );

@@ -11,6 +11,7 @@
   padding: 0;
   font-family: "Nunito Sans", sans-serif;
   --accent-color: green;
+  --accent-color-lighter: rgb(47, 143, 47);
   --tag-available-background: #a2f2a0;
   --tag-available-text: #4bc348;
   --tag-warning-background: #f2efa0;
@@ -19,9 +20,20 @@
   --tag-closed-text: #c34848;
 }
 
+#root{
+  background-color: #F2F2F2;
+
+}
+ 
 h1,
-h2 {
+h2,
+h3,
+h4 {
   color: var(--accent-color);
+}
+
+h6 {
+  color:#999999;
 }
 
 .basic {
@@ -31,5 +43,5 @@ h2 {
 
 a {
   text-decoration: none;
-  color: black;
+  color: white;
 }

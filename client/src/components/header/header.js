@@ -1,13 +1,13 @@
 import "./header.css";
 import { Link, useMatch, useResolvedPath } from "react-router-dom";
-import logo from "../../images/logo.png";
+import Logo from "../../images/LogoMiRefugio.png";
 
 export default function NavBar() {
   return (
     <header class="header">
       <nav className="navegacion">
         <Link to="/" className="link">
-          <img className="logo-img" src={logo} alt="Perro y Gato mirandose" />
+          <img className="logo-img" src={Logo} alt="Perro y Gato mirandose" />
         </Link>
         <input class="menu-btn" type="checkbox" id="menu-btn" />
         <label class="menu-icon" for="menu-btn">

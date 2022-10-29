@@ -11,4 +11,6 @@ public interface TransitoService {
 
     Optional<Transito> findById(Long id);
 
+    Long save(Transito transito);
+
 }
