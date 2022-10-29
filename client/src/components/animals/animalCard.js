@@ -7,7 +7,6 @@ import "react-lazy-load-image-component/src/effects/blur.css";
 import Tag from "../badge/badge";
 
 export default function AnimalCard({ animal }) {
-  console.log(animal);
   const route = `/publicaciones/${animal.idPublicacion}`;
   return (
     <div className="card">

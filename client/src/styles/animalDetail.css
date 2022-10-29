@@ -19,6 +19,8 @@
 .image-detail-big {
   border-radius: 1vh;
   margin-right: 4vw;
+  width: 500px;
+  height: 600px;
 }
 
 .info-detail {
@@ -214,6 +216,33 @@
   cursor: pointer;
 }
 
+.form {
+  position: fixed;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.form-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  background-color: white;
+  width: 50vw;
+  padding: 2vh;
+  border-radius: 1vh;
+}
+
+.form-header {
+  display: flex;
+  justify-content: space-between;
+}
+
 @media (max-width: 1024px) {
   .detail {
     flex-direction: column;
@@ -266,5 +295,34 @@
   .btn-exit {
     border-radius: 1vw;
     width: 12vw;
+  }
+
+  .form-content {
+    width: 80vw;
+  }
+
+  .info-detail {
+    width: 90vw;
+  }
+
+  .info-detail-footer {
+    flex-direction: column;
+  }
+
+  .info-detail-shelter {
+    flex-direction: column;
+  }
+
+  .info-detail-shelter-name {
+    margin: 1vh;
+  }
+
+  .info-detail-shelter-links {
+    margin: 1vh;
+  }
+  .btn-adopt {
+    margin-top: 2vh;
+    width: 30vw;
+    height: 8vh;
   }
 }

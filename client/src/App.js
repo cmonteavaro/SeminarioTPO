@@ -13,6 +13,7 @@ const NotFound = lazy(() => import("./pages/notFound"));
 const AnimalDetail = lazy(() => import("./pages/animalDetail"));
 const Shelters = lazy(() => import("./pages/shelters"));
 const VolunteerPosts = lazy(() => import("./pages/volunteerPosts"));
+const Form = lazy(() => import("./components/form/form"));
 
 function App() {
   return (

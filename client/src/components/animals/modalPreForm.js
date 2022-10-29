@@ -5,27 +5,27 @@ export default function modalPreForm(props) {
     return null;
   }
   return (
-    <div class="modal">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h1>Atención</h1>
+    <div className="modal">
+      <div className="modal-content">
+        <div className="modal-header">
+          <h2>Atención</h2>
         </div>
-        <div class="modal-description">
-          <div class="modal-description-div">
+        <div className="modal-description">
+          <div className="modal-description-div">
             <h4>
               Antes de continuar al formulario debes recordar lo siguiente
               respecto del animal
             </h4>
-            <ul class="modal-description-div-list">
+            <ul className="modal-description-div-list">
               <ModalList items={props.animalRestrictions}></ModalList>
             </ul>
           </div>
         </div>
-        <div class="modal-footer">
-          <button class="btn-exit" onClick={props.onClose}>
+        <div className="modal-footer">
+          <button className="btn-exit" onClick={props.onClose}>
             Salir
           </button>
-          <button class="btn-continue">Continuar</button>
+          <button className="btn-continue">Continuar</button>
         </div>
       </div>
     </div>
