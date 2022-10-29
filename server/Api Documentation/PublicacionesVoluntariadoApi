@@ -20,7 +20,7 @@ Body:{
           "fechaPublicacion":"14/10/2022"
      }
 
-Obtener todas las publicaciones de voluntariados
+Obtener todas las publicaciones de voluntariados activas
 Método: GET
 Endpoint: http://localhost:8080/api/publicaciones/voluntariados
 
