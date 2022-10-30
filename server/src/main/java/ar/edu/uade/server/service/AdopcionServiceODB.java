@@ -52,7 +52,10 @@ public class AdopcionServiceODB implements AdopcionService{
         Optional<Refugio> oRefugio = refugioService.findById(adopcionDTO.getIdRefugio());
         if (oRefugio.isEmpty()) throw new RefugioException("El refugio no fue encontrado");
         Refugio refugio = oRefugio.get();
-        if (refugio.puedeAgregarUrgentes()) throw new RefugioException("El refugio no puede crear más publicaciones urgentes debido a que ha alcanzado el máximo permitido");
+        if (adopcion.getEsUrgente()){
+            if (!refugio.puedeAgregarUrgentes()) throw new RefugioException("El refugio no puede crear más publicaciones urgentes debido a que ha alcanzado el máximo permitido");
+            refugio.setCantidadUrgentes(refugio.getCantidadUrgentes()+1);
+        }
         adopcion.setRefugio(refugio);
         refugio.agregarPublicacionAdopcion(adopcion);
         refugioService.save(refugio);

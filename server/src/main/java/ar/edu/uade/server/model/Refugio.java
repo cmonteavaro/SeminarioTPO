@@ -1,10 +1,12 @@
 package ar.edu.uade.server.model;
+import ar.edu.uade.server.model.enums.EstadoPublicacionAnimalEnum;
 import lombok.Getter;
 import lombok.Setter;
 
 import javax.jdo.annotations.EmbeddedOnly;
 import javax.persistence.*;
 import java.util.*;
+import java.util.stream.Collectors;
 
 @Getter
 @Setter
@@ -85,7 +87,9 @@ public class Refugio {
 
     public Boolean puedeAgregarUrgentes(){
         Boolean habilitar = true;
-        Integer cantidadPublicaciones = this.getPublicacionesAdopcion().size() + this.getPublicacionesTransito().size();
+        Integer cantidadPublicacionesAdopciones = this.getPublicacionesAdopcion().stream().filter(adopcion -> !adopcion.getEstado().equals(EstadoPublicacionAnimalEnum.FINALIZADA)).collect(Collectors.toList()).size();
+        Integer cantidadPublicacionesTransitos = this.getPublicacionesTransito().stream().filter(transito -> !transito.getEstado().equals(EstadoPublicacionAnimalEnum.FINALIZADA)).collect(Collectors.toList()).size();
+        Integer cantidadPublicaciones = cantidadPublicacionesAdopciones + cantidadPublicacionesTransitos;
         if (cantidadPublicaciones>=30){
             if (this.getCantidadUrgentes() == 6){
                 habilitar = false;
@@ -93,7 +97,7 @@ public class Refugio {
         }
         else{
             Integer cantidadUrgentesAdmitidos = (int) Math.ceil(cantidadPublicaciones*0.2);
-            if (cantidadUrgentesAdmitidos < (this.getCantidadUrgentes() + 1)){
+            if (cantidadUrgentesAdmitidos == this.getCantidadUrgentes()){
                 habilitar = false;
             }
         }

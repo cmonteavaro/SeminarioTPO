@@ -1,6 +1,7 @@
 package ar.edu.uade.server.apiControllers;
 
 import ar.edu.uade.server.model.*;
+import ar.edu.uade.server.model.enums.EstadoPublicacionAnimalEnum;
 import ar.edu.uade.server.service.RefugioService;
 import ar.edu.uade.server.views.*;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -51,7 +52,7 @@ public class RefugioApi {
         Optional<Refugio> oRefugio = refugioService.findById(id);
         if (oRefugio.isPresent()){
             List<AdopcionView> resultado = new ArrayList<>();
-            oRefugio.get().getPublicacionesAdopcion().forEach(adopcion -> resultado.add(AdopcionView.toView(adopcion)));
+            oRefugio.get().getPublicacionesAdopcion().stream().filter(adopcion -> !adopcion.getEstado().equals(EstadoPublicacionAnimalEnum.FINALIZADA)).forEach(adopcion -> resultado.add(AdopcionView.toView(adopcion)));
             return ResponseEntity.ok(resultado);
         }
         return ResponseEntity.notFound().build();
@@ -62,7 +63,7 @@ public class RefugioApi {
         Optional<Refugio> oRefugio = refugioService.findById(id);
         if (oRefugio.isPresent()){
             List<AdopcionView> resultado = new ArrayList<>();
-            oRefugio.get().getPublicacionesAdopcion().stream().filter(x -> x.getEsUrgente()).forEach(adopcion -> resultado.add(AdopcionView.toView(adopcion)));
+            oRefugio.get().getPublicacionesAdopcion().stream().filter(adopcion -> adopcion.getEsUrgente() && !adopcion.getEstado().equals(EstadoPublicacionAnimalEnum.FINALIZADA)).forEach(adopcion -> resultado.add(AdopcionView.toView(adopcion)));
             return ResponseEntity.ok(resultado);
         }
         return ResponseEntity.notFound().build();
@@ -73,7 +74,7 @@ public class RefugioApi {
         Optional<Refugio> oRefugio = refugioService.findById(id);
         if (oRefugio.isPresent()){
             List<PublicacionAnimalCortaView> resultado = new ArrayList<>();
-            oRefugio.get().getPublicacionesTransito().forEach(transito -> resultado.add(PublicacionAnimalCortaView.toView(transito)));
+            oRefugio.get().getPublicacionesTransito().stream().filter(transito -> !transito.getEstado().equals(EstadoPublicacionAnimalEnum.FINALIZADA)).forEach(transito -> resultado.add(PublicacionAnimalCortaView.toView(transito)));
             return ResponseEntity.ok(resultado);
         }
         return ResponseEntity.notFound().build();
@@ -84,7 +85,7 @@ public class RefugioApi {
         Optional<Refugio> oRefugio = refugioService.findById(id);
         if (oRefugio.isPresent()){
             List<TransitoView> resultado = new ArrayList<>();
-            oRefugio.get().getPublicacionesTransito().stream().filter(x -> x.getEsUrgente()).forEach(transito -> resultado.add(TransitoView.toView(transito)));
+            oRefugio.get().getPublicacionesTransito().stream().filter(transito -> transito.getEsUrgente() && !transito.getEstado().equals(EstadoPublicacionAnimalEnum.FINALIZADA)).forEach(transito -> resultado.add(TransitoView.toView(transito)));
             return ResponseEntity.ok(resultado);
         }
         return ResponseEntity.notFound().build();
