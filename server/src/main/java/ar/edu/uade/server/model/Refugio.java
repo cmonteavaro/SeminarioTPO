@@ -83,4 +83,20 @@ public class Refugio {
 
     public void eliminarPublicacionDonacion(PublicacionDonacion publicacion) { if(this.publicacionesDonacionesNoMonetarias.contains(publicacion)) this.publicacionesDonacionesNoMonetarias.remove(publicacion); }
 
+    public Boolean puedeAgregarUrgentes(){
+        Boolean habilitar = true;
+        Integer cantidadPublicaciones = this.getPublicacionesAdopcion().size() + this.getPublicacionesTransito().size();
+        if (cantidadPublicaciones>=30){
+            if (this.getCantidadUrgentes() == 6){
+                habilitar = false;
+            }
+        }
+        else{
+            Integer cantidadUrgentesAdmitidos = (int) Math.ceil(cantidadPublicaciones*0.2);
+            if (cantidadUrgentesAdmitidos < (this.getCantidadUrgentes() + 1)){
+                habilitar = false;
+            }
+        }
+        return habilitar;
+    }
 }

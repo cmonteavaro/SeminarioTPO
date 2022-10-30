@@ -112,7 +112,7 @@ public class PublicacionesApi {
             Refugio refugio = adopcion.getRefugio();
             if (adopcion.getEsUrgente() != urgencia){
                 if (urgencia){
-                    if (refugioService.puedeAgregarUrgentes(refugio)){
+                    if (refugio.puedeAgregarUrgentes()){
                         adopcion.setEsUrgente(urgencia);
                         refugio.setCantidadUrgentes(refugio.getCantidadUrgentes() + 1);
                     }
@@ -175,17 +175,16 @@ public class PublicacionesApi {
             Optional<Transito> optionalTransito = transitoService.findById(id);
             if(optionalTransito.isEmpty()) return ResponseEntity.notFound().build();
             Transito transito = optionalTransito.get();
+            Refugio refugio = transito.getRefugio();
             if (transito.getEsUrgente() != urgencia){
                 if (urgencia){
-                    if (refugioService.puedeAgregarUrgentes(transito.getRefugio())){
+                    if (refugio.puedeAgregarUrgentes()){
                         transito.setEsUrgente(urgencia);
-                        Refugio refugio = transito.getRefugio();
                         refugio.setCantidadUrgentes(refugio.getCantidadUrgentes() + 1);
                     }
                 }
                 else{
                     transito.setEsUrgente(urgencia);
-                    Refugio refugio = transito.getRefugio();
                     refugio.setCantidadUrgentes(refugio.getCantidadUrgentes() - 1);
                 }
                 transitoService.save(transito);

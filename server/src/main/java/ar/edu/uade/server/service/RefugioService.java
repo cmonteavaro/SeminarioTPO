@@ -13,5 +13,4 @@ public interface RefugioService {
 
     Long save(Refugio refugio);
 
-    Boolean puedeAgregarUrgentes(Refugio refugio);
 }

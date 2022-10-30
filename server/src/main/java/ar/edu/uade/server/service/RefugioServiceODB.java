@@ -27,20 +27,4 @@ public class RefugioServiceODB implements RefugioService{
         return repositoryODB.saveOBD(refugio).getId();
     }
 
-    public Boolean puedeAgregarUrgentes(Refugio refugio){
-        Boolean habilitar = true;
-        Integer cantidadPublicaciones = refugio.getPublicacionesAdopcion().size() + refugio.getPublicacionesTransito().size();
-        if (cantidadPublicaciones>=30){
-            if (refugio.getCantidadUrgentes() == 6){
-                habilitar = false;
-            }
-        }
-        else{
-            Integer cantidadUrgentesAdmitidos = (int) Math.ceil(cantidadPublicaciones*0.2);
-            if (cantidadUrgentesAdmitidos < (refugio.getCantidadUrgentes() + 1)){
-                habilitar = false;
-            }
-        }
-        return habilitar;
-    }
 }
