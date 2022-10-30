@@ -8,6 +8,7 @@ import ar.edu.uade.server.model.enums.TipoRedSocialEnum;
 import ar.edu.uade.server.repository.RepositoryODB;
 import ar.edu.uade.server.service.AdopcionService;
 import ar.edu.uade.server.service.AnimalService;
+import ar.edu.uade.server.service.EmailServiceImpl;
 import ar.edu.uade.server.service.RefugioService;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,6 +34,8 @@ class ServerApplicationTests {
 
     @Autowired
     AdopcionService adopcionService;
+
+    @Autowired EmailServiceImpl emailService;
 
     @Test
     void contextLoads() {
@@ -90,29 +93,35 @@ class ServerApplicationTests {
     @Test
     void refugioTest(){
         Refugio refugio = new Refugio();
-        refugio.setNombre("AdopQAC");
-        Direccion d = new Direccion();
-        d.setCalle("Lima");
-        d.setLocalidad("Monserrat");
-        refugio.setDireccion(d);
-        RedSocial rs1 = new RedSocial("https://ig.com", TipoRedSocialEnum.INSTAGRAM);
-        RedSocial rs2 = new RedSocial("https://fb.com", TipoRedSocialEnum.FACEBOOK);
-        refugio.agregarRedesSociales(rs1,rs2);
-        System.out.println("Guardado con ID: "+refugioService.save(refugio).toString());
+        refugio.setNombre("JuampiRefugio");
+//        Direccion d = new Direccion();
+//        d.setCalle("Lima");
+//        d.setLocalidad("Monserrat");
+//        refugio.setDireccion(d);
+//        RedSocial rs1 = new RedSocial("https://ig.com", TipoRedSocialEnum.INSTAGRAM);
+//        RedSocial rs2 = new RedSocial("https://fb.com", TipoRedSocialEnum.FACEBOOK);
+//        refugio.agregarRedesSociales(rs1,rs2);
+        refugio.setUsuario("juampidieguez123@gmail.com");
+//        refugioService.save(refugio);
         for (Refugio r: refugioService.findAll()){
-            System.out.println(r.getDireccion().getCalle());
+//            System.out.println(r.getDireccion().getCalle());
             System.out.println(r.getId());
             System.out.println(r.getNombre());
-            for (RedSocial rs : r.getRedesSociales()){
+            /*for (RedSocial rs : r.getRedesSociales()){
                 System.out.println(rs.getLink());
                 System.out.println(rs.getRedSocial());
+            }*/
+            System.out.println("Adopciones:");
+            for (Adopcion a: r.getPublicacionesAdopcion()) {
+                System.out.println(a.getId());
+                System.out.println(a.getAnimal().getNombre() + "\n");
             }
         };
     }
 
     @Test
     void AdopcionTestAislada(){
-        Adopcion pub = new Adopcion();
+        /*Adopcion pub = new Adopcion();
 //        pub.setAnimal(new Animal("Boneco", TipoAnimalEnum.PERRO));
         pub.setAnimal(animalService.findById((long) 1).get());
         pub.setEstado(EstadoPublicacionAnimalEnum.DISPONIBLE);
@@ -123,17 +132,17 @@ class ServerApplicationTests {
         pub.setRefugio(r);
         r.agregarPublicacionAdopcion(pub);
         System.out.println("ID guardado: "+adopcionService.save(pub));
-        System.out.println("ID refugio: "+refugioService.save(r));
+        System.out.println("ID refugio: "+refugioService.save(r));*/
         for (Adopcion pa: adopcionService.findAll()){
             System.out.println("-------- Adopcion ---------");
             System.out.println("ID: "+pa.getId());
             System.out.println("Estado: "+pa.getEstado());
             System.out.println("Patio: "+pa.getNecesitaPatio());
-            System.out.println(pa.getRefugio().getNombre());
-            System.out.println(pa.getAnimal().getNombre());
+            System.out.println("Refugio: " + pa.getRefugio().getNombre());
+            System.out.println("Animal: " + pa.getAnimal().getNombre());
             //System.out.println("Dia: "+pa.getFechaPublicacion().getDayOfMonth());
         }
-
+        /*
         for (Refugio re : refugioService.findAll()){
             System.out.println("-------- Refugio ---------");
             System.out.println(re.getNombre());
@@ -143,25 +152,25 @@ class ServerApplicationTests {
                 System.out.println(ad.getDescripcion());
                 System.out.println(ad.getId());
             }
-        }
+        }*/
     }
 
     @Test
     public void AdopcionTestFull(){
 //        RepositoryODB.getInstancia().deleteAll(Adopcion.class);
-        Refugio r = RepositoryODB.getInstancia().findById(Refugio.class,6).get();
+        Refugio r = RepositoryODB.getInstancia().findById(Refugio.class,20).get();
         Animal an = new Animal();
-        an.setNombre("Boneco");
+        an.setNombre("Kalitolindo");
         an.setTipoAnimal(TipoAnimalEnum.PERRO);
-        RepositoryODB.getInstancia().saveOBD(an);
+        Long idAnimal = animalService.save(an);
         Adopcion pub = new Adopcion();
-        pub.setAnimal(an);
+        pub.setAnimal(animalService.findById(idAnimal).get());
         pub.setEstado(EstadoPublicacionAnimalEnum.DISPONIBLE);
         pub.setNecesitaPatio(true);
         pub.setRefugio(r);
         r.agregarPublicacionAdopcion(pub);
-        RepositoryODB.getInstancia().saveOBD(r);
-        Refugio ref = RepositoryODB.getInstancia().findById(Refugio.class,6).get();
+        refugioService.save(r);
+        Refugio ref = refugioService.findById((long)20).get();
         System.out.println("------ Refugio -------");
         System.out.println("Nombre: "+ref.getNombre());
         for (PublicacionAnimal a: ref.getPublicacionesAdopcion()){
@@ -176,4 +185,8 @@ class ServerApplicationTests {
 //        RepositoryODB.getInstancia().updateOBD(r);
     }
 
+    @Test
+    public void mailTest(){
+        emailService.sendSimpleMail("zoelandeyro@gmail.com","Test mail", "pray to god this works");
+    }
 }

@@ -5,6 +5,7 @@ import ar.edu.uade.server.model.Refugio;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Getter
@@ -13,7 +14,7 @@ public class PerfilCortoRefugioView {
 
     private long id;
     private String nombre;
-    private List<RedSocial> redesSociales;
+    private List<RedSocialView> redesSociales;
     private String fotoPerfil;
     private String descripcionCorta;
 
@@ -21,7 +22,9 @@ public class PerfilCortoRefugioView {
         PerfilCortoRefugioView view = new PerfilCortoRefugioView();
         view.id = ref.getId();
         view.nombre = ref.getNombre();
-        view.redesSociales = ref.getRedesSociales();
+        List<RedSocialView> redesSociales = new ArrayList<>();
+        ref.getRedesSociales().forEach(red -> redesSociales.add(RedSocialView.toView(red)));
+        view.redesSociales = redesSociales;
         view.fotoPerfil = ref.getPerfilRefugio().getFotoPerfil();
         view.descripcionCorta = ref.getPerfilRefugio().getDescripcionCorta();
         return view;

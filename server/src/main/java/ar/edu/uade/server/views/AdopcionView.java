@@ -48,7 +48,7 @@ public class AdopcionView {
     private Boolean transporteCubierto;
     private Boolean esUrgente;
     private String fechaPublicacion;
-    private EstadoPublicacionAnimalEnum estadoPublicacion;
+    private String estadoPublicacion;
     private List<String> galeriaImagenesPublicacion;
 
     public static AdopcionView toView(Adopcion adopcion){
@@ -74,7 +74,7 @@ public class AdopcionView {
         view.transporteCubierto = adopcion.getTransporteCubierto();
         view.esUrgente = adopcion.getEsUrgente();
         view.fechaPublicacion = adopcion.getFechaPublicacion().format(dateFormatter);
-        view.estadoPublicacion = adopcion.getEstado();
+        view.estadoPublicacion = adopcion.getEstado().getNombre();
 
         return view;
     }
