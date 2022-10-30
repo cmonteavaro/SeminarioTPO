@@ -182,7 +182,7 @@ public class PublicacionesApi {
 
     @PostMapping("/transitos/{id}/postular")
     public ResponseEntity<?> postulacionTransito(@PathVariable Long id, @RequestBody FormularioDTO formularioDTO) {
-        Optional<Transito> oTransito = null;
+        Optional<Transito> oTransito = transitoService.findById(id);
         if (oTransito.isPresent()) {
             if (emailService.sendMailDTO(formularioDTO,oTransito.get())){
                 return ResponseEntity.ok().build();
