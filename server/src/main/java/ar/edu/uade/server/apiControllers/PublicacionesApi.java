@@ -200,6 +200,7 @@ public class PublicacionesApi {
                     refugio.setCantidadUrgentes(refugio.getCantidadUrgentes() - 1);
                 }
                 transitoService.save(transito);
+                refugioService.save(refugio);
             }
             return ResponseEntity.status(HttpStatus.ACCEPTED).build();
         }catch (Exception e){
