@@ -1,4 +1,4 @@
-Obtener todas las publicaciones de Transitos
+Obtener todas las publicaciones de Transitos no finalizadas
 Método: GET
 Endpoint: http://localhost:8080/api/publicaciones/transitos
 
@@ -6,8 +6,18 @@ Obtener una publicacion de Transito en particular (ID)
 Método: GET
 Endpoint: http://localhost:8080/api/publicaciones/transitos/{id}
 
+Obtener todas las publicaciones de Transitos urgentes
+Método: GET
+Endpoint: http://localhost:8080/api/publicaciones/transitos/urgentes
+
 Cambiar estado a una publicacion de Transito en particular (ID)
 Método: PUT
 Endpoint: http://localhost:8080/api/publicaciones/transitos/{id}/cambiarEstado
 Body (JSON):
     "EN_PROCESO"
+
+Cambiar urgencia a una publicacion de Transito en particular (ID)
+Método: PUT
+Endpoint: http://localhost:8080/api/publicaciones/transitos/{id}/cambiarUrgencia
+Body (JSON):
+    true

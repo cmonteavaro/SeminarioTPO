@@ -19,7 +19,7 @@ AdopcionCortaView av = AdopcionCortaView.toView(a)
 
 @Getter
 @Setter
-public class PublicacionAnimalCortaView {
+public class  PublicacionAnimalCortaView {
 
     private String nombreAnimal;
     private String paisRefugio;
@@ -52,11 +52,11 @@ public class PublicacionAnimalCortaView {
     }
 
     public static List<PublicacionAnimalCortaView> toView(List<PublicacionAnimal> publicaciones){
-        List<PublicacionAnimalCortaView> adopcionesView = new ArrayList<>();
+        List<PublicacionAnimalCortaView> publicacionAnimalView = new ArrayList<>();
         for (PublicacionAnimal pub : publicaciones){
-            adopcionesView.add(toView(pub));
+            publicacionAnimalView.add(toView(pub));
         }
-        return adopcionesView;
+        return publicacionAnimalView;
     }
 
     private PublicacionAnimalCortaView(){}
