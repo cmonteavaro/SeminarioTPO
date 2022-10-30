@@ -33,5 +33,7 @@ public class PublicacionDonacion {
     }
 
     public PublicacionDonacion() {
+        this.fechaPublicacion = LocalDate.now();
+        this.estaActiva = true;
     }
 }
