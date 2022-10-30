@@ -1,5 +1,6 @@
 package ar.edu.uade.server.service;
 
+import ar.edu.uade.server.model.PublicacionAnimal;
 import ar.edu.uade.server.model.Refugio;
 import ar.edu.uade.server.repository.RepositoryODB;
 import org.springframework.stereotype.Service;
@@ -25,4 +26,5 @@ public class RefugioServiceODB implements RefugioService{
     public Long save(Refugio refugio) {
         return repositoryODB.saveOBD(refugio).getId();
     }
+
 }
