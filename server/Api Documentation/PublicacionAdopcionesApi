@@ -1,4 +1,4 @@
-Obtener todas las publicaciones de Adopciones
+Obtener todas las publicaciones de Adopciones no finalizadas
 Método: GET
 Endpoint: http://localhost:8080/api/publicaciones/adopciones
 

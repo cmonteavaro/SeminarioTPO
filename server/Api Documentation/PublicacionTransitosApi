@@ -1,4 +1,4 @@
-Obtener todas las publicaciones de Transitos
+Obtener todas las publicaciones de Transitos no finalizadas
 Método: GET
 Endpoint: http://localhost:8080/api/publicaciones/transitos
 
