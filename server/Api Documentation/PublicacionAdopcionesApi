@@ -64,3 +64,15 @@ Body:
     "estado":"EN_PROCESO",
 }
 
+Postularse a una publicacion de adopcion
+Metodo: POST
+Endpoint: http://localhost:8080/api/publicaciones/adopciones/{id}/postular
+Body:
+{
+    "nombre":"Juan",
+    "apellido":"Doe",
+    "telefono":"1123456789",
+    "direccion":"Lima 557",
+    "correo":"juan.doe@gmial.com",
+    "notas":"Me gustan mucho los pichichos"
+}

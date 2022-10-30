@@ -27,3 +27,16 @@ Endpoint: http://localhost:8080/api/publicaciones/voluntariados
 Obtener una publicacion de voluntariado
 Método: GET
 Endpoint: http://localhost:8080/api/publicaciones/voluntariados/{id}
+
+Postularse a una publicacion de voluntariado
+Metodo: POST
+Endpoint: http://localhost:8080/api/publicaciones/voluntariados/{id}/postular
+Body:
+{
+    "nombre":"Juan",
+    "apellido":"Doe",
+    "telefono":"1123456789",
+    "direccion":"Lima 557",
+    "correo":"juan.doe@gmial.com",
+    "notas":"Me gustan mucho los pichichos"
+}
