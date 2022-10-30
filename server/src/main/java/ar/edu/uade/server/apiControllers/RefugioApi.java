@@ -2,6 +2,7 @@ package ar.edu.uade.server.apiControllers;
 
 import ar.edu.uade.server.model.*;
 import ar.edu.uade.server.service.RefugioService;
+import ar.edu.uade.server.views.DonacionView;
 import ar.edu.uade.server.views.PerfilCortoRefugioView;
 import ar.edu.uade.server.views.PublicacionAnimalCortaView;
 import ar.edu.uade.server.views.PerfilRefugioView;
@@ -73,8 +74,13 @@ public class RefugioApi {
     }
 
     @GetMapping("/{id}/publicacionesDonacion")
-    public void GetPublicacionesDonacion(@PathVariable Long id){
-        //TODO Tenemos que ver que vamos a mostrar para poder realizar el metodo
+    public ResponseEntity<?> GetPublicacionesDonacion(@PathVariable Long id){
+        Optional<Refugio> oRefugio = refugioService.findById(id);
+        if (oRefugio.isPresent()){
+            List<PublicacionDonacion> donaciones = oRefugio.get().getPublicacionesDonacionesNoMonetarias();
+            return ResponseEntity.ok(DonacionView.toView(donaciones));
+        }
+        return ResponseEntity.notFound().build();
     }
 
     @PostMapping

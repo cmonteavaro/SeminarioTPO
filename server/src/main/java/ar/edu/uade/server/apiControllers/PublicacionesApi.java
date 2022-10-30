@@ -1,18 +1,18 @@
 package ar.edu.uade.server.apiControllers;
 
 import ar.edu.uade.server.DTO.AdopcionDTO;
+import ar.edu.uade.server.DTO.DonacionDTO;
 import ar.edu.uade.server.DTO.VoluntarioDTO;
 import ar.edu.uade.server.model.Adopcion;
+import ar.edu.uade.server.model.PublicacionDonacion;
 import ar.edu.uade.server.model.Transito;
 import ar.edu.uade.server.model.enums.EstadoPublicacionAnimalEnum;
+import ar.edu.uade.server.service.DonacionService;
 import ar.edu.uade.server.service.TransitoService;
-import ar.edu.uade.server.views.PublicacionAnimalCortaView;
-import ar.edu.uade.server.views.TransitoView;
+import ar.edu.uade.server.views.*;
 import ar.edu.uade.server.model.PublicacionVoluntariado;
 import ar.edu.uade.server.service.AdopcionService;
 import ar.edu.uade.server.service.VoluntarioService;
-import ar.edu.uade.server.views.AdopcionView;
-import ar.edu.uade.server.views.VoluntariadoView;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -30,18 +30,20 @@ public class PublicacionesApi {
     private final AdopcionService adopcionService;
     private final TransitoService transitoService;
     private final VoluntarioService voluntarioService;
+    private final DonacionService donacionService;
 
     @Autowired
-    public PublicacionesApi (VoluntarioService vs, AdopcionService as, TransitoService ts){
+    public PublicacionesApi (VoluntarioService vs, AdopcionService as, TransitoService ts, DonacionService ds){
             this.adopcionService = as;
             this.voluntarioService = vs;
             this.transitoService = ts;
+            this.donacionService = ds;
     }
 
     @GetMapping("/adopciones")
     public ResponseEntity<?> getAllAdopciones() {
         List<PublicacionAnimalCortaView> resultado = new ArrayList<>();
-        adopcionService.findAll().forEach(adopcion -> resultado.add(PublicacionAnimalCortaView.toView(adopcion)));
+        adopcionService.findAll().stream().filter(adopcion -> !adopcion.getEstado().equals(EstadoPublicacionAnimalEnum.FINALIZADA)).forEach(adopcion -> resultado.add(PublicacionAnimalCortaView.toView(adopcion)));
         return ResponseEntity.ok(resultado);
     }
 
@@ -93,7 +95,7 @@ public class PublicacionesApi {
     @GetMapping("/transitos")
     public ResponseEntity<?> getAllTransitos() {
         List<PublicacionAnimalCortaView> resultado = new ArrayList<>();
-        transitoService.findAll().forEach(transito -> resultado.add(PublicacionAnimalCortaView.toView(transito)));
+        transitoService.findAll().stream().filter(transito -> !transito.getEstado().equals(EstadoPublicacionAnimalEnum.FINALIZADA)).forEach(transito -> resultado.add(PublicacionAnimalCortaView.toView(transito)));
         return ResponseEntity.ok(resultado);
     }
 
@@ -156,6 +158,57 @@ public class PublicacionesApi {
             voluntarioService.saveDTO(voluntarioDTO);
             return ResponseEntity.status(HttpStatus.CREATED).build();
         } catch (Exception e) {
+            return ResponseEntity.badRequest().eTag(e.getMessage()).build();
+        }
+    }
+
+    @GetMapping("/donaciones")
+    public ResponseEntity<?> getAllDonaciones() {
+        List<DonacionView> resultado = new ArrayList<>();
+        donacionService.findAll().stream().filter(PublicacionDonacion::getEstaActiva).forEach(donacion -> resultado.add(DonacionView.toView(donacion)));
+        return ResponseEntity.ok(resultado);
+    }
+
+    @GetMapping("/donaciones/{id}")
+    public ResponseEntity<?> getDonacionById(@PathVariable Long id) {
+        Optional<PublicacionDonacion> oDonacion = donacionService.findById(id);
+        if (oDonacion.isPresent()) {
+            return ResponseEntity.ok(DonacionView.toView(oDonacion.get()));
+        }
+        else {
+            return ResponseEntity.notFound().build();
+        }
+    }
+
+    @PostMapping("/donaciones")
+    public ResponseEntity<?> crearPublicacionDonacion(@RequestBody DonacionDTO donacionDTO){
+        try {
+            return ResponseEntity.status(HttpStatus.CREATED).body(donacionService.saveDTO(donacionDTO));
+        } catch (Exception e) {
+            return ResponseEntity.badRequest().eTag(e.getMessage()).build();
+        }
+    }
+
+    @PutMapping("/donaciones")
+    public ResponseEntity<?> modificarPublicacionDonacion(@RequestBody DonacionDTO donacionDTO){
+        try {
+            donacionService.saveDTO(donacionDTO);
+            return ResponseEntity.status(HttpStatus.CREATED).build();
+        }catch (Exception e){
+            return ResponseEntity.badRequest().eTag(e.getMessage()).build();
+        }
+    }
+
+    @PutMapping("/donaciones/{id}/cambiarEstado")
+    public ResponseEntity<?> cambiarEstadoPublicacionDonacion(@RequestBody Boolean estaActiva, @PathVariable Long id) {
+        try {
+            Optional<PublicacionDonacion> oDonacion = donacionService.findById(id);
+            if(oDonacion.isEmpty()) return ResponseEntity.notFound().build();
+            PublicacionDonacion publicacionDonacion = oDonacion.get();
+            publicacionDonacion.setEstaActiva(estaActiva);
+            donacionService.save(publicacionDonacion);
+            return ResponseEntity.status(HttpStatus.ACCEPTED).build();
+        }catch (Exception e){
             return ResponseEntity.badRequest().eTag(e.getMessage()).build();
         }
     }
