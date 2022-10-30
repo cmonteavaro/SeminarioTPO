@@ -10,6 +10,8 @@ import NotFound from "./pages/notFound";
 import AnimalDetail from "./pages/animalDetail";
 import Shelters from "./pages/shelters";
 import VolunteerPosts from "./pages/volunteerPosts";
+import DonationPosts from "./pages/donationPosts";
+
 
 function App() {
   return (
@@ -19,6 +21,7 @@ function App() {
         <Routes>
           <Route exact path="/" element={<Home />} />
           <Route path="/volunteer_posts" element={<VolunteerPosts />} />
+          <Route path="/donation_posts" element={<DonationPosts />} />
           <Route path="/posts" element={<AnimalPosts />} />
           <Route path="/posts/:id" element={<AnimalDetail />} />
           <Route path="/refugees/" element={<Shelters />} />
