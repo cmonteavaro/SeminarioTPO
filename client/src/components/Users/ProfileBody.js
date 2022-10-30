@@ -1,8 +1,8 @@
 import React from "react";
 import { Avatar, Text, Group } from "@mantine/core";
 import { IconMapPin } from "@tabler/icons";
-import { FaInstagram, FaFacebook, FaTwitter } from "react-icons/fa";
 import { Carousel } from "@mantine/carousel";
+import SocialMedia from "../rrss/socialMedia";
 
 // Import imagenes
 import logorefugio from "../../images/shelters/zaguates.webp";
@@ -16,63 +16,15 @@ import Five from "../../images/carousel/5.jpg";
 // Import estilos
 import "./profileBody.css";
 import { Link } from "react-router-dom";
-import ListAnimals from "../animals/animalCards";
-
-const getTag = (tagName, link) => {
-  switch (tagName) {
-    case "FaInstagram":
-      return (
-        <a href={link}>
-          <FaInstagram size={30} className="icon" title="Icono Instagram" />
-        </a>
-      );
-    case "FaFacebook":
-      return (
-        <a href={link}>
-          <FaFacebook size={30} className="icon" title="Icono Facebook" />
-        </a>
-      );
-    case "FaTwitter":
-      return (
-        <a href={link}>
-          <FaTwitter size={30} className="icon" title="Icono Twitter" />
-        </a>
-      );
-    default:
-      return null;
-  }
-};
-
-const socialMedia = (rrss) => {
-  const names = ["instagram", "facebook", "twitter"];
-  let arrayLinks = [];
-  let current = "";
-  for (let index = 0; index < rrss.length; index++) {
-    current = rrss[index].redSocial.toLowerCase();
-    if (names.includes(current)) {
-      current = current[0].toUpperCase() + current.substring(1);
-      current = "Fa" + current;
-      arrayLinks.push(getTag(current, rrss[index].link));
-    }
-  }
-
-  return (
-    <div className="links-container-shelter">
-      {arrayLinks.map((d) => {
-        return d;
-      })}
-    </div>
-  );
-};
+// import ListAnimals from "../animals/animalCards";
 
 const ProfileBody = ({ refugio }) => {
-  const redes = socialMedia(refugio.redesSociales);
   return (
     <section>
       <Link to="/publicaciones" className="go-back-profile">
         {"<"} Volver atras
       </Link>
-      <img className="hero" src={Five} />
+      <img className="hero" src={Five} alt="Imagen animal" />
       <section className="basic">
         <section className="heading-shelter">
           <div className="logo-name-location">
@@ -90,13 +42,12 @@ const ProfileBody = ({ refugio }) => {
             </div>
           </div>
           <div className="links-shelter">
-            {redes}
+            {<SocialMedia rrss={refugio.redesSociales} />}
             <a className="donate" href={refugio.linkDonacionesMonetarias}>
               Donar
             </a>
           </div>
         </section>
-
         <section className="description-shelter">
           <article>
             <h2>Quienes somos</h2>
@@ -105,16 +56,16 @@ const ProfileBody = ({ refugio }) => {
           <section className="caroussel">
             <Carousel slideSize="100%" height={500} slideGap="md" loop>
               <Carousel.Slide>
-                <img className="carousel" src={One} />
+                <img className="carousel" src={One} alt="Imagen animal" />
               </Carousel.Slide>
               <Carousel.Slide>
-                <img className="carousel" src={Two} />
+                <img className="carousel" src={Two} alt="Imagen animal" />
               </Carousel.Slide>
               <Carousel.Slide>
-                <img className="carousel" src={Three} />
+                <img className="carousel" src={Three} alt="Imagen animal" />
               </Carousel.Slide>
               <Carousel.Slide>
-                <img className="carousel" src={Four} />
+                <img className="carousel" src={Four} alt="Imagen animal" />
               </Carousel.Slide>
             </Carousel>
           </section>

@@ -7,8 +7,6 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { Loader } from "@mantine/core";
 import NotFound from "./notFound";
-import { LazyLoadImage } from "react-lazy-load-image-component";
-import "react-lazy-load-image-component/src/effects/blur.css";
 import Modal from "../components/animals/modalPreForm";
 import Form from "../components/form/form";
 
@@ -57,8 +55,8 @@ export default function AnimalDetail() {
   };
 
   // if the animal has any restriction we need to show the modal before going to the form
-  var animalRestrictionsFiltered = Object.entries(animalRestrictions).filter(
-    ([key, value]) => value == false
+  let animalRestrictionsFiltered = Object.entries(animalRestrictions).filter(
+    ([key, value]) => value === false
   );
 
   if (data.length < 1) return <NotFound />;
@@ -155,7 +153,7 @@ export default function AnimalDetail() {
           <div className="info-detail-footer">
             <div className="info-detail-shelter">
               <div className="info-detail-shelter-name">
-                <img src={Zaguates} />
+                <img src={Zaguates} alt="Logo Refugio" />
                 <h5>{data.nombreRefugio}</h5>
               </div>
               <div className="info-detail-shelter-links">
@@ -183,6 +181,10 @@ export default function AnimalDetail() {
           show={showModal}
           animalRestrictions={animalRestrictions}
           onClose={() => setShowModal(false)}
+          openForm={() => {
+            setShowForm(true);
+            setShowModal(false);
+          }}
         />
         <Form show={showForm} data={data} onClose={() => setShowForm(false)} />
       </section>

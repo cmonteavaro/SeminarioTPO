@@ -17,7 +17,7 @@ export default function modalPreForm(props) {
               respecto del animal
             </h4>
             <ul className="modal-description-div-list">
-              <ModalList items={props.animalRestrictions}></ModalList>
+              <ModalList items={props.animalRestrictions} />
             </ul>
           </div>
         </div>
@@ -25,7 +25,9 @@ export default function modalPreForm(props) {
           <button className="btn-exit" onClick={props.onClose}>
             Salir
           </button>
-          <button className="btn-continue">Continuar</button>
+          <button className="btn-continue" onClick={props.openForm}>
+            Continuar
+          </button>
         </div>
       </div>
     </div>
