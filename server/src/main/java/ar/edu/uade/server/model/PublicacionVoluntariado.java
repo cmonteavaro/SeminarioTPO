@@ -29,6 +29,7 @@ public class PublicacionVoluntariado {
         this.fechaPublicacion = LocalDate.now();
         this.titulo = titulo;
         this.refugio = refugio;
+        this.estaActiva = true;
     }
 
     public PublicacionVoluntariado() {
