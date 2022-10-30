@@ -1,5 +1,6 @@
 package ar.edu.uade.server.apiControllers;
 
+import ar.edu.uade.server.DTO.RefugioDTO;
 import ar.edu.uade.server.model.*;
 import ar.edu.uade.server.model.enums.EstadoPublicacionAnimalEnum;
 import ar.edu.uade.server.service.RefugioService;
@@ -107,9 +108,9 @@ public class RefugioApi {
     }
 
     @PostMapping
-    public ResponseEntity<?> crearRefugio(@RequestBody Refugio refugio) {
+    public ResponseEntity<?> crearRefugio(@RequestBody RefugioDTO refugioDTO) {
         try {
-            return ResponseEntity.status(HttpStatus.CREATED).body(refugioService.save(refugio));
+            return ResponseEntity.status(HttpStatus.CREATED).body(refugioService.save(refugioDTO.toModel()));
         }
         catch (Exception e) {
             return ResponseEntity.badRequest().eTag(e.getMessage()).build();

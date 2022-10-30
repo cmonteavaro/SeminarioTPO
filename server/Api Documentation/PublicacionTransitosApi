@@ -13,8 +13,8 @@ Endpoint: http://localhost:8080/api/publicaciones/transitos/urgentes
 Cambiar estado a una publicacion de Transito en particular (ID)
 Método: PUT
 Endpoint: http://localhost:8080/api/publicaciones/transitos/{id}/cambiarEstado
-Body (JSON):
-    "EN_PROCESO"
+Body (Text/JSON): --> IMPORTANTE: SIN COMILLAS!
+    EN PROCESO
 
 Cambiar urgencia a una publicacion de Transito en particular (ID)
 Método: PUT

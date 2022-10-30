@@ -21,7 +21,7 @@ public class PublicacionVoluntariado {
     private String descripcion;
     @OneToOne
     private Refugio refugio;
-    @Temporal(TemporalType.DATE)
+    @Temporal(TemporalType.TIMESTAMP)
     private LocalDate fechaPublicacion;
 
     public PublicacionVoluntariado(String titulo, Refugio refugio) {

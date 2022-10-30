@@ -28,7 +28,7 @@ public class  PublicacionAnimalCortaView {
     private String nombreRefugio;
     private String fotoPerfilRefugio;
     private Boolean esUrgente;
-    private EstadoPublicacionAnimalEnum estadoPublicacion;
+    private String estadoPublicacion;
     private String imagenAnimal;
     private Long idAnimal;
     private Long idRefugio;
@@ -43,7 +43,7 @@ public class  PublicacionAnimalCortaView {
         view.nombreRefugio = publicacion.getRefugio().getNombre();
         view.fotoPerfilRefugio = publicacion.getRefugio().getPerfilRefugio().getFotoPerfil();
         view.esUrgente = publicacion.getEsUrgente();
-        view.estadoPublicacion = publicacion.getEstado();
+        view.estadoPublicacion = publicacion.getEstado().getNombre();
         view.imagenAnimal = publicacion.getAnimal().getGaleriaImagenes().size() != 0 ? publicacion.getAnimal().getGaleriaImagenes().get(0) : null;
         view.idAnimal = publicacion.getAnimal().getId();
         view.idRefugio = publicacion.getRefugio().getId();

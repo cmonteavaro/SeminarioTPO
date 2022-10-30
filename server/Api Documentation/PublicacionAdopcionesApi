@@ -13,8 +13,8 @@ Endpoint: http://localhost:8080/api/publicaciones/adopciones/urgentes
 Cambiar estado a una publicacion de Adopcion en particular (ID)
 Método: PUT
 Endpoint: http://localhost:8080/api/publicaciones/adopciones/{id}/cambiarEstado
-Body (JSON):
-    "EN_PROCESO"
+Body (Text/JSON): --> IMPORTANTE: SIN COMILLAS!
+    EN PROCESO
 
 
 Cambiar urgencia a una publicacion de Adopcion en particular (ID)
@@ -40,7 +40,7 @@ Body:
     "transporteCubierto":true,
     "esUrgente":false,
     "fechaPublicacion":"07/06/2022",
-    "estado":"EN_PROCESO",
+    "estado":"EN PROCESO",
 }
 
 Modificar una publicacion de adopcion
@@ -61,6 +61,6 @@ Body:
     "transporteCubierto":true,
     "esUrgente":false,
     "fechaPublicacion":"07/06/2022",
-    "estado":"EN_PROCESO",
+    "estado":"EN PROCESO",
 }
 

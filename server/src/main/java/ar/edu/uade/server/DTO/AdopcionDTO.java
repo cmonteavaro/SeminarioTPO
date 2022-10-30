@@ -31,7 +31,7 @@ public class AdopcionDTO {
     private Boolean transporteCubierto;
     private Boolean esUrgente;
     private String fechaPublicacion;
-    private EstadoPublicacionAnimalEnum estado;
+    private String estado;
     private List<String> galeriaImagenes;
 
     public Adopcion toModel() {
@@ -49,7 +49,7 @@ public class AdopcionDTO {
         adopcion.setTransporteCubierto(this.transporteCubierto);
         adopcion.setEsUrgente(this.esUrgente);
         adopcion.setFechaPublicacion(LocalDate.parse(this.fechaPublicacion, dateFormatter));
-        adopcion.setEstado(this.estado);
+        adopcion.setEstado(EstadoPublicacionAnimalEnum.getEnum(this.estado));
         return adopcion;
     }
 }
