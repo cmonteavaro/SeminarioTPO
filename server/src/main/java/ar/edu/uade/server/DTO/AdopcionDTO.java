@@ -50,7 +50,6 @@ public class AdopcionDTO {
         adopcion.setEsUrgente(this.esUrgente);
         adopcion.setFechaPublicacion(LocalDate.parse(this.fechaPublicacion, dateFormatter));
         adopcion.setEstado(this.estado);
-        adopcion.setGaleriaImagenes(this.galeriaImagenes);
         return adopcion;
     }
 }

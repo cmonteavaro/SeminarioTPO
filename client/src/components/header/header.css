@@ -3,7 +3,12 @@ nav {
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  margin: 1vh;
+  background-color: rgb(84, 142, 165);
+  margin-bottom: 3vh;
+}
+
+nav a{
+  color: white;
 }
 
 .logo {
@@ -27,7 +32,7 @@ ul {
 li {
   list-style: none;
   display: inline;
-  margin: 0.5vw;
+  margin: 0.8vw;
 }
 
 .links {

@@ -6,6 +6,12 @@ Obtener una publicacion de Adopcion en particular (ID)
 Método: GET
 Endpoint: http://localhost:8080/api/publicaciones/adopciones/id
 
+Cambiar estado a una publicacion de Adopcion en particular (ID)
+Método: PUT
+Endpoint: http://localhost:8080/api/publicaciones/adopciones/{id}/cambiarEstado
+Body (JSON):
+    "EN_PROCESO"
+
 Crear una publicacion de adopcion
 Método: POST
 Endpoint: http://localhost:8080/api/publicaciones/adopciones
@@ -24,11 +30,6 @@ Body:
     "esUrgente":false,
     "fechaPublicacion":"07/06/2022",
     "estado":"EN_PROCESO",
-    "galeriaImagenes":[
-        "imagen1.jpg",
-        "imagen2.jpg",
-        "imagen3.jpg"
-    ]
 }
 
 Modificar una publicacion de adopcion
@@ -50,10 +51,5 @@ Body:
     "esUrgente":false,
     "fechaPublicacion":"07/06/2022",
     "estado":"EN_PROCESO",
-    "galeriaImagenes":[
-        "imagen1.jpg",
-        "imagen2.jpg",
-        "imagen3.jpg"
-    ]
 }
 

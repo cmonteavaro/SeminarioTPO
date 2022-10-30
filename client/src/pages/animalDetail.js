@@ -7,8 +7,10 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { Loader } from "@mantine/core";
 import NotFound from "./notFound";
+import Modal from "../components/animals/modalPreForm"
 
 import "../styles/animalDetail.css";
+import { useSetState } from "@mantine/hooks";
 
 function isTrue(estado) {
   if (estado) return "Si";
@@ -106,16 +108,16 @@ function ageCalculator(date) {
 export default function AnimalDetail() {
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(false);
+  const [showModal, setShowModal] = useState(false);
 
-  const publicacion = useParams();
+  const {id} = useParams();
 
   useEffect(() => {
     setLoading(true);
-    fetch(`http://localhost:8080/api/publicaciones/adopciones/${publicacion}`)
+    fetch(`http://localhost:8080/api/publicaciones/adopciones/${id}`)
       .then((e) => e.json())
       .then((d) => {
-        console.log(d);
-        return setData([d]);
+        return setData(d);
       })
       .finally(() => setLoading(false));
   }, []);
@@ -130,6 +132,15 @@ export default function AnimalDetail() {
       </div>
     );
   }
+
+  // retrieve the restrictions
+  var animalRestrictions = {'convivirConCachorros': data.puedeConvivirConCachorros,
+                              'convivirConInfantes': data.puedeConvivirConInfantes,
+                              'convivirConGatos': data.puedeConvivirConGatos,
+                              'convivirConPerrosAdultos': data.puedeConvivirConPerrosAdultos};
+  
+    // if the animal has any restriction we need to show the modal before going to the form
+    var animalRestrictionsFiltered =   Object.entries(animalRestrictions).filter(([key,value]) => value == false);
 
   if (data.length < 1) {
     return <NotFound />;
@@ -188,9 +199,9 @@ export default function AnimalDetail() {
 
             <div className="property-wrapper">
               <p className="property">
-                Tamaño Actual:
+                Tamaño Actual:{" "}
                 <span className="property-info">
-                  {data.animal.tamanioActual}
+                   {data.animal.tamanioActual}
                 </span>
               </p>
               <p className="property">
@@ -270,10 +281,11 @@ export default function AnimalDetail() {
                 </div>
               </div>
               <div className="info-detail-button">
-                <button className="btn-adopt"> Adoptar</button>
+                <button className="btn-adopt" onClick={() => animalRestrictionsFiltered.length>0 ? setShowModal(true) : console.log('IR AL FORM') }> Adoptar</button>
               </div>
             </div>
           </section>
+          <Modal show={showModal} animalRestrictions={animalRestrictions} onClose={() => setShowModal(false)}/>
         </section>
       </main>
     );

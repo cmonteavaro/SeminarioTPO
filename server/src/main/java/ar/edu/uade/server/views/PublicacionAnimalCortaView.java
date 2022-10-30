@@ -44,7 +44,7 @@ public class PublicacionAnimalCortaView {
         view.fotoPerfilRefugio = publicacion.getRefugio().getPerfilRefugio().getFotoPerfil();
         view.esUrgente = publicacion.getEsUrgente();
         view.estadoPublicacion = publicacion.getEstado();
-        view.imagenAnimal = publicacion.getGaleriaImagenes().get(0);
+        view.imagenAnimal = publicacion.getAnimal().getGaleriaImagenes().size() != 0 ? publicacion.getAnimal().getGaleriaImagenes().get(0) : null;
         view.idAnimal = publicacion.getAnimal().getId();
         view.idRefugio = publicacion.getRefugio().getId();
         view.idPublicacion = publicacion.getId();

@@ -28,18 +28,24 @@ public class Animal {
     private Boolean castrado;
     private Boolean esquemaCompletoVacunas;
     private Boolean desparasitado;
-
+    @ElementCollection(fetch = FetchType.EAGER)
+    private List<String> galeriaImagenes;
     public Animal(String nombre, TipoAnimalEnum tipoAnimal) {
         this.nombre = nombre;
         this.tipoAnimal = tipoAnimal;
+        this.galeriaImagenes = new ArrayList<String>();
     }
 
     public Animal() {
-
+        this.galeriaImagenes = new ArrayList<String>();
     }
 
     public Integer getEdad() {
         return Period.between(this.fechaNac, LocalDate.now()).getYears();
     }
+
+    public void agregarImagenes(String ... imagenes) { Collections.addAll(galeriaImagenes, imagenes); }
+
+    public void eliminarImagen(String imagen) { if(this.galeriaImagenes.contains(imagen)) this.galeriaImagenes.remove(imagen); }
 
 }

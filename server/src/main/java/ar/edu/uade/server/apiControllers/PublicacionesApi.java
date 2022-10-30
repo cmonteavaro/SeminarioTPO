@@ -5,6 +5,7 @@ import ar.edu.uade.server.DTO.FormularioDTO;
 import ar.edu.uade.server.DTO.VoluntarioDTO;
 import ar.edu.uade.server.model.Adopcion;
 import ar.edu.uade.server.model.Transito;
+import ar.edu.uade.server.model.enums.EstadoPublicacionAnimalEnum;
 import ar.edu.uade.server.service.TransitoService;
 import ar.edu.uade.server.views.PublicacionAnimalCortaView;
 import ar.edu.uade.server.views.TransitoView;
@@ -14,7 +15,6 @@ import ar.edu.uade.server.service.AdopcionService;
 import ar.edu.uade.server.service.EmailServiceImpl;
 import ar.edu.uade.server.service.VoluntarioService;
 import ar.edu.uade.server.views.AdopcionView;
-import ar.edu.uade.server.views.VoluntariadoCortaView;
 import ar.edu.uade.server.views.VoluntariadoView;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -30,10 +30,10 @@ import java.util.Optional;
 @RequestMapping("/api/publicaciones")
 public class PublicacionesApi {
 
-    private AdopcionService adopcionService;
-    private TransitoService transitoService;
-    private VoluntarioService voluntarioService;
-    private EmailServiceImpl emailService;
+    private final AdopcionService adopcionService;
+    private final TransitoService transitoService;
+    private final VoluntarioService voluntarioService;
+    private final EmailServiceImpl emailService;
 
     @Autowired
     public PublicacionesApi (VoluntarioService vs, AdopcionService as, EmailServiceImpl es, TransitoService ts){
@@ -71,6 +71,30 @@ public class PublicacionesApi {
         }
     }
 
+    @PutMapping("/adopciones")
+    public ResponseEntity<?> modificarPublicacionAdopcion(@RequestBody AdopcionDTO adopcionDTO){
+        try {
+            adopcionService.saveDTO(adopcionDTO);
+            return ResponseEntity.status(HttpStatus.CREATED).build();
+        }catch (Exception e){
+            return ResponseEntity.badRequest().eTag(e.getMessage()).build();
+        }
+    }
+
+    @PutMapping("/adopciones/{id}/cambiarEstado")
+    public ResponseEntity<?> cambiarEstadoPublicacionAdopcion(@RequestBody EstadoPublicacionAnimalEnum estado, @PathVariable Long id){
+        try {
+            Optional<Adopcion> optionalAdopcion = adopcionService.findById(id);
+            if(optionalAdopcion.isEmpty()) return ResponseEntity.notFound().build();
+            Adopcion adopcion = optionalAdopcion.get();
+            adopcion.setEstado(estado);
+            adopcionService.save(adopcion);
+            return ResponseEntity.status(HttpStatus.ACCEPTED).build();
+        }catch (Exception e){
+            return ResponseEntity.badRequest().eTag(e.getMessage()).build();
+        }
+    }
+
     @GetMapping("/transitos")
     public ResponseEntity<?> getAllTransitos() {
         List<PublicacionAnimalCortaView> resultado = new ArrayList<>();
@@ -89,21 +113,24 @@ public class PublicacionesApi {
         }
     }
 
-    @PutMapping("/adopciones")
-    public ResponseEntity<?> modificarPublicacionAdopcion(@RequestBody AdopcionDTO adopcionDTO){
+    @PutMapping("/transito/{id}/cambiarEstado")
+    public ResponseEntity<?> cambiarEstadoPublicacionTransito(@RequestBody EstadoPublicacionAnimalEnum estado, @PathVariable Long id){
         try {
-            adopcionService.saveDTO(adopcionDTO);
-            return ResponseEntity.status(HttpStatus.CREATED).build();
+            Optional<Transito> optionalTransito = transitoService.findById(id);
+            if(optionalTransito.isEmpty()) return ResponseEntity.notFound().build();
+            Transito transito = optionalTransito.get();
+            transito.setEstado(estado);
+            transitoService.save(transito);
+            return ResponseEntity.status(HttpStatus.ACCEPTED).build();
         }catch (Exception e){
             return ResponseEntity.badRequest().eTag(e.getMessage()).build();
         }
     }
 
-
     @GetMapping("/voluntariados")
     public ResponseEntity<?> getAllVoluntariados() {
-        List<VoluntariadoCortaView> resultado = new ArrayList<>();
-        voluntarioService.findAll().forEach(voluntariado -> resultado.add(VoluntariadoCortaView.toView(voluntariado)));
+        List<VoluntariadoView> resultado = new ArrayList<>();
+        voluntarioService.findAll().forEach(voluntariado -> resultado.add(VoluntariadoView.toView(voluntariado)));
         return ResponseEntity.ok(resultado);
     }
 

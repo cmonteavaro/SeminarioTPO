@@ -1,13 +1,14 @@
 import "./header.css";
 import { Link, useMatch, useResolvedPath } from "react-router-dom";
 import logo from "../../images/logo.png";
+import Logo from "../../images/LogoMiRefugio.png";
 
 export default function NavBar() {
   return (
     <nav className="nav">
       <div className="logo">
         <Link to="/" className="link">
-          <img className="logo-img" src={logo} alt="Perro y Gato mirandose" />
+          <img className="logo-img" src={Logo} alt="Perro y Gato mirandose" />
         </Link>
       </div>
       <div className="navigation">

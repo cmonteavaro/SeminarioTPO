@@ -122,7 +122,6 @@ class ServerApplicationTests {
         pub.setEstado(EstadoPublicacionAnimalEnum.DISPONIBLE);
         pub.setDescripcion("Publicacion 70");
         pub.setNecesitaPatio(true);
-        pub.agregarImagenes("/home/jdieguez/img1.jpg","/home/jdieguez/img2.jpg");
 //        Refugio r = new Refugio("Adopciones Quilmes","adopq","quilmes");
         Refugio r = refugioService.findById((long)2).get();
         pub.setRefugio(r);
@@ -137,9 +136,6 @@ class ServerApplicationTests {
             System.out.println(pa.getRefugio().getNombre());
             System.out.println(pa.getAnimal().getNombre());
             //System.out.println("Dia: "+pa.getFechaPublicacion().getDayOfMonth());
-            for (String img: pa.getGaleriaImagenes()){
-                System.out.println("Imagen: "+img);
-            }
         }
 
         for (Refugio re : refugioService.findAll()){
@@ -166,7 +162,6 @@ class ServerApplicationTests {
         pub.setAnimal(animalService.findById(idAnimal).get());
         pub.setEstado(EstadoPublicacionAnimalEnum.DISPONIBLE);
         pub.setNecesitaPatio(true);
-        pub.agregarImagenes("/home/jdieguez/img7.jpg");
         pub.setRefugio(r);
         r.agregarPublicacionAdopcion(pub);
         refugioService.save(r);

@@ -24,7 +24,7 @@ public class Refugio {
     private String password;
     private String responsable;
     private String correo;
-    private Integer telefono;
+    private String telefono;
     private String linkDonacionesMonetarias;
     private Integer radioAlcance;
     @ElementCollection(fetch = FetchType.EAGER)

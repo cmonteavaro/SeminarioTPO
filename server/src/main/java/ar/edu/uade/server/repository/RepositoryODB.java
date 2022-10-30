@@ -65,7 +65,9 @@ public class RepositoryODB {
 
     public <T> void deleteById(Class<T> clase, long id){
         this.conexionOBD();
+        em.getTransaction().begin();
         em.remove(em.find(clase,id));
+        em.getTransaction().commit();
         this.desconexionOBD();
     }
 

@@ -5,6 +5,7 @@ import lombok.Setter;
 import javax.persistence.ElementCollection;
 import javax.persistence.Embeddable;
 import javax.persistence.Enumerated;
+import javax.persistence.FetchType;
 import java.awt.*;
 import java.util.*;
 import java.util.List;
@@ -19,7 +20,7 @@ public class PerfilRefugio {
     private String descripcionCorta;
     private String descripcionLarga;
     private String color;
-    @ElementCollection
+    @ElementCollection(fetch = FetchType.EAGER)
     private List<String> galeriaImagenes;
 
     public PerfilRefugio() {

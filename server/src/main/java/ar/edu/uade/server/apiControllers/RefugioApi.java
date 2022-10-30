@@ -2,6 +2,7 @@ package ar.edu.uade.server.apiControllers;
 
 import ar.edu.uade.server.model.*;
 import ar.edu.uade.server.service.RefugioService;
+import ar.edu.uade.server.views.PerfilCortoRefugioView;
 import ar.edu.uade.server.views.PublicacionAnimalCortaView;
 import ar.edu.uade.server.views.PerfilRefugioView;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,8 +13,10 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @RestController
+@CrossOrigin
 @RequestMapping("/api/refugios")
 public class RefugioApi {
 
@@ -29,6 +32,20 @@ public class RefugioApi {
         return ResponseEntity.notFound().build();
     }
 
+    @GetMapping("/{id}/perfilCorto")
+    public ResponseEntity<?> GetPerfilCortoRefugio(@PathVariable Long id){
+        Optional<Refugio> oRefugio = refugioService.findById(id);
+        if (oRefugio.isPresent()){
+            return ResponseEntity.ok(PerfilCortoRefugioView.toView(oRefugio.get()));
+        }
+        return ResponseEntity.notFound().build();
+    }
+
+    @GetMapping
+    public ResponseEntity<?> GetAllPerfilCortoRefugio(){
+        List<PerfilCortoRefugioView> pcorto = refugioService.findAll().stream().map(r -> PerfilCortoRefugioView.toView(r)).collect(Collectors.toList());
+        return ResponseEntity.ok(pcorto);
+    }
 
     @GetMapping("/{id}/publicacionesAdopcion")
     public ResponseEntity<?> GetPublicacionesAdopcion(@PathVariable Long id){
@@ -63,8 +80,7 @@ public class RefugioApi {
     @PostMapping
     public ResponseEntity<?> crearRefugio(@RequestBody Refugio refugio) {
         try {
-            refugioService.save(refugio);
-            return ResponseEntity.status(HttpStatus.CREATED).build();
+            return ResponseEntity.status(HttpStatus.CREATED).body(refugioService.save(refugio));
         }
         catch (Exception e) {
             return ResponseEntity.badRequest().eTag(e.getMessage()).build();
