@@ -19,14 +19,13 @@ export default function DonationCard ({ donacion }) {
        <div className="card-center-info">
         <div className="card-left-info">
         <div className="card-shelter">
-        <IconMapPin color="gray" size={17} stroke={2} />
-                <h6>{ donacion.titulo}</h6>
-        </div>
+            <IconMapPin color="gray" size={17} stroke={2} />
+            <h6>{ donacion.direccionRefugio.localidad}</h6>
+        </div> 
         <div className="card-shelter">
-                <IconCalendar color="gray" size={17} stroke={2} />
-                {/* <h6>{donacion.fechaPublicacion}</h6> */}
-            <h6>12/12/2021</h6>
-            </div>
+            <IconCalendar color="gray" size={17} stroke={2} />
+             <h6>{donacion.fechaPublicacion}</h6>
+        </div>
         </div>
         <div className="card-right">
             <IconDonation caso={donacion.tipo}></IconDonation>
@@ -34,22 +33,21 @@ export default function DonationCard ({ donacion }) {
       </div>
       <div className="card-center">
             <div className="card-descripcion-voluntario">
-                <p>LoremLoremLoremLoremLorem<br></br>LoremLoremLoremLoremLorem<br></br>
-                LoremLoremLoremLoremLorem<br></br>LoremLoremLorem</p>
+                <p>{donacion.descripcion}</p>
             </div>
         </div>
         <div className="card-bottom">
             <div className="card-shelter">
-            <img src={Logo} className="card-img-shelter" alt="Imagen refugio" />
-            <h6>{donacion.nombreRefugio}</h6>
+                <img src={Logo} className="card-img-shelter" alt="Imagen refugio" />
+                <h6>{donacion.nombreRefugio}</h6>
             </div>
-            <div className="card-right-info">
+        <div className="card-right-info">
             <Link to={route} className="btn-info">
             Contactarse
             </Link>
-            </div>
         </div>
     </div>
+</div>
 
   );
 }
