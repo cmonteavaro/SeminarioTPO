@@ -8,9 +8,11 @@ import { useParams } from "react-router-dom";
 import { Loader } from "@mantine/core";
 import NotFound from "./notFound";
 import Modal from "../components/animals/modalPreForm"
+import AnimalCard from "../components/animals/animalCard.js";
 
 import "../styles/animalDetail.css";
 import { useSetState } from "@mantine/hooks";
+import { Urgencia } from "../components/animals/animalCard";
 
 function isTrue(estado) {
   if (estado) return "Si";
@@ -149,17 +151,17 @@ export default function AnimalDetail() {
     let variant;
     let text;
     switch (data.estadoPublicacion) {
-      case "Disponible":
+      case "DISPONIBLE":
         color = "lime";
         variant = "dark";
         text = `${data.estadoPublicacion}`;
         break;
-      case "En_proceso":
+      case "EN_PROCESO":
         color = "yellow";
         variant = "dark";
         text = "En proceso";
         break;
-      case "Finalizada":
+      case "FINALIZADA":
         color = "red";
         variant = "dark";
         text = `${data.estadoPublicacion}`;
@@ -191,6 +193,9 @@ export default function AnimalDetail() {
                 </p>
               </div>
               <div className="info-detail-status">
+                <div className="info-urgente">
+                  <Urgencia urg={data.esUrgente}></Urgencia>
+                </div>
                 <Badge color={color} variant={variant}>
                   {text}
                 </Badge>
@@ -217,10 +222,6 @@ export default function AnimalDetail() {
                 </span>
               </p>
               <p className="property">
-                Nacimiento:{" "}
-                <span className="property-info">{data.animal.fechaNac}</span>
-              </p>
-              <p className="property">
                 Castrado:{" "}
                 <span className="property-info">
                   {isTrue(data.animal.castrado)}
@@ -234,12 +235,6 @@ export default function AnimalDetail() {
               </p>
               <p className="property">
                 Medicacion: <span className="property-info">{"Si"}</span>
-              </p>
-              <p className="property">
-                Vacunas:{" "}
-                <span className="property-info">
-                  {isTrue(data.animal.esquemaCompletoVacunas)}
-                </span>
               </p>
               <div>
                 <p className="property">
@@ -263,6 +258,12 @@ export default function AnimalDetail() {
                   </div>
                 </p>
               </div>
+              <p className="property">
+                Vacunas:{" "}
+                <span className="property-info">
+                  {isTrue(data.animal.esquemaCompletoVacunas)}
+                </span>
+              </p>
             </div>
 
             <article className="info-detail-description">

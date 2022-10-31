@@ -48,6 +48,19 @@
   font-size: small;
 }
 
+.info-detail-status {
+  display: flex;
+}
+
+.info-urgente {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  justify-self: end;
+  margin-right: 1vw;
+}
+
 .info-detail-footer {
   display: flex;
   flex-direction: row;
@@ -98,6 +111,10 @@
   color: white;
   font-weight: bold;
   cursor: pointer;
+}
+
+.btn-adopt:hover{
+  opacity: 0.8;
 }
 
 .property-wrapper {
