@@ -107,8 +107,9 @@ public class RefugioApi {
     public ResponseEntity<?> GetPublicacionesDonacion(@PathVariable Long id){
         Optional<Refugio> oRefugio = refugioService.findById(id);
         if (oRefugio.isPresent()){
-            List<PublicacionDonacion> donaciones = oRefugio.get().getPublicacionesDonacionesNoMonetarias();
-            return ResponseEntity.ok(DonacionView.toView(donaciones));
+            List<DonacionView> resultado = new ArrayList<>();
+            oRefugio.get().getPublicacionesDonacionesNoMonetarias().stream().filter(PublicacionDonacion::getEstaActiva).forEach(donacion -> resultado.add(DonacionView.toView(donacion)));
+            return ResponseEntity.ok(resultado);
         }
         return ResponseEntity.notFound().build();
     }

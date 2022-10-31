@@ -145,6 +145,20 @@ public class PublicacionesApi {
         }
     }
 
+    @PostMapping("/adopciones/{id}/postular")
+    public ResponseEntity<?> postulacionAdopcion(@PathVariable Long id, @RequestBody FormularioDTO formularioDTO) {
+        Optional<Adopcion> oAdopcion = adopcionService.findById(id);
+        if (oAdopcion.isPresent()) {
+            if (emailService.sendMailDTO(formularioDTO, oAdopcion.get())) {
+                return ResponseEntity.ok().build();
+            } else {
+                return ResponseEntity.internalServerError().build();
+            }
+        }else {
+            return ResponseEntity.notFound().build();
+        }
+    }
+
     @GetMapping("/transitos")
     public ResponseEntity<?> getAllTransitos() {
         List<PublicacionAnimalCortaView> resultado = new ArrayList<>();
@@ -214,6 +228,21 @@ public class PublicacionesApi {
         }
     }
 
+    @PostMapping("/transitos/{id}/postular")
+    public ResponseEntity<?> postulacionTransito(@PathVariable Long id, @RequestBody FormularioDTO formularioDTO) {
+        Optional<Transito> oTransito = transitoService.findById(id);
+        if (oTransito.isPresent()) {
+            if (emailService.sendMailDTO(formularioDTO,oTransito.get())){
+                return ResponseEntity.ok().build();
+            }else {
+                return ResponseEntity.internalServerError().build();
+            }
+        }
+        else {
+            return ResponseEntity.notFound().build();
+        }
+    }
+
     @GetMapping("/voluntariados")
     public ResponseEntity<?> getAllVoluntariados() {
         List<VoluntariadoView> resultado = new ArrayList<>();
@@ -255,28 +284,30 @@ public class PublicacionesApi {
     public ResponseEntity<?> cambiarEstadoPublicacionVoluntariado(@RequestBody Boolean estaActiva, @PathVariable Long id) {
         try {
             Optional<PublicacionVoluntariado> optionalVoluntariado = voluntarioService.findById(id);
-            if(optionalVoluntariado.isEmpty()) return ResponseEntity.notFound().build();
+            if (optionalVoluntariado.isEmpty()) return ResponseEntity.notFound().build();
             PublicacionVoluntariado publicacionVoluntariado = optionalVoluntariado.get();
             publicacionVoluntariado.setEstaActiva(estaActiva);
             voluntarioService.save(publicacionVoluntariado);
             return ResponseEntity.status(HttpStatus.ACCEPTED).build();
-           } catch (Exception e){
+        } catch (Exception e) {
             return ResponseEntity.badRequest().eTag(e.getMessage()).build();
         }
+    }
 
-    @PostMapping("/adopciones/{id}/postular")
-    public ResponseEntity<?> postulacionAdopcion(@PathVariable Long id, @RequestBody FormularioDTO formularioDTO) {
-        Optional<Adopcion> oAdopcion = adopcionService.findById(id);
-        if (oAdopcion.isPresent()) {
-            if (emailService.sendMailDTO(formularioDTO, oAdopcion.get())) {
+    @PostMapping("/voluntariados/{id}/postular")
+    public ResponseEntity<?> postulacionVoluntariado(@PathVariable Long id, @RequestBody FormularioDTO formularioDTO) {
+        Optional<PublicacionVoluntariado> oVoluntariado = voluntarioService.findById(id);
+        if (oVoluntariado.isPresent()) {
+            if (emailService.sendMailDTO(formularioDTO, oVoluntariado.get())) {
                 return ResponseEntity.ok().build();
             } else {
                 return ResponseEntity.internalServerError().build();
             }
-        }else {
+        } else {
             return ResponseEntity.notFound().build();
         }
     }
+
     @GetMapping("/donaciones")
     public ResponseEntity<?> getAllDonaciones() {
         List<DonacionView> resultado = new ArrayList<>();
@@ -291,35 +322,6 @@ public class PublicacionesApi {
             return ResponseEntity.ok(DonacionView.toView(oDonacion.get()));
         }
         else {
-            return ResponseEntity.notFound().build();
-        }
-    }
-
-    @PostMapping("/transitos/{id}/postular")
-    public ResponseEntity<?> postulacionTransito(@PathVariable Long id, @RequestBody FormularioDTO formularioDTO) {
-        Optional<Transito> oTransito = transitoService.findById(id);
-        if (oTransito.isPresent()) {
-            if (emailService.sendMailDTO(formularioDTO,oTransito.get())){
-                return ResponseEntity.ok().build();
-            }else {
-                return ResponseEntity.internalServerError().build();
-            }
-        }
-        else {
-            return ResponseEntity.notFound().build();
-        }
-    }
-
-    @PostMapping("/voluntariados/{id}/postular")
-    public ResponseEntity<?> postulacionVoluntariado(@PathVariable Long id, @RequestBody FormularioDTO formularioDTO) {
-        Optional<PublicacionVoluntariado> oVoluntariado = voluntarioService.findById(id);
-        if (oVoluntariado.isPresent()) {
-            if (emailService.sendMailDTO(formularioDTO, oVoluntariado.get())) {
-                return ResponseEntity.ok().build();
-            } else {
-                return ResponseEntity.internalServerError().build();
-            }
-        } else {
             return ResponseEntity.notFound().build();
         }
     }
