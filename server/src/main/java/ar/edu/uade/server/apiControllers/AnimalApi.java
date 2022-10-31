@@ -27,8 +27,7 @@ public class AnimalApi {
     @PostMapping
     public ResponseEntity<?> crearAnimal(@RequestBody AnimalDTO animalDTO) {
         try {
-            animalService.save(animalDTO.toModel());
-            return ResponseEntity.status(HttpStatus.CREATED).build();
+            return ResponseEntity.status(HttpStatus.CREATED).body(animalService.save(animalDTO.toModel()));
         }
         catch (Exception e) {
             return ResponseEntity.badRequest().eTag(e.getMessage()).build();
