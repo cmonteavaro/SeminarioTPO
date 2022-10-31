@@ -16,6 +16,7 @@ public class RefugioDTO {
     private String usuario;
     private String password;
     private String responsable;
+    private String correo;
     private String telefono;
     private String linkDonacionesMonetarias;
     private Integer radioAlcance;
@@ -34,6 +35,7 @@ public class RefugioDTO {
         refugio.setUsuario(this.usuario);
         refugio.setPassword(this.password);
         refugio.setResponsable(this.responsable);
+        refugio.setCorreo(this.correo);
         refugio.setTelefono(this.telefono);
         refugio.setLinkDonacionesMonetarias(this.linkDonacionesMonetarias);
         refugio.setRadioAlcance(this.radioAlcance);
