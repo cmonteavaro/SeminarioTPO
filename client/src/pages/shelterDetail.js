@@ -14,7 +14,7 @@ const Profile = () => {
     fetch(`http://localhost:8080/api/refugios/${shelter.id}/perfil`)
       .then((e) => e.json())
       .then((d) => {
-        return setData([d]);
+        return setData(d);
       })
       .finally(() => setLoading(false));
   }, []);
@@ -33,7 +33,7 @@ const Profile = () => {
   if (data.length < 1) {
     return <NotFound />;
   } else {
-    return <ProfileBody refugio={data[0]} />;
+    return <ProfileBody refugio={data} />;
   }
 };
 

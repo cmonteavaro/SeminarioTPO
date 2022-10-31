@@ -13,7 +13,7 @@ export default function Posts() {
     fetch(`http://localhost:8080/api/publicaciones/adopciones`)
       .then((e) => e.json())
       .then((d) => {
-        return setData([d]);
+        return setData(d);
       })
       .finally(() => setLoading(false));
   }, []);

@@ -16,8 +16,9 @@ import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
-@RestController
+
 @CrossOrigin
+@RestController
 @RequestMapping("/api/refugios")
 public class RefugioApi {
 

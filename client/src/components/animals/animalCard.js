@@ -1,72 +1,32 @@
-import { Badge } from "@mantine/core";
 import { Link } from "react-router-dom";
 import "../../styles/card.css";
 import One from "../../images/juan.webp";
 import Logo from "../../images/shelters/zaguates.webp";
 
+import { LazyLoadImage } from "react-lazy-load-image-component";
+import "react-lazy-load-image-component/src/effects/blur.css";
+import Tag from "../badge/badge";
 
-export function Urgencia (props) {
-  let text;
-  let color;
-  let variant;
-  if (props.urg) {
-    color = "red";
-    variant = "dark";
-    text = "URGENTE";
-    return (
-      <Badge color={color} variant={variant}>
-        {text}
-      </Badge>
-    );
-  }else{
-    return (
-      <></>
-    );
-  }
-
-  
-}
 
 export default function AnimalCard({ animal }) {
-  const route = `/posts/${animal.idPublicacion}`;
-  let color;
-  let variant;
-  let text;
-  switch (animal.estadoPublicacion) {
-    case "DISPONIBLE":
-      color = "lime";
-      variant = "dark";
-      text = `${animal.estadoPublicacion}`;
-      break;
-    case "EN_PROCESO":
-      color = "yellow";
-      variant = "dark";
-      text = "En proceso";
-      break;
-    case "FINALIZADA":
-      color = "red";
-      variant = "dark";
-      text = `${animal.estadoPublicacion}`;
-      break;
-    default:
-      color = "gray";
-      variant = "dark";
-      text = "Sin info";
-      break;
-  }
+  const route = `/publicaciones/${animal.idPublicacion}`;
   return (
     <div className="card">
       <div className="card-heading">
         <h2>{animal.nombreAnimal}</h2>
-        <Badge color={color} variant={variant}>
-          {text}
-        </Badge>
+        <Tag state={animal.estadoPublicacion} />
       </div>
       <div className="card-center">
-        <div className="tag-urgente">
-          <Urgencia urg={animal.esUrgente}></Urgencia>
-        </div>
-        <img src={One} className="card-img-animal" alt="Imagen animal" />
+
+        <LazyLoadImage
+          alt={"Imagen animal"}
+          height={"300px"}
+          src={One}
+          width={"250px"}
+          effect="blur"
+        />
+        <div className="tag-urgente">{<Tag state={animal.esUrgente} />}</div>
+
       </div>
       <div className="card-bottom">
         <div className="card-shelter">

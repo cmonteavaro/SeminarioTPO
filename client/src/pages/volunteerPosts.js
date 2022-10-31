@@ -13,7 +13,7 @@ export default function VolunteerPosts() {
     fetch(`http://localhost:8080/api/publicaciones/voluntariados`)
       .then((e) => e.json())
       .then((d) => {
-        return setData([d]);
+        return setData(d);
       })
       .finally(() => setLoading(false));
   }, []);
@@ -24,7 +24,10 @@ export default function VolunteerPosts() {
         <div className="loader">
           <Loader color="lime" />
         </div>
-        <h3>Estamos buscando a todos los posteos de voluntarios para presentarte 😊</h3>
+        <h3>
+          Estamos buscando a todos los posteos de voluntarios para presentarte
+          😊
+        </h3>
       </div>
     );
   }
@@ -36,7 +39,7 @@ export default function VolunteerPosts() {
       <div className="container">
         <section className="filters"></section>
         <section className="cards">
-            <ListVolunteers props={data} />
+          <ListVolunteers props={data} />
         </section>
       </div>
     );

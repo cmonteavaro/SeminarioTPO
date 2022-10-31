@@ -27,3 +27,18 @@ footer {
 .icon:hover {
   color: var(--accent-color);
 }
+
+@media screen and (max-width: 391px) {
+  footer {
+    flex-direction: column;
+  }
+
+  footer div {
+    margin: 1vh 0;
+  }
+
+  .dedication {
+    margin: 0;
+    text-align: center;
+  }
+}
