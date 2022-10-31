@@ -14,6 +14,8 @@ const AnimalDetail = lazy(() => import("./pages/animalDetail"));
 const Shelters = lazy(() => import("./pages/shelters"));
 const VolunteerPosts = lazy(() => import("./pages/volunteerPosts"));
 const Form = lazy(() => import("./components/form/form"));
+const DonationPosts = lazy(() => import("./pages/donationPosts"));
+
 
 function App() {
   return (
@@ -26,6 +28,7 @@ function App() {
             <Route path="/publicaciones" element={<AnimalPosts />} />
             <Route path="/publicaciones/:id" element={<AnimalDetail />} />
             <Route path="/voluntariados" element={<VolunteerPosts />} />
+            <Route path="/donation_posts" element={<DonationPosts />} />
             <Route path="/refugios/" element={<Shelters />} />
             <Route path="/refugios/:id" element={<Profile />} />
             <Route path="/acerca" element={<About />} />
