@@ -58,14 +58,16 @@
 
 .tag-urgente {
   position: absolute;
-  bottom: -8px;
-  right: -8px;
+  bottom: -5px;
+  right: -5px;
 }
 
 .card-img-animal {
   width: 250px;
   height: 300px;
   border-radius: 10px;
+  padding-top: 2px;
+  padding-bottom: 2px;
 }
 
 .card-bottom {
@@ -152,6 +154,8 @@
   flex-direction: row;
   justify-content: center;
   align-items: center;
+  padding-left: 4px;
+  padding-right: 4px;
 }
 
 .btn-info:hover {
