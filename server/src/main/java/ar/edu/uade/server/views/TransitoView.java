@@ -35,7 +35,7 @@ public class TransitoView {
     private Boolean transporteCubierto;
     private Boolean esUrgente;
     private String fechaPublicacion;
-    private EstadoPublicacionAnimalEnum estadoPublicacion;
+    private String estadoPublicacion;
     private List<String> galeriaImagenesPublicacion;
 
     //Transito
@@ -66,7 +66,7 @@ public class TransitoView {
         view.transporteCubierto = transito.getTransporteCubierto();
         view.esUrgente = transito.getEsUrgente();
         view.fechaPublicacion = transito.getFechaPublicacion().format(dateFormatter);
-        view.estadoPublicacion = transito.getEstado();
+        view.estadoPublicacion = transito.getEstado().getNombre();
         view.galeriaImagenesPublicacion = transito.getAnimal().getGaleriaImagenes();
         //Transito
         view.gastosAlimentacionCubiertos = transito.getGastosAlimentacionCubiertos();
