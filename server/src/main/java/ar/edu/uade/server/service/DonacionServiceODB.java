@@ -48,10 +48,13 @@ public class DonacionServiceODB implements DonacionService{
         PublicacionDonacion donacion = donacionDTO.toModel();
         Optional<Refugio> oRefugio = refugioService.findById(donacionDTO.getIdRefugio());
         if (oRefugio.isEmpty()) throw new DonacionException("El refugio no fue encontrado");
-        donacion.setRefugio(oRefugio.get());
-        oRefugio.get().agregarPublicacionDonacion(donacion);
-        refugioService.save(oRefugio.get());
-        return this.save(donacion);
-    };
+        Refugio r = oRefugio.get();
+        donacion.setRefugio(r);
+        Long idGuardado = this.save(donacion);
+        donacion.setId(idGuardado);
+        r.agregarPublicacionDonacion(donacion);
+        refugioService.save(r);
+        return idGuardado;
+    }
 
 }
