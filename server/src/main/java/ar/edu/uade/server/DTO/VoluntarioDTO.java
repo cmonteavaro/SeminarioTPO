@@ -23,7 +23,6 @@ public class VoluntarioDTO {
     private String descripcion;
     private Long idRefugio;
     private String fechaPublicacion;
-    private Boolean estaActiva;
 
     public PublicacionVoluntariado toModel(){
         DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
@@ -34,7 +33,7 @@ public class VoluntarioDTO {
         publicacionVoluntariado.setTitulo(this.titulo);
         publicacionVoluntariado.setDescripcion(this.descripcion);
         publicacionVoluntariado.setFechaPublicacion(LocalDate.parse(this.fechaPublicacion,dateTimeFormatter));
-        publicacionVoluntariado.setEstaActiva(this.estaActiva);
+
         return publicacionVoluntariado;
     }
 }

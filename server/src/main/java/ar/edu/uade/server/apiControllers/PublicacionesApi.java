@@ -79,8 +79,7 @@ public class PublicacionesApi {
     @PostMapping("/adopciones")
     public ResponseEntity<?> crearPublicacionAdopcion(@RequestBody AdopcionDTO adopcionDTO){
         try {
-            adopcionService.saveDTO(adopcionDTO);
-            return ResponseEntity.status(HttpStatus.CREATED).build();
+            return ResponseEntity.status(HttpStatus.CREATED).body(adopcionService.saveDTO(adopcionDTO));
         } catch (Exception e) {
             return ResponseEntity.badRequest().eTag(e.getMessage()).build();
         }

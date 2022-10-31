@@ -56,9 +56,12 @@ public class AdopcionServiceODB implements AdopcionService{
             if (!refugio.puedeAgregarUrgentes()) throw new RefugioException("El refugio no puede crear más publicaciones urgentes debido a que ha alcanzado el máximo permitido");
             refugio.setCantidadUrgentes(refugio.getCantidadUrgentes()+1);
         }
+
         adopcion.setRefugio(refugio);
+        Long idGuardado = this.save(adopcion);
+        adopcion.setId(idGuardado);
         refugio.agregarPublicacionAdopcion(adopcion);
         refugioService.save(refugio);
-        return this.save(adopcion);
+        return idGuardado;
     }
 }
