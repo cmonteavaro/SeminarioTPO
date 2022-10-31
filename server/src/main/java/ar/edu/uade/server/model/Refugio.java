@@ -25,6 +25,7 @@ public class Refugio {
     private String usuario;
     private String password;
     private String responsable;
+    private String correo;
     private String telefono;
     private String linkDonacionesMonetarias;
     private Integer radioAlcance;

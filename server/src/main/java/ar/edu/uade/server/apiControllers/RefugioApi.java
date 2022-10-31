@@ -93,16 +93,23 @@ public class RefugioApi {
     }
 
     @GetMapping("/{id}/publicacionesVoluntariado")
-    public void GetPublicacionesVoluntariado(@PathVariable Long id){
-        //TODO Tenemos que ver que vamos a mostrar para poder realizar el metodo
+    public ResponseEntity<?> GetPublicacionesVoluntariado(@PathVariable Long id){
+        Optional<Refugio> oRefugio = refugioService.findById(id);
+        if(oRefugio.isPresent()){
+            List<VoluntariadoView> resultado = new ArrayList<>();
+            oRefugio.get().getPublicacionesVoluntariado().stream().filter(PublicacionVoluntariado::getEstaActiva).forEach(voluntariado -> resultado.add(VoluntariadoView.toView(voluntariado)));
+            return ResponseEntity.ok(resultado);
+        }
+        return ResponseEntity.notFound().build();
     }
 
     @GetMapping("/{id}/publicacionesDonacion")
     public ResponseEntity<?> GetPublicacionesDonacion(@PathVariable Long id){
         Optional<Refugio> oRefugio = refugioService.findById(id);
         if (oRefugio.isPresent()){
-            List<PublicacionDonacion> donaciones = oRefugio.get().getPublicacionesDonacionesNoMonetarias();
-            return ResponseEntity.ok(DonacionView.toView(donaciones));
+            List<DonacionView> resultado = new ArrayList<>();
+            oRefugio.get().getPublicacionesDonacionesNoMonetarias().stream().filter(PublicacionDonacion::getEstaActiva).forEach(donacion -> resultado.add(DonacionView.toView(donacion)));
+            return ResponseEntity.ok(resultado);
         }
         return ResponseEntity.notFound().build();
     }
