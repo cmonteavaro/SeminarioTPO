@@ -5,12 +5,14 @@ import ar.edu.uade.server.service.RefugioService;
 import ar.edu.uade.server.views.PerfilCortoRefugioView;
 import ar.edu.uade.server.views.PublicacionAnimalCortaView;
 import ar.edu.uade.server.views.PerfilRefugioView;
+import ar.edu.uade.server.views.VoluntariadoView;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -68,8 +70,14 @@ public class RefugioApi {
     }
 
     @GetMapping("/{id}/publicacionesVoluntariado")
-    public void GetPublicacionesVoluntariado(@PathVariable Long id){
-        //TODO Tenemos que ver que vamos a mostrar para poder realizar el metodo
+    public ResponseEntity<?> GetPublicacionesVoluntariado(@PathVariable Long id){
+        Optional<Refugio> oRefugio = refugioService.findById(id);
+        if(oRefugio.isPresent()){
+            List<VoluntariadoView> resultado = new ArrayList<>();
+            oRefugio.get().getPublicacionesVoluntariado().stream().filter(PublicacionVoluntariado::getEstaActiva).forEach(voluntariado -> resultado.add(VoluntariadoView.toView(voluntariado)));
+            return ResponseEntity.ok(resultado);
+        }
+        return ResponseEntity.notFound().build();
     }
 
     @GetMapping("/{id}/publicacionesDonacion")
