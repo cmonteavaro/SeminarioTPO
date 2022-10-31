@@ -16,7 +16,7 @@ public class PerfilRefugioView {
     private String telefono;
     private String linkDonacionesMonetarias;
     private Integer radioAlcance;
-    private List<RedSocial> redesSociales;
+    private List<RedSocialView> redesSociales;
     private PerfilRefugio perfilRefugio;
 
     public static PerfilRefugioView toView(Refugio ref){
@@ -27,7 +27,9 @@ public class PerfilRefugioView {
         view.telefono = ref.getTelefono();
         view.linkDonacionesMonetarias = ref.getLinkDonacionesMonetarias();
         view.radioAlcance = ref.getRadioAlcance();
-        view.redesSociales = ref.getRedesSociales();
+        List<RedSocialView> redesSociales = new ArrayList<>();
+        ref.getRedesSociales().forEach(red -> redesSociales.add(RedSocialView.toView(red)));
+        view.redesSociales = redesSociales;
         view.perfilRefugio = ref.getPerfilRefugio();
         return view;
     }

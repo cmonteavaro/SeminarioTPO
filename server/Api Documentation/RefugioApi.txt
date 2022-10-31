@@ -14,9 +14,17 @@ Obtener Lista de publicaciones de adopcion de un refugio
 Metodo: GET
 Endpoint: http://localhost:8080/api/refugios/{id}/publicacionesAdopcion
 
+Obtener Lista de publicaciones de adopcion urgentes de un refugio
+Metodo: GET
+Endpoint: http://localhost:8080/api/refugios/{id}/publicacionesAdopcion/urgentes
+
 Obtener Lista de publicaciones de transito de un refugio
 Metodo: GET
 Endpoint: http://localhost:8080/api/refugios/{id}/publicacionesTransito
+
+Obtener Lista de publicaciones de transito urgentes de un refugio
+Metodo: GET
+Endpoint: http://localhost:8080/api/refugios/{id}/publicacionesTransito/urgentes
 
 Obtener Lista de publicaciones de voluntariado de un refugio
 Metodo: GET
@@ -57,11 +65,11 @@ Body: {
           "redesSociales":[
               {
               "link":"facebook.com",
-              "redSocial":"FACEBOOK"
+              "redSocial":"Facebook"
               },
               {
               "link":"instagram.com",
-              "redSocial":"INSTAGRAM"
+              "redSocial":"Instagram"
               }
           ]
       }

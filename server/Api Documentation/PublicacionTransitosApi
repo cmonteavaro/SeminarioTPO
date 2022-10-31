@@ -1,4 +1,4 @@
-Obtener todas las publicaciones de Transitos
+Obtener todas las publicaciones de Transitos no finalizadas
 Método: GET
 Endpoint: http://localhost:8080/api/publicaciones/transitos
 
@@ -6,8 +6,31 @@ Obtener una publicacion de Transito en particular (ID)
 Método: GET
 Endpoint: http://localhost:8080/api/publicaciones/transitos/{id}
 
+Obtener todas las publicaciones de Transitos urgentes
+Método: GET
+Endpoint: http://localhost:8080/api/publicaciones/transitos/urgentes
+
 Cambiar estado a una publicacion de Transito en particular (ID)
 Método: PUT
 Endpoint: http://localhost:8080/api/publicaciones/transitos/{id}/cambiarEstado
+Body (Text/JSON): --> IMPORTANTE: SIN COMILLAS!
+    EN PROCESO
+
+Cambiar urgencia a una publicacion de Transito en particular (ID)
+Método: PUT
+Endpoint: http://localhost:8080/api/publicaciones/transitos/{id}/cambiarUrgencia
 Body (JSON):
-    "EN_PROCESO"
+    true
+
+Postularse a una publicacion de transito
+Metodo: POST
+Endpoint: http://localhost:8080/api/publicaciones/transitos/{id}/postular
+Body:
+{
+    "nombre":"Juan",
+    "apellido":"Doe",
+    "telefono":"1123456789",
+    "direccion":"Lima 557",
+    "correo":"juan.doe@gmial.com",
+    "notas":"Me gustan mucho los pichichos"
+}

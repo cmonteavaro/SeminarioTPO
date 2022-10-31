@@ -5,8 +5,6 @@ import ar.edu.uade.server.model.enums.TamanioEnum;
 import ar.edu.uade.server.model.enums.TipoAnimalEnum;
 import lombok.Getter;
 import lombok.Setter;
-
-import java.time.DateTimeException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
@@ -15,8 +13,8 @@ import java.time.format.DateTimeFormatter;
 public class AnimalDTO {
 
     private String nombre;
-    private TamanioEnum tamanioActual;
-    private TamanioEnum tamanioEsperado;
+    private String tamanioActual;
+    private String tamanioEsperado;
     private String fechaNac;
     private TipoAnimalEnum tipoAnimal;
     private Boolean castrado;
@@ -28,8 +26,8 @@ public class AnimalDTO {
 
         Animal animal = new Animal();
         animal.setNombre(this.nombre);
-        animal.setTamanioActual(this.tamanioActual);
-        animal.setTamanioEsperado(this.tamanioEsperado);
+        animal.setTamanioActual(TamanioEnum.getEnum(this.tamanioActual));
+        animal.setTamanioEsperado(TamanioEnum.getEnum(this.tamanioEsperado));
         animal.setFechaNac(LocalDate.parse(this.fechaNac, dateFormatter));
         animal.setTipoAnimal(this.tipoAnimal);
         animal.setCastrado(this.castrado);
