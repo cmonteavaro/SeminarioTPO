@@ -5,11 +5,11 @@ import One from "../../images/juan.webp";
 import Logo from "../../images/shelters/zaguates.webp";
 
 
-const urgencia = (urg) => {
+export function Urgencia (props) {
   let text;
   let color;
   let variant;
-  if (urg) {
+  if (props.urg) {
     color = "red";
     variant = "dark";
     text = "URGENTE";
@@ -64,7 +64,7 @@ export default function AnimalCard({ animal }) {
       </div>
       <div className="card-center">
         <div className="tag-urgente">
-          {urgencia(animal.esUrgente)}
+          <Urgencia urg={animal.esUrgente}></Urgencia>
         </div>
         <img src={One} className="card-img-animal" alt="Imagen animal" />
       </div>

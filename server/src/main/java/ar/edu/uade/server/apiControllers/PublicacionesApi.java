@@ -217,7 +217,7 @@ public class PublicacionesApi {
     @GetMapping("/voluntariados")
     public ResponseEntity<?> getAllVoluntariados() {
         List<VoluntariadoView> resultado = new ArrayList<>();
-        voluntarioService.findAll().forEach(voluntariado -> resultado.add(VoluntariadoView.toView(voluntariado)));
+        voluntarioService.findAll().stream().filter(PublicacionVoluntariado::getEstaActiva).forEach(voluntariado -> resultado.add(VoluntariadoView.toView(voluntariado)));
         return ResponseEntity.ok(resultado);
     }
 
@@ -235,8 +235,7 @@ public class PublicacionesApi {
     @PostMapping("/voluntariados")
     public ResponseEntity<?> crearPublicacionVoluntariado(@RequestBody VoluntarioDTO voluntarioDTO){
         try {
-            voluntarioService.saveDTO(voluntarioDTO);
-            return ResponseEntity.status(HttpStatus.CREATED).build();
+            return ResponseEntity.status(HttpStatus.CREATED).body(voluntarioService.saveDTO(voluntarioDTO));
         }catch (Exception e){
             return ResponseEntity.badRequest().eTag(e.getMessage()).build();
         }
@@ -251,6 +250,19 @@ public class PublicacionesApi {
             return ResponseEntity.badRequest().eTag(e.getMessage()).build();
         }
     }
+
+    @PutMapping("/voluntariados/{id}/cambiarEstado")
+    public ResponseEntity<?> cambiarEstadoPublicacionVoluntariado(@RequestBody Boolean estaActiva, @PathVariable Long id) {
+        try {
+            Optional<PublicacionVoluntariado> optionalVoluntariado = voluntarioService.findById(id);
+            if(optionalVoluntariado.isEmpty()) return ResponseEntity.notFound().build();
+            PublicacionVoluntariado publicacionVoluntariado = optionalVoluntariado.get();
+            publicacionVoluntariado.setEstaActiva(estaActiva);
+            voluntarioService.save(publicacionVoluntariado);
+            return ResponseEntity.status(HttpStatus.ACCEPTED).build();
+           } catch (Exception e){
+            return ResponseEntity.badRequest().eTag(e.getMessage()).build();
+        }
 
     @PostMapping("/adopciones/{id}/postular")
     public ResponseEntity<?> postulacionAdopcion(@PathVariable Long id, @RequestBody FormularioDTO formularioDTO) {

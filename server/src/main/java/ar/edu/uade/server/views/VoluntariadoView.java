@@ -1,6 +1,7 @@
 package ar.edu.uade.server.views;
 
 import ar.edu.uade.server.model.Direccion;
+import ar.edu.uade.server.model.PublicacionAnimal;
 import ar.edu.uade.server.model.PublicacionVoluntariado;
 import ar.edu.uade.server.model.Refugio;
 import ar.edu.uade.server.model.enums.TipoVoluntariadoEnum;
@@ -9,6 +10,8 @@ import lombok.Setter;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+import java.util.List;
 
 @Getter
 @Setter
@@ -46,6 +49,14 @@ public class VoluntariadoView {
         vv.fechaPublicacion = publicacionVoluntariado.getFechaPublicacion().format(dateFormatter);
 
         return vv;
+    }
+
+    public static List<VoluntariadoView> toView(List<PublicacionVoluntariado> publicacionesVoluntariado){
+        List<VoluntariadoView> voluntariadoView = new ArrayList<>();
+        for (PublicacionVoluntariado pub : publicacionesVoluntariado){
+            voluntariadoView.add(toView(pub));
+        }
+        return voluntariadoView;
     }
 
 }
