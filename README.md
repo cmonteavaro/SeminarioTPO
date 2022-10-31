@@ -15,7 +15,7 @@ https://miro.com/app/board/uXjVPbe2wTA=/
 https://www.figma.com/file/Jwn4YliaJq730FsuOujdyy/Refugios
 
 ### API Requests
-https://www.postman.com/aerospace-participant-25826224/workspace/mirefugioapi/collection/23429373-9515d1f2-8519-4dfb-b9b1-833842fdd635?action=share&creator=23429373
+https://sipidreamteam.postman.co/workspace/My-Workspace~0b342eac-88c4-47c3-8592-4278ad809be9/overview
 
 ## Data
 
