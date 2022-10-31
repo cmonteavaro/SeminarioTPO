@@ -1,10 +1,12 @@
 package ar.edu.uade.server.model;
+import ar.edu.uade.server.model.enums.EstadoPublicacionAnimalEnum;
 import lombok.Getter;
 import lombok.Setter;
 
 import javax.jdo.annotations.EmbeddedOnly;
 import javax.persistence.*;
 import java.util.*;
+import java.util.stream.Collectors;
 
 @Getter
 @Setter
@@ -23,24 +25,25 @@ public class Refugio {
     private String usuario;
     private String password;
     private String responsable;
+    private String correo;
     private String telefono;
     private String linkDonacionesMonetarias;
     private Integer radioAlcance;
+    private Integer cantidadUrgentes;
     @ElementCollection(fetch = FetchType.EAGER)
     private List<RedSocial> redesSociales;
 
-    @OneToMany(fetch = FetchType.EAGER, cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+    @OneToMany(fetch = FetchType.EAGER)
     private List<Adopcion> publicacionesAdopcion;
 
-    @OneToMany(fetch = FetchType.EAGER, cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+    @OneToMany(fetch = FetchType.EAGER)
     private List<Transito> publicacionesTransito;
 
-    @OneToMany(fetch = FetchType.EAGER, cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+    @OneToMany(fetch = FetchType.EAGER)
     private List<PublicacionVoluntariado> publicacionesVoluntariado;
 
-    @OneToMany(fetch = FetchType.EAGER, cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+    @OneToMany(fetch = FetchType.EAGER)
     private List<PublicacionDonacion> publicacionesDonacionesNoMonetarias;
-
 
     public Refugio(String nombre, String usuario, String password) {
         this.nombre = nombre;
@@ -52,6 +55,7 @@ public class Refugio {
         this.publicacionesVoluntariado = new ArrayList<PublicacionVoluntariado>();
         this.publicacionesDonacionesNoMonetarias = new ArrayList<PublicacionDonacion>();
         this.perfilRefugio = new PerfilRefugio();
+        this.cantidadUrgentes = 0;
     }
 
     public Refugio() {
@@ -61,6 +65,7 @@ public class Refugio {
         this.publicacionesVoluntariado = new ArrayList<PublicacionVoluntariado>();
         this.publicacionesDonacionesNoMonetarias = new ArrayList<PublicacionDonacion>();
         this.perfilRefugio = new PerfilRefugio();
+        this.cantidadUrgentes = 0;
     }
 
     public void agregarRedesSociales(RedSocial ... redes) { Collections.addAll(redesSociales, redes); }
@@ -81,4 +86,22 @@ public class Refugio {
 
     public void eliminarPublicacionDonacion(PublicacionDonacion publicacion) { if(this.publicacionesDonacionesNoMonetarias.contains(publicacion)) this.publicacionesDonacionesNoMonetarias.remove(publicacion); }
 
+    public Boolean puedeAgregarUrgentes(){
+        Boolean habilitar = true;
+        Integer cantidadPublicacionesAdopciones = this.getPublicacionesAdopcion().stream().filter(adopcion -> !adopcion.getEstado().equals(EstadoPublicacionAnimalEnum.FINALIZADA)).collect(Collectors.toList()).size();
+        Integer cantidadPublicacionesTransitos = this.getPublicacionesTransito().stream().filter(transito -> !transito.getEstado().equals(EstadoPublicacionAnimalEnum.FINALIZADA)).collect(Collectors.toList()).size();
+        Integer cantidadPublicaciones = cantidadPublicacionesAdopciones + cantidadPublicacionesTransitos;
+        if (cantidadPublicaciones>=30){
+            if (this.getCantidadUrgentes() == 6){
+                habilitar = false;
+            }
+        }
+        else{
+            Integer cantidadUrgentesAdmitidos = (int) Math.ceil(cantidadPublicaciones*0.2);
+            if (cantidadUrgentesAdmitidos == this.getCantidadUrgentes()){
+                habilitar = false;
+            }
+        }
+        return habilitar;
+    }
 }

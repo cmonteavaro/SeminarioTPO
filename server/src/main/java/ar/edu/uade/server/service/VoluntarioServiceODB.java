@@ -44,8 +44,13 @@ public class VoluntarioServiceODB implements VoluntarioService{
         PublicacionVoluntariado publicacionVoluntariado = voluntarioDTO.toModel();
         Optional<Refugio> oRefugio = refugioService.findById(voluntarioDTO.getIdRefugio());
         if(oRefugio.isEmpty()) throw new RefugioException("El refugio no fue encontrado");
-        publicacionVoluntariado.setRefugio(oRefugio.get());
-        return this.save(publicacionVoluntariado);
+        Refugio r = oRefugio.get();
+        publicacionVoluntariado.setRefugio(r);
+        Long idGuardado = this.save(publicacionVoluntariado);
+        publicacionVoluntariado.setId(idGuardado);
+        r.agregarPublicacionVoluntariado(publicacionVoluntariado);
+        refugioService.save(r);
+        return idGuardado;
     }
 
 }

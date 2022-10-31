@@ -7,10 +7,12 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { Loader } from "@mantine/core";
 import NotFound from "./notFound";
+
 import Modal from "../components/animals/modalPreForm";
 import Form from "../components/form/form";
 
 import "../styles/animalDetail.css";
+
 
 function isTrue(estado) {
   if (estado) return "Si";
@@ -47,6 +49,7 @@ export default function AnimalDetail() {
   }
 
   // retrieve the restrictions
+
   let animalRestrictions = {
     convivirConCachorros: data.puedeConvivirConCachorros,
     convivirConInfantes: data.puedeConvivirConInfantes,
@@ -143,6 +146,7 @@ export default function AnimalDetail() {
                     </li>
                   </ul>
                 </div>
+
               </p>
             </div>
           </div>

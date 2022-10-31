@@ -2,9 +2,11 @@ import { Link } from "react-router-dom";
 import "../../styles/card.css";
 import One from "../../images/juan.webp";
 import Logo from "../../images/shelters/zaguates.webp";
+
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import "react-lazy-load-image-component/src/effects/blur.css";
 import Tag from "../badge/badge";
+
 
 export default function AnimalCard({ animal }) {
   const route = `/publicaciones/${animal.idPublicacion}`;
@@ -15,6 +17,7 @@ export default function AnimalCard({ animal }) {
         <Tag state={animal.estadoPublicacion} />
       </div>
       <div className="card-center">
+
         <LazyLoadImage
           alt={"Imagen animal"}
           height={"300px"}
@@ -23,6 +26,7 @@ export default function AnimalCard({ animal }) {
           effect="blur"
         />
         <div className="tag-urgente">{<Tag state={animal.esUrgente} />}</div>
+
       </div>
       <div className="card-bottom">
         <div className="card-shelter">

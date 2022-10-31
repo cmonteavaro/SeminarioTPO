@@ -33,6 +33,7 @@ public class VoluntarioDTO {
         publicacionVoluntariado.setTitulo(this.titulo);
         publicacionVoluntariado.setDescripcion(this.descripcion);
         publicacionVoluntariado.setFechaPublicacion(LocalDate.parse(this.fechaPublicacion,dateTimeFormatter));
+
         return publicacionVoluntariado;
     }
 }

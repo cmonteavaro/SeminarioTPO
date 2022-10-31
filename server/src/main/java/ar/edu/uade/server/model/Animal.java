@@ -21,7 +21,7 @@ public class Animal {
     private TamanioEnum tamanioActual;
     @Enumerated
     private TamanioEnum tamanioEsperado;
-    @Temporal(TemporalType.DATE)
+    @Temporal(TemporalType.TIMESTAMP)
     private LocalDate fechaNac;
     @Enumerated
     private TipoAnimalEnum tipoAnimal;
@@ -40,8 +40,28 @@ public class Animal {
         this.galeriaImagenes = new ArrayList<String>();
     }
 
-    public Integer getEdad() {
-        return Period.between(this.fechaNac, LocalDate.now()).getYears();
+    public String getEdad() {
+        String edad;
+        LocalDate fechaActual = LocalDate.now();
+        Period diferenciaFechaNacAHoy = Period.between(this.fechaNac, fechaActual);
+        int diferenciaEnAnios = diferenciaFechaNacAHoy.getYears();
+        int diferenciaEnMeses = diferenciaFechaNacAHoy.getMonths();
+        if (diferenciaEnAnios == 0 && diferenciaEnMeses < 2) {
+            edad = diferenciaFechaNacAHoy.getDays() + " días";
+        }
+        else if (diferenciaEnAnios < 1) {
+            edad = diferenciaEnMeses + " meses";
+        }
+        else {
+            if (this.fechaNac.getDayOfMonth() == fechaActual.getDayOfMonth() && this.fechaNac.getMonthValue() == fechaActual.getMonthValue()) {
+                edad = diferenciaEnAnios + (diferenciaEnAnios == 1 ? " año" : " años") + " (hoy " + this.getNombre() + " está cumpliendo años)";
+            }
+            else {
+                edad = diferenciaEnAnios + (diferenciaEnAnios == 1 ? " año" : " años");
+            }
+        }
+
+        return edad;
     }
 
     public void agregarImagenes(String ... imagenes) { Collections.addAll(galeriaImagenes, imagenes); }
