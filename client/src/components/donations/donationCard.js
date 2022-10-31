@@ -5,7 +5,8 @@ import Logo from "../../images/shelters/zaguates.webp";
  import { IconDogBowl } from "@tabler/icons";
  import { IconShirtSport } from "@tabler/icons"; 
  import { IconSquarePlus } from "@tabler/icons";
-
+ import { IconMapPin } from "@tabler/icons";
+import { IconCalendar } from "@tabler/icons";
 
 export default function DonationCard ({ donacion }) {
     const route = `/donation_posts/${donacion.idPublicacion}`;
@@ -17,11 +18,14 @@ export default function DonationCard ({ donacion }) {
        </div>
        <div className="card-center-info">
         <div className="card-left-info">
-
- eliminar direccion            
-<div className="card-shelter">
-                <IconMapPin color="gray" size={17} stroke={2} />
-                <h6>{ donacion.direccionRefugio.localidad}</h6>
+        <div className="card-shelter">
+        <IconMapPin color="gray" size={17} stroke={2} />
+                <h6>{ donacion.titulo}</h6>
+        </div>
+        <div className="card-shelter">
+                <IconCalendar color="gray" size={17} stroke={2} />
+                {/* <h6>{donacion.fechaPublicacion}</h6> */}
+            <h6>12/12/2021</h6>
             </div>
         </div>
         <div className="card-right">
@@ -30,17 +34,18 @@ export default function DonationCard ({ donacion }) {
       </div>
       <div className="card-center">
             <div className="card-descripcion-voluntario">
-                <p>{donacion.descripcion}</p>
+                <p>LoremLoremLoremLoremLorem<br></br>LoremLoremLoremLoremLorem<br></br>
+                LoremLoremLoremLoremLorem<br></br>LoremLoremLorem</p>
             </div>
         </div>
         <div className="card-bottom">
             <div className="card-shelter">
             <img src={Logo} className="card-img-shelter" alt="Imagen refugio" />
-            <h6>{donacion.idRefugio.nombre}</h6>
+            <h6>{donacion.nombreRefugio}</h6>
             </div>
             <div className="card-right-info">
             <Link to={route} className="btn-info">
-            Postularse
+            Contactarse
             </Link>
             </div>
         </div>
