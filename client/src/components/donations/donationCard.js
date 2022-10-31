@@ -9,7 +9,7 @@ import Logo from "../../images/shelters/zaguates.webp";
 import { IconCalendar } from "@tabler/icons";
 
 export default function DonationCard ({ donacion }) {
-    const route = `/donation_posts/${donacion.idPublicacion}`;
+    const route = `/refugees/${donacion.idRefugio}`;
 
   return (
     <div className="card">
@@ -61,8 +61,8 @@ function IconDonation(props){
             return <IconDogBowl></IconDogBowl>;
         case "MEDICAMENTO":
             return <IconPill></IconPill>;
-        case "OTRO":
-            return <IconSquarePlus></IconSquarePlus>;
+        // case "OTRO":
+        //     return <IconSquarePlus></IconSquarePlus>;
     }
-    return null;
+    return <IconSquarePlus></IconSquarePlus>;
 }
