@@ -44,10 +44,19 @@
   margin: 2vh 0 2vh 0;
 }
 
-.description-shelter .caroussel {
+.go-back-profile {
+  padding: 2vw;
+  font-weight: bold;
+  /* Nos va a seguir el go back? */
+  /* position: fixed;
+  z-index: 3;
+  background-color: green;
+  color: white;
+  padding: 1vw 2vw; */
 }
 
 .hero {
+  margin-top: 1vh;
   height: 700px;
   width: 100%;
 }

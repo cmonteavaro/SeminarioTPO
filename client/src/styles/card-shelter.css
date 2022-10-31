@@ -1,0 +1,37 @@
+.container-card-shelter {
+  width: 30vw;
+  height: 30vh;
+  background-color: white;
+  margin: 2vh;
+  padding: 1vh;
+  border-radius: 1vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.card-logo-shelter {
+  border-radius: 2vh;
+}
+
+.card-center-shelter {
+  display: flex;
+  justify-content: space-around;
+}
+
+.card-detail-shelter {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  margin-left: 2vw;
+}
+
+.card-shelter-end {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-top: 3vh;
+}
+
+.card-shelter-end h2 {
+  margin-right: 2vw;
+}
