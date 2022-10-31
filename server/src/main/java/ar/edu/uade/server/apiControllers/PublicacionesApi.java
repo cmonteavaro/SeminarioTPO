@@ -2,6 +2,7 @@ package ar.edu.uade.server.apiControllers;
 
 import ar.edu.uade.server.DTO.AdopcionDTO;
 import ar.edu.uade.server.DTO.DonacionDTO;
+import ar.edu.uade.server.DTO.TransitoDTO;
 import ar.edu.uade.server.DTO.VoluntarioDTO;
 import ar.edu.uade.server.exceptions.RefugioException;
 import ar.edu.uade.server.model.Adopcion;
@@ -168,7 +169,27 @@ public class PublicacionesApi {
         return ResponseEntity.ok(resultado);
     }
 
-    @PutMapping("/transito/{id}/cambiarEstado")
+    @PostMapping("/transitos")
+    public ResponseEntity<?> crearPublicacionTransito(@RequestBody TransitoDTO transitoDTO){
+        try {
+            Long idPublicacion = transitoService.saveDTO(transitoDTO);
+            return ResponseEntity.status(HttpStatus.CREATED).body(idPublicacion);
+        } catch (Exception e) {
+            return ResponseEntity.badRequest().eTag(e.getMessage()).build();
+        }
+    }
+
+    @PutMapping("/transitos")
+    public ResponseEntity<?> modificarPublicacionTransito(@RequestBody TransitoDTO transitoDTO){
+        try {
+            transitoService.saveDTO(transitoDTO);
+            return ResponseEntity.status(HttpStatus.CREATED).build();
+        }catch (Exception e){
+            return ResponseEntity.badRequest().eTag(e.getMessage()).build();
+        }
+    }
+
+    @PutMapping("/transitos/{id}/cambiarEstado")
     public ResponseEntity<?> cambiarEstadoPublicacionTransito(@RequestBody String estado, @PathVariable Long id){
         try {
             Optional<Transito> optionalTransito = transitoService.findById(id);
