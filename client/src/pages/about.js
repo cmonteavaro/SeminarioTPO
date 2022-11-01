@@ -7,7 +7,7 @@ export default function About() {
       <div>
         <img src={FotoAbout} className="imagen"></img>
       </div>
-      <div className="info-detail">
+      <div className="acerca-de-detail">
         <h1 className="titulo">¿Quiénes somos?</h1>
         <p className="parrafo">En el siguiente documento, se estará presentando el trabajo realizado durante los últimos meses en el marco de la materia Seminario de Integración Profesional I. 
 Como equipo, hemos decidido orientar nuestro proyecto en torno a los refugios de animales en Argentina. 
