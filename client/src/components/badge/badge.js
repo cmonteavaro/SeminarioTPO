@@ -11,7 +11,7 @@ export default function Tag(availability) {
       variant = "dark";
       text = `${state}`;
       break;
-    case "EN_PROCESO":
+    case "EN PROCESO":
       color = "yellow";
       variant = "dark";
       text = "En proceso";
