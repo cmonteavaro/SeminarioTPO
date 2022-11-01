@@ -7,3 +7,20 @@
     width: 100%;
     height: 100%;
 }
+
+.info-detail {
+    margin-top: 5vw;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.titulo {
+    display: flex;
+    margin-left: 10vw;
+}
+
+.parrafo {
+    margin-top: 5vw;
+    text-align: justify;
+    margin-right: 2vw;
+}
