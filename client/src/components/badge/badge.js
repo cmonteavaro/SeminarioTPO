@@ -17,14 +17,14 @@ export default function Tag(availability) {
       text = "En proceso";
       break;
     case "FINALIZADA":
-      color = "red";
+      color = "gray";
       variant = "dark";
       text = `${state}`;
       break;
-    case "URGENTE":
+    case true:
       color = "red";
       variant = "dark";
-      text = `${state}`;
+      text = `URGENTE`;
       break;
     default:
       return <></>;
