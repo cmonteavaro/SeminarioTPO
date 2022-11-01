@@ -1,4 +1,4 @@
-import TransitCard from "./TransitCard";
+import TransitCard from "./transitCard";
 import "../../styles/grid-transits.css";
 
 export default function ListTransits({ props }) {

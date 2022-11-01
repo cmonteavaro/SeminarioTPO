@@ -1,0 +1,15 @@
+.nav-sections {
+  display: flex;
+  justify-content: space-around;
+}
+
+.link-sections {
+  color: black;
+  background-color: lightgray;
+  padding: 0.3vw;
+  border-radius: 0.5vw;
+}
+
+.active {
+  font-weight: bold;
+}
