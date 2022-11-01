@@ -1,23 +1,38 @@
 import { FaInstagram, FaFacebook, FaTwitter } from "react-icons/fa";
 
-const getTag = (tagName, link) => {
+const getTag = (tagName, link, color) => {
   switch (tagName) {
     case "FaInstagram":
       return (
         <a href={link}>
-          <FaInstagram size={30} className="icon" title="Icono Instagram" />
+          <FaInstagram
+            color={color}
+            size={30}
+            className="icon"
+            title="Icono Instagram"
+          />
         </a>
       );
     case "FaFacebook":
       return (
         <a href={link}>
-          <FaFacebook size={30} className="icon" title="Icono Facebook" />
+          <FaFacebook
+            color={color}
+            size={30}
+            className="icon"
+            title="Icono Facebook"
+          />
         </a>
       );
     case "FaTwitter":
       return (
         <a href={link}>
-          <FaTwitter size={30} className="icon" title="Icono Twitter" />
+          <FaTwitter
+            color={color}
+            size={30}
+            className="icon"
+            title="Icono Twitter"
+          />
         </a>
       );
     default:
@@ -34,11 +49,9 @@ export default function SocialMedia(links) {
     if (names.includes(current)) {
       current = current[0].toUpperCase() + current.substring(1);
       current = "Fa" + current;
-      arrayLinks.push(getTag(current, links.rrss[index].link));
+      arrayLinks.push(getTag(current, links.rrss[index].link, links.color));
     }
   }
-  console.log("entrante", links);
-  console.log("resultado", arrayLinks);
   return (
     <div className="links-container-shelter">
       {arrayLinks.map((d) => {

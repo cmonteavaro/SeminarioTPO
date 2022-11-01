@@ -1,5 +1,5 @@
 import React from "react";
-import { Avatar, Text, Group } from "@mantine/core";
+import { Avatar, Text, Group, Title } from "@mantine/core";
 import { IconMapPin } from "@tabler/icons";
 import { Carousel } from "@mantine/carousel";
 import SocialMedia from "../rrss/socialMedia";
@@ -19,9 +19,11 @@ import { Link } from "react-router-dom";
 // import ListAnimals from "../animals/animalCards";
 
 const ProfileBody = ({ refugio }) => {
+  console.log(refugio);
+  const styleBtn = `background-color: ${refugio.perfilRefugio.color};color: white`;
   return (
     <section>
-      <Link to="/publicaciones" className="go-back-profile">
+      <Link to="/refugios" className="go-back-profile">
         {"<"} Volver atras
       </Link>
       <img className="hero" src={Five} alt="Imagen animal" />
@@ -30,27 +32,43 @@ const ProfileBody = ({ refugio }) => {
           <div className="logo-name-location">
             <Avatar src={logorefugio} size={200} radius={100} mt={-80} />
             <div style={{ flex: 1, marginLeft: 20 }}>
-              <Text size="40px" weight={500}>
+              <Title
+                color={refugio.perfilRefugio.color}
+                size="40px"
+                weight={500}
+              >
                 {refugio.nombre}
-              </Text>
+              </Title>
               <Group spacing={5} position="left" wrap>
-                <IconMapPin color="gray" size={20} stroke={2} />
-                <Text color="gray" size="m">
+                <IconMapPin color="black" size={20} stroke={2} />
+                <Text color={refugio.perfilRefugio.color} size="m">
                   {refugio.direccion.localidad}
                 </Text>
               </Group>
             </div>
           </div>
           <div className="links-shelter">
-            {<SocialMedia rrss={refugio.redesSociales} />}
-            <a className="donate" href={refugio.linkDonacionesMonetarias}>
+            {
+              <SocialMedia
+                rrss={refugio.redesSociales}
+                color={refugio.perfilRefugio.color}
+              />
+            }
+            <a
+              className="donate"
+              style={{
+                backgroundColor: refugio.perfilRefugio.color,
+                color: "white",
+              }}
+              href={refugio.linkDonacionesMonetarias}
+            >
               Donar
             </a>
           </div>
         </section>
         <section className="description-shelter">
           <article>
-            <h2>Quienes somos</h2>
+            <Title color={refugio.perfilRefugio.color}>Quienes somos</Title>
             <p>{refugio.perfilRefugio.descripcionLarga}</p>
           </article>
           <section className="caroussel">
@@ -72,11 +90,11 @@ const ProfileBody = ({ refugio }) => {
         </section>
         <section className="posts-shelter">
           <article>
-            <h2>Urgentes</h2>
+            <Title color={refugio.perfilRefugio.color}>Urgentes</Title>
             {/* <ListAnimals /> */}
           </article>
           <article>
-            <h2>Nuestros Animales</h2>
+            <Title color={refugio.perfilRefugio.color}>Nuestros Animales</Title>
             {/* <ListAnimals /> */}
           </article>
         </section>
