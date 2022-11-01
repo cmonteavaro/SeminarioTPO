@@ -1,0 +1,9 @@
+.aboutDiv {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+
+.imagen {
+    width: 100%;
+    height: 100%;
+}
