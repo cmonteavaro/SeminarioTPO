@@ -8,7 +8,7 @@
 }
 
 nav a {
-  color: white;
+  color: #008000;
 }
 
 .logo {
@@ -92,6 +92,7 @@ li {
   clear: both;
   max-height: 0;
   transition: max-height 0.2s ease-out;
+  border-radius: 20px;
 }
 
 /* menu icon */

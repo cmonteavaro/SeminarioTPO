@@ -55,3 +55,6 @@ server/build/
 
 ### VS Code ###
 server/.vscode/
+
+## DB
+server/db/Refugios.odb

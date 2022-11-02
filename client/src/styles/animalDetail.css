@@ -30,6 +30,10 @@
   width: 700px;
 }
 
+.info-detail-urgente {
+  display: flex;
+}
+
 .info-detail-heading {
   display: flex;
   flex-direction: column;
