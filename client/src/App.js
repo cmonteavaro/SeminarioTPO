@@ -13,9 +13,10 @@ const NotFound = lazy(() => import("./pages/notFound"));
 const AnimalDetail = lazy(() => import("./pages/animalDetail"));
 const Shelters = lazy(() => import("./pages/shelters"));
 const VolunteerPosts = lazy(() => import("./pages/volunteerPosts"));
-const Form = lazy(() => import("./components/form/form"));
-const DonationPosts = lazy(() => import("./pages/donationPosts"));
 
+const DonationPosts = lazy(() => import("./pages/donationPosts"));
+const Transits = lazy(() => import("./pages/transitsPosts"));
+const TransitDetail = lazy(() => import("./pages/transitDetail"));
 
 function App() {
   return (
@@ -29,6 +30,8 @@ function App() {
             <Route path="/publicaciones/:id" element={<AnimalDetail />} />
             <Route path="/voluntariados" element={<VolunteerPosts />} />
             <Route path="/donation_posts" element={<DonationPosts />} />
+            <Route path="/transitos" element={<Transits />} />
+            <Route path="/transitos/coco" element={<TransitDetail />} />
             <Route path="/refugios/" element={<Shelters />} />
             <Route path="/refugios/:id" element={<Profile />} />
             <Route path="/acerca" element={<About />} />

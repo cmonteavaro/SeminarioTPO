@@ -2,24 +2,19 @@ import { TextInput, Group, Textarea } from "@mantine/core";
 import { useForm } from "@mantine/form";
 
 async function sendForm(url = "", data = {}) {
-  //   const response = await fetch(url, {
-  //     method: "POST",
-  //     cors: "no-cors",
-  //     cache: "no-cache",
-  //     credentials: "same-origin",
-  //     headers: {
-  //       "Content-Type": "application/json",
-  //     },
-  //     redirect: "follow",
-  //     body: JSON.stringify(data),
-  //   });
+  const response = await fetch(url, {
+    method: "POST",
+    cors: "no-cors",
+    cache: "no-cache",
+    credentials: "same-origin",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    redirect: "follow",
+    body: JSON.stringify(data),
+  });
 
-  //   return response.json();
-  console.log("Form enviado");
-  console.log(url);
-  console.log(data);
-  //   Implementar envio exitoso o fallido
-  return true;
+  return response.json();
 }
 
 export default function Form(data) {
@@ -43,7 +38,6 @@ export default function Form(data) {
         value.length < 5 ? "Coloque una direccion valida." : null,
     },
   });
-  console.log();
   if (!data.show) {
     return null;
   }
@@ -63,7 +57,9 @@ export default function Form(data) {
               sendForm(
                 `http://localhost:8080/api/publicaciones/adopciones/${data.data.idPublicacion}/postular`,
                 values
-              ).then((data) => console.log(data))
+              )
+                .then((data) => console.log(data))
+                .catch((e) => console.log(e))
             )}
           >
             <TextInput

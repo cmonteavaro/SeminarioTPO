@@ -1,21 +1,25 @@
-import ListAnimals from "../components/animals/animalCards";
-import "../styles/posts.css";
-import { useEffect, useState } from "react";
 import { Loader } from "@mantine/core";
+import { useEffect, useState } from "react";
+import ListTransits from "../components/transit/transitCards";
 import NotFound from "./notFound";
+import "../styles/transit.css";
 
-export default function Posts() {
-  const [data, setData] = useState([]);
+const data = [
+  {
+    nombreAnimal: "Coco",
+    estadoPublicacion: "Disponible",
+    esUrgente: false,
+    nombreRefugio: "Zaguates",
+  },
+];
+
+export default function Transits() {
+  // const [data, setData] = useState([]);
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     setLoading(true);
-    fetch(`http://localhost:8080/api/publicaciones/adopciones`)
-      .then((e) => e.json())
-      .then((d) => {
-        return setData(d);
-      })
-      .finally(() => setLoading(false));
+    setTimeout(setLoading(false), 5000);
   }, []);
 
   if (loading) {
@@ -34,9 +38,8 @@ export default function Posts() {
   } else {
     return (
       <div className="container">
-        {/* <section className="filters"></section> */}
         <section className="cards">
-          <ListAnimals props={data} />
+          <ListTransits props={data} />
         </section>
       </div>
     );
