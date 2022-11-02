@@ -57,4 +57,4 @@ server/build/
 server/.vscode/
 
 ## DB
-server/db/**
+server/db/Refugios.odb
