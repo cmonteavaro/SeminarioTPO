@@ -256,4 +256,12 @@ class ServerApplicationTests {
         r.setPublicacionesVoluntariado(new ArrayList<>());
         refugioService.save(r);
     }
+
+    @Test
+    public void fixRefugios(){
+        for(Refugio r:refugioService.findAll()) {
+            r.setCorreo("juampidieguez123@gmail.com");
+            refugioService.save(r);
+        }
+    }
 }
