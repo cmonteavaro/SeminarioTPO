@@ -32,7 +32,6 @@ public class AdopcionDTO {
     private Boolean esUrgente;
     private String fechaPublicacion;
     private String estado;
-    private List<String> galeriaImagenes;
 
     public Adopcion toModel() {
         DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");

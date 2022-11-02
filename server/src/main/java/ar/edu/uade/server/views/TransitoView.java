@@ -36,7 +36,6 @@ public class TransitoView {
     private Boolean esUrgente;
     private String fechaPublicacion;
     private String estadoPublicacion;
-    private List<String> galeriaImagenesPublicacion;
 
     //Transito
     private Boolean gastosAlimentacionCubiertos;
@@ -67,7 +66,6 @@ public class TransitoView {
         view.esUrgente = transito.getEsUrgente();
         view.fechaPublicacion = transito.getFechaPublicacion().format(dateFormatter);
         view.estadoPublicacion = transito.getEstado().getNombre();
-        view.galeriaImagenesPublicacion = transito.getAnimal().getGaleriaImagenes();
         //Transito
         view.gastosAlimentacionCubiertos = transito.getGastosAlimentacionCubiertos();
         view.gastosMedicosCubiertos = transito.getGastosMedicosCubiertos();

@@ -26,7 +26,6 @@ public class TransitoDTO {
     private Boolean esUrgente;
     private String fechaPublicacion;
     private String estado;
-    private List<String> galeriaImagenes;
     private Boolean gastosAlimentacionCubiertos;
     private Boolean gastosMedicosCubiertos;
     private Integer duracionMinima;

@@ -6,17 +6,15 @@ import ar.edu.uade.server.model.enums.TamanioEnum;
 import ar.edu.uade.server.model.enums.TipoAnimalEnum;
 import ar.edu.uade.server.model.enums.TipoRedSocialEnum;
 import ar.edu.uade.server.repository.RepositoryODB;
-import ar.edu.uade.server.service.AdopcionService;
-import ar.edu.uade.server.service.AnimalService;
+import ar.edu.uade.server.service.*;
 //import ar.edu.uade.server.service.EmailServiceImpl;
-import ar.edu.uade.server.service.RefugioService;
-import ar.edu.uade.server.service.VoluntarioServiceODB;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import javax.persistence.Persistence;
 import javax.persistence.PersistenceUtil;
+import javax.sound.midi.Soundbank;
 import java.sql.Ref;
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -35,6 +33,9 @@ class ServerApplicationTests {
 
     @Autowired
     AdopcionService adopcionService;
+
+    @Autowired
+    TransitoService transitoService;
 
 //    @Autowired EmailServiceImpl emailService;
 
@@ -143,15 +144,17 @@ class ServerApplicationTests {
 //            }
 //        }
 
+        System.out.println("Cantidad adopciones totales: "+adopcionService.findAll().size());
         for (Refugio re : refugioService.findAll()){
             System.out.println("-------- Refugio ---------");
             System.out.println(re.getNombre());
             System.out.println(re.getId());
-            for (PublicacionAnimal ad: re.getPublicacionesAdopcion()){
-                System.out.println("-------- Publicaciones ---------");
-                System.out.println(ad.getDescripcion());
-                System.out.println(ad.getId());
-            }
+            System.out.println("Cantidad adopciones refugio: "+re.getPublicacionesAdopcion().size());
+//            for (PublicacionAnimal ad: re.getPublicacionesAdopcion()){
+//                System.out.println("-------- Publicacion ---------");
+//                System.out.println(ad.getDescripcion());
+//                System.out.println(ad.getId());
+//            }
         }
     }
 
@@ -193,10 +196,41 @@ class ServerApplicationTests {
 
     @Test
     public void fixAnimales(){
-        for (Animal a : RepositoryODB.getInstancia().findAll(Animal.class)){
-            a.setTamanioEsperado(TamanioEnum.INDEFINIDO);
-//            a.setFechaNac(LocalDate.now());
-            RepositoryODB.getInstancia().saveOBD(a);
+        for (Animal a : animalService.findAll()){
+            if (a.getTamanioActual()==null) {
+                a.setTamanioActual(TamanioEnum.INDEFINIDO);
+            }
+            if (a.getTamanioEsperado()==null) {
+                a.setTamanioEsperado(TamanioEnum.INDEFINIDO);
+            }
+            if (a.getFechaNac() == null) {
+                a.setFechaNac(LocalDate.now());
+            }
+            animalService.save(a);
+        }
+    }
+
+    @Test
+    public void fixPubTransitos(){
+        Transito t = transitoService.findById((long)24).get();
+        t.setEsUrgente(true);
+        transitoService.save(t);
+    }
+
+    @Test
+    public void fixDonaciones(){
+//        Refugio r = refugioService.findById((long)1).get();
+//        for (PublicacionDonacion pd : r.getPublicacionesDonacionesNoMonetarias()){
+//            System.out.println("----- Publicacion -----");
+//            System.out.println(pd.getId());
+//            System.out.println(pd.getDescripcion());
+//            System.out.println(pd.getEstaActiva());
+//            System.out.println("Refugio: "+pd.getRefugio().getId());
+//        }
+        RepositoryODB.getInstancia().deleteAll(PublicacionDonacion.class);
+        for (Refugio r : refugioService.findAll()){
+            r.setPublicacionesDonacionesNoMonetarias(new ArrayList<>());
+            refugioService.save(r);
         }
     }
 
@@ -217,9 +251,17 @@ class ServerApplicationTests {
 
     @Test
     public void testDB(){
-        PublicacionVoluntariado pv = RepositoryODB.getInstancia().findById(PublicacionVoluntariado.class,33).get();
-        RepositoryODB.getInstancia().deleteById(PublicacionVoluntariado.class, 33);
-        pv.getRefugio().setPublicacionesVoluntariado(new ArrayList<>());
-        RepositoryODB.getInstancia().saveOBD(pv.getRefugio());
+        RepositoryODB.getInstancia().deleteById(PublicacionVoluntariado.class,20);
+        Refugio r = refugioService.findById((long)1).get();
+        r.setPublicacionesVoluntariado(new ArrayList<>());
+        refugioService.save(r);
+    }
+
+    @Test
+    public void fixRefugios(){
+        for(Refugio r:refugioService.findAll()) {
+            r.setCorreo("juampidieguez123@gmail.com");
+            refugioService.save(r);
+        }
     }
 }
