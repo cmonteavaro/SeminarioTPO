@@ -21,7 +21,13 @@
 }
 
 .parrafo {
-    margin-top: 5vw;
+    margin-top: 2vw;
     text-align: justify;
     margin-right: 2vw;
+    font-size: 20px;
+}
+
+.palabraRemarcada {
+    color: #008000;
+    font-weight: bold;
 }
