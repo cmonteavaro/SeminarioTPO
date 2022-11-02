@@ -17,7 +17,6 @@ public class DonacionDTO {
     private TipoDonacionEnum tipo;
     private long idRefugio;
     private String fechaPublicacion;
-    private Boolean estaActiva;
 
     public PublicacionDonacion toModel() {
         DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
@@ -28,7 +27,6 @@ public class DonacionDTO {
         donacion.setDescripcion(this.descripcion);
         donacion.setTipo(this.tipo);
         donacion.setFechaPublicacion(LocalDate.parse(this.fechaPublicacion, dateFormatter));
-        donacion.setEstaActiva(this.estaActiva);
 
         return donacion;
     }

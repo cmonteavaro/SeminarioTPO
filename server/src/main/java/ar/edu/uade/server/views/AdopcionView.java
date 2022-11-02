@@ -49,7 +49,6 @@ public class AdopcionView {
     private Boolean esUrgente;
     private String fechaPublicacion;
     private String estadoPublicacion;
-    private List<String> galeriaImagenesPublicacion;
 
     public static AdopcionView toView(Adopcion adopcion){
         AdopcionView view = new AdopcionView();
