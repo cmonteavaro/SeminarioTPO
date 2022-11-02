@@ -16,7 +16,7 @@ export default function About() {
         </p>
         <p className="parrafo">
           No obstante, el crédito no es solo nuestro, sino también de todos los <span className="palabraRemarcada">refugios animales y colaboradores</span> que nos brindaron su tiempo para realizarles encuestas, entrevistas y observaciones. 
-          Esperamos que disfruten de este gran mejorar la vida de los pichichos.
+          Esperamos que disfruten de este gran <span className="palabraRemarcada">trabajo en equipo</span> centrado en mejorar la vida de los pichichos.
         </p>
       </div>
     </div>
