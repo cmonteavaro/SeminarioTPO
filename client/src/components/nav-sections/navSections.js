@@ -1,28 +1,21 @@
-import { Link, useMatch, useResolvedPath } from "react-router-dom";
+import { Link } from "react-router-dom";
 import "../../styles/nav-sections.css";
 
 export default function NavSections() {
   return (
     <nav className="nav-sections">
-      <CustomLink to="/publicaciones">Adopciones</CustomLink>
-      <CustomLink to="/transitos">Transitos</CustomLink>
-      <CustomLink to="/voluntariados">Voluntariados</CustomLink>
-      <CustomLink to="/donaciones">Donaciones</CustomLink>
+      <Link to="/publicaciones" className="link-sections">
+        Adopciones
+      </Link>
+      <Link to="/transitos" className="link-sections">
+        Transitos
+      </Link>
+      <Link to="/voluntariados" className="link-sections">
+        Voluntariados
+      </Link>
+      <Link to="/donation_posts" className="link-sections">
+        Donaciones
+      </Link>
     </nav>
-  );
-}
-
-function CustomLink({ to, children, ...props }) {
-  const resolvedPath = useResolvedPath(to);
-  const isActive = useMatch({ path: resolvedPath.pathname, end: true });
-  console.log(isActive);
-  return (
-    <Link
-      className={isActive ? "active links-sections" : "links-sections"}
-      to={to}
-      {...props}
-    >
-      {children}
-    </Link>
   );
 }
