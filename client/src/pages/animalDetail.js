@@ -82,6 +82,9 @@ export default function AnimalDetail() {
                 Fecha de Publicacion: {data.fechaPublicacion}
               </p>
             </div>
+            <div className="info-detail-urgente">
+              <Tag state={data.esUrgente}/>
+            </div>
             <div className="info-detail-status">
               <Tag state={data.estadoPublicacion} />
             </div>
@@ -102,10 +105,6 @@ export default function AnimalDetail() {
               Edad: <span className="property-info">{data.animal.edad}</span>
             </p>
             <p className="property">
-              Nacimiento:{" "}
-              <span className="property-info">{data.animal.fechaNac}</span>
-            </p>
-            <p className="property">
               Castrado:{" "}
               <span className="property-info">
                 {isTrue(data.animal.castrado)}
@@ -120,12 +119,7 @@ export default function AnimalDetail() {
             <p className="property">
               Medicacion: <span className="property-info">{"Si"}</span>
             </p>
-            <p className="property">
-              Vacunas:{" "}
-              <span className="property-info">
-                {isTrue(data.animal.esquemaCompletoVacunas)}
-              </span>
-            </p>
+            
             <div>
               <p className="property">
                 Puede convivir con:
@@ -146,9 +140,14 @@ export default function AnimalDetail() {
                     </li>
                   </ul>
                 </div>
-
               </p>
             </div>
+            <p className="property">
+              Vacunas:{" "}
+              <span className="property-info">
+                {isTrue(data.animal.esquemaCompletoVacunas)}
+              </span>
+            </p>
           </div>
 
           <article className="info-detail-description">
