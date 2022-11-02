@@ -11,7 +11,7 @@ export default function About() {
         <h1 className="titulo">¿Quiénes somos?</h1>
         <p className="parrafo">
           Nosotros, quienes desarrollamos esta plataforma, somos un grupo de estudiantes de informática apasionados por lo que hacemos, fans del trabajo que hacen los refugios animales y simpatizantes de aquellas personas que deciden colaborar con ellos de alguna manera.
-          Sabemos que los refugios, según el alcance en redes sociales, grandes <span className="palabraRemarcada">problemáticas de comunicación</span> en algunos casos y de <span className="palabraRemarcada">falta de llegada</span> en otros. Mientras que los potenciales adoptantes y colaboradores se pierden entre la <span className="palabraRemarcada">información descentralizada</span> y se les dificulta 
+          Sabemos que los refugios, según el alcance en redes sociales, tienen grandes <span className="palabraRemarcada">problemáticas de comunicación</span> en algunos casos y de <span className="palabraRemarcada">falta de llegada</span> en otros. Mientras que los potenciales adoptantes y colaboradores se pierden entre la <span className="palabraRemarcada">información descentralizada</span> y se les dificulta 
           encontrar aquellos refugios y animales con los que serán compatibles.
         </p>
         <p className="parrafo">
