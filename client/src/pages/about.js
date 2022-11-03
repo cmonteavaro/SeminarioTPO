@@ -14,6 +14,7 @@ export default function About() {
           Sabemos que los refugios, según el alcance en redes sociales, tienen grandes <span className="palabraRemarcada">problemáticas de comunicación</span> en algunos casos y de <span className="palabraRemarcada">falta de llegada</span> en otros. Mientras que los potenciales adoptantes y colaboradores se pierden entre la <span className="palabraRemarcada">información descentralizada</span> y se les dificulta 
           encontrar aquellos refugios y animales con los que serán compatibles.
         </p>
+        <img src={FotoAbout} className="imagen-parrafo"></img>
         <p className="parrafo">
           No obstante, el crédito no es solo nuestro, sino también de todos los <span className="palabraRemarcada">refugios animales y colaboradores</span> que nos brindaron su tiempo para realizarles encuestas, entrevistas y observaciones. 
           Esperamos que disfruten de este gran <span className="palabraRemarcada">trabajo en equipo</span> centrado en mejorar la vida de los pichichos.
