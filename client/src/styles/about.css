@@ -14,12 +14,13 @@
     align-items: center;
     justify-content: space-between;
 }
-
-.titulo {
-    display: flex;
-    margin-left: 10vw;
+.imagen{
+    display: inline;
 }
 
+.imagen-parrafo {
+    display: none;
+}
 .parrafo {
     margin-top: 2vw;
     text-align: justify;
@@ -30,4 +31,38 @@
 .palabraRemarcada {
     color: #008000;
     font-weight: bold;
+}
+
+@media(max-width: 1024px){
+    .aboutDiv{
+        display: flex;
+        flex-direction: column-reverse;
+        align-items: center;
+    }
+    .acerca-de-detail{
+        text-align: center;
+        width: 80vw;
+        margin: 0 auto;
+    }
+
+    .titulo{
+        margin: 0;
+    }
+
+    .imagen{
+        width: 80vw;
+        margin: 0 auto;
+    };
+}
+
+@media(max-width: 768px){
+    .imagen{
+        display: none;
+    }
+
+    .imagen-parrafo{
+        display: inline;
+        width: 80vw;
+        height: 100%;
+    }
 }
