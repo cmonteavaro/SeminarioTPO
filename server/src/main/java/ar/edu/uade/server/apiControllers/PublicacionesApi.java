@@ -154,10 +154,15 @@ public class PublicacionesApi {
     public ResponseEntity<?> postulacionAdopcion(@PathVariable Long id, @RequestBody FormularioDTO formularioDTO) {
         Optional<Adopcion> oAdopcion = adopcionService.findById(id);
         if (oAdopcion.isPresent()) {
-            if (emailService.sendMailDTO(formularioDTO, oAdopcion.get())) {
+            if (emailService.sendMailToRefugioDTO(formularioDTO, oAdopcion.get())) {
                 return ResponseEntity.ok().build();
             } else {
-                return ResponseEntity.internalServerError().build();
+                return ResponseEntity.internalServerError().body("El mail de postulación a adopción no pudo ser enviado al refugio.");
+            }
+            if (emailService.sendMailToPostulanteDTO(formularioDTO, oAdopcion.get())) {
+                return ResponseEntity.ok().build();
+            } else {
+                return ResponseEntity.internalServerError().body("El mail de postulación a adopción no pudo ser enviado al postulante.");
             }
         }else {
             return ResponseEntity.notFound().build();
@@ -257,10 +262,15 @@ public class PublicacionesApi {
     public ResponseEntity<?> postulacionTransito(@PathVariable Long id, @RequestBody FormularioDTO formularioDTO) {
         Optional<Transito> oTransito = transitoService.findById(id);
         if (oTransito.isPresent()) {
-            if (emailService.sendMailDTO(formularioDTO,oTransito.get())){
+            if (emailService.sendMailToRefugioDTO(formularioDTO,oTransito.get())){
                 return ResponseEntity.ok().build();
             }else {
-                return ResponseEntity.internalServerError().build();
+                return ResponseEntity.internalServerError().body("El mail de postulación a tránsito no pudo ser enviado al refugio.");
+            }
+            if (emailService.sendMailToPostulanteDTO(formularioDTO, oTransito.get())) {
+                return ResponseEntity.ok().build();
+            } else {
+                return ResponseEntity.internalServerError().body("El mail de postulación a tránsito no pudo ser enviado al postulante.");
             }
         }
         else {
@@ -326,7 +336,12 @@ public class PublicacionesApi {
             if (emailService.sendMailDTO(formularioDTO, oVoluntariado.get())) {
                 return ResponseEntity.ok().build();
             } else {
-                return ResponseEntity.internalServerError().build();
+                return ResponseEntity.internalServerError().body("El mail de postulación a voluntariado no pudo ser enviado al postulante.");
+            }
+            if (emailService.sendMailToPostulanteDTO(formularioDTO, oVoluntariado.get())) {
+                return ResponseEntity.ok().build();
+            } else {
+                return ResponseEntity.internalServerError().body("El mail de postulación a voluntariado no pudo ser enviado al postulante.");
             }
         } else {
             return ResponseEntity.notFound().build();
