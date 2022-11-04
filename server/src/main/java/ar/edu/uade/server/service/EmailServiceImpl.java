@@ -114,27 +114,27 @@ public class EmailServiceImpl {
         String subject = "Solicitud de transito: "+transito.getAnimal().getNombre();
         if (formularioDTO.getNotas()==null) formularioDTO.setNotas("-");
         String body = String.format(msgRefugio,transito.getAnimal().getNombre(),"transito",formularioDTO.getNombre(),formularioDTO.getApellido(),formularioDTO.getTelefono(),formularioDTO.getDireccion(),formularioDTO.getCorreo(),formularioDTO.getNotas());
-        return this.sendSimpleMail(transito.getRefugio().getCorreo(),subject,body);
+        return this.sendSimpleMailToRefugio(transito.getRefugio().getCorreo(),subject,body);
     }
 
     public Boolean sendMailToPostulanteDTO(FormularioDTO formularioDTO, Transito transito){
         String subject = "Solicitud de transito: "+transito.getAnimal().getNombre();
         if (formularioDTO.getNotas()==null) formularioDTO.setNotas("-");
         String body = String.format(msgPostulante,"transitar a",transito.getAnimal().getNombre(),transito.getRefugio().getNombre(),formularioDTO.getNombre(),formularioDTO.getApellido(),formularioDTO.getTelefono(),formularioDTO.getDireccion(),formularioDTO.getCorreo(),formularioDTO.getNotas());
-        return this.sendSimpleMail(transito.getRefugio().getCorreo(),subject,body);
+        return this.sendSimpleMailToPostulante(transito.getRefugio().getCorreo(),subject,body);
     }
 
     public Boolean sendMailToRefugioDTO(FormularioDTO formularioDTO, PublicacionVoluntariado voluntariado){
         String subject = "Solicitud de voluntariado: "+voluntariado.getTitulo();
         if (formularioDTO.getNotas()==null) formularioDTO.setNotas("-");
         String body = String.format(msgRefugio,"Usted","voluntariado",formularioDTO.getNombre(),formularioDTO.getApellido(),formularioDTO.getTelefono(),formularioDTO.getDireccion(),formularioDTO.getCorreo(),formularioDTO.getNotas());
-        return this.sendSimpleMail(voluntariado.getRefugio().getCorreo(),subject,body);
+        return this.sendSimpleMailToRefugio(voluntariado.getRefugio().getCorreo(),subject,body);
     }
 
     public Boolean sendMailToPostulanteDTO(FormularioDTO formularioDTO, PublicacionVoluntariado voluntariado){
         String subject = "Solicitud de voluntariado: "+voluntariado.getTitulo();
         if (formularioDTO.getNotas()==null) formularioDTO.setNotas("-");
         String body = String.format(msgPostulante,"realizar voluntariado para",voluntariado.getRefugio().getNombre(),voluntariado.getRefugio().getNombre(),formularioDTO.getNombre(),formularioDTO.getApellido(),formularioDTO.getTelefono(),formularioDTO.getDireccion(),formularioDTO.getCorreo(),formularioDTO.getNotas());
-        return this.sendSimpleMail(voluntariado.getRefugio().getCorreo(),subject,body);
+        return this.sendSimpleMailToPostulante(voluntariado.getRefugio().getCorreo(),subject,body);
     }
 }
