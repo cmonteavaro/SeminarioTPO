@@ -52,6 +52,11 @@ public class PublicacionesApi {
             this.donacionService = ds;
     }
 
+    @GetMapping("/filtros")
+    public ResponseEntity<?> getAllAtributos () {
+        return ResponseEntity.ok(AtributosView.toView());
+    }
+
     @GetMapping("/adopciones")
     public ResponseEntity<?> getAllAdopciones() {
         List<PublicacionAnimalCortaView> resultado = new ArrayList<>();
