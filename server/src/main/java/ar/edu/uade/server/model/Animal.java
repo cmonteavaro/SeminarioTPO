@@ -64,6 +64,10 @@ public class Animal {
         return edad;
     }
 
+    public Integer getEdadInteger() {
+        return Period.between(this.fechaNac, LocalDate.now()).getYears();
+    }
+
     public void agregarImagenes(String ... imagenes) { Collections.addAll(galeriaImagenes, imagenes); }
 
     public void eliminarImagen(String imagen) { if(this.galeriaImagenes.contains(imagen)) this.galeriaImagenes.remove(imagen); }

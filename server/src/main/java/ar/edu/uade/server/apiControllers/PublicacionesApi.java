@@ -59,6 +59,13 @@ public class PublicacionesApi {
         return ResponseEntity.ok(resultado);
     }
 
+    @GetMapping("/adopciones/fullView")
+    public ResponseEntity<?> getAllAdopcionesFull() {
+        List<AdopcionView> resultado = new ArrayList<>();
+        adopcionService.findAll().stream().filter(adopcion -> !adopcion.getEstado().equals(EstadoPublicacionAnimalEnum.FINALIZADA)).forEach(adopcion -> resultado.add(AdopcionView.toView(adopcion)));
+        return ResponseEntity.ok(resultado);
+    }
+
     @GetMapping("/adopciones/{id}")
     public ResponseEntity<?> getAdopcionById(@PathVariable Long id) {
         Optional<Adopcion> oAdopcion = adopcionService.findById(id);
