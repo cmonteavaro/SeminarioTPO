@@ -61,10 +61,12 @@ public class PublicacionesApi {
             if (oRefugio.isPresent()){
                 Refugio r = oRefugio.get();
                 double distancia = distanciaCoords(coords.get(0),coords.get(1), r.getDireccion().getLatitud(),r.getDireccion().getLongitud());
-                System.out.println(distancia);
                 if(distancia < r.getRadioAlcance()) {
                     puedeConcretar = true;
                 }
+            }
+            else {
+                return ResponseEntity.notFound().eTag("No se encontró al refugio").build();
             }
         } catch (IOException | InterruptedException E) {
             return ResponseEntity.badRequest().body(E.getMessage());
@@ -95,7 +97,6 @@ public class PublicacionesApi {
         Geocoder geocoder = new Geocoder();
         ObjectMapper mapper = new ObjectMapper();
         String response = geocoder.GeocodeSync(locacion);
-        System.out.println(response);
         JsonNode responseJsonNode = mapper.readTree(response);
 
         JsonNode items = responseJsonNode.get("features");
