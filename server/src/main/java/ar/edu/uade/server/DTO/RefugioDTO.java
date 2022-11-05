@@ -4,6 +4,7 @@ import ar.edu.uade.server.model.*;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.io.IOException;
 import java.util.List;
 
 @Getter
@@ -30,6 +31,11 @@ public class RefugioDTO {
         Refugio refugio = new Refugio();
 
         refugio.setNombre(this.nombre);
+        try{
+            this.direccion.convertirDireccion();
+        } catch (IOException | InterruptedException E) {
+            System.out.println(E.getMessage());
+        }
         refugio.setDireccion(this.direccion);
         refugio.setPerfilRefugio(this.perfilRefugio);
         refugio.setUsuario(this.usuario);
