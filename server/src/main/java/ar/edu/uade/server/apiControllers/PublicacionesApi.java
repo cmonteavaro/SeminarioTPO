@@ -154,14 +154,14 @@ public class PublicacionesApi {
     public ResponseEntity<?> postulacionAdopcion(@PathVariable Long id, @RequestBody FormularioDTO formularioDTO) {
         Optional<Adopcion> oAdopcion = adopcionService.findById(id);
         if (oAdopcion.isPresent()) {
-            if ((emailService.sendMailToRefugioDTO(formularioDTO, oAdopcion.get())) && emailService.sendMailToPostulanteDTO(formularioDTO, oAdopcion.get())) {
+            try {
+                emailService.sendMailToRefugioDTO(formularioDTO, oAdopcion.get());
+                emailService.sendMailToPostulanteDTO(formularioDTO, oAdopcion.get());
                 return ResponseEntity.ok().build();
-            } else if (!emailService.sendMailToRefugioDTO(formularioDTO, oAdopcion.get()) && emailService.sendMailToPostulanteDTO(formularioDTO, oAdopcion.get())) {
-                return ResponseEntity.internalServerError().body("El mail de postulación a adopción no pudo ser enviado al refugio.");
-            } else {
-                return ResponseEntity.internalServerError().body("El mail de postulación a adopción no pudo ser enviado al postulante.");
+            }catch (Exception e){
+                return ResponseEntity.internalServerError().body(e.getMessage());
             }
-        }else {
+        } else {
             return ResponseEntity.notFound().build();
         }
     }
@@ -259,15 +259,14 @@ public class PublicacionesApi {
     public ResponseEntity<?> postulacionTransito(@PathVariable Long id, @RequestBody FormularioDTO formularioDTO) throws RefugioException {
         Optional<Transito> oTransito = transitoService.findById(id);
         if (oTransito.isPresent()) {
-            if ((emailService.sendMailToRefugioDTO(formularioDTO, oTransito.get())) && emailService.sendMailToPostulanteDTO(formularioDTO, oTransito.get())) {
+            try {
+                emailService.sendMailToRefugioDTO(formularioDTO, oTransito.get());
+                emailService.sendMailToPostulanteDTO(formularioDTO, oTransito.get());
                 return ResponseEntity.ok().build();
-            } else if (!emailService.sendMailToRefugioDTO(formularioDTO, oTransito.get()) && emailService.sendMailToPostulanteDTO(formularioDTO, oTransito.get())) {
-                return ResponseEntity.internalServerError().body("El mail de postulación a tránsito no pudo ser enviado al refugio.");
-            } else {
-                return ResponseEntity.internalServerError().body("El mail de postulación a tránsito no pudo ser enviado al postulante.");
+            }catch (Exception e){
+                return ResponseEntity.internalServerError().body(e.getMessage());
             }
-        }
-        else {
+        } else {
             return ResponseEntity.notFound().build();
         }
     }
@@ -327,12 +326,12 @@ public class PublicacionesApi {
     public ResponseEntity<?> postulacionVoluntariado(@PathVariable Long id, @RequestBody FormularioDTO formularioDTO) {
         Optional<PublicacionVoluntariado> oVoluntariado = voluntarioService.findById(id);
         if (oVoluntariado.isPresent()) {
-            if ((emailService.sendMailToRefugioDTO(formularioDTO, oVoluntariado.get())) && emailService.sendMailToPostulanteDTO(formularioDTO, oVoluntariado.get())) {
+            try {
+                emailService.sendMailToRefugioDTO(formularioDTO, oVoluntariado.get());
+                emailService.sendMailToPostulanteDTO(formularioDTO, oVoluntariado.get());
                 return ResponseEntity.ok().build();
-            } else if (!emailService.sendMailToRefugioDTO(formularioDTO, oVoluntariado.get()) && emailService.sendMailToPostulanteDTO(formularioDTO, oVoluntariado.get())) {
-                return ResponseEntity.internalServerError().body("El mail de postulación a voluntariado no pudo ser enviado al refugio.");
-            } else {
-                return ResponseEntity.internalServerError().body("El mail de postulación a voluntariado no pudo ser enviado al postulante.");
+            } catch (Exception e) {
+                return ResponseEntity.internalServerError().body(e.getMessage());
             }
         } else {
             return ResponseEntity.notFound().build();
