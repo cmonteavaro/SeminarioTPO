@@ -7,14 +7,9 @@ import ar.edu.uade.server.DTO.TransitoDTO;
 import ar.edu.uade.server.DTO.VoluntarioDTO;
 import ar.edu.uade.server.exceptions.RefugioException;
 import ar.edu.uade.server.model.*;
-import ar.edu.uade.server.service.RefugioService;
+import ar.edu.uade.server.service.*;
 import ar.edu.uade.server.model.enums.EstadoPublicacionAnimalEnum;
-import ar.edu.uade.server.service.DonacionService;
-import ar.edu.uade.server.service.TransitoService;
 import ar.edu.uade.server.views.*;
-import ar.edu.uade.server.service.AdopcionService;
-import ar.edu.uade.server.service.EmailServiceImpl;
-import ar.edu.uade.server.service.VoluntarioService;
 import ar.edu.uade.server.views.AdopcionView;
 import ar.edu.uade.server.views.VoluntariadoView;
 import com.fasterxml.jackson.databind.JsonNode;
@@ -41,26 +36,28 @@ public class PublicacionesApi {
     private final EmailServiceImpl emailService;
     private final RefugioService refugioService;
     private final DonacionService donacionService;
+    private final UtilsServiceImpl utilsServiceImpl;
 
     @Autowired
-    public PublicacionesApi (VoluntarioService vs, AdopcionService as, TransitoService ts, RefugioService rs, DonacionService ds, EmailServiceImpl es){
+    public PublicacionesApi (VoluntarioService vs, AdopcionService as, TransitoService ts, RefugioService rs, DonacionService ds, EmailServiceImpl es, UtilsServiceImpl us){
             this.adopcionService = as;
             this.voluntarioService = vs;
             this.emailService = es;
             this.transitoService = ts;
             this.refugioService = rs;
             this.donacionService = ds;
+            this.utilsServiceImpl = us;
     }
 
     @GetMapping("/distance/{idRefugio}")
     public ResponseEntity<?> getDistance (@RequestBody String direccion, @PathVariable Long idRefugio) {
         boolean puedeConcretar = false;
         try {
-            List<Float> coords = convertirDireccion(direccion);
+            List<Float> coords = utilsServiceImpl.convertirDireccion(direccion);
             Optional<Refugio> oRefugio = refugioService.findById(idRefugio);
             if (oRefugio.isPresent()){
                 Refugio r = oRefugio.get();
-                double distancia = distanciaCoords(coords.get(0),coords.get(1), r.getDireccion().getLatitud(),r.getDireccion().getLongitud());
+                double distancia = utilsServiceImpl.distanciaCoords(coords.get(0),coords.get(1), r.getDireccion().getLatitud(),r.getDireccion().getLongitud());
                 if(distancia < r.getRadioAlcance()) {
                     puedeConcretar = true;
                 }
@@ -72,44 +69,6 @@ public class PublicacionesApi {
             return ResponseEntity.badRequest().body(E.getMessage());
         }
         return ResponseEntity.ok(puedeConcretar);
-    }
-
-    public double distanciaCoords(float latitudColab, float longitudColab, float latitudRef, float longitudRef) {
-        double radioTierra = 6371;
-
-        double dLat = Math.toRadians(latitudRef-latitudColab);
-        double dLong = Math.toRadians(longitudRef-longitudColab);
-
-        double sindLat = Math.sin(dLat / 2);
-        double sindLong = Math.sin(dLong / 2);
-
-        double va1 = Math.pow(sindLat, 2) + Math.pow(sindLong, 2) * Math.cos(Math.toRadians(latitudColab)) * Math.cos(Math.toRadians(latitudRef));
-        double va2 = 2 * Math.atan2(Math.sqrt(va1),Math.sqrt(1-va1));
-
-        double distancia = radioTierra * va2;
-
-        return distancia;
-    }
-
-    public List<Float> convertirDireccion (String locacion) throws IOException, InterruptedException {
-        List<Float> coordenadas = new ArrayList<>();
-
-        Geocoder geocoder = new Geocoder();
-        ObjectMapper mapper = new ObjectMapper();
-        String response = geocoder.GeocodeSync(locacion);
-        JsonNode responseJsonNode = mapper.readTree(response);
-
-        JsonNode items = responseJsonNode.get("features");
-        JsonNode item1 = items.get(0);
-        JsonNode properties = item1.get("properties");
-
-        coordenadas.add(0, properties.get("lat").floatValue());
-        coordenadas.add(1, properties.get("lon").floatValue());
-
-        System.out.println("LATITUD Colab: " + coordenadas.get(0));
-        System.out.println("LONGITUD Colab: " + coordenadas.get(1));
-
-        return coordenadas;
     }
 
     @GetMapping("/filtros")

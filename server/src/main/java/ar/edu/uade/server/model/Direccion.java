@@ -34,7 +34,6 @@ public class Direccion {
         ObjectMapper mapper = new ObjectMapper();
         String locacion = this.getAltura().toString()+" "+this.getCalle()+", "+this.getLocalidad()+", "+this.getProvincia()+", "+this.getCodigoPostal();
         String response = geocoder.GeocodeSync(locacion);
-        System.out.println(response);
         JsonNode responseJsonNode = mapper.readTree(response);
 
         JsonNode items = responseJsonNode.get("features");

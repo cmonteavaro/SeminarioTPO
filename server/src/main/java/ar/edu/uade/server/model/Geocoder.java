@@ -19,7 +19,6 @@ public class Geocoder {
 
         String encodedQuery = URLEncoder.encode(query,"UTF-8");
         String requestUri = GEOCODING_RESOURCE + "apiKey=" + API_KEY + "&text=" + encodedQuery;
-        System.out.println(requestUri);
 
         HttpRequest geocodingRequest = HttpRequest.newBuilder().GET().uri(URI.create(requestUri))
                 .timeout(Duration.ofMillis(5000)).build();

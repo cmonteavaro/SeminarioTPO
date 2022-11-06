@@ -3,6 +3,7 @@ package ar.edu.uade.server.DTO;
 import ar.edu.uade.server.model.*;
 import lombok.Getter;
 import lombok.Setter;
+import org.springframework.http.ResponseEntity;
 
 import java.io.IOException;
 import java.util.List;
@@ -34,7 +35,7 @@ public class RefugioDTO {
         try{
             this.direccion.convertirDireccion();
         } catch (IOException | InterruptedException E) {
-            System.out.println(E.getMessage());
+            ResponseEntity.badRequest().body(E.getMessage());
         }
         refugio.setDireccion(this.direccion);
         refugio.setPerfilRefugio(this.perfilRefugio);
