@@ -154,12 +154,14 @@ public class PublicacionesApi {
     public ResponseEntity<?> postulacionAdopcion(@PathVariable Long id, @RequestBody FormularioDTO formularioDTO) {
         Optional<Adopcion> oAdopcion = adopcionService.findById(id);
         if (oAdopcion.isPresent()) {
-            if (emailService.sendMailDTO(formularioDTO, oAdopcion.get())) {
+            try {
+                emailService.sendMailToRefugioDTO(formularioDTO, oAdopcion.get());
+                emailService.sendMailToPostulanteDTO(formularioDTO, oAdopcion.get());
                 return ResponseEntity.ok().build();
-            } else {
-                return ResponseEntity.internalServerError().build();
+            }catch (Exception e){
+                return ResponseEntity.internalServerError().body(e.getMessage());
             }
-        }else {
+        } else {
             return ResponseEntity.notFound().build();
         }
     }
@@ -254,16 +256,17 @@ public class PublicacionesApi {
     }
 
     @PostMapping("/transitos/{id}/postular")
-    public ResponseEntity<?> postulacionTransito(@PathVariable Long id, @RequestBody FormularioDTO formularioDTO) {
+    public ResponseEntity<?> postulacionTransito(@PathVariable Long id, @RequestBody FormularioDTO formularioDTO) throws RefugioException {
         Optional<Transito> oTransito = transitoService.findById(id);
         if (oTransito.isPresent()) {
-            if (emailService.sendMailDTO(formularioDTO,oTransito.get())){
+            try {
+                emailService.sendMailToRefugioDTO(formularioDTO, oTransito.get());
+                emailService.sendMailToPostulanteDTO(formularioDTO, oTransito.get());
                 return ResponseEntity.ok().build();
-            }else {
-                return ResponseEntity.internalServerError().build();
+            }catch (Exception e){
+                return ResponseEntity.internalServerError().body(e.getMessage());
             }
-        }
-        else {
+        } else {
             return ResponseEntity.notFound().build();
         }
     }
@@ -323,10 +326,12 @@ public class PublicacionesApi {
     public ResponseEntity<?> postulacionVoluntariado(@PathVariable Long id, @RequestBody FormularioDTO formularioDTO) {
         Optional<PublicacionVoluntariado> oVoluntariado = voluntarioService.findById(id);
         if (oVoluntariado.isPresent()) {
-            if (emailService.sendMailDTO(formularioDTO, oVoluntariado.get())) {
+            try {
+                emailService.sendMailToRefugioDTO(formularioDTO, oVoluntariado.get());
+                emailService.sendMailToPostulanteDTO(formularioDTO, oVoluntariado.get());
                 return ResponseEntity.ok().build();
-            } else {
-                return ResponseEntity.internalServerError().build();
+            } catch (Exception e) {
+                return ResponseEntity.internalServerError().body(e.getMessage());
             }
         } else {
             return ResponseEntity.notFound().build();
