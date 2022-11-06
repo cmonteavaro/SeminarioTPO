@@ -1,5 +1,6 @@
 package ar.edu.uade.server.DTO;
 
+import ar.edu.uade.server.exceptions.RefugioException;
 import ar.edu.uade.server.model.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -28,14 +29,14 @@ public class RefugioDTO {
     private List<PublicacionVoluntariado> publicacionesVoluntariado;
     private List<PublicacionDonacion> publicacionesDonacionesNoMonetarias;
 
-    public Refugio toModel() {
+    public Refugio toModel() throws RefugioException {
         Refugio refugio = new Refugio();
 
         refugio.setNombre(this.nombre);
         try{
             this.direccion.convertirDireccion();
         } catch (IOException | InterruptedException E) {
-            ResponseEntity.badRequest().body(E.getMessage());
+            throw new RefugioException(E.getMessage());
         }
         refugio.setDireccion(this.direccion);
         refugio.setPerfilRefugio(this.perfilRefugio);
