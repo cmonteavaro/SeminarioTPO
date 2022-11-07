@@ -63,7 +63,7 @@ public class PublicacionesApi {
                 }
             }
             else {
-                return ResponseEntity.notFound().eTag("No se encontró al refugio").build();
+                return ResponseEntity.notFound().build();
             }
         } catch (IOException | InterruptedException E) {
             return ResponseEntity.badRequest().body(E.getMessage());

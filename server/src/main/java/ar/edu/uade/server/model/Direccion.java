@@ -37,13 +37,11 @@ public class Direccion {
         JsonNode responseJsonNode = mapper.readTree(response);
 
         JsonNode items = responseJsonNode.get("features");
+        JsonNode item1 = items.get(0);
+        JsonNode properties = item1.get("properties");
 
-        for (JsonNode item : items) {
-            JsonNode properties = item.get("properties");
+        this.setLatitud(properties.get("lat").floatValue());
+        this.setLongitud(properties.get("lon").floatValue());
 
-            this.setLatitud(properties.get("lat").floatValue());
-            this.setLongitud(properties.get("lon").floatValue());
-
-        }
     }
 }

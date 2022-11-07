@@ -122,7 +122,7 @@ public class RefugioApi {
         try {
             return ResponseEntity.status(HttpStatus.CREATED).body(refugioService.save(refugioDTO.toModel()));
         }
-        catch (RefugioException e) {
+        catch (Exception e) {
             return ResponseEntity.badRequest().eTag(e.getMessage()).build();
         }
     }
