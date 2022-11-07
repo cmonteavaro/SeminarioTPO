@@ -1,6 +1,7 @@
 package ar.edu.uade.server.apiControllers;
 
 import ar.edu.uade.server.DTO.RefugioDTO;
+import ar.edu.uade.server.exceptions.RefugioException;
 import ar.edu.uade.server.model.*;
 import ar.edu.uade.server.model.enums.EstadoPublicacionAnimalEnum;
 import ar.edu.uade.server.service.RefugioService;
@@ -11,6 +12,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.naming.ReferralException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;

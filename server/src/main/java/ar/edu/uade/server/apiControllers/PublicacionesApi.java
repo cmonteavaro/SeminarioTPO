@@ -6,29 +6,24 @@ import ar.edu.uade.server.DTO.DonacionDTO;
 import ar.edu.uade.server.DTO.TransitoDTO;
 import ar.edu.uade.server.DTO.VoluntarioDTO;
 import ar.edu.uade.server.exceptions.RefugioException;
-import ar.edu.uade.server.model.Adopcion;
-import ar.edu.uade.server.model.Refugio;
-import ar.edu.uade.server.service.RefugioService;
-import ar.edu.uade.server.model.PublicacionDonacion;
-import ar.edu.uade.server.model.Transito;
+import ar.edu.uade.server.model.*;
+import ar.edu.uade.server.service.*;
 import ar.edu.uade.server.model.enums.EstadoPublicacionAnimalEnum;
-import ar.edu.uade.server.service.DonacionService;
-import ar.edu.uade.server.service.TransitoService;
 import ar.edu.uade.server.views.*;
-import ar.edu.uade.server.model.PublicacionVoluntariado;
-import ar.edu.uade.server.service.AdopcionService;
-import ar.edu.uade.server.service.EmailServiceImpl;
-import ar.edu.uade.server.service.VoluntarioService;
 import ar.edu.uade.server.views.AdopcionView;
 import ar.edu.uade.server.views.VoluntariadoView;
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.lang.Math;
 
 @CrossOrigin
 @RestController
@@ -41,15 +36,39 @@ public class PublicacionesApi {
     private final EmailServiceImpl emailService;
     private final RefugioService refugioService;
     private final DonacionService donacionService;
+    private final UtilsServiceImpl utilsServiceImpl;
 
     @Autowired
-    public PublicacionesApi (VoluntarioService vs, AdopcionService as, TransitoService ts, RefugioService rs, DonacionService ds, EmailServiceImpl es){
+    public PublicacionesApi (VoluntarioService vs, AdopcionService as, TransitoService ts, RefugioService rs, DonacionService ds, EmailServiceImpl es, UtilsServiceImpl us){
             this.adopcionService = as;
             this.voluntarioService = vs;
             this.emailService = es;
             this.transitoService = ts;
             this.refugioService = rs;
             this.donacionService = ds;
+            this.utilsServiceImpl = us;
+    }
+
+    @GetMapping("/distance/{idRefugio}")
+    public ResponseEntity<?> getDistance (@RequestBody String direccion, @PathVariable Long idRefugio) {
+        boolean puedeConcretar = false;
+        try {
+            List<Float> coords = utilsServiceImpl.convertirDireccion(direccion);
+            Optional<Refugio> oRefugio = refugioService.findById(idRefugio);
+            if (oRefugio.isPresent()){
+                Refugio r = oRefugio.get();
+                double distancia = utilsServiceImpl.distanciaCoords(coords.get(0),coords.get(1), r.getDireccion().getLatitud(),r.getDireccion().getLongitud());
+                if(distancia < r.getRadioAlcance()) {
+                    puedeConcretar = true;
+                }
+            }
+            else {
+                return ResponseEntity.notFound().build();
+            }
+        } catch (IOException | InterruptedException E) {
+            return ResponseEntity.badRequest().body(E.getMessage());
+        }
+        return ResponseEntity.ok(puedeConcretar);
     }
 
     @GetMapping("/filtros")

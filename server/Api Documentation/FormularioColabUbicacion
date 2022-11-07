@@ -1,0 +1,9 @@
+Obtener si la distancia entre el colaborador y el refugio es menor al radio del refugio
+Método: GET
+Endpoint: http://localhost:8080/api/publicaciones/distance/{idRefugio}
+Body (raw-text):
+"775 Lima, Monserrat, Buenos Aires, Argentina, C1073"
+
+TIENE QUE ESTAR SÍ O SÍ EN ESTE ORDEN Y CON ESAS CARACTERISTICAS.
+
+ALTURA CALLE, BARRIO, PROVINCIA, PAIS, CODIGO POSTAL
