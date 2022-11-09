@@ -1,3 +1,13 @@
 Recuperar Filtros
 Método: GET
 Endpoint: http://localhost:8080/api/publicaciones/filtros
+
+
+Recuperar adopciones ordenados por urgencia
+Método: GET
+Endpoint: http://localhost:8080/api/publicaciones/filtros/urgentes/adopciones
+
+
+Recuperar transitos ordenados por urgencia
+Método: GET
+Endpoint: http://localhost:8080/api/publicaciones/filtros/urgentes/transitos

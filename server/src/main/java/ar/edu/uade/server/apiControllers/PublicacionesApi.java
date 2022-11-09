@@ -21,9 +21,11 @@ import org.springframework.web.bind.annotation.*;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;
 import java.lang.Math;
+import java.util.stream.Collectors;
 
 @CrossOrigin
 @RestController
@@ -47,6 +49,19 @@ public class PublicacionesApi {
             this.refugioService = rs;
             this.donacionService = ds;
             this.utilsServiceImpl = us;
+    }
+    @GetMapping("/filtros/urgentes/adopciones")
+    public ResponseEntity<?> sortAdopcionesUrgentes() {
+        List<PublicacionAnimalCortaView> resultadoA = new ArrayList<>();
+        adopcionService.findAll().stream().sorted(Comparator.comparing(Adopcion::getEsUrgente)).filter(adopcion -> !adopcion.getEstado().equals(EstadoPublicacionAnimalEnum.FINALIZADA)).collect(Collectors.toList()).forEach(adopcion -> resultadoA.add(PublicacionAnimalCortaView.toView(adopcion)));
+        return ResponseEntity.ok(resultadoA);
+    }
+
+    @GetMapping("/filtros/urgentes/transitos")
+    public ResponseEntity<?> sortTransitosUrgentes() {
+        List<PublicacionAnimalCortaView> resultadoT = new ArrayList<>();
+        transitoService.findAll().stream().sorted(Comparator.comparing(Transito::getEsUrgente)).filter(transito -> !transito.getEstado().equals(EstadoPublicacionAnimalEnum.FINALIZADA)).collect(Collectors.toList()).forEach(transito -> resultadoT.add(PublicacionAnimalCortaView.toView(transito)));
+        return ResponseEntity.ok(resultadoT);
     }
 
     @GetMapping("/distance/{idRefugio}")
