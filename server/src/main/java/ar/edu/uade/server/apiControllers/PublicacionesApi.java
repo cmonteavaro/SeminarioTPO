@@ -53,14 +53,14 @@ public class PublicacionesApi {
     @GetMapping("/filtros/urgentes/adopciones")
     public ResponseEntity<?> sortAdopcionesUrgentes() {
         List<PublicacionAnimalCortaView> resultadoA = new ArrayList<>();
-        adopcionService.findAll().stream().sorted(Comparator.comparing(Adopcion::getEsUrgente)).filter(adopcion -> !adopcion.getEstado().equals(EstadoPublicacionAnimalEnum.FINALIZADA)).collect(Collectors.toList()).forEach(adopcion -> resultadoA.add(PublicacionAnimalCortaView.toView(adopcion)));
+        adopcionService.findAll().stream().sorted(Comparator.comparing(Adopcion::getEsUrgente).reversed()).filter(adopcion -> !adopcion.getEstado().equals(EstadoPublicacionAnimalEnum.FINALIZADA)).collect(Collectors.toList()).forEach(adopcion -> resultadoA.add(PublicacionAnimalCortaView.toView(adopcion)));
         return ResponseEntity.ok(resultadoA);
     }
 
     @GetMapping("/filtros/urgentes/transitos")
     public ResponseEntity<?> sortTransitosUrgentes() {
         List<PublicacionAnimalCortaView> resultadoT = new ArrayList<>();
-        transitoService.findAll().stream().sorted(Comparator.comparing(Transito::getEsUrgente)).filter(transito -> !transito.getEstado().equals(EstadoPublicacionAnimalEnum.FINALIZADA)).collect(Collectors.toList()).forEach(transito -> resultadoT.add(PublicacionAnimalCortaView.toView(transito)));
+        transitoService.findAll().stream().sorted(Comparator.comparing(Transito::getEsUrgente).reversed()).filter(transito -> !transito.getEstado().equals(EstadoPublicacionAnimalEnum.FINALIZADA)).collect(Collectors.toList()).forEach(transito -> resultadoT.add(PublicacionAnimalCortaView.toView(transito)));
         return ResponseEntity.ok(resultadoT);
     }
 
