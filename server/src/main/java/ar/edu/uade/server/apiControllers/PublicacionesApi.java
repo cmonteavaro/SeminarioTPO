@@ -50,19 +50,6 @@ public class PublicacionesApi {
             this.donacionService = ds;
             this.utilsServiceImpl = us;
     }
-    @GetMapping("/filtros/urgentes/adopciones")
-    public ResponseEntity<?> sortAdopcionesUrgentes() {
-        List<PublicacionAnimalCortaView> resultadoA = new ArrayList<>();
-        adopcionService.findAll().stream().sorted(Comparator.comparing(Adopcion::getEsUrgente).reversed()).filter(adopcion -> !adopcion.getEstado().equals(EstadoPublicacionAnimalEnum.FINALIZADA)).collect(Collectors.toList()).forEach(adopcion -> resultadoA.add(PublicacionAnimalCortaView.toView(adopcion)));
-        return ResponseEntity.ok(resultadoA);
-    }
-
-    @GetMapping("/filtros/urgentes/transitos")
-    public ResponseEntity<?> sortTransitosUrgentes() {
-        List<PublicacionAnimalCortaView> resultadoT = new ArrayList<>();
-        transitoService.findAll().stream().sorted(Comparator.comparing(Transito::getEsUrgente).reversed()).filter(transito -> !transito.getEstado().equals(EstadoPublicacionAnimalEnum.FINALIZADA)).collect(Collectors.toList()).forEach(transito -> resultadoT.add(PublicacionAnimalCortaView.toView(transito)));
-        return ResponseEntity.ok(resultadoT);
-    }
 
     @GetMapping("/distance/{idRefugio}")
     public ResponseEntity<?> getDistance (@RequestBody String direccion, @PathVariable Long idRefugio) {
@@ -94,7 +81,7 @@ public class PublicacionesApi {
     @GetMapping("/adopciones")
     public ResponseEntity<?> getAllAdopciones() {
         List<PublicacionAnimalCortaView> resultado = new ArrayList<>();
-        adopcionService.findAll().stream().filter(adopcion -> !adopcion.getEstado().equals(EstadoPublicacionAnimalEnum.FINALIZADA)).forEach(adopcion -> resultado.add(PublicacionAnimalCortaView.toView(adopcion)));
+        adopcionService.findAll().stream().sorted(Comparator.comparing(Adopcion::getEsUrgente).reversed()).filter(adopcion -> !adopcion.getEstado().equals(EstadoPublicacionAnimalEnum.FINALIZADA)).collect(Collectors.toList()).forEach(adopcion -> resultado.add(PublicacionAnimalCortaView.toView(adopcion)));
         return ResponseEntity.ok(resultado);
     }
 
@@ -203,7 +190,7 @@ public class PublicacionesApi {
     @GetMapping("/transitos")
     public ResponseEntity<?> getAllTransitos() {
         List<PublicacionAnimalCortaView> resultado = new ArrayList<>();
-        transitoService.findAll().stream().filter(transito -> !transito.getEstado().equals(EstadoPublicacionAnimalEnum.FINALIZADA)).forEach(transito -> resultado.add(PublicacionAnimalCortaView.toView(transito)));
+        transitoService.findAll().stream().sorted(Comparator.comparing(Transito::getEsUrgente).reversed()).filter(transito -> !transito.getEstado().equals(EstadoPublicacionAnimalEnum.FINALIZADA)).collect(Collectors.toList()).forEach(transito -> resultado.add(PublicacionAnimalCortaView.toView(transito)));
         return ResponseEntity.ok(resultado);
     }
 
