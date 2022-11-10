@@ -6,7 +6,7 @@ import java.util.Arrays;
 
 public enum EstadoPublicacionAnimalEnum {
     DISPONIBLE("Disponible"),
-    EN_PROCESO("En Proceso"),
+    EN_PROCESO("En proceso"),
     FINALIZADA("Finalizada");
 
     @Getter
