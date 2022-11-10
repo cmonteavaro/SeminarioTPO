@@ -5,9 +5,9 @@ import lombok.Getter;
 import java.util.Arrays;
 
 public enum EstadoPublicacionAnimalEnum {
-    DISPONIBLE("DISPONIBLE"),
-    EN_PROCESO("EN PROCESO"),
-    FINALIZADA("FINALIZADA");
+    DISPONIBLE("Disponible"),
+    EN_PROCESO("En Proceso"),
+    FINALIZADA("Finalizada");
 
     @Getter
     private String nombre;
