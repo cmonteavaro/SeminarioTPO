@@ -30,9 +30,9 @@ public class Animal {
     private Boolean desparasitado;
     @ElementCollection(fetch = FetchType.EAGER)
     private List<String> galeriaImagenes;
-    public Animal(String nombre, TipoAnimalEnum tipoAnimal) {
+    public Animal(String nombre, String tipoAnimal) {
         this.nombre = nombre;
-        this.tipoAnimal = tipoAnimal;
+        this.tipoAnimal = TipoAnimalEnum.valueOf(tipoAnimal);
         this.galeriaImagenes = new ArrayList<String>();
     }
 
