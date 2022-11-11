@@ -6,17 +6,17 @@ export default function Tag(availability) {
   let variant;
   let text;
   switch (state) {
-    case "DISPONIBLE":
+    case "Disponible":
       color = "lime";
       variant = "dark";
       text = `${state}`;
       break;
-    case "EN PROCESO":
+    case "En proceso":
       color = "yellow";
       variant = "dark";
-      text = "En proceso";
+      text = `${state}`;
       break;
-    case "FINALIZADA":
+    case "Finalizada":
       color = "gray";
       variant = "dark";
       text = `${state}`;

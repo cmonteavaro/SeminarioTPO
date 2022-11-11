@@ -10,7 +10,7 @@ Body: {
             "tamanioActual":"Chico",
             "tamanioEsperado":"Chico",
             "fechaNac":"28/10/2019",
-            "tipoAnimal":"PERRO",
+            "tipoAnimal":"Perro",
             "castrado":false,
             "esquemaCompletoVacunas":true,
             "desparasitado":false
