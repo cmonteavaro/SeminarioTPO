@@ -3,6 +3,7 @@ import "../styles/posts.css";
 import { useEffect, useState } from "react";
 import { Loader } from "@mantine/core";
 import NotFound from "./notFound";
+import AnimalFilters from "../components/animals/animalFilters"
 
 export default function Posts() {
   const [data, setData] = useState([]);
@@ -34,7 +35,9 @@ export default function Posts() {
   } else {
     return (
       <div className="container">
-        {/* <section className="filters"></section> */}
+        <section className="filters">
+          <AnimalFilters/>  
+        </section> 
         <section className="cards">
           <ListAnimals props={data} />
         </section>

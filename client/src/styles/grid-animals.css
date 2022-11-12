@@ -3,7 +3,10 @@
   grid-template-columns: 1fr 1fr 1fr;
   grid-template-rows: 1fr 1fr;
   align-items: stretch;
+  padding-left: 3vw;
+
 }
+
 
 @media (max-width: 1024px) {
   .grid-animales{
