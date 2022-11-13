@@ -55,8 +55,8 @@ public class RefugioApi {
     public ResponseEntity<?> getPublicacionesAdopcion(@PathVariable Long id){
         Optional<Refugio> oRefugio = refugioService.findById(id);
         if (oRefugio.isPresent()){
-            List<AdopcionView> resultado = new ArrayList<>();
-            oRefugio.get().getPublicacionesAdopcion().stream().filter(adopcion -> !adopcion.getEstado().equals(EstadoPublicacionAnimalEnum.FINALIZADA)).forEach(adopcion -> resultado.add(AdopcionView.toView(adopcion)));
+            List<PublicacionAnimalCortaView> resultado = new ArrayList<>();
+            oRefugio.get().getPublicacionesAdopcion().stream().filter(adopcion -> !adopcion.getEstado().equals(EstadoPublicacionAnimalEnum.FINALIZADA)).forEach(adopcion -> resultado.add(PublicacionAnimalCortaView.toView(adopcion)));
             return ResponseEntity.ok(resultado);
         }
         return ResponseEntity.notFound().build();
@@ -66,8 +66,8 @@ public class RefugioApi {
     public ResponseEntity<?> getPublicacionesAdopcionUrgentes(@PathVariable Long id) {
         Optional<Refugio> oRefugio = refugioService.findById(id);
         if (oRefugio.isPresent()){
-            List<AdopcionView> resultado = new ArrayList<>();
-            oRefugio.get().getPublicacionesAdopcion().stream().filter(adopcion -> adopcion.getEsUrgente() && !adopcion.getEstado().equals(EstadoPublicacionAnimalEnum.FINALIZADA)).forEach(adopcion -> resultado.add(AdopcionView.toView(adopcion)));
+            List<PublicacionAnimalCortaView> resultado = new ArrayList<>();
+            oRefugio.get().getPublicacionesAdopcion().stream().filter(adopcion -> adopcion.getEsUrgente() && !adopcion.getEstado().equals(EstadoPublicacionAnimalEnum.FINALIZADA)).forEach(adopcion -> resultado.add(PublicacionAnimalCortaView.toView(adopcion)));
             return ResponseEntity.ok(resultado);
         }
         return ResponseEntity.notFound().build();
@@ -88,8 +88,8 @@ public class RefugioApi {
     public ResponseEntity<?> getPublicacionesTransitoUrgentes(@PathVariable Long id) {
         Optional<Refugio> oRefugio = refugioService.findById(id);
         if (oRefugio.isPresent()){
-            List<TransitoView> resultado = new ArrayList<>();
-            oRefugio.get().getPublicacionesTransito().stream().filter(transito -> transito.getEsUrgente() && !transito.getEstado().equals(EstadoPublicacionAnimalEnum.FINALIZADA)).forEach(transito -> resultado.add(TransitoView.toView(transito)));
+            List<PublicacionAnimalCortaView> resultado = new ArrayList<>();
+            oRefugio.get().getPublicacionesTransito().stream().filter(transito -> transito.getEsUrgente() && !transito.getEstado().equals(EstadoPublicacionAnimalEnum.FINALIZADA)).forEach(transito -> resultado.add(PublicacionAnimalCortaView.toView(transito)));
             return ResponseEntity.ok(resultado);
         }
         return ResponseEntity.notFound().build();
