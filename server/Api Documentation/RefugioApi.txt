@@ -43,10 +43,8 @@ Body: {
               "calle":"Mitre",
               "altura":1984,
               "localidad":"Glew",
-              "codigoPostal":"1878",
-              "provincia":"BSAS",
-              "latitud": "34.8884° S",
-              "longitud": "58.3901° W"
+              "codigoPostal":"C1878",
+              "provincia":"Buenos Aires"
           },
           "perfilRefugio":{
               "fotoPerfil":"pfp.png",

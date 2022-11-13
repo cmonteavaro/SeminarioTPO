@@ -13,3 +13,31 @@
   margin: 1vh;
   text-align: center;
 }
+
+.container{
+  width: 100vw;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.filters{
+  align-self: flex-start;
+  margin-right: 6vw;
+  margin-top: 5vh;
+  height: 100vh;
+}
+
+.filtersContainer{
+  padding: .5vh 3vh;
+  background-color: white;
+  border-radius: 1vh;
+}
+
+.filter-section{
+  margin: 3vh 0;
+}
+
+.checkbox{
+  margin: 0.5vh;
+}

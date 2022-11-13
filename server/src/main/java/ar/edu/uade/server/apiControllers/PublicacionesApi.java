@@ -6,29 +6,26 @@ import ar.edu.uade.server.DTO.DonacionDTO;
 import ar.edu.uade.server.DTO.TransitoDTO;
 import ar.edu.uade.server.DTO.VoluntarioDTO;
 import ar.edu.uade.server.exceptions.RefugioException;
-import ar.edu.uade.server.model.Adopcion;
-import ar.edu.uade.server.model.Refugio;
-import ar.edu.uade.server.service.RefugioService;
-import ar.edu.uade.server.model.PublicacionDonacion;
-import ar.edu.uade.server.model.Transito;
+import ar.edu.uade.server.model.*;
+import ar.edu.uade.server.service.*;
 import ar.edu.uade.server.model.enums.EstadoPublicacionAnimalEnum;
-import ar.edu.uade.server.service.DonacionService;
-import ar.edu.uade.server.service.TransitoService;
 import ar.edu.uade.server.views.*;
-import ar.edu.uade.server.model.PublicacionVoluntariado;
-import ar.edu.uade.server.service.AdopcionService;
-import ar.edu.uade.server.service.EmailServiceImpl;
-import ar.edu.uade.server.service.VoluntarioService;
 import ar.edu.uade.server.views.AdopcionView;
 import ar.edu.uade.server.views.VoluntariadoView;
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;
+import java.lang.Math;
+import java.util.stream.Collectors;
 
 @CrossOrigin
 @RestController
@@ -41,21 +38,50 @@ public class PublicacionesApi {
     private final EmailServiceImpl emailService;
     private final RefugioService refugioService;
     private final DonacionService donacionService;
+    private final UtilsServiceImpl utilsServiceImpl;
 
     @Autowired
-    public PublicacionesApi (VoluntarioService vs, AdopcionService as, TransitoService ts, RefugioService rs, DonacionService ds, EmailServiceImpl es){
+    public PublicacionesApi (VoluntarioService vs, AdopcionService as, TransitoService ts, RefugioService rs, DonacionService ds, EmailServiceImpl es, UtilsServiceImpl us){
             this.adopcionService = as;
             this.voluntarioService = vs;
             this.emailService = es;
             this.transitoService = ts;
             this.refugioService = rs;
             this.donacionService = ds;
+            this.utilsServiceImpl = us;
+    }
+
+    @GetMapping("/distance/{idRefugio}")
+    public ResponseEntity<?> getDistance (@RequestBody String direccion, @PathVariable Long idRefugio) {
+        boolean puedeConcretar = false;
+        try {
+            List<Float> coords = utilsServiceImpl.convertirDireccion(direccion);
+            Optional<Refugio> oRefugio = refugioService.findById(idRefugio);
+            if (oRefugio.isPresent()){
+                Refugio r = oRefugio.get();
+                double distancia = utilsServiceImpl.distanciaCoords(coords.get(0),coords.get(1), r.getDireccion().getLatitud(),r.getDireccion().getLongitud());
+                if(distancia < r.getRadioAlcance()) {
+                    puedeConcretar = true;
+                }
+            }
+            else {
+                return ResponseEntity.notFound().build();
+            }
+        } catch (IOException | InterruptedException E) {
+            return ResponseEntity.badRequest().body(E.getMessage());
+        }
+        return ResponseEntity.ok(puedeConcretar);
+    }
+
+    @GetMapping("/filtros")
+    public ResponseEntity<?> getAllAtributos () {
+        return ResponseEntity.ok(AtributosView.toView());
     }
 
     @GetMapping("/adopciones")
     public ResponseEntity<?> getAllAdopciones() {
         List<PublicacionAnimalCortaView> resultado = new ArrayList<>();
-        adopcionService.findAll().stream().filter(adopcion -> !adopcion.getEstado().equals(EstadoPublicacionAnimalEnum.FINALIZADA)).forEach(adopcion -> resultado.add(PublicacionAnimalCortaView.toView(adopcion)));
+        adopcionService.findAll().stream().sorted(Comparator.comparing(Adopcion::getEsUrgente).reversed()).filter(adopcion -> !adopcion.getEstado().equals(EstadoPublicacionAnimalEnum.FINALIZADA)).collect(Collectors.toList()).forEach(adopcion -> resultado.add(PublicacionAnimalCortaView.toView(adopcion)));
         return ResponseEntity.ok(resultado);
     }
 
@@ -156,12 +182,14 @@ public class PublicacionesApi {
     public ResponseEntity<?> postulacionAdopcion(@PathVariable Long id, @RequestBody FormularioDTO formularioDTO) {
         Optional<Adopcion> oAdopcion = adopcionService.findById(id);
         if (oAdopcion.isPresent()) {
-            if (emailService.sendMailDTO(formularioDTO, oAdopcion.get())) {
+            try {
+                emailService.sendMailToRefugioDTO(formularioDTO, oAdopcion.get());
+                emailService.sendMailToPostulanteDTO(formularioDTO, oAdopcion.get());
                 return ResponseEntity.ok().build();
-            } else {
-                return ResponseEntity.internalServerError().build();
+            }catch (Exception e){
+                return ResponseEntity.internalServerError().body(e.getMessage());
             }
-        }else {
+        } else {
             return ResponseEntity.notFound().build();
         }
     }
@@ -169,7 +197,7 @@ public class PublicacionesApi {
     @GetMapping("/transitos")
     public ResponseEntity<?> getAllTransitos() {
         List<PublicacionAnimalCortaView> resultado = new ArrayList<>();
-        transitoService.findAll().stream().filter(transito -> !transito.getEstado().equals(EstadoPublicacionAnimalEnum.FINALIZADA)).forEach(transito -> resultado.add(PublicacionAnimalCortaView.toView(transito)));
+        transitoService.findAll().stream().sorted(Comparator.comparing(Transito::getEsUrgente).reversed()).filter(transito -> !transito.getEstado().equals(EstadoPublicacionAnimalEnum.FINALIZADA)).collect(Collectors.toList()).forEach(transito -> resultado.add(PublicacionAnimalCortaView.toView(transito)));
         return ResponseEntity.ok(resultado);
     }
 
@@ -256,16 +284,17 @@ public class PublicacionesApi {
     }
 
     @PostMapping("/transitos/{id}/postular")
-    public ResponseEntity<?> postulacionTransito(@PathVariable Long id, @RequestBody FormularioDTO formularioDTO) {
+    public ResponseEntity<?> postulacionTransito(@PathVariable Long id, @RequestBody FormularioDTO formularioDTO) throws RefugioException {
         Optional<Transito> oTransito = transitoService.findById(id);
         if (oTransito.isPresent()) {
-            if (emailService.sendMailDTO(formularioDTO,oTransito.get())){
+            try {
+                emailService.sendMailToRefugioDTO(formularioDTO, oTransito.get());
+                emailService.sendMailToPostulanteDTO(formularioDTO, oTransito.get());
                 return ResponseEntity.ok().build();
-            }else {
-                return ResponseEntity.internalServerError().build();
+            }catch (Exception e){
+                return ResponseEntity.internalServerError().body(e.getMessage());
             }
-        }
-        else {
+        } else {
             return ResponseEntity.notFound().build();
         }
     }
@@ -325,10 +354,12 @@ public class PublicacionesApi {
     public ResponseEntity<?> postulacionVoluntariado(@PathVariable Long id, @RequestBody FormularioDTO formularioDTO) {
         Optional<PublicacionVoluntariado> oVoluntariado = voluntarioService.findById(id);
         if (oVoluntariado.isPresent()) {
-            if (emailService.sendMailDTO(formularioDTO, oVoluntariado.get())) {
+            try {
+                emailService.sendMailToRefugioDTO(formularioDTO, oVoluntariado.get());
+                emailService.sendMailToPostulanteDTO(formularioDTO, oVoluntariado.get());
                 return ResponseEntity.ok().build();
-            } else {
-                return ResponseEntity.internalServerError().build();
+            } catch (Exception e) {
+                return ResponseEntity.internalServerError().body(e.getMessage());
             }
         } else {
             return ResponseEntity.notFound().build();

@@ -16,7 +16,7 @@ public class AnimalDTO {
     private String tamanioActual;
     private String tamanioEsperado;
     private String fechaNac;
-    private TipoAnimalEnum tipoAnimal;
+    private String tipoAnimal;
     private Boolean castrado;
     private Boolean esquemaCompletoVacunas;
     private Boolean desparasitado;
@@ -29,7 +29,7 @@ public class AnimalDTO {
         animal.setTamanioActual(TamanioEnum.getEnum(this.tamanioActual));
         animal.setTamanioEsperado(TamanioEnum.getEnum(this.tamanioEsperado));
         animal.setFechaNac(LocalDate.parse(this.fechaNac, dateFormatter));
-        animal.setTipoAnimal(this.tipoAnimal);
+        animal.setTipoAnimal(TipoAnimalEnum.getEnum(this.tipoAnimal));
         animal.setCastrado(this.castrado);
         animal.setEsquemaCompletoVacunas(this.esquemaCompletoVacunas);
         animal.setDesparasitado(this.desparasitado);
