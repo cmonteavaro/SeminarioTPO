@@ -29,9 +29,15 @@
 }
 
 .filtersContainer{
-  padding: 1vh;
+  padding: .5vh 3vh;
+  background-color: white;
+  border-radius: 1vh;
 }
 
 .filter-section{
   margin: 3vh 0;
+}
+
+.checkbox{
+  margin: 0.5vh;
 }
