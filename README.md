@@ -15,7 +15,7 @@ https://miro.com/app/board/uXjVPbe2wTA=/
 https://www.figma.com/file/Jwn4YliaJq730FsuOujdyy/Refugios
 
 ### API Requests
-https://sipidreamteam.postman.co/workspace/My-Workspace~0b342eac-88c4-47c3-8592-4278ad809be9/overview
+https://sipidreamteam.postman.co/workspace/SIPI-Refugios~e3ef586f-d1d5-44ee-a814-bc298803a52e/overview
 
 ## Data
 
