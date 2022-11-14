@@ -1,3 +1,0 @@
-Recuperar Filtros
-Método: GET
-Endpoint: http://localhost:8080/api/publicaciones/filtros
