@@ -135,4 +135,12 @@ class ServerApplicationTests {
             }
         }
     }
+
+    @Test
+    void agregarCorreoARefugios(){
+        for (Refugio r: refugioService.findAll()){
+            r.setCorreo("zoe.landeyro@gmail.com");
+            refugioService.save(r);
+        }
+    }
 }
