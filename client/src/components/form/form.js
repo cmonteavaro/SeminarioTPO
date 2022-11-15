@@ -14,27 +14,27 @@ async function sendForm(url = "", data = {}) {
     body: JSON.stringify(data),
   });
 
-  return response.json();
+  return alert(response.status===200? "Postulacion enviada con exito": "Error al enviar la postulacion");
 }
 
 export default function Form(data) {
   const form = useForm({
     validate: {
-      email: (value) =>
+      correo: (value) =>
         /^\S+@\S+$/.test(value) ? null : "Correo Electronico no valido.",
 
-      tel: (value) =>
+      telefono: (value) =>
         value.length < 10 && value.length > 11
           ? "Coloque su numero de telefono con codigo de area, sin 0 y sin 15."
           : null,
 
-      firstName: (value) =>
+      nombre: (value) =>
         value.length < 2 ? "El nombre debe de ser minimo 3 letras." : null,
 
-      lastName: (value) =>
+      apellido: (value) =>
         value.length < 2 ? "El apellido debe de ser minimo 3 letras." : null,
 
-      location: (value) =>
+      direccion: (value) =>
         value.length < 5 ? "Coloque una direccion valida." : null,
     },
   });
@@ -66,35 +66,36 @@ export default function Form(data) {
               withAsterisk
               label="Nombre"
               placeholder="Jhon"
-              {...form.getInputProps("firstName")}
+              {...form.getInputProps("nombre")}
             />
             <TextInput
               withAsterisk
               label="Apellido"
               placeholder="Doe"
-              {...form.getInputProps("lastName")}
+              {...form.getInputProps("apellido")}
             />
             <TextInput
               withAsterisk
               label="Telefono"
               placeholder="2995763899"
-              {...form.getInputProps("tel")}
+              {...form.getInputProps("telefono")}
             />
             <TextInput
               withAsterisk
               label="Direccion"
               placeholder="Lima 775, CABA, Buenos Aires"
-              {...form.getInputProps("location")}
+              {...form.getInputProps("direccion")}
             />
             <TextInput
               withAsterisk
               label="Email"
               placeholder="jhondoe@correo.com"
-              {...form.getInputProps("email")}
+              {...form.getInputProps("correo")}
             />
             <Textarea
               placeholder="Agregue información extra si lo considera necesario"
               label="Nota"
+              {...form.getInputProps("notas")}
             />
 
             <Group position="right" mt="md">

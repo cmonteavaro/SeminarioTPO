@@ -151,8 +151,9 @@ class ServerApplicationTests {
             System.out.println("--------------------");
             System.out.println(r.getId());
             System.out.println(r.getNombre());
+            System.out.println(r.getCorreo());
             System.out.println("Cantidad actual urgentes: "+r.getCantidadUrgentes());
-            System.out.println("Cantidad maxima urgentes: "+(r.getPublicacionesAdopcion().size()+r.getPublicacionesTransito().size())*0.2);
+            System.out.println("Cantidad maxima urgentes: "+Math.ceil((r.getPublicacionesAdopcion().size()+r.getPublicacionesTransito().size())*0.2));
             System.out.println("Pub adopcion: "+r.getPublicacionesAdopcion().size());
             System.out.println("Pub transito: "+r.getPublicacionesTransito().size());
             System.out.println("Pub donacion: "+r.getPublicacionesDonacionesNoMonetarias().size());
