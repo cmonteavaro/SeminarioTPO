@@ -67,19 +67,21 @@ export default function Posts() {
   if (data.length < 1) {
     return <NotFound />;
   } else {
-    console.log(filtersDict);
     return (
-      <div className="container">
-        <section className="filters">
-          <AnimalFilters
-            filtros={filtersJSON}
-            callback={handleCheckboxToggle}
-          />
-        </section>
-        <section className="cards">
-          <ListAnimals props={data} />
-        </section>
-      </div>
+      <>
+        <h2>Conocelos</h2>
+        <div className="grid-posts">
+          <section className="filters">
+            <AnimalFilters
+              filtros={filtersJSON}
+              callback={handleCheckboxToggle}
+            />
+          </section>
+          <section className="cards">
+            <ListAnimals props={data} />
+          </section>
+        </div>
+      </>
     );
   }
 }
