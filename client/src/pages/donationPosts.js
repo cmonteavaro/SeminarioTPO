@@ -24,7 +24,9 @@ export default function DonationPosts() {
         <div className="loader">
           <Loader color="lime" />
         </div>
-        <h3>Estamos buscando a todos los posteos de donaciones para presentarte 😊</h3>
+        <h3>
+          Estamos buscando a todos los posteos de donaciones para presentarte 😊
+        </h3>
       </div>
     );
   }
@@ -34,9 +36,8 @@ export default function DonationPosts() {
   } else {
     return (
       <div className="container">
-        <section className="filters"></section>
         <section className="cards">
-            <ListDonations props={data} />
+          <ListDonations props={data} />
         </section>
       </div>
     );

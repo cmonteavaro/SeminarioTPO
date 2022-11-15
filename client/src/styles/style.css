@@ -45,3 +45,7 @@ a {
   /* Esto lo cambie porque sinceramente no veo un carajo */
   color: gray;
 }
+
+main {
+  padding: 0 2vw;
+}

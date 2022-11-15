@@ -2,24 +2,19 @@ import { Loader } from "@mantine/core";
 import { useEffect, useState } from "react";
 import ListTransits from "../components/transit/transitCards";
 import NotFound from "./notFound";
-import "../styles/transit.css";
-
-const data = [
-  {
-    nombreAnimal: "Coco",
-    estadoPublicacion: "Disponible",
-    esUrgente: false,
-    nombreRefugio: "Zaguates",
-  },
-];
 
 export default function Transits() {
-  // const [data, setData] = useState([]);
+  const [data, setData] = useState([]);
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     setLoading(true);
-    setTimeout(setLoading(false), 5000);
+    fetch(`http://localhost:8080/api/publicaciones/transitos`)
+      .then((e) => e.json())
+      .then((d) => {
+        return setData(d);
+      })
+      .finally(() => setLoading(false));
   }, []);
 
   if (loading) {
@@ -37,7 +32,7 @@ export default function Transits() {
     return <NotFound />;
   } else {
     return (
-      <div className="container">
+      <div className="own-container">
         <section className="cards">
           <ListTransits props={data} />
         </section>

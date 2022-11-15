@@ -9,8 +9,6 @@ import { IoMdPaw } from "react-icons/io";
 import { FaCarAlt } from "react-icons/fa";
 
 export default function VolunteerCard({ voluntario }) {
-  const route = `/volunteer_posts/${voluntario.id}`;
-
   return (
     <div className="card">
       <div className="card-heading">
@@ -32,9 +30,7 @@ export default function VolunteerCard({ voluntario }) {
         </div>
       </div>
       <div className="card-center">
-        <div className="card-descripcion-voluntario">
-          <p>{voluntario.descripcion}</p>
-        </div>
+        <p>{voluntario.descripcion}</p>
       </div>
       <div className="card-bottom">
         <div className="card-shelter">
@@ -42,7 +38,7 @@ export default function VolunteerCard({ voluntario }) {
           <h6>{voluntario.nombreRefugio}</h6>
         </div>
         <div className="card-right-info">
-          <Link to={route} className="btn-info">
+          <Link to={`/volunteer_posts/${voluntario.id}`} className="btn-info">
             Postularse
           </Link>
         </div>

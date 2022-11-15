@@ -2,9 +2,8 @@ import Zaguates from "../images/shelters/zaguates.webp";
 import Coco from "../images/coco.webp";
 import Tag from "../components/badge/badge";
 import { FaInstagram, FaFacebook, FaTwitter } from "react-icons/fa";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
-// import { useParams } from "react-router-dom";
 import { Loader } from "@mantine/core";
 import NotFound from "./notFound";
 
@@ -19,37 +18,22 @@ function isTrue(estado) {
 }
 
 export default function TransitDetail() {
-  const fecha = new Date();
-  const data = {
-    animal: {
-      nombre: "Coco",
-      tamanioActual: "Mediano",
-      edad: "5 meses",
-      castrado: true,
-      desparasitado: true,
-    },
-    estadoPublicacion: "Disponible",
-    esUrgente: false,
-    nombreRefugio: "Zaguates",
-    descripcion: "lorem transitooo",
-    fechaPublicacion: `${fecha.getDate()}/${fecha.getMonth()}/${fecha.getFullYear()}`,
-    puedeConvivirConInfantes: true,
-    puedeConvivirConCachorros: true,
-    puedeConvivirConGatos: true,
-    puedeConvivirConPerrosAdultos: true,
-  };
-  //   const [data, setData] = useState([]);
+  const [data, setData] = useState([]);
   const [loading, setLoading] = useState(false);
   //   const [showModal, setShowModal] = useState(false);
   //   const [showForm, setShowForm] = useState(false);
 
-  //   const { id } = useParams();
+  const { id } = useParams();
 
   useEffect(() => {
     setLoading(true);
-    setTimeout(setLoading(false), 5000);
+    fetch(`http://localhost:8080/api/publicaciones/transitos/${id}`)
+      .then((e) => e.json())
+      .then((d) => {
+        return setData(d);
+      })
+      .finally(() => setLoading(false));
   }, []);
-
   if (loading) {
     return (
       <div className="loading">
@@ -60,20 +44,6 @@ export default function TransitDetail() {
       </div>
     );
   }
-
-  //   // retrieve the restrictions
-
-  //   let animalRestrictions = {
-  //     convivirConCachorros: data.puedeConvivirConCachorros,
-  //     convivirConInfantes: data.puedeConvivirConInfantes,
-  //     convivirConGatos: data.puedeConvivirConGatos,
-  //     convivirConPerrosAdultos: data.puedeConvivirConPerrosAdultos,
-  //   };
-
-  //   // if the animal has any restriction we need to show the modal before going to the form
-  //   let animalRestrictionsFiltered = Object.entries(animalRestrictions).filter(
-  //     ([key, value]) => value === false
-  //   );
 
   if (data.length < 1) return <NotFound />;
   return (

@@ -71,20 +71,43 @@
   margin: 1vh 0 1vh 0;
 }
 
-@media(max-width: 768px){
-  .hero{
-    margin: 1vh 0 0 0;
-    height: 50vh;
-    width: 100vw;
-  }
+.grid-profile {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
 }
 
-@media(max-width: 600px){
-  .logo-name-location{
+@media (max-width: 768px) {
+  .heading-shelter {
+    display: flex;
     flex-direction: column;
   }
 
-  .links-shelter{
+  .hero {
+    margin: 1vh 0 0 0;
+    height: 35vh;
+    width: 95vw;
+  }
+  .grid-profile {
+    grid-template-columns: 1fr;
+  }
+  .caroussel {
+    display: none;
+  }
+
+  .donate {
+    align-self: center;
+  }
+}
+
+@media (max-width: 600px) {
+  .logo-name-location {
+    flex-direction: column;
+  }
+
+  .links-shelter {
     justify-content: end;
+  }
+  .donate {
+    width: 100px;
   }
 }

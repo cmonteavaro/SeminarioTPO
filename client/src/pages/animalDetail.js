@@ -1,5 +1,4 @@
 import Zaguates from "../images/shelters/zaguates.webp";
-import Coco from "../images/coco.webp";
 import Tag from "../components/badge/badge";
 import { FaInstagram, FaFacebook, FaTwitter } from "react-icons/fa";
 import { Link } from "react-router-dom";
@@ -62,6 +61,7 @@ export default function AnimalDetail() {
   );
 
   if (data.length < 1) return <NotFound />;
+  console.log(data);
   return (
     <main className="animal-detail">
       <div>
@@ -71,7 +71,11 @@ export default function AnimalDetail() {
       </div>
       <section className="detail">
         <section className="images-detail">
-          <img src={Coco} className="image-detail-big" alt="Imagen animal" />
+          <img
+            src={data.animal.galeriaImagenes[0]}
+            className="image-detail-big"
+            alt="Imagen animal"
+          />
         </section>
         <section className="info-detail">
           <div className="info-detail-wrapper">
@@ -82,7 +86,7 @@ export default function AnimalDetail() {
               </p>
             </div>
             <div className="info-detail-urgente">
-              <Tag state={data.esUrgente}/>
+              <Tag state={data.esUrgente} />
             </div>
             <div className="info-detail-status">
               <Tag state={data.estadoPublicacion} />
@@ -118,7 +122,7 @@ export default function AnimalDetail() {
             <p className="property">
               Medicacion: <span className="property-info">{"Si"}</span>
             </p>
-            
+
             <div>
               <p className="property">
                 Puede convivir con:

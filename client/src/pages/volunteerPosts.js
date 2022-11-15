@@ -37,7 +37,6 @@ export default function VolunteerPosts() {
   } else {
     return (
       <div className="container">
-        <section className="filters"></section>
         <section className="cards">
           <ListVolunteers props={data} />
         </section>

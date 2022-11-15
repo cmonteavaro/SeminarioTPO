@@ -31,7 +31,7 @@ function App() {
             <Route path="/voluntariados" element={<VolunteerPosts />} />
             <Route path="/donation_posts" element={<DonationPosts />} />
             <Route path="/transitos" element={<Transits />} />
-            <Route path="/transitos/coco" element={<TransitDetail />} />
+            <Route path="/transitos/:id" element={<TransitDetail />} />
             <Route path="/refugios/" element={<Shelters />} />
             <Route path="/refugios/:id" element={<Profile />} />
             <Route path="/acerca" element={<About />} />
