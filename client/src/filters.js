@@ -17,6 +17,7 @@ const filterByTipoAnimal = (data, options) => {
 };
 
 const filterByTamanioActual = (data, options) => {
+	//TODO
 	//Options es el array de las opciones seleccionadas
 	if (options.length === 0) {
 		return data;
