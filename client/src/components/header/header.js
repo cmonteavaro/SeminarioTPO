@@ -1,33 +1,41 @@
-import "./header.css";
 import { Link, useMatch, useResolvedPath } from "react-router-dom";
 import Logo from "../../images/LogoMiRefugio.png";
+// import "bootstrap/dist/css/bootstrap.min.css";
+import "./header.scss";
+import Nav from "react-bootstrap/Nav";
+import Navbar from "react-bootstrap/Navbar";
+import NavDropdown from "react-bootstrap/NavDropdown";
 
 export default function NavBar() {
   return (
-    <header class="header">
-      <nav className="navegacion">
-        <Link to="/" className="link">
+    <header>
+      <Navbar bg="light" expand="lg">
+        <Navbar.Brand className="logo" href="/">
           <img className="logo-img" src={Logo} alt="Perro y Gato mirandose" />
-        </Link>
-        <input class="menu-btn" type="checkbox" id="menu-btn" />
-        <label class="menu-icon" for="menu-btn">
-          <span class="navicon"></span>
-        </label>
-        <ul class="menu">
-          <li>
+        </Navbar.Brand>
+        <Navbar.Toggle aria-controls="basic-navbar-nav" />
+        <Navbar.Collapse id="basic-navbar-nav">
+          <Nav className="me-auto">
             <CustomLink to="/">Inicio</CustomLink>
-          </li>
-          <li>
-            <CustomLink to="/publicaciones">Publicaciones</CustomLink>
-          </li>
-          <li>
+            <NavDropdown title="Publicaciones" id="basic-nav-dropdown">
+              <NavDropdown.Item>
+                <CustomLink to="/publicaciones">Adopciones</CustomLink>
+              </NavDropdown.Item>
+              <NavDropdown.Item>
+                <CustomLink to="/transitos">Transitos</CustomLink>
+              </NavDropdown.Item>
+              <NavDropdown.Item>
+                <CustomLink to="/donation_posts">Donaciones</CustomLink>
+              </NavDropdown.Item>
+              <NavDropdown.Item>
+                <CustomLink to="/voluntariados">Voluntariados</CustomLink>
+              </NavDropdown.Item>
+            </NavDropdown>
             <CustomLink to="/refugios">Refugios</CustomLink>
-          </li>
-          <li>
             <CustomLink to="/acerca">Acerca de</CustomLink>
-          </li>
-        </ul>
-      </nav>
+          </Nav>
+        </Navbar.Collapse>
+      </Navbar>
     </header>
   );
 }
