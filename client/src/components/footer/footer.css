@@ -9,7 +9,7 @@ footer {
   margin-bottom: auto;
 }
 
-.container {
+footer .container {
   display: flex;
   flex-direction: column;
   justify-content: center;

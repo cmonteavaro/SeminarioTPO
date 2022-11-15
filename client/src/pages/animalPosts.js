@@ -3,7 +3,7 @@ import "../styles/posts.css";
 import { useEffect, useState } from "react";
 import { Loader } from "@mantine/core";
 import NotFound from "./notFound";
-import AnimalFilters from "../components/animals/animalFilters"
+import AnimalFilters from "../components/animals/animalFilters";
 
 export default function Posts() {
   const [data, setData] = useState([]);
@@ -16,35 +16,41 @@ export default function Posts() {
     setLoading(true);
     Promise.all([
       fetch(`http://localhost:8080/api/publicaciones/adopciones`),
-      fetch(`http://localhost:8080/api/publicaciones/filtros`)
+      fetch(`http://localhost:8080/api/publicaciones/filtros`),
     ])
-    .then(([resAdopciones, resFiltros]) => 
-      Promise.all([resAdopciones.json(), resFiltros.json()])
-    )
-    .then(([dataAdopciones, dataFiltros]) => {
-      setData(dataAdopciones);
-      setfiltersJSON(dataFiltros);
-    })
-    .finally(() => setLoading(false));
+      .then(([resAdopciones, resFiltros]) =>
+        Promise.all([resAdopciones.json(), resFiltros.json()])
+      )
+      .then(([dataAdopciones, dataFiltros]) => {
+        setData(dataAdopciones);
+        setfiltersJSON(dataFiltros);
+      })
+      .finally(() => setLoading(false));
   }, []);
 
   // Pass the filters into an array
   useEffect(() => {
-    if (typeof filtersJSON !== 'undefined'){
-        filtersJSON.multivalores.TipoAnimalEnum.map(filtro => setFiltersDict(prevState => ({...prevState, [filtro]: false })));
-        filtersJSON.multivalores.TamanioEnum.map(filtro => setFiltersDict(prevState => ({...prevState, [filtro]: false })));
-        filtersJSON.booleanos.map(filtro => setFiltersDict(prevState => ({...prevState, [filtro]: false })));
-        setFiltersDict(prevState => ({...prevState, ['Es urgente']: false }));
+    if (typeof filtersJSON !== "undefined") {
+      filtersJSON.multivalores.TipoAnimalEnum.map((filtro) =>
+        setFiltersDict((prevState) => ({ ...prevState, [filtro]: false }))
+      );
+      filtersJSON.multivalores.TamanioEnum.map((filtro) =>
+        setFiltersDict((prevState) => ({ ...prevState, [filtro]: false }))
+      );
+      filtersJSON.booleanos.map((filtro) =>
+        setFiltersDict((prevState) => ({ ...prevState, [filtro]: false }))
+      );
+      setFiltersDict((prevState) => ({ ...prevState, ["Es urgente"]: false }));
     }
   }, [data]);
 
   // Callback function called on AnimalFilters to change the state of the filter given
-  function handleCheckboxToggle(event){
+  function handleCheckboxToggle(event) {
     const value = event.currentTarget.value;
     const checked = event.currentTarget.checked;
     let filtros = filtersDict;
     filtros[value] = checked;
-    setFiltersDict(filtros);  
+    setFiltersDict(filtros);
   }
 
   if (loading) {
@@ -61,12 +67,15 @@ export default function Posts() {
   if (data.length < 1) {
     return <NotFound />;
   } else {
-    console.log(filtersDict)
+    console.log(filtersDict);
     return (
       <div className="container">
         <section className="filters">
-          <AnimalFilters filtros={filtersJSON} callback={handleCheckboxToggle}/>  
-        </section> 
+          <AnimalFilters
+            filtros={filtersJSON}
+            callback={handleCheckboxToggle}
+          />
+        </section>
         <section className="cards">
           <ListAnimals props={data} />
         </section>
