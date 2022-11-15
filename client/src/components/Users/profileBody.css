@@ -44,15 +44,13 @@
   margin: 2vh 0 2vh 0;
 }
 
-.go-back-profile {
-  padding: 2vw;
+.go-back-detail {
+  padding: 1vh;
   font-weight: bold;
-  /* Nos va a seguir el go back? */
-  /* position: fixed;
-  z-index: 3;
   background-color: green;
+  border: 0px transparent solid;
   color: white;
-  padding: 1vw 2vw; */
+  border-radius: 1vh;
 }
 
 .hero {

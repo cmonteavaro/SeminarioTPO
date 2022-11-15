@@ -38,7 +38,7 @@ export default function DonationCard({ donacion }) {
           <h6>{donacion.nombreRefugio}</h6>
         </div>
         <div className="card-right-info">
-          <Link to={`/refugees/${donacion.idRefugio}`} className="btn-info">
+          <Link to={`/refugios/${donacion.idRefugio}`} className="btn-info">
             Contactarse
           </Link>
         </div>

@@ -7,10 +7,8 @@ import { useEffect, useState } from "react";
 import { Loader } from "@mantine/core";
 import NotFound from "./notFound";
 
-// import Modal from "../components/animals/modalPreForm";
-// import Form from "../components/form/form";
-
 import "../styles/animalDetail.css";
+import FormTran from "../components/form/formTran";
 
 function isTrue(estado) {
   if (estado) return "Si";
@@ -20,8 +18,7 @@ function isTrue(estado) {
 export default function TransitDetail() {
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(false);
-  //   const [showModal, setShowModal] = useState(false);
-  //   const [showForm, setShowForm] = useState(false);
+  const [showForm, setShowForm] = useState(false);
 
   const { id } = useParams();
 
@@ -149,30 +146,18 @@ export default function TransitDetail() {
               </div>
             </div>
             <div className="info-detail-button">
-              <button
-                className="btn-adopt"
-                // onClick={() =>
-                //   animalRestrictionsFiltered.length > 0
-                //     ? setShowModal(true)
-                //     : setShowForm(true)
-                // }
-              >
+              <button className="btn-adopt" onClick={() => setShowForm(true)}>
                 {" "}
                 Transitar
               </button>
             </div>
           </div>
         </section>
-        {/* <Modal
-          show={showModal}
-          animalRestrictions={animalRestrictions}
-          onClose={() => setShowModal(false)}
-          openForm={() => {
-            setShowForm(true);
-            setShowModal(false);
-          }}
+        <FormTran
+          show={showForm}
+          data={data}
+          onClose={() => setShowForm(false)}
         />
-        <Form show={showForm} data={data} onClose={() => setShowForm(false)} /> */}
       </section>
     </main>
   );

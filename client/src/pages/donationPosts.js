@@ -35,7 +35,7 @@ export default function DonationPosts() {
     return <NotFound />;
   } else {
     return (
-      <div className="container">
+      <div>
         <section className="cards">
           <ListDonations props={data} />
         </section>

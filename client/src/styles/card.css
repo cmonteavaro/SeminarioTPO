@@ -178,6 +178,21 @@
   border-radius: 10px;
 }
 
+.btn-adopt {
+  height: 5vh;
+  width: 10vw;
+  border-radius: 1vw;
+  border: 0px solid black;
+  background-color: green;
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.btn-adopt:hover {
+  opacity: 0.8;
+}
+
 @media (max-width: 1024px) {
   .card-right svg {
     width: 2vw;
@@ -186,6 +201,9 @@
 
   .btn-info {
     border-radius: 1vh;
+  }
+  .btn-adopt {
+    width: 15vw;
   }
 }
 
@@ -201,5 +219,10 @@
   .btn-info {
     width: 120px;
     margin-right: 5px;
+  }
+  .btn-adopt {
+    margin-top: 2vh;
+    width: 30vw;
+    height: 5vh;
   }
 }

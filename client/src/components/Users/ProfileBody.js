@@ -15,7 +15,7 @@ import Five from "../../images/carousel/5.jpg";
 
 // Import estilos
 import "./profileBody.css";
-import { Link, useParams } from "react-router-dom";
+import { Link, Navigate, useNavigate, useParams } from "react-router-dom";
 import AnimalCard from "../animals/animalCard";
 import TransitCard from "../transit/transitCard";
 import VolunteerCard from "../volunteers/volunteerCard";
@@ -30,6 +30,7 @@ const ProfileBody = ({ refugio }) => {
   const [vol, setVol] = useState([]);
   const [don, setDon] = useState([]);
   const { id } = useParams();
+  const navigate = useNavigate();
 
   useEffect(() => {
     fetch(
@@ -85,9 +86,9 @@ const ProfileBody = ({ refugio }) => {
 
   return (
     <section>
-      <Link to="/refugios" className="go-back-profile">
+      <button className="go-back-detail" onClick={() => navigate(-1)}>
         {"<"} Volver atras
-      </Link>
+      </button>
       <img className="hero" src={Five} alt="Imagen animal" />
       <section className="basic">
         <section className="heading-shelter">

@@ -1,7 +1,7 @@
 import Zaguates from "../images/shelters/zaguates.webp";
 import Tag from "../components/badge/badge";
 import { FaInstagram, FaFacebook, FaTwitter } from "react-icons/fa";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { Loader } from "@mantine/core";
@@ -18,6 +18,7 @@ function isTrue(estado) {
 }
 
 export default function AnimalDetail() {
+  const navigate = useNavigate();
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(false);
   const [showModal, setShowModal] = useState(false);
@@ -61,13 +62,13 @@ export default function AnimalDetail() {
   );
 
   if (data.length < 1) return <NotFound />;
-  console.log(data);
+
   return (
     <main className="animal-detail">
       <div>
-        <Link to="/publicaciones" className="go-back-detail">
+        <button className="go-back-detail" onClick={() => navigate(-1)}>
           {"<"} Volver atras
-        </Link>
+        </button>
       </div>
       <section className="detail">
         <section className="images-detail">
