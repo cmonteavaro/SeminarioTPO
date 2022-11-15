@@ -32,4 +32,6 @@ Obtener todas las publicaciones de donaciones activas
 Método: GET
 Endpoint: http://localhost:8080/api/publicaciones/donaciones
 
-
+Obtener una publicacion de donacion
+Método: GET
+Endpoint: http://localhost:8080/api/publicaciones/donaciones/{id}

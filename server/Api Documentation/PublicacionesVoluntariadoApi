@@ -1,0 +1,49 @@
+Crear una Publicacion de Voluntariado
+Método: POST
+Endpoint: http://localhost:8080/api/publicaciones/voluntariados
+Body: {
+          "tipo":"FOTOGRAFIA",
+          "titulo":"Buscamos voluntarios!",
+          "descripcion":"En nuestro refugio estamos necesitando voluntarios para sacarle fotos a nuestros animalitos",
+          "idRefugio":1,
+          "fechaPublicacion":"14/10/2022"
+      }
+
+Modificar una Publicación de Voluntariado
+Método: PUT
+Endpoint: http://localhost:8080/api/publicaciones/voluntariados
+Body:{
+          "tipo":"TRANSPORTE",
+          "titulo":"Buscamos Transporte!",
+          "descripcion":"En nuestro refugio estamos necesitando voluntarios para sacarle fotos a nuestros animalitos",
+          "idRefugio":1,
+          "fechaPublicacion":"14/10/2022"
+     }
+
+Obtener todas las publicaciones de voluntariados activas
+Método: GET
+Endpoint: http://localhost:8080/api/publicaciones/voluntariados
+
+Obtener una publicacion de voluntariado
+Método: GET
+Endpoint: http://localhost:8080/api/publicaciones/voluntariados/{id}
+
+Cambiar estado de la publicacion de voluntariados (activa/cerrada)
+Método: PUT
+Endpoint: http://localhost:8080/api/publicaciones/voluntariados/{id}/cambiarEstado
+Ejemplo Body (raw-JSON):
+    true
+
+Postularse a una publicacion de voluntariado
+Metodo: POST
+Endpoint: http://localhost:8080/api/publicaciones/voluntariados/{id}/postular
+Body:
+{
+    "nombre":"Juan",
+    "apellido":"Doe",
+    "telefono":"1123456789",
+    "direccion":"Lima 557",
+    "correo":"juan.doe@gmial.com",
+    "notas":"Me gustan mucho los pichichos"
+}
+

@@ -14,32 +14,33 @@ Cambiar estado a una publicacion de Adopcion en particular (ID)
 Método: PUT
 Endpoint: http://localhost:8080/api/publicaciones/adopciones/{id}/cambiarEstado
 Body (Text/JSON): --> IMPORTANTE: SIN COMILLAS! PRIMERA LETRA MAYUS, RESTO MINUS
-En proceso
+    En proceso
+
 
 Cambiar urgencia a una publicacion de Adopcion en particular (ID)
 Método: PUT
 Endpoint: http://localhost:8080/api/publicaciones/adopciones/{id}/cambiarUrgencia
 Body (JSON):
-true
+    true
 
 Crear una publicacion de adopcion
 Método: POST
 Endpoint: http://localhost:8080/api/publicaciones/adopciones
 Body:
 {
-"descripcion":"Carlitos es muy tranquilo, le gusta jugar con sus muñecos",
-"idAnimal":12,
-"idRefugio":2,
-"necesitaPatio":true,
-"puedeConvivirConInfantes":false,
-"puedeConvivirConGatos":false,
-"puedeConvivirConCachorros":true,
-"puedeConvivirConPerrosAdultos":true,
-"requiereHogarAmplio":true,
-"transporteCubierto":true,
-"esUrgente":false,
-"fechaPublicacion":"07/06/2022",
-"estado":"En proceso",
+    "descripcion":"Carlitos es muy tranquilo, le gusta jugar con sus muñecos",
+    "idAnimal":12,
+    "idRefugio":2,
+    "necesitaPatio":true,
+    "puedeConvivirConInfantes":false,
+    "puedeConvivirConGatos":false,
+    "puedeConvivirConCachorros":true,
+    "puedeConvivirConPerrosAdultos":true,
+    "requiereHogarAmplio":true,
+    "transporteCubierto":true,
+    "esUrgente":false,
+    "fechaPublicacion":"07/06/2022",
+    "estado":"En proceso",
 }
 
 Modificar una publicacion de adopcion
@@ -47,18 +48,31 @@ Método: PUT
 Endpoint: http://localhost:8080/api/publicaciones/adopciones
 Body:
 {
-"idPublicacion": 19
-"descripcion":"Carlitos es muy tranquilo, le encanta jugar con chicos y que lo saquen a pasear",
-"idAnimal":12,
-"idRefugio":2,
-"necesitaPatio":true,
-"puedeConvivirConInfantes":true,
-"puedeConvivirConGatos":false,
-"puedeConvivirConCachorros":true,
-"puedeConvivirConPerrosAdultos":true,
-"requiereHogarAmplio":true,
-"transporteCubierto":true,
-"esUrgente":false,
-"fechaPublicacion":"07/06/2022",
-"estado":"En proceso",
+    "idPublicacion": 19
+    "descripcion":"Carlitos es muy tranquilo, le encanta jugar con chicos y que lo saquen a pasear",
+    "idAnimal":12,
+    "idRefugio":2,
+    "necesitaPatio":true,
+    "puedeConvivirConInfantes":true,
+    "puedeConvivirConGatos":false,
+    "puedeConvivirConCachorros":true,
+    "puedeConvivirConPerrosAdultos":true,
+    "requiereHogarAmplio":true,
+    "transporteCubierto":true,
+    "esUrgente":false,
+    "fechaPublicacion":"07/06/2022",
+    "estado":"En proceso",
+}
+
+Postularse a una publicacion de adopcion
+Metodo: POST
+Endpoint: http://localhost:8080/api/publicaciones/adopciones/{id}/postular
+Body:
+{
+    "nombre":"Juan",
+    "apellido":"Doe",
+    "telefono":"1123456789",
+    "direccion":"Lima 557",
+    "correo":"juan.doe@gmial.com",
+    "notas":"Me gustan mucho los pichichos"
 }
