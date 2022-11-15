@@ -1,22 +1,12 @@
 package ar.edu.uade.server;
 
 import ar.edu.uade.server.model.*;
-import ar.edu.uade.server.model.enums.EstadoPublicacionAnimalEnum;
-import ar.edu.uade.server.model.enums.TamanioEnum;
-import ar.edu.uade.server.model.enums.TipoAnimalEnum;
-import ar.edu.uade.server.model.enums.TipoRedSocialEnum;
 import ar.edu.uade.server.repository.RepositoryODB;
 import ar.edu.uade.server.service.*;
-//import ar.edu.uade.server.service.EmailServiceImpl;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
-import javax.persistence.Persistence;
-import javax.persistence.PersistenceUtil;
-import javax.sound.midi.Soundbank;
-import java.sql.Ref;
-import java.time.LocalDate;
 import java.util.*;
 
 @SpringBootTest
@@ -34,19 +24,86 @@ class ServerApplicationTests {
     @Autowired
     TransitoService transitoService;
 
+    @Autowired
+    DonacionService donacionService;
+
+    @Autowired
+    VoluntarioService voluntariadoService;
+
     @Test
     void contextLoads() {
     }
 
     @Test
-    public void asociarAdopcionesaRefugio() {
+    public void normalizarPublicaciones(){
+        for (Refugio refugio : refugioService.findAll()){
+            refugio.setPublicacionesAdopcion(new ArrayList<>());
+            refugio.setPublicacionesTransito(new ArrayList<>());
+            refugio.setPublicacionesDonacionesNoMonetarias(new ArrayList<>());
+            refugio.setPublicacionesVoluntariado(new ArrayList<>());
+            refugioService.save(refugio);
+        }
+        asociarAdopcionesYRefugios();
+        asociarTransitosYRefugios();
+        asociarDonacionesYRefugios();
+        asociarVoluntariadosYRefugios();
+    }
+
+    @Test
+    public void asociarAdopcionesYRefugios() {
         for (Adopcion adopcion : adopcionService.findAll()) {
+            System.out.println("---------------");
             System.out.println("ID Adopcion:" + adopcion.getId());
             System.out.println("ID Refugio:" + adopcion.getRefugio().getId());
             Optional<Refugio> optionalRefugio = refugioService.findById(adopcion.getRefugio().getId());
             if (optionalRefugio.isPresent()) {
                 Refugio refugio = optionalRefugio.get();
                 refugio.agregarPublicacionAdopcion(adopcion);
+                refugioService.save(refugio);
+                System.out.println("Publicacion agregada al refugio");
+            }
+        }
+    }
+    @Test
+    public void asociarTransitosYRefugios() {
+        for (Transito transito : transitoService.findAll()) {
+            System.out.println("---------------");
+            System.out.println("ID Transito:" + transito.getId());
+            System.out.println("ID Refugio:" + transito.getRefugio().getId());
+            Optional<Refugio> optionalRefugio = refugioService.findById(transito.getRefugio().getId());
+            if (optionalRefugio.isPresent()) {
+                Refugio refugio = optionalRefugio.get();
+                refugio.agregarPublicacionTransito(transito);
+                refugioService.save(refugio);
+                System.out.println("Publicacion agregada al refugio");
+            }
+        }
+    }
+    @Test
+    public void asociarDonacionesYRefugios() {
+        for (PublicacionDonacion donacion : donacionService.findAll()) {
+            System.out.println("---------------");
+            System.out.println("ID Donacion:" + donacion.getId());
+            System.out.println("ID Refugio:" + donacion.getRefugio().getId());
+            Optional<Refugio> optionalRefugio = refugioService.findById(donacion.getRefugio().getId());
+            if (optionalRefugio.isPresent()) {
+                Refugio refugio = optionalRefugio.get();
+                refugio.agregarPublicacionDonacion(donacion);
+                refugioService.save(refugio);
+                System.out.println("Publicacion agregada al refugio");
+            }
+        }
+    }
+    @Test
+    public void asociarVoluntariadosYRefugios() {
+        for (PublicacionVoluntariado voluntariado : voluntariadoService.findAll()) {
+            System.out.println("---------------");
+            System.out.println("ID Voluntariado:" + voluntariado.getId());
+            System.out.println("ID Refugio:" + voluntariado.getRefugio().getId());
+            Optional<Refugio> optionalRefugio = refugioService.findById(voluntariado.getRefugio().getId());
+            if (optionalRefugio.isPresent()) {
+                Refugio refugio = optionalRefugio.get();
+                refugio.agregarPublicacionVoluntariado(voluntariado);
                 refugioService.save(refugio);
                 System.out.println("Publicacion agregada al refugio");
             }
@@ -97,7 +154,6 @@ class ServerApplicationTests {
             System.out.println("Cantidad actual urgentes: "+r.getCantidadUrgentes());
             System.out.println("Cantidad maxima urgentes: "+(r.getPublicacionesAdopcion().size()+r.getPublicacionesTransito().size())*0.2);
             System.out.println("Pub adopcion: "+r.getPublicacionesAdopcion().size());
-            r.getPublicacionesAdopcion().forEach(a -> System.out.println((a == null ? "Nulo" : a.getId())));
             System.out.println("Pub transito: "+r.getPublicacionesTransito().size());
             System.out.println("Pub donacion: "+r.getPublicacionesDonacionesNoMonetarias().size());
             System.out.println("Pub voluntariado: "+r.getPublicacionesVoluntariado().size());
