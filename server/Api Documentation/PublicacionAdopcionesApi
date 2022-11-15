@@ -28,19 +28,19 @@ Método: POST
 Endpoint: http://localhost:8080/api/publicaciones/adopciones
 Body:
 {
-    "descripcion":"Carlitos es muy tranquilo, le gusta jugar con sus muñecos",
-    "idAnimal":12,
-    "idRefugio":2,
+    "descripcion":"Luke es pequeño y mimoso",
+    "idAnimal":8,
+    "idRefugio":34,
     "necesitaPatio":true,
-    "puedeConvivirConInfantes":false,
-    "puedeConvivirConGatos":false,
+    "puedeConvivirConInfantes":true,
+    "puedeConvivirConGatos":true,
     "puedeConvivirConCachorros":true,
     "puedeConvivirConPerrosAdultos":true,
     "requiereHogarAmplio":true,
     "transporteCubierto":true,
     "esUrgente":false,
-    "fechaPublicacion":"07/06/2022",
-    "estado":"En proceso",
+    "fechaPublicacion":"09/09/2022",
+    "estado":"EN PROCESO"
 }
 
 Modificar una publicacion de adopcion
@@ -49,19 +49,19 @@ Endpoint: http://localhost:8080/api/publicaciones/adopciones
 Body:
 {
     "idPublicacion": 19
-    "descripcion":"Carlitos es muy tranquilo, le encanta jugar con chicos y que lo saquen a pasear",
-    "idAnimal":12,
-    "idRefugio":2,
+    "descripcion":"Luke es pequeño y mimoso",
+    "idAnimal":8,
+    "idRefugio":34,
     "necesitaPatio":true,
     "puedeConvivirConInfantes":true,
-    "puedeConvivirConGatos":false,
+    "puedeConvivirConGatos":true,
     "puedeConvivirConCachorros":true,
     "puedeConvivirConPerrosAdultos":true,
     "requiereHogarAmplio":true,
     "transporteCubierto":true,
     "esUrgente":false,
-    "fechaPublicacion":"07/06/2022",
-    "estado":"En proceso",
+    "fechaPublicacion":"09/09/2022",
+    "estado":"EN PROCESO"
 }
 
 Postularse a una publicacion de adopcion
