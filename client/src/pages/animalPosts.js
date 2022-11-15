@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import { Loader } from "@mantine/core";
 import NotFound from "./notFound";
 import AnimalFilters from "../components/animals/animalFilters";
-import applyFilters from "../filters";
+import { applyFilters, init as filtersInit } from "../filters";
 
 export default function Posts() {
 	const [dataDisplay, setDataDisplay] = useState([]);
@@ -19,12 +19,16 @@ export default function Posts() {
 		Promise.all([
 			fetch(`http://localhost:8080/api/publicaciones/adopciones`),
 			fetch(`http://localhost:8080/api/publicaciones/filtros`),
+			fetch("http://localhost:8080/api/publicaciones/adopciones/fullView"),
 		])
-			.then(([resAdopciones, resFiltros]) => Promise.all([resAdopciones.json(), resFiltros.json()]))
-			.then(([dataAdopciones, dataFiltros]) => {
+			.then(([resAdopciones, resFiltros, resFullView]) =>
+				Promise.all([resAdopciones.json(), resFiltros.json(), resFullView.json()])
+			)
+			.then(([dataAdopciones, dataFiltros, dataFullView]) => {
 				setDataDisplay(dataAdopciones);
 				setDataFull(dataAdopciones);
 				setfiltersJSON(dataFiltros);
+				filtersInit(dataFullView);
 			})
 			.finally(() => setLoading(false));
 	}, []);
@@ -64,9 +68,7 @@ export default function Posts() {
 		let filtros = filtersDict;
 		filtros[value] = checked;
 		setFiltersDict(filtros);
-		console.log("Cambio de filtros");
-		console.log(filtersDict);
-		setDataDisplay(applyFilters([...dataFull], filtersDict));
+		setDataDisplay(applyFilters([...dataFull], { ...filtersDict }));
 	}
 
 	if (loading) {
@@ -83,8 +85,6 @@ export default function Posts() {
 	if (dataFull.length < 1) {
 		return <NotFound />;
 	} else {
-		console.log("data Display");
-		console.log(dataDisplay);
 		return (
 			<div className="container">
 				<section className="filters">

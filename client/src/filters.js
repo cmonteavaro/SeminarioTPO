@@ -1,92 +1,79 @@
+const noFilter = (data) => {
+	console.log("Parametro no filtrable");
+	return data;
+};
+
 const filterByEstadoPublicacion = (data, options) => {
-	//TODO
-	//Options es el array de las opciones seleccionadas
-	//Data es la publicacion COMPLETA del animal
+	//No tiene implementacion visual
 	return data.filter((element) => options.includes(element.estadoPublicacion));
 };
 
-const filterByTamanioActual = (data, options) => {
-	//TODO
+const filterByTipoAnimal = (data, options) => {
 	//Options es el array de las opciones seleccionadas
-	//Data es la publicacion COMPLETA del animal
+	if (options.length === 0) {
+		return data;
+	}
+	return data.filter((element) => options.includes(element.animal.tipoAnimal));
+};
+
+const filterByTamanioActual = (data, options) => {
+	//Options es el array de las opciones seleccionadas
+	if (options.length === 0) {
+		return data;
+	}
 	return data.filter((element) => options.includes(element.animal.tamanioActual));
 };
 
 const filterByTamanioEsperado = (data, options) => {
-	//TODO
+	//No tiene implementacion visual
 	//Options es el array de las opciones seleccionadas
-	//Data es la publicacion COMPLETA del animal
 	return data.filter((element) => options.includes(element.animal.tamanioEsperado));
 };
 
 const filterByEdad = (data, min, max) => {
-	//TODO
+	//No tiene implementacion visual
 	//Min y max definen el rango de edad
-	//Data es la publicacion COMPLETA del animal
 	return data.filter((element) => element.animal.edadInteger >= min && element.animal.edadInteger <= max);
 };
 
-const filterByUrgente = (data, option) => {
-	//Data es la publicacion COMPLETA del animal
-	if (option) {
-		return data.filter((element) => element.esUrgente);
-	}
+const filterByUrgente = (data) => {
+	return data.filter((element) => element.esUrgente);
 };
 
-const filterByNecesitaPatio = (data, option) => {
-	//Data es la publicacion COMPLETA del animal
-	return option ? data.filter((element) => element.necesitaPatio) : data.filter((element) => !element.necesitaPatio);
+const filterByNecesitaPatio = (data) => {
+	return data.filter((element) => element.necesitaPatio);
 };
 
-const filterByPuedeConvivirConInfantes = (data, option) => {
-	//Data es la publicacion COMPLETA del animal
-	return option
-		? data.filter((element) => element.puedeConvivirConInfantes)
-		: data.filter((element) => !element.puedeConvivirConInfantes);
+const filterByPuedeConvivirConInfantes = (data) => {
+	return data.filter((element) => element.puedeConvivirConInfantes);
 };
 
-const filterByPuedeConvivirConGatos = (data, option) => {
-	//Data es la publicacion COMPLETA del animal
-	return option
-		? data.filter((element) => element.puedeConvivirConGatos)
-		: data.filter((element) => !element.puedeConvivirConGatos);
+const filterByPuedeConvivirConGatos = (data) => {
+	return data.filter((element) => element.puedeConvivirConGatos);
 };
 
-const filterByPuedeConvivirConCachorros = (data, option) => {
-	//Data es la publicacion COMPLETA del animal
-	return option
-		? data.filter((element) => element.puedeConvivirConCachorros)
-		: data.filter((element) => !element.puedeConvivirConCachorros);
+const filterByPuedeConvivirConCachorros = (data) => {
+	return data.filter((element) => element.puedeConvivirConCachorros);
 };
 
-const filterByPuedeConvivirConPerrosAdultos = (data, option) => {
-	//Data es la publicacion COMPLETA del animal
-	return option
-		? data.filter((element) => element.puedeConvivirConPerrosAdultos)
-		: data.filter((element) => !element.puedeConvivirConPerrosAdultos);
+const filterByPuedeConvivirConPerrosAdultos = (data) => {
+	return data.filter((element) => element.puedeConvivirConPerrosAdultos);
 };
 
-const filterByRequiereHogarAmplio = (data, option) => {
-	//Data es la publicacion COMPLETA del animal
-	return option
-		? data.filter((element) => element.requiereHogarAmplio)
-		: data.filter((element) => !element.requiereHogarAmplio);
+const filterByRequiereHogarAmplio = (data) => {
+	return data.filter((element) => element.requiereHogarAmplio);
 };
 
-const filterByTransporteCubierto = (data, option) => {
-	//Data es la publicacion COMPLETA del animal
-	return option
-		? data.filter((element) => element.requiereHogarAmplio)
-		: data.filter((element) => !element.requiereHogarAmplio);
+const filterByTransporteCubierto = (data) => {
+	return data.filter((element) => element.requiereHogarAmplio);
 };
 
-const init = async () => {
-	await fetch("http://localhost:8080/api/publicaciones/adopciones/fullView")
-		.then((res) => res.json())
-		.then((json) => (fullData = json));
+const init = (data) => {
+	fullData = data;
 };
 
 const config = {
+	//Publicacion
 	"Es urgente": filterByUrgente,
 	"Necesita patio": filterByNecesitaPatio,
 	"Puede convivir con infantes": filterByPuedeConvivirConInfantes,
@@ -95,25 +82,48 @@ const config = {
 	"Puede convivir con perros adultos": filterByPuedeConvivirConPerrosAdultos,
 	"Requiere hogar amplio": filterByRequiereHogarAmplio,
 	"Transporte cubierto": filterByTransporteCubierto,
+
+	//No filter (no se puede/debe filtrar por estos parametros)
+	"Gastos alimentacion cubiertos": noFilter,
+	"Gastos medicos cubiertos": noFilter,
+	Castrado: noFilter,
+	"Esquema completo vacunas": noFilter,
+	Desparasitado: noFilter,
 };
 
-let fullData = [];
-
-init();
+let fullData;
 
 const applyFilters = (data, filters) => {
+	const tamanios = [];
+	filters["Chico"] && tamanios.push("Chico");
+	filters["Mediano"] && tamanios.push("Mediano");
+	filters["Grande"] && tamanios.push("Grande");
+	filters["Indefinido"] && tamanios.push("Indefinido");
+	delete filters["Chico"];
+	delete filters["Mediano"];
+	delete filters["Grande"];
+	delete filters["Indefinido"];
+
+	const tipoAnimal = [];
+	filters["Gato"] && tipoAnimal.push("Gato");
+	filters["Perro"] && tipoAnimal.push("Perro");
+	delete filters["Gato"];
+	delete filters["Perro"];
+
 	let spreadFullData = [...fullData];
-	console.log("spreadfulldata");
-	console.log(spreadFullData);
+	//filtra tipo animal y tamanio
+	spreadFullData = filterByTamanioActual(spreadFullData, tamanios);
+	spreadFullData = filterByTipoAnimal(spreadFullData, tipoAnimal);
+
+	//fitra booleanos
 	for (const [key, value] of Object.entries(filters)) {
 		if (value) {
-			spreadFullData = config[key](spreadFullData, value);
+			spreadFullData = config[key](spreadFullData);
 		}
 	}
+
 	const filteredIds = spreadFullData.map((item) => item.idPublicacion);
-	console.log("Filtered ids");
-	console.log(filteredIds);
 	return data.filter((item) => filteredIds.includes(item.idPublicacion));
 };
 
-export default applyFilters;
+export { applyFilters, init };
