@@ -19,18 +19,22 @@ export default function Posts() {
 		Promise.all([
 			fetch(`http://localhost:8080/api/publicaciones/adopciones`),
 			fetch(`http://localhost:8080/api/publicaciones/filtros`),
-			fetch("http://localhost:8080/api/publicaciones/adopciones/fullView"),
-		])
-			.then(([resAdopciones, resFiltros, resFullView]) =>
-				Promise.all([resAdopciones.json(), resFiltros.json(), resFullView.json()])
+			])
+			.then(([resAdopciones, resFiltros]) =>
+				Promise.all([resAdopciones.json(), resFiltros.json()])
 			)
-			.then(([dataAdopciones, dataFiltros, dataFullView]) => {
+			.then(([dataAdopciones, dataFiltros]) => {
 				setDataDisplay(dataAdopciones);
 				setDataFull(dataAdopciones);
 				setfiltersJSON(dataFiltros);
-				filtersInit(dataFullView);
 			})
-			.finally(() => setLoading(false));
+			.finally(() => {
+				fetch("http://localhost:8080/api/publicaciones/adopciones/fullView")
+				.then((res) => res.json())
+				.then((dataFullView)=>{
+					filtersInit(dataFullView);
+					setLoading(false);})
+			});
 	}, []);
 
 	// Pass the filters into an array
@@ -82,7 +86,7 @@ export default function Posts() {
 		);
 	}
 
-  if (data.length < 1) {
+  if (dataFull.length < 1) {
     return <NotFound />;
   } else {
     return (
