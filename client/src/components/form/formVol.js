@@ -1,5 +1,6 @@
 import { TextInput, Group, Textarea } from "@mantine/core";
 import { useForm } from "@mantine/form";
+import "./form.css";
 
 async function sendForm(url = "", data = {}) {
   const response = await fetch(url, {
@@ -17,7 +18,7 @@ async function sendForm(url = "", data = {}) {
   return alert(response.status===200? "Postulacion enviada con exito": "Error al enviar la postulacion");
 }
 
-export default function Form(data) {
+export default function FormExample(data) {
   const form = useForm({
     validate: {
       correo: (value) =>
@@ -46,7 +47,7 @@ export default function Form(data) {
     <div className="form">
       <div className="form-content">
         <div className="form-header">
-          <h2>Formulario Adopcion</h2>
+          <h2>Formulario Voluntariado</h2>
           <button class="btn-exit" onClick={data.onClose}>
             X
           </button>
@@ -55,7 +56,7 @@ export default function Form(data) {
           <form
             onSubmit={form.onSubmit((values) =>
               sendForm(
-                `http://localhost:8080/api/publicaciones/adopciones/${data.data.idPublicacion}/postular`,
+                `http://localhost:8080/api/publicaciones/voluntariados/${data.data.idPublicacion}/postular`,
                 values
               )
                 .then((data) => console.log(data))

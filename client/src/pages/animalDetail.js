@@ -1,8 +1,7 @@
 import Zaguates from "../images/shelters/zaguates.webp";
-import Coco from "../images/coco.webp";
 import Tag from "../components/badge/badge";
 import { FaInstagram, FaFacebook, FaTwitter } from "react-icons/fa";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { Loader } from "@mantine/core";
@@ -19,6 +18,7 @@ function isTrue(estado) {
 }
 
 export default function AnimalDetail() {
+  const navigate = useNavigate();
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(false);
   const [showModal, setShowModal] = useState(false);
@@ -62,16 +62,21 @@ export default function AnimalDetail() {
   );
 
   if (data.length < 1) return <NotFound />;
+
   return (
     <main className="animal-detail">
       <div>
-        <Link to="/publicaciones" className="go-back-detail">
+        <button className="go-back-detail" onClick={() => navigate(-1)}>
           {"<"} Volver atras
-        </Link>
+        </button>
       </div>
       <section className="detail">
         <section className="images-detail">
-          <img src={Coco} className="image-detail-big" alt="Imagen animal" />
+          <img
+            src={data.animal.galeriaImagenes[0]}
+            className="image-detail-big"
+            alt="Imagen animal"
+          />
         </section>
         <section className="info-detail">
           <div className="info-detail-wrapper">
@@ -82,7 +87,7 @@ export default function AnimalDetail() {
               </p>
             </div>
             <div className="info-detail-urgente">
-              <Tag state={data.esUrgente}/>
+              <Tag state={data.esUrgente} />
             </div>
             <div className="info-detail-status">
               <Tag state={data.estadoPublicacion} />
@@ -118,7 +123,7 @@ export default function AnimalDetail() {
             <p className="property">
               Medicacion: <span className="property-info">{"Si"}</span>
             </p>
-            
+
             <div>
               <p className="property">
                 Puede convivir con:

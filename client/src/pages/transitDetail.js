@@ -2,16 +2,13 @@ import Zaguates from "../images/shelters/zaguates.webp";
 import Coco from "../images/coco.webp";
 import Tag from "../components/badge/badge";
 import { FaInstagram, FaFacebook, FaTwitter } from "react-icons/fa";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
-// import { useParams } from "react-router-dom";
 import { Loader } from "@mantine/core";
 import NotFound from "./notFound";
 
-// import Modal from "../components/animals/modalPreForm";
-// import Form from "../components/form/form";
-
 import "../styles/animalDetail.css";
+import FormTran from "../components/form/formTran";
 
 function isTrue(estado) {
   if (estado) return "Si";
@@ -19,37 +16,21 @@ function isTrue(estado) {
 }
 
 export default function TransitDetail() {
-  const fecha = new Date();
-  const data = {
-    animal: {
-      nombre: "Coco",
-      tamanioActual: "Mediano",
-      edad: "5 meses",
-      castrado: true,
-      desparasitado: true,
-    },
-    estadoPublicacion: "Disponible",
-    esUrgente: false,
-    nombreRefugio: "Zaguates",
-    descripcion: "lorem transitooo",
-    fechaPublicacion: `${fecha.getDate()}/${fecha.getMonth()}/${fecha.getFullYear()}`,
-    puedeConvivirConInfantes: true,
-    puedeConvivirConCachorros: true,
-    puedeConvivirConGatos: true,
-    puedeConvivirConPerrosAdultos: true,
-  };
-  //   const [data, setData] = useState([]);
+  const [data, setData] = useState([]);
   const [loading, setLoading] = useState(false);
-  //   const [showModal, setShowModal] = useState(false);
-  //   const [showForm, setShowForm] = useState(false);
+  const [showForm, setShowForm] = useState(false);
 
-  //   const { id } = useParams();
+  const { id } = useParams();
 
   useEffect(() => {
     setLoading(true);
-    setTimeout(setLoading(false), 5000);
+    fetch(`http://localhost:8080/api/publicaciones/transitos/${id}`)
+      .then((e) => e.json())
+      .then((d) => {
+        return setData(d);
+      })
+      .finally(() => setLoading(false));
   }, []);
-
   if (loading) {
     return (
       <div className="loading">
@@ -60,20 +41,6 @@ export default function TransitDetail() {
       </div>
     );
   }
-
-  //   // retrieve the restrictions
-
-  //   let animalRestrictions = {
-  //     convivirConCachorros: data.puedeConvivirConCachorros,
-  //     convivirConInfantes: data.puedeConvivirConInfantes,
-  //     convivirConGatos: data.puedeConvivirConGatos,
-  //     convivirConPerrosAdultos: data.puedeConvivirConPerrosAdultos,
-  //   };
-
-  //   // if the animal has any restriction we need to show the modal before going to the form
-  //   let animalRestrictionsFiltered = Object.entries(animalRestrictions).filter(
-  //     ([key, value]) => value === false
-  //   );
 
   if (data.length < 1) return <NotFound />;
   return (
@@ -179,30 +146,18 @@ export default function TransitDetail() {
               </div>
             </div>
             <div className="info-detail-button">
-              <button
-                className="btn-adopt"
-                // onClick={() =>
-                //   animalRestrictionsFiltered.length > 0
-                //     ? setShowModal(true)
-                //     : setShowForm(true)
-                // }
-              >
+              <button className="btn-adopt" onClick={() => setShowForm(true)}>
                 {" "}
                 Transitar
               </button>
             </div>
           </div>
         </section>
-        {/* <Modal
-          show={showModal}
-          animalRestrictions={animalRestrictions}
-          onClose={() => setShowModal(false)}
-          openForm={() => {
-            setShowForm(true);
-            setShowModal(false);
-          }}
+        <FormTran
+          show={showForm}
+          data={data}
+          onClose={() => setShowForm(false)}
         />
-        <Form show={showForm} data={data} onClose={() => setShowForm(false)} /> */}
       </section>
     </main>
   );

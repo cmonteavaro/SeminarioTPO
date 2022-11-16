@@ -1,0 +1,73 @@
+@import "../../../node_modules/bootstrap/scss/functions";
+@import "../../../node_modules/bootstrap/scss/variables";
+@import "../../../node_modules/bootstrap/scss/mixins";
+@import "../../../node_modules/bootstrap/scss/dropdown";
+@import "../../../node_modules/bootstrap/scss/nav";
+@import "../../../node_modules/bootstrap/scss/navbar";
+@import "../../../node_modules/bootstrap/scss/transitions";
+
+.filters {
+  nav {
+    background-color: white;
+    border-radius: 1vh;
+  }
+}
+
+.filtersContainer {
+  padding: 0.5vh 3vh;
+  background-color: white;
+  border-radius: 1vh;
+}
+
+.filter-section {
+  margin: 2vh 0.7vw;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 3px;
+  label {
+    padding: 0 2px;
+  }
+  &-container {
+    h4 {
+      text-align: center;
+    }
+    margin: 1vh 1vw;
+  }
+}
+
+.checkbox {
+  margin: 0.5vh;
+}
+
+.navbar-collapse.collapse {
+  justify-content: center;
+  width: 100%;
+}
+
+.filtros {
+  h3 {
+    text-align: center;
+  }
+  &-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .filtros {
+    &-container {
+      flex-direction: column;
+    }
+  }
+
+  .filter-section {
+    &-container {
+      h4 {
+        text-align: start;
+      }
+      margin: 0;
+    }
+  }
+}

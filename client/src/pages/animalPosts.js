@@ -82,22 +82,28 @@ export default function Posts() {
 		);
 	}
 
-	if (dataFull.length < 1) {
-		return <NotFound />;
-	} else {
-		return (
-			<div className="container">
-				<section className="filters">
-					<AnimalFilters filtros={filtersJSON} callback={handleCheckboxToggle} />
-				</section>
-				<section className="cards">
-					{dataDisplay.length < 1 ? (
+  if (data.length < 1) {
+    return <NotFound />;
+  } else {
+    return (
+      <>
+        <h2>Conocelos</h2>
+        <div className="grid-posts">
+          <section className="filters">
+            <AnimalFilters
+              filtros={filtersJSON}
+              callback={handleCheckboxToggle}
+            />
+          </section>
+          <section className="cards">
+            {dataDisplay.length < 1 ? (
 						<p> No se encontraron publicaciones para tu busqueda</p>
 					) : (
 						<ListAnimals props={dataDisplay} />
 					)}
-				</section>
-			</div>
-		);
-	}
+          </section>
+        </div>
+      </>
+    );
+  }
 }

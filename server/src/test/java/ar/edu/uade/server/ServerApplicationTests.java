@@ -1,26 +1,13 @@
 package ar.edu.uade.server;
 
 import ar.edu.uade.server.model.*;
-import ar.edu.uade.server.model.enums.EstadoPublicacionAnimalEnum;
-import ar.edu.uade.server.model.enums.TamanioEnum;
-import ar.edu.uade.server.model.enums.TipoAnimalEnum;
-import ar.edu.uade.server.model.enums.TipoRedSocialEnum;
 import ar.edu.uade.server.repository.RepositoryODB;
 import ar.edu.uade.server.service.*;
-//import ar.edu.uade.server.service.EmailServiceImpl;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
-import javax.persistence.Persistence;
-import javax.persistence.PersistenceUtil;
-import javax.sound.midi.Soundbank;
-import java.sql.Ref;
-import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.Locale;
-import java.util.Optional;
+import java.util.*;
 
 @SpringBootTest
 class ServerApplicationTests {
@@ -37,210 +24,39 @@ class ServerApplicationTests {
     @Autowired
     TransitoService transitoService;
 
-//    @Autowired EmailServiceImpl emailService;
+    @Autowired
+    DonacionService donacionService;
+
+    @Autowired
+    VoluntarioService voluntariadoService;
 
     @Test
     void contextLoads() {
     }
 
     @Test
-    void animalTest(){
-//        ---- Creacion ----
-//        Animal a = new Animal();
-//        a.setNombre("Kali");
-//        a.setTamanioActual(TamanioEnum.CHICO);
-//        a.setTamanioEsperado(TamanioEnum.CHICO);
-////        a.setFechaNac(new LocalDate(2021,11,21));
-//        a.setTipoAnimal(TipoAnimalEnum.PERRO);
-//        a.setCastrado(false);
-//        a.setEsquemaCompletoVacunas(true);
-//        a.setDesparasitado(true);
-//        System.out.println( animalService.save(a));
-
-        Animal a = new Animal();
-        a.setNombre("Milanesa");
-        a.setTamanioActual(TamanioEnum.CHICO);
-        a.setTamanioEsperado(TamanioEnum.CHICO);
-//        a.setFechaNac(new LocalDate(2021,11,21));
-        a.setTipoAnimal(TipoAnimalEnum.PERRO);
-        a.setCastrado(false);
-        a.setEsquemaCompletoVacunas(true);
-        a.setDesparasitado(true);
-        Long l = animalService.save(a);
-        System.out.println(l);
-
-//        ---- Recuperacion de todos ----
-//        for (Animal animal: animalService.findAll()){
-//            System.out.println(animal.getNombre());
-//            //System.out.println(a.getFechaNac().getDayOfMonth());
-//            System.out.println(animal.getTamanioActual());
-//            System.out.println(animal.getId());
-//        };
-
-//        ---- Recuperacion de uno ----
-        /*
-        Optional<Animal> oa = RepositoryODB.getInstancia().findById(Animal.class,1);
-        if (oa.isPresent()) {
-            Animal a = oa.get();
-            System.out.println(a.getNombre());
-            System.out.println(a.getFechaNac().getDay());
-            System.out.println(a.getTamanioActual());
-            System.out.println(a.getId());
-        }else{
-            System.err.println("Animal no encontrado");
+    public void normalizarPublicaciones(){
+        for (Refugio refugio : refugioService.findAll()){
+            refugio.setPublicacionesAdopcion(new ArrayList<>());
+            refugio.setPublicacionesTransito(new ArrayList<>());
+            refugio.setPublicacionesDonacionesNoMonetarias(new ArrayList<>());
+            refugio.setPublicacionesVoluntariado(new ArrayList<>());
+            refugioService.save(refugio);
         }
-        */
+        asociarAdopcionesYRefugios();
+        asociarTransitosYRefugios();
+        asociarDonacionesYRefugios();
+        asociarVoluntariadosYRefugios();
     }
 
     @Test
-    void refugioTest(){
-        Refugio refugio = new Refugio();
-        refugio.setNombre("JuampiRefugio");
-//        Direccion d = new Direccion();
-//        d.setCalle("Lima");
-//        d.setLocalidad("Monserrat");
-//        refugio.setDireccion(d);
-//        RedSocial rs1 = new RedSocial("https://ig.com", TipoRedSocialEnum.INSTAGRAM);
-//        RedSocial rs2 = new RedSocial("https://fb.com", TipoRedSocialEnum.FACEBOOK);
-//        refugio.agregarRedesSociales(rs1,rs2);
-        refugio.setUsuario("juampidieguez123@gmail.com");
-//        refugioService.save(refugio);
-        for (Refugio r: refugioService.findAll()){
-//            System.out.println(r.getDireccion().getCalle());
-            System.out.println(r.getId());
-            System.out.println(r.getNombre());
-            for (RedSocial rs : r.getRedesSociales()){
-                System.out.println(rs.getLink());
-                System.out.println(rs.getRedSocial());
-            }
-        };
-    }
-
-    @Test
-    void AdopcionTestAislada(){
-//        Adopcion pub = new Adopcion();
-////        pub.setAnimal(new Animal("Boneco", TipoAnimalEnum.PERRO));
-//        pub.setAnimal(animalService.findById((long) 1).get());
-//        pub.setEstado(EstadoPublicacionAnimalEnum.DISPONIBLE);
-//        pub.setDescripcion("Publicacion 70");
-//        pub.setNecesitaPatio(true);
-//        pub.agregarImagenes("/home/jdieguez/img1.jpg","/home/jdieguez/img2.jpg");
-////        Refugio r = new Refugio("Adopciones Quilmes","adopq","quilmes");
-//        Refugio r = refugioService.findById((long)2).get();
-//        pub.setRefugio(r);
-//        r.agregarPublicacionAdopcion(pub);
-//        System.out.println("ID guardado: "+adopcionService.save(pub));
-//        System.out.println("ID refugio: "+refugioService.save(r));
-//        for (Adopcion pa: adopcionService.findAll()){
-//            System.out.println("-------- Adopcion ---------");
-//            System.out.println("ID: "+pa.getId());
-//            System.out.println("Estado: "+pa.getEstado());
-//            System.out.println("Patio: "+pa.getNecesitaPatio());
-//            System.out.println(pa.getRefugio().getNombre());
-//            System.out.println(pa.getAnimal().getNombre());
-//            //System.out.println("Dia: "+pa.getFechaPublicacion().getDayOfMonth());
-//            for (String img: pa.getGaleriaImagenes()){
-//                System.out.println("Imagen: "+img);
-//            }
-//        }
-
-        System.out.println("Cantidad adopciones totales: "+adopcionService.findAll().size());
-        for (Refugio re : refugioService.findAll()){
-            System.out.println("-------- Refugio ---------");
-            System.out.println(re.getNombre());
-            System.out.println(re.getId());
-            System.out.println("Cantidad adopciones refugio: "+re.getPublicacionesAdopcion().size());
-//            for (PublicacionAnimal ad: re.getPublicacionesAdopcion()){
-//                System.out.println("-------- Publicacion ---------");
-//                System.out.println(ad.getDescripcion());
-//                System.out.println(ad.getId());
-//            }
-        }
-    }
-
-    @Test
-    public void AdopcionTestFull(){
-//        RepositoryODB.getInstancia().deleteAll(Adopcion.class);
-        Refugio r = RepositoryODB.getInstancia().findById(Refugio.class,20).get();
-        Animal an = new Animal();
-        an.setNombre("Kalito");
-        an.setTipoAnimal(TipoAnimalEnum.PERRO);
-        Long idAnimal = animalService.save(an);
-        Adopcion pub = new Adopcion();
-        pub.setAnimal(animalService.findById(idAnimal).get());
-        pub.setEstado(EstadoPublicacionAnimalEnum.DISPONIBLE);
-        pub.setNecesitaPatio(true);
-//        pub.agregarImagenes("/home/jdieguez/img7.jpg");
-        pub.setRefugio(r);
-        r.agregarPublicacionAdopcion(pub);
-        refugioService.save(r);
-        Refugio ref = refugioService.findById((long)20).get();
-        System.out.println("------ Refugio -------");
-        System.out.println("Nombre: "+ref.getNombre());
-        for (PublicacionAnimal a: ref.getPublicacionesAdopcion()){
-            System.out.println("--- Publicacion ---");
-            System.out.println(a.getId());
-            System.out.println(a.getAnimal().getNombre());
-            System.out.println(a.getEstado());
-        }
-
-//        Refugio r = RepositoryODB.getInstancia().findById(Refugio.class,6).get();
-//        r.setPublicacionesAdopcion(new ArrayList<>());
-//        RepositoryODB.getInstancia().updateOBD(r);
-    }
-
-    @Test
-    public void mailTest(){
-//        emailService.sendSimpleMail("zoelandeyro@gmail.com","Test mail", "pray to god this works");
-    }
-
-    @Test
-    public void fixAnimales(){
-        for (Animal a : animalService.findAll()){
-            if (a.getTamanioActual()==null) {
-                a.setTamanioActual(TamanioEnum.INDEFINIDO);
-            }
-            if (a.getTamanioEsperado()==null) {
-                a.setTamanioEsperado(TamanioEnum.INDEFINIDO);
-            }
-            if (a.getFechaNac() == null) {
-                a.setFechaNac(LocalDate.now());
-            }
-            animalService.save(a);
-        }
-    }
-
-    @Test
-    public void fixPubTransitos(){
-        Transito t = transitoService.findById((long)24).get();
-        t.setEsUrgente(true);
-        transitoService.save(t);
-    }
-
-    @Test
-    public void fixDonaciones(){
-//        Refugio r = refugioService.findById((long)1).get();
-//        for (PublicacionDonacion pd : r.getPublicacionesDonacionesNoMonetarias()){
-//            System.out.println("----- Publicacion -----");
-//            System.out.println(pd.getId());
-//            System.out.println(pd.getDescripcion());
-//            System.out.println(pd.getEstaActiva());
-//            System.out.println("Refugio: "+pd.getRefugio().getId());
-//        }
-        RepositoryODB.getInstancia().deleteAll(PublicacionDonacion.class);
-        for (Refugio r : refugioService.findAll()){
-            r.setPublicacionesDonacionesNoMonetarias(new ArrayList<>());
-            refugioService.save(r);
-        }
-    }
-
-    @Test
-    public void fixDB(){
-        for (Adopcion adopcion : adopcionService.findAll()){
-            System.out.println("ID Adopcion:"+adopcion.getId());
-            System.out.println("ID Refugio:"+adopcion.getRefugio().getId());
-            Optional<Refugio> optionalRefugio= refugioService.findById(adopcion.getRefugio().getId());
-            if (optionalRefugio.isPresent()){
+    public void asociarAdopcionesYRefugios() {
+        for (Adopcion adopcion : adopcionService.findAll()) {
+            System.out.println("---------------");
+            System.out.println("ID Adopcion:" + adopcion.getId());
+            System.out.println("ID Refugio:" + adopcion.getRefugio().getId());
+            Optional<Refugio> optionalRefugio = refugioService.findById(adopcion.getRefugio().getId());
+            if (optionalRefugio.isPresent()) {
                 Refugio refugio = optionalRefugio.get();
                 refugio.agregarPublicacionAdopcion(adopcion);
                 refugioService.save(refugio);
@@ -248,20 +64,200 @@ class ServerApplicationTests {
             }
         }
     }
-
     @Test
-    public void testDB(){
-        RepositoryODB.getInstancia().deleteById(PublicacionVoluntariado.class,20);
-        Refugio r = refugioService.findById((long)1).get();
-        r.setPublicacionesVoluntariado(new ArrayList<>());
-        refugioService.save(r);
+    public void asociarTransitosYRefugios() {
+        for (Transito transito : transitoService.findAll()) {
+            System.out.println("---------------");
+            System.out.println("ID Transito:" + transito.getId());
+            System.out.println("ID Refugio:" + transito.getRefugio().getId());
+            Optional<Refugio> optionalRefugio = refugioService.findById(transito.getRefugio().getId());
+            if (optionalRefugio.isPresent()) {
+                Refugio refugio = optionalRefugio.get();
+                refugio.agregarPublicacionTransito(transito);
+                refugioService.save(refugio);
+                System.out.println("Publicacion agregada al refugio");
+            }
+        }
+    }
+    @Test
+    public void asociarDonacionesYRefugios() {
+        for (PublicacionDonacion donacion : donacionService.findAll()) {
+            System.out.println("---------------");
+            System.out.println("ID Donacion:" + donacion.getId());
+            System.out.println("ID Refugio:" + donacion.getRefugio().getId());
+            Optional<Refugio> optionalRefugio = refugioService.findById(donacion.getRefugio().getId());
+            if (optionalRefugio.isPresent()) {
+                Refugio refugio = optionalRefugio.get();
+                refugio.agregarPublicacionDonacion(donacion);
+                refugioService.save(refugio);
+                System.out.println("Publicacion agregada al refugio");
+            }
+        }
+    }
+    @Test
+    public void asociarVoluntariadosYRefugios() {
+        for (PublicacionVoluntariado voluntariado : voluntariadoService.findAll()) {
+            System.out.println("---------------");
+            System.out.println("ID Voluntariado:" + voluntariado.getId());
+            System.out.println("ID Refugio:" + voluntariado.getRefugio().getId());
+            Optional<Refugio> optionalRefugio = refugioService.findById(voluntariado.getRefugio().getId());
+            if (optionalRefugio.isPresent()) {
+                Refugio refugio = optionalRefugio.get();
+                refugio.agregarPublicacionVoluntariado(voluntariado);
+                refugioService.save(refugio);
+                System.out.println("Publicacion agregada al refugio");
+            }
+        }
     }
 
     @Test
-    public void fixRefugios(){
-        for(Refugio r:refugioService.findAll()) {
-            r.setCorreo("juampidieguez123@gmail.com");
-            refugioService.save(r);
+    void statsAnimales() {
+        List<Animal> allAnimales= animalService.findAll();
+        System.out.println("Cantidad de Animales: "+allAnimales.size());
+        System.out.println("Cantidad de imagenes por animal: ");
+        allAnimales.forEach(a -> System.out.println(a.getId() + "-" + a.getNombre() + " (" + a.getTipoAnimal().getNombre() + "): " + a.getGaleriaImagenes().size()));
+    }
+
+    @Test
+    void buscarAnimal() {
+        Optional<Animal> oAnimal = animalService.findById(50L);
+        if (oAnimal.isPresent()) {
+            Animal animal = oAnimal.get();
+            System.out.println("Nombre: " + animal.getNombre());
+            System.out.println("Tamanio actual: " + animal.getTamanioActual().getNombre());
+            System.out.println("Tamanio esperado: " + animal.getTamanioEsperado().getNombre());
+            System.out.println("Edad: " + animal.getEdad());
+            System.out.println("Imagenes: ");
+            animal.getGaleriaImagenes().forEach(System.out::println);
         }
+
+    }
+
+    @Test
+    void modificarAnimal() {
+        Optional<Animal> optionalAnimal = animalService.findById(50L);
+        if (optionalAnimal.isPresent()) {
+            Animal animal = optionalAnimal.get();
+            String imagen1 = "https://res.cloudinary.com/dypgglzvv/image/upload/v1668518955/Gato-blanco2_najjlp.jpg";
+            String imagen2 = "https://res.cloudinary.com/dypgglzvv/image/upload/v1668518955/Gato-blanco1_p3ipyr.jpg";
+            animal.agregarImagenes(imagen1, imagen2);
+            animalService.save(animal);
+        }
+    }
+
+    @Test
+    void statsRefugios() {
+        for (Refugio r : refugioService.findAll()) {
+            System.out.println("--------------------");
+            System.out.println(r.getId());
+            System.out.println(r.getNombre());
+            System.out.println(r.getCorreo());
+            System.out.println("Cantidad actual urgentes: "+r.getCantidadUrgentes());
+            System.out.println("Cantidad maxima urgentes: "+Math.ceil((r.getPublicacionesAdopcion().size()+r.getPublicacionesTransito().size())*0.2));
+            System.out.println("Pub adopcion: "+r.getPublicacionesAdopcion().size());
+            System.out.println("Pub transito: "+r.getPublicacionesTransito().size());
+            System.out.println("Pub donacion: "+r.getPublicacionesDonacionesNoMonetarias().size());
+            System.out.println("Pub voluntariado: "+r.getPublicacionesVoluntariado().size());
+        }
+    }
+
+    @Test
+    void adopcionStats() {
+        for (Adopcion r : adopcionService.findAll()) {
+            System.out.println("----------------------------------");
+            System.out.println("Id publicacion: "+r.getId());
+            if ((r.getAnimal() == null)) {
+                System.err.println("No tiene animal asignado");
+            } else {
+                System.out.println("Id animal: "+r.getAnimal().getId());
+            }
+            if ((r.getRefugio() == null)) {
+                System.err.println("No tiene refugio asignado");
+            } else {
+                System.out.println("Id refugio: "+r.getRefugio().getId());
+            }
+        }
+    }
+
+    @Test
+    void transitoStats() {
+        for (Transito r : transitoService.findAll()) {
+            System.out.println("----------------------------------");
+            System.out.println("Id publicacion: "+r.getId());
+            if ((r.getAnimal() == null)) {
+                System.err.println("No tiene animal asignado");
+            } else {
+                System.out.println("Id animal: "+r.getAnimal().getId());
+            }
+            if ((r.getRefugio() == null)) {
+                System.err.println("No tiene refugio asignado");
+            } else {
+                System.out.println("Id refugio: "+r.getRefugio().getId());
+            }
+        }
+    }
+
+    @Test
+    void donacionStats() {
+        for (PublicacionDonacion r : RepositoryODB.getInstancia().findAll(PublicacionDonacion.class)) {
+            System.out.println("----------------------------------");
+            System.out.println("Id publicacion: "+r.getId());
+            if ((r.getRefugio() == null)) {
+                System.err.println("No tiene refugio asignado");
+            } else {
+                System.out.println("Id refugio: "+r.getRefugio().getId());
+            }
+        }
+    }
+
+    @Test
+    void voluntariadoStats() {
+        for (PublicacionVoluntariado r : RepositoryODB.getInstancia().findAll(PublicacionVoluntariado.class)) {
+            System.out.println("----------------------------------");
+            System.out.println("Id publicacion: "+r.getId());
+            if ((r.getRefugio() == null)) {
+                System.err.println("No tiene refugio asignado");
+            } else {
+                System.out.println("Id refugio: "+r.getRefugio().getId());
+            }
+        }
+    }
+
+    @Test
+    void getAllRefugios() {
+        List<Refugio> refugios = refugioService.findAll();
+        for (Refugio r: refugios) {
+            System.out.println("Direccion:" + r.getDireccion().getProvincia() + ", " + r.getDireccion().getCalle() + ", " + r.getDireccion().getLocalidad());
+        }
+    }
+
+    @Test
+    void getAllAdopciones() {
+        List<Adopcion> adopciones = adopcionService.findAll();
+        for (Adopcion a: adopciones) {
+            System.out.println("Localidad refugio: " + a.getRefugio().getDireccion().getLocalidad());
+        }
+    }
+
+    @Test
+    void getAllTransitos() {
+        List<Transito> transitos = transitoService.findAll();
+        for (Transito t: transitos) {
+            System.out.println("ID: " + t.getId());
+            System.out.println("Animal: " + t.getAnimal().getNombre());
+            System.out.println("Localidad refugio: " + (t.getRefugio().getDireccion() == null ? "nulo" : t.getRefugio().getDireccion().getLocalidad()));
+        }
+    }
+
+    @Test
+    void eliminarTransitos() {
+        RepositoryODB repositoryODB = RepositoryODB.getInstancia();
+
+        List<Long> idsAEliminar = new ArrayList<>();
+        idsAEliminar.add(24L);
+        idsAEliminar.add(26L);
+        idsAEliminar.add(27L);
+        idsAEliminar.add(60L);
+        idsAEliminar.forEach(id -> repositoryODB.deleteById(Transito.class, id));
     }
 }

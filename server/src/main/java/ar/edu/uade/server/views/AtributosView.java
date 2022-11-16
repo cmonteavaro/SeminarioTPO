@@ -25,9 +25,7 @@ public class AtributosView {
         AtributosView av = new AtributosView();
         av.multivalores = new HashMap<>();
 
-        av.booleanos = Arrays.stream(Transito.class.getDeclaredFields()).filter(attr -> attr.getType().equals(Boolean.class)).map(attr -> attr.getName().replaceAll("(?=[A-Z]+)", " ").trim().toLowerCase().replaceFirst(attr.getName().substring(0,1),attr.getName().substring(0,1).toUpperCase())).collect(Collectors.toList());
-        av.booleanos.addAll(Arrays.stream(PublicacionAnimal.class.getDeclaredFields()).filter(attr -> attr.getType().equals(Boolean.class)).map(attr -> attr.getName().replaceAll("(?=[A-Z]+)", " ").trim().toLowerCase().replaceFirst(attr.getName().substring(0,1),attr.getName().substring(0,1).toUpperCase())).collect(Collectors.toList()));
-        av.booleanos.addAll(Arrays.stream(Animal.class.getDeclaredFields()).filter(attr -> attr.getType().equals(Boolean.class)).map(attr -> attr.getName().replaceAll("(?=[A-Z]+)", " ").trim().toLowerCase().replaceFirst(attr.getName().substring(0,1),attr.getName().substring(0,1).toUpperCase())).collect(Collectors.toList()));
+        av.booleanos = Arrays.stream(PublicacionAnimal.class.getDeclaredFields()).filter(attr -> attr.getType().equals(Boolean.class)).map(attr -> attr.getName().replaceAll("(?=[A-Z]+)", " ").trim().toLowerCase().replaceFirst(attr.getName().substring(0,1),attr.getName().substring(0,1).toUpperCase())).collect(Collectors.toList());
         av.booleanos.remove("Es urgente");
 
         av.multivalores.put(TipoAnimalEnum.class.getSimpleName(),Arrays.stream(TipoAnimalEnum.values()).map(tipo -> tipo.getNombre()).collect(Collectors.toList()));

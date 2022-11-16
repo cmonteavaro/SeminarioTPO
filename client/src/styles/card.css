@@ -6,6 +6,9 @@
   padding: 0.5vw;
   margin: 2vh;
   background-color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
 }
 
 .volunteer-card {
@@ -35,6 +38,15 @@
   display: flex;
   justify-content: center;
   margin: 1vh;
+}
+
+.card-center p {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 7; /* number of lines to show */
+  line-clamp: 7;
+  -webkit-box-orient: vertical;
 }
 
 .card-left {
@@ -113,6 +125,7 @@
 
 .card-shelter p {
   margin-left: 5px;
+  font-size: 0.8rem;
 }
 
 .card-volunteer-info {
@@ -143,8 +156,7 @@
 
 .btn-info {
   background-color: green;
-  width: 90px;
-  height: 30px;
+  width: 10vw;
   border-radius: 0.5vw;
   color: white;
   font-weight: bold;
@@ -166,16 +178,51 @@
   border-radius: 10px;
 }
 
+.btn-adopt {
+  height: 5vh;
+  width: 10vw;
+  border-radius: 1vw;
+  border: 0px solid black;
+  background-color: green;
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.btn-adopt:hover {
+  opacity: 0.8;
+}
+
 @media (max-width: 1024px) {
   .card-right svg {
     width: 2vw;
     height: 2vw;
   }
+
+  .btn-info {
+    border-radius: 1vh;
+  }
+  .btn-adopt {
+    width: 15vw;
+  }
 }
 
 @media (max-width: 768px) {
+  .card {
+    margin: 1vh 0;
+  }
+
   .card-right svg {
     width: 6vw;
     height: 6vw;
+  }
+  .btn-info {
+    width: 120px;
+    margin-right: 5px;
+  }
+  .btn-adopt {
+    margin-top: 2vh;
+    width: 30vw;
+    height: 5vh;
   }
 }
