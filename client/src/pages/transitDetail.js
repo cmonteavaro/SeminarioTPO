@@ -62,6 +62,9 @@ export default function TransitDetail() {
                 Fecha de Publicacion: {data.fechaPublicacion}
               </p>
             </div>
+            <div className="info-detail-urgente">
+              <Tag state={data.esUrgente} />
+            </div>
             <div className="info-detail-status">
               <Tag state={data.estadoPublicacion} />
             </div>

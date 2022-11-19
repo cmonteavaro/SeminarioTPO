@@ -48,9 +48,9 @@
   padding: 1vh;
   font-weight: bold;
   background-color: green;
-  border: 0px transparent solid;
   color: white;
   border-radius: 1vh;
+  border: 0px;
 }
 
 .hero {
