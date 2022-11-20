@@ -1,9 +1,25 @@
 import { Checkbox } from "@mantine/core";
+import { useRef, useState } from "react";
 import Navbar from "react-bootstrap/Navbar";
 import "./filtros.scss";
 
 export default function AnimalFilter(props) {
   const data = props.filtros;
+  const [coordenadas, setCoordenadas] = useState([]);
+  const inputSearch = useRef(null);
+  function handleSearch () {
+    fetch(`https://api.maptiler.com/geocoding/${inputSearch.current.value}.json?key=Mdlvp8JndCrWtOqNUat6`)
+    .then((response) => response.json())
+    .then((s) => {
+      const obj = s['features'];
+      const place = obj[0];
+      const geometry = place['geometry'];
+      const coords = geometry['coordinates'];
+      console.log(coords);
+      return setCoordenadas(coords)
+    })
+
+  }
 
   return (
     <Navbar bg="light" expand="lg">
@@ -66,6 +82,10 @@ export default function AnimalFilter(props) {
                   : null}
               </div>
             </div>
+          </div>
+          <div className="maps">
+            <input className="buscador-maps" autoComplete="off" id="search" type="text" ref={inputSearch} placeholder="Escribí tu ubicación..."/>
+            <button className="boton-maps" onClick={handleSearch}>Ubicar</button>
           </div>
         </nav>
       </Navbar.Collapse>
