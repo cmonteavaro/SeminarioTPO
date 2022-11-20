@@ -154,24 +154,21 @@ export default function AnimalDetail() {
               </span>
             </p>
             <div>
-              <p className="property">
-                Puede convivir con:
-                <div>
-                  <ul className="convivencia-animal">
-                    <li className="property-info convivencia-item">
+            <p className="property">
+                <p className="convivencia-animal"> Puede convivir con:</p>
+                <div className="">
+                    <p className="property-info convivencia-item">
                       Infantes: {isTrue(data.puedeConvivirConInfantes)}
-                    </li>
-                    <li className="property-info convivencia-item">
+                    </p>
+                    <p className="property-info convivencia-item">
                       Gatos: {isTrue(data.puedeConvivirConGatos)}
-                    </li>
-                    <li className="property-info convivencia-item">
+                    </p>
+                    <p className="property-info convivencia-item">
                       Cachorros: {isTrue(data.puedeConvivirConCachorros)}
-                    </li>
-                    <li className="property-info convivencia-item">
-                      Perros Adultos:{" "}
-                      {isTrue(data.puedeConvivirConPerrosAdultos)}
-                    </li>
-                  </ul>
+                    </p>
+                    <p className="property-info convivencia-item">
+                      Perros Adultos: {isTrue(data.puedeConvivirConPerrosAdultos)}
+                    </p>
                 </div>
               </p>
             </div>

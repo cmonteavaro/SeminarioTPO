@@ -127,45 +127,40 @@ export default function TransitDetail() {
               Duración Mínima: <span className="property-info">{data.duracionMinima}</span>
             </p>
             <div>
-              <p className="property">
-                Puede convivir con:
-                <div>
-                  <ul className="convivencia-animal">
-                    <li className="property-info convivencia-item">
+            <p className="property">
+                <p className="convivencia-animal"> Puede convivir con:</p>
+                <div className="">
+                    <p className="property-info convivencia-item">
                       Infantes: {isTrue(data.puedeConvivirConInfantes)}
-                    </li>
-                    <li className="property-info convivencia-item">
+                    </p>
+                    <p className="property-info convivencia-item">
                       Gatos: {isTrue(data.puedeConvivirConGatos)}
-                    </li>
-                    <li className="property-info convivencia-item">
+                    </p>
+                    <p className="property-info convivencia-item">
                       Cachorros: {isTrue(data.puedeConvivirConCachorros)}
-                    </li>
-                    <li className="property-info convivencia-item">
-                      Perros Adultos:{" "}
-                      {isTrue(data.puedeConvivirConPerrosAdultos)}
-                    </li>
-                  </ul>
+                    </p>
+                    <p className="property-info convivencia-item">
+                      Perros Adultos: {isTrue(data.puedeConvivirConPerrosAdultos)}
+                    </p>
                 </div>
               </p>
             </div>
             <div>
-              <p className="property">
-                Gastos Cubiertos:
-                <div>
-                  <ul className="convivencia-animal">
-                    <li className="property-info convivencia-item">
+            <p className="property">
+                <p className="convivencia-animal"> Gastos Cubiertos:</p>
+                <div className="">
+                    <p className="property-info convivencia-item">
                       Transporte: {isTrue(data.transporteCubierto)}
-                    </li>
-                    <li className="property-info convivencia-item">
+                    </p>
+                    <p className="property-info convivencia-item">
                       Medicos: {isTrue(data.gastosMedicosCubiertos)}
-                    </li>
-                    <li className="property-info convivencia-item">
+                    </p>
+                    <p className="property-info convivencia-item">
                       Alimentacion: {isTrue(data.gastosAlimentacionCubiertos)}
-                    </li>
-                  </ul>
+                    </p>
                 </div>
               </p>
-            </div>
+            </div>
           </div>
 
           <article className="info-detail-description">
