@@ -8,7 +8,7 @@ export default function AnimalFilter(props) {
   return (
     <Navbar bg="light" expand="lg">
       <Navbar.Toggle aria-controls="basic-navbar-nav" />
-      <Navbar.Collapse id="basic-navbar-nav">
+      <Navbar.Collapse id="basic-navbar-nav" className="filters-bar">
         <nav className="me-auto filtros">
           <h3>Filtros</h3>
           <div className="filtros-container">
