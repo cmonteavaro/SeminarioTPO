@@ -7,6 +7,7 @@ import Navbar from "react-bootstrap/Navbar";
 import NavDropdown from "react-bootstrap/NavDropdown";
 
 export default function NavBar() {
+  const shouldDropdownHighlighted = ["/publicaciones", "/transitos", "/donation_posts", "/voluntariados"].includes(useResolvedPath().pathname);
   return (
     <header>
       <Navbar bg="light" expand="lg">
@@ -17,7 +18,7 @@ export default function NavBar() {
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="me-auto">
             <CustomLink to="/">Inicio</CustomLink>
-            <NavDropdown title="Publicaciones" id="basic-nav-dropdown">
+            <NavDropdown title="Publicaciones" id="basic-nav-dropdown" className={shouldDropdownHighlighted ? "active" : null}>
               <NavDropdown.Item>
                 <CustomLink to="/publicaciones">Adopciones</CustomLink>
               </NavDropdown.Item>

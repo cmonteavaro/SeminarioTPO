@@ -19,12 +19,12 @@
 }
 
 a {
-  color: #008000;
+  color: white;
   text-decoration: none;
 }
 
 nav {
-  background-color: rgb(84, 142, 165);
+  background-color: green;
   margin-bottom: 3vh;
 }
 
@@ -35,6 +35,11 @@ nav a {
 
 #basic-nav-dropdown {
   padding: 0;
+  color: white;
+}
+
+.dropdown-menu{
+  background-color: green;
 }
 
 .logo {
@@ -66,28 +71,20 @@ li {
 
 .links {
   text-decoration: none;
-  color: black;
+  color: white;
 }
 
 .links:visited {
-  color: black;
+  color: white;
 }
 
 .links:hover {
-  color: var(--accent-color);
+  font-weight: bold;
 }
 
 .active {
   font-weight: bold;
-  color: var(--accent-color);
 }
-
-// .header .logo {
-//   display: block;
-//   float: left;
-//   font-size: 2em;
-//   text-decoration: none;
-// }
 
 @media screen and (max-width: 480px) {
   .logo-img {
