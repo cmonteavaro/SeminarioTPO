@@ -204,6 +204,14 @@
     height: 2vw;
   }
 
+  .btn-info {
+    border-radius: 1vh;
+  }
+  
+  .btn-adopt {
+    width: 15vw;
+  }
+
 }
 
 @media (max-width: 768px) {
@@ -214,6 +222,17 @@
   .card-right svg {
     width: 6vw;
     height: 6vw;
+  }
+
+  .btn-info {
+    width: 120px;
+    margin-right: 5px;
+  }
+
+  .btn-adopt {
+    margin-top: 2vh;
+    width: 30vw;
+    height: 5vh;
   }
 
 }

@@ -292,7 +292,11 @@
     align-items: center;
   }
   .info-detail {
-    width: 70vw;
+    width: 7
+    0vw;
+  }
+  .btn-adopt {
+    width: 15vw;
   }
 
 }
@@ -359,6 +363,12 @@
 
   .info-detail-shelter-links {
     margin: 1vh;
+  }
+
+  .btn-adopt {
+    margin-top: 2vh;
+    width: 30vw;
+    height: 8vh;
   }
 
 }

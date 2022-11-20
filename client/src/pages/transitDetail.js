@@ -160,7 +160,7 @@ export default function TransitDetail() {
                     </p>
                 </div>
               </p>
-            </div>
+            </div>
           </div>
 
           <article className="info-detail-description">

@@ -76,4 +76,8 @@
     font-size: medium;
   }
 
+  .btn-info {
+    border-radius: 1vh;
+  }
+
 }
