@@ -39,7 +39,11 @@ nav a {
 }
 
 .dropdown-menu{
-  background-color: green !important;
+  background-color: white !important;
+  a{
+    color: black !important;
+  }
+  
 }
 
 .header-nav-links-container {
