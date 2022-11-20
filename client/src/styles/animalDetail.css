@@ -56,6 +56,7 @@
   display: flex;
   color: grey;
   font-size: small;
+  margin-top: 10px;
 }
 
 .info-detail-status {
@@ -110,6 +111,7 @@
 
 .info-detail-description {
   margin-bottom: 40px;
+  margin-top: 20px;
 }
 
 .btn-adopt {
@@ -156,8 +158,10 @@
 }
 
 .convivencia-item {
+  color: black;
   list-style: circle;
   margin: 0;
+  height: 2vw;
 }
 
 .go-back-detail{
@@ -273,6 +277,13 @@
 .form-header {
   display: flex;
   justify-content: space-between;
+}
+
+.ubicacion {
+  color: grey;
+  font-size: small;
+  margin-top: 7px;
+  margin-bottom: 5px;
 }
 
 @media (max-width: 1024px) {
