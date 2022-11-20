@@ -66,9 +66,9 @@ export default function AnimalDetail() {
   return (
     <main className="animal-detail">
       <div>
-        <button className="go-back-detail" onClick={() => navigate(-1)}>
+        <Link to="/adopciones" className="go-back-detail">
           {"<"} Volver atras
-        </button>
+        </Link>
       </div>
       <section className="detail">
         <section className="images-detail">

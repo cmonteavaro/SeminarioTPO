@@ -286,6 +286,11 @@
   margin-bottom: 5px;
 }
 
+.info-detail-button {
+  margin-top: 10px;
+  margin-bottom: 25px;  
+}
+
 @media (max-width: 1024px) {
   .detail {
     flex-direction: column;
