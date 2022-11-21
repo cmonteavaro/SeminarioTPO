@@ -1,5 +1,5 @@
 import { Link, useMatch, useResolvedPath } from "react-router-dom";
-import Logo from "../../images/LogoMiRefugio.png";
+import Logo from "../../images/LogoMiRefugioNavbar.png";
 // import "bootstrap/dist/css/bootstrap.min.css";
 import "./header.scss";
 import Nav from "react-bootstrap/Nav";
