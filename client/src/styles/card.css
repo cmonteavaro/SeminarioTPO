@@ -11,6 +11,22 @@
   justify-content: space-evenly;
 }
 
+.card-h2 {
+  color: black
+}
+
+.donation-card {
+  width: 350px;
+  height: 350px;
+  border: 1px lightgrey solid;
+  border-radius: 10px;
+  padding: 0.5vw;
+  margin: 2vh;
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+}
 .volunteer-card {
   width: 250px;
   border: 1px lightgrey solid;
@@ -64,8 +80,8 @@
 }
 
 .card-right svg {
-  width: 25px;
-  height: 25px;
+  width: 65px;
+  height: 65px;
 }
 
 .tag-urgente {
@@ -94,7 +110,7 @@
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  height: 60px;
+  height: 10px;
 }
 
 .card-left-info {

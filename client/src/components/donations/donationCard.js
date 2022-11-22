@@ -10,7 +10,7 @@ import { IconCalendar } from "@tabler/icons";
 
 export default function DonationCard({ donacion }) {
   return (
-    <div className="card">
+    <div className="donation-card">
       <div className="card-heading">
         <h2>{donacion.titulo}</h2>
       </div>
@@ -51,13 +51,12 @@ function IconDonation(props) {
   const casos = props.caso;
   switch (casos) {
     case "ABRIGO":
-      return <IconShirtSport></IconShirtSport>;
+      return <IconShirtSport style={{color: "orange"}}></IconShirtSport>;
     case "ALIMENTO":
-      return <IconDogBowl></IconDogBowl>;
+      return <IconDogBowl style={{color: "brown"}}></IconDogBowl>;
     case "MEDICAMENTO":
-      return <IconPill></IconPill>;
-    // case "OTRO":
-    //     return <IconSquarePlus></IconSquarePlus>;
+      return <IconPill style={{color: "gray"}}></IconPill>;
+  
   }
-  return <IconSquarePlus></IconSquarePlus>;
+  return <IconSquarePlus style={{color: "black"}}></IconSquarePlus>;
 }
