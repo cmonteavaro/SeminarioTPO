@@ -144,19 +144,8 @@ export default function TransitDetail() {
              </div>
              
               <div className="info-detail-shelter-links">
-                  <Link to={`/refugios/${data.idRefugio}`}>
-                    <FaFacebook size={30} />
-                  </Link>
-                  <Link to={`/refugios/${data.idRefugio}`}>
-                    <FaInstagram size={30} />
-                  </Link>
-                  <Link to={`/refugios/${data.idRefugio}`}>
-                  <FaTwitter size={30} />
-                  </Link>  
+              { <SocialMedia rrss={data.redesSocialesRefugio} /> } 
               </div>
-
-
-
             </div>
             <div className="info-detail-button">
               <button className="btn-adopt" onClick={() => setShowForm(true)}>

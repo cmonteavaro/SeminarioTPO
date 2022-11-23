@@ -166,24 +166,8 @@ export default function AnimalDetail() {
                 </Link>
                 <h5>{data.nombreRefugio}</h5>
               </div>
-
-          
-
               <div className="info-detail-shelter-links">
-            {/* { <SocialMedia
-                rrss={data.redesSocialesRefugio}
-                color={data.idRefugio.color}
-              />
-            }  */}
-                  <Link to={`${data.idRefugio}`}>
-                    <FaFacebook size={30} />
-                  </Link>
-                  <Link to={`${data.idRefugio}`}>
-                    <FaInstagram size={30} />
-                  </Link>
-                  <Link to={`${data.idRefugio}`}>
-                  <FaTwitter size={30} />
-                  </Link>  
+            { <SocialMedia rrss={data.redesSocialesRefugio} /> } 
               </div>
             </div>
             <div className="info-detail-button">
