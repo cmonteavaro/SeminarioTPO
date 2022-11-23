@@ -137,11 +137,11 @@ export default function TransitDetail() {
           <div className="info-detail-footer">
             <div className="info-detail-shelter">
               <div className="info-detail-shelter-name">
-                <img src={Zaguates} alt="Logo Refugio" />
+                <Link to={`/refugios/${data.idRefugio}`}>
+                  <img src={Zaguates} className="card-img-shelter" alt="Imagen refugio" />
+                </Link>
                 <h5>{data.nombreRefugio}</h5>
-              </div>
-             
-              
+             </div>
              
               <div className="info-detail-shelter-links">
                   <Link to={`/refugios/${data.idRefugio}`}>

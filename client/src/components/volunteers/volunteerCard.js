@@ -68,9 +68,7 @@ function IconVolunteer(props) {
       return <FaCarAlt  style={{color: "blue"}} />;
     case "COMPANIA":
       return <GiDogHouse  style={{color: "red"}}/>;
-    case "OTRO":
-      return <IoMdPaw />;
-    default:
-      return null;
+
   }
+  return <IoMdPaw />;
 }

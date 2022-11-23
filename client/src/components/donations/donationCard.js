@@ -54,7 +54,7 @@ function IconDonation(props) {
       return <IconShirtSport style={{color: "orange"}}></IconShirtSport>;
     case "ALIMENTO":
       return <IconDogBowl style={{color: "brown"}}></IconDogBowl>;
-    case "MEDICAMENTO":
+    case "MEDICAMENTOS":
       return <IconPill style={{color: "gray"}}></IconPill>;
   
   }

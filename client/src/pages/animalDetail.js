@@ -6,6 +6,7 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { Loader } from "@mantine/core";
 import NotFound from "./notFound";
+import SocialMedia from "../components/rrss/socialMedia"
 
 import Modal from "../components/animals/modalPreForm";
 import Form from "../components/form/form";
@@ -160,13 +161,22 @@ export default function AnimalDetail() {
           <div className="info-detail-footer">
             <div className="info-detail-shelter">
               <div className="info-detail-shelter-name">
-                <img src={Zaguates} alt="Logo Refugio" />
+              <Link to={`/refugios/${data.idRefugio}`}>
+                  <img src={Zaguates} className="card-img-shelter" alt="Imagen refugio" />
+                </Link>
                 <h5>{data.nombreRefugio}</h5>
               </div>
+
               <div className="info-detail-shelter-links">
-                <FaFacebook size={30} />
-                <FaInstagram size={30} />
-                <FaTwitter size={30} />
+                  <Link to={`/refugios/${data.idRefugio}`}>
+                    <FaFacebook size={30} />
+                  </Link>
+                  <Link to={`/refugios/${data.idRefugio}`}>
+                    <FaInstagram size={30} />
+                  </Link>
+                  <Link to={`/refugios/${data.idRefugio}`}>
+                  <FaTwitter size={30} />
+                  </Link>  
               </div>
             </div>
             <div className="info-detail-button">
