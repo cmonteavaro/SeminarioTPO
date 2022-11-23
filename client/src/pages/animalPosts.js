@@ -7,11 +7,13 @@ import AnimalFilters from "../components/animals/animalFilters";
 import { applyFilters, init as filtersInit } from "../filters";
 
 export default function Posts() {
+
 	const [dataDisplay, setDataDisplay] = useState([]);
 	const [dataFull, setDataFull] = useState([]);
 	const [loading, setLoading] = useState(false);
 	const [filtersJSON, setfiltersJSON] = useState();
 	const [filtersDict, setFiltersDict] = useState({});
+
 
 	// Get the data from the server
 	useEffect(() => {

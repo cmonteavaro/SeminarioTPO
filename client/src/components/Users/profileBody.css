@@ -35,13 +35,29 @@
 
 .description-shelter {
   display: flex;
-  flex-direction: column;
-  margin: 0 5vw 0 5vw;
+  flex-direction: row;
+  margin: 0 5vw;
   justify-content: space-evenly;
 }
 
 .description-shelter article {
-  margin: 2vh 0 2vh 0;
+  margin: 2vh 0;
+}
+
+.description-shelter article p {
+  margin: 1vh 1vw;
+  text-align: justify;
+}
+
+.description-gallery {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+}
+
+.description-gallery img {
+  width: 300px;
+  margin: 1vh 0.5vw;
 }
 
 .go-back-detail {
@@ -95,9 +111,10 @@
   .donate {
     align-self: center;
   }
-}
-
-@media (max-width: 600px) {
+  .description-shelter {
+    flex-direction: column;
+    margin: 1vh 0.5vw;
+  }
   .logo-name-location {
     flex-direction: column;
   }

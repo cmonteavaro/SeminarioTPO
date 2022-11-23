@@ -28,7 +28,7 @@ footer .container {
   color: var(--accent-color);
 }
 
-@media screen and (max-width: 391px) {
+@media screen and (max-width: 768px) {
   footer {
     flex-direction: column;
   }
