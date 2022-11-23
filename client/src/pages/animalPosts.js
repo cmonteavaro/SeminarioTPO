@@ -9,7 +9,7 @@ export default function Posts() {
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(false);
   const [filtersJSON, setfiltersJSON] = useState();
-  const [filtersDict, setFiltersDict] = useState({});
+  const [filtersDict, setFiltersDict] = useState();
 
   // Get the data from the server
   useEffect(() => {

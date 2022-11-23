@@ -134,22 +134,12 @@ const ProfileBody = ({ refugio }) => {
             <Title color={refugio.perfilRefugio.color}>Quienes somos</Title>
             <p>{refugio.perfilRefugio.descripcionLarga}</p>
           </article>
-          <section className="caroussel">
-            <Carousel slideSize="100%" height={500} loop>
-              <Carousel.Slide>
-                <img className="carousel" src={One} alt="Imagen animal" />
-              </Carousel.Slide>
-              <Carousel.Slide>
-                <img className="carousel" src={Two} alt="Imagen animal" />
-              </Carousel.Slide>
-              <Carousel.Slide>
-                <img className="carousel" src={Three} alt="Imagen animal" />
-              </Carousel.Slide>
-              <Carousel.Slide>
-                <img className="carousel" src={Four} alt="Imagen animal" />
-              </Carousel.Slide>
-            </Carousel>
-          </section>
+          <div className="description-gallery">
+            <img src={One} />
+            <img src={Two} />
+            <img src={Three} />
+            <img src={Four} />
+          </div>
         </section>
         <section className="posts-shelter">
           <article>
