@@ -1,8 +1,6 @@
 package ar.edu.uade.server.views;
 
 import ar.edu.uade.server.model.Animal;
-import ar.edu.uade.server.model.enums.TamanioEnum;
-import ar.edu.uade.server.model.enums.TipoAnimalEnum;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -23,6 +21,7 @@ public class AnimalView {
     private Boolean castrado;
     private Boolean esquemaCompletoVacunas;
     private Boolean desparasitado;
+    private String imagenPrincipal;
     private List<String> galeriaImagenes;
 
     public static AnimalView toView(Animal animal) {
@@ -38,7 +37,8 @@ public class AnimalView {
         view.castrado = animal.getCastrado();
         view.esquemaCompletoVacunas = animal.getEsquemaCompletoVacunas();
         view.desparasitado = animal.getDesparasitado();
-        view.galeriaImagenes = animal.getGaleriaImagenes();
+        view.imagenPrincipal = animal.getGaleriaImagenes().size() != 0 ? animal.getGaleriaImagenes().get(0) : null;
+        view.galeriaImagenes = animal.getGaleriaImagenes().size() > 1 ? animal.getGaleriaImagenes().subList(1, animal.getGaleriaImagenes().size()) : null;
 
         return view;
     }
