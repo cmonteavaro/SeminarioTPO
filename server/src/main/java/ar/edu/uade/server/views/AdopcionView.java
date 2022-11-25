@@ -14,6 +14,7 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.Date;
 import java.util.List;
+import java.util.stream.Collectors;
 
 /*
 Forma de uso:
@@ -35,6 +36,7 @@ public class AdopcionView {
     private String nombreRefugio;
     private String fotoPerfilRefugio;
     private Direccion direccionRefugio;
+    private List<RedSocialView> redesSocialesRefugio;
 
     //Publicacion
     private Long idPublicacion;
@@ -61,6 +63,7 @@ public class AdopcionView {
         view.nombreRefugio = adopcion.getRefugio().getNombre();
         view.fotoPerfilRefugio = adopcion.getRefugio().getPerfilRefugio().getFotoPerfil();
         view.direccionRefugio = adopcion.getRefugio().getDireccion();
+        view.redesSocialesRefugio = adopcion.getRefugio().getRedesSociales().stream().map(RedSocialView::toView).collect(Collectors.toList());
         //Publicacion
         view.idPublicacion = adopcion.getId();
         view.descripcion = adopcion.getDescripcion();
