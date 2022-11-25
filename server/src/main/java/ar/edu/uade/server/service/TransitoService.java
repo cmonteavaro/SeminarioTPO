@@ -19,4 +19,6 @@ public interface TransitoService {
 
     Long saveDTO(TransitoDTO transitoDTO) throws AnimalException, RefugioException;
 
+    Long updateDTO(TransitoDTO transitoDTO) throws AnimalException, RefugioException;
+
 }
