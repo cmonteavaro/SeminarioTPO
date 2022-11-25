@@ -1,4 +1,5 @@
 import { Checkbox } from "@mantine/core";
+import { NavDropdown } from "react-bootstrap";
 import Navbar from "react-bootstrap/Navbar";
 import "./filtros.scss";
 
@@ -53,18 +54,17 @@ export default function AnimalFilter(props) {
               </div>
             </div>
             <div className="filter-section-container">
-              <h4>Extras</h4>
-              <div className="filter-section">
-                {data.booleanos && data.booleanos.length > 0
-                  ? data.booleanos.map((filtro) => (
-                      <Checkbox
-                        value={filtro}
-                        label={filtro}
-                        onChange={(event) => props.callback(event)}
-                      />
-                    ))
-                  : null}
-              </div>
+              <NavDropdown title="Extras" className="dropwdown-filters">
+                  {data.booleanos && data.booleanos.length > 0
+                    ? data.booleanos.map((filtro) => (
+                        <Checkbox
+                          value={filtro}
+                          label={filtro}
+                          onChange={(event) => props.callback(event)}
+                        />
+                      ))
+                    : null}
+              </NavDropdown>
             </div>
           </div>
         </nav>

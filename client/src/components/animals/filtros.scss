@@ -10,6 +10,7 @@
   nav {
     background-color: white;
     border-radius: 1vh;
+    width: 15vw;
   }
 }
 
@@ -20,23 +21,34 @@
 }
 
 .filter-section {
-  margin: 2vh 0.7vw;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 3px;
+  margin: 0.5vh 0;
   label {
     padding: 0 2px;
   }
   &-container {
     h4 {
-      text-align: center;
+      text-align: left;
     }
     margin: 1vh 1vw;
   }
 }
 
-.checkbox {
-  margin: 0.5vh;
+.dropwdown-filters{
+  background-color: white;
+
+  .dropdown-menu {
+    width: 16vw !important;
+  }
+
+  a{
+    font-size: 18px;
+    font-weight: bold;
+    color: green !important;
+    margin-left: 0;
+  }
+  .mantine-Checkbox-root{
+    margin: 1vh 0vw 1vh 1vw;
+  }
 }
 
 .filters-bar {
@@ -50,7 +62,7 @@
   }
   &-container {
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     justify-content: center;
   }
 }
@@ -69,5 +81,23 @@
       }
       margin: 0;
     }
+  }
+}
+
+@media screen and (max-width: 992px){
+  .filters{
+    nav{
+      width: 100%;
+
+      .show{
+        width: 30vw;
+      }
+
+      .dropdown-menu{
+        width: 55vw !important;
+      }
+    }
+
+
   }
 }
