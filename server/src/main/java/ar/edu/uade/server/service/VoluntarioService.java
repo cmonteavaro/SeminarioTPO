@@ -19,6 +19,4 @@ public interface VoluntarioService {
 
     Long saveDTO(VoluntarioDTO voluntarioDTO) throws RefugioException;
 
-    Long updateDTO(VoluntarioDTO voluntarioDTO) throws RefugioException;
-
 }

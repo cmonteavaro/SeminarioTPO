@@ -57,13 +57,4 @@ public class DonacionServiceODB implements DonacionService{
         return idGuardado;
     }
 
-    @Override
-    public Long updateDTO(DonacionDTO donacionDTO) throws DonacionException{
-        PublicacionDonacion donacion = donacionDTO.toModel();
-        Optional<Refugio> oRefugio = refugioService.findById(donacionDTO.getIdRefugio());
-        if (oRefugio.isEmpty()) throw new DonacionException("El refugio no fue encontrado");
-        Refugio r = oRefugio.get();
-        donacion.setRefugio(r);
-        return this.save(donacion);
-    }
 }

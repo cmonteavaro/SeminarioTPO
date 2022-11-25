@@ -2,7 +2,7 @@ Crear una Publicacion de Voluntariado
 Método: POST
 Endpoint: http://localhost:8080/api/publicaciones/voluntariados
 Body: {
-          "tipoVoluntariado":"FOTOGRAFIA",
+          "tipo":"FOTOGRAFIA",
           "titulo":"Buscamos voluntarios!",
           "descripcion":"En nuestro refugio estamos necesitando voluntarios para sacarle fotos a nuestros animalitos",
           "idRefugio":1,
@@ -13,12 +13,11 @@ Modificar una Publicación de Voluntariado
 Método: PUT
 Endpoint: http://localhost:8080/api/publicaciones/voluntariados
 Body:{
-         "idPublicacion": 52,
-         "tipoVoluntariado": "COMPANIA",
-         "titulo": "Necestiamos transporte!",
-         "descripcion": "En nuestro refugio estamos necesitando gente para transportar a nuestros animalitos",
-         "idRefugio":34,
-         "fechaPublicacion": "29/07/2022"
+          "tipo":"TRANSPORTE",
+          "titulo":"Buscamos Transporte!",
+          "descripcion":"En nuestro refugio estamos necesitando voluntarios para sacarle fotos a nuestros animalitos",
+          "idRefugio":1,
+          "fechaPublicacion":"14/10/2022"
      }
 
 Obtener todas las publicaciones de voluntariados activas

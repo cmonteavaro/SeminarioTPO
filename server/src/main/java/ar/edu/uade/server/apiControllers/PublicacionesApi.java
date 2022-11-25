@@ -122,7 +122,7 @@ public class PublicacionesApi {
     @PutMapping("/adopciones")
     public ResponseEntity<?> modificarPublicacionAdopcion(@RequestBody AdopcionDTO adopcionDTO){
         try {
-            adopcionService.updateDTO(adopcionDTO);
+            adopcionService.saveDTO(adopcionDTO);
             return ResponseEntity.status(HttpStatus.CREATED).build();
         }catch (Exception e){
             return ResponseEntity.badRequest().eTag(e.getMessage()).build();
@@ -232,7 +232,7 @@ public class PublicacionesApi {
     @PutMapping("/transitos")
     public ResponseEntity<?> modificarPublicacionTransito(@RequestBody TransitoDTO transitoDTO){
         try {
-            transitoService.updateDTO(transitoDTO);
+            transitoService.saveDTO(transitoDTO);
             return ResponseEntity.status(HttpStatus.CREATED).build();
         }catch (Exception e){
             return ResponseEntity.badRequest().eTag(e.getMessage()).build();
@@ -329,7 +329,7 @@ public class PublicacionesApi {
     @PutMapping("/voluntariados")
     public ResponseEntity<?> modificarPublicacionVoluntariado(@RequestBody VoluntarioDTO voluntarioDTO) {
         try {
-            voluntarioService.updateDTO(voluntarioDTO);
+            voluntarioService.saveDTO(voluntarioDTO);
             return ResponseEntity.status(HttpStatus.CREATED).build();
         } catch (Exception e) {
             return ResponseEntity.badRequest().eTag(e.getMessage()).build();
@@ -396,7 +396,7 @@ public class PublicacionesApi {
     @PutMapping("/donaciones")
     public ResponseEntity<?> modificarPublicacionDonacion(@RequestBody DonacionDTO donacionDTO){
         try {
-            donacionService.updateDTO(donacionDTO);
+            donacionService.saveDTO(donacionDTO);
             return ResponseEntity.status(HttpStatus.CREATED).build();
         }catch (Exception e){
             return ResponseEntity.badRequest().eTag(e.getMessage()).build();
