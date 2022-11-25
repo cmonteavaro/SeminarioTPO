@@ -63,4 +63,22 @@ public class AdopcionServiceODB implements AdopcionService{
         refugioService.save(refugio);
         return idGuardado;
     }
+
+    @Override
+    public Long updateDTO(AdopcionDTO adopcionDTO) throws AnimalException, RefugioException {
+        Adopcion adopcion = adopcionDTO.toModel();
+        Optional<Animal> oAnimal = animalService.findById(adopcionDTO.getIdAnimal());
+        if (oAnimal.isEmpty()) throw new AnimalException("El animal no fue encontrado");
+        adopcion.setAnimal(oAnimal.get());
+        Optional<Refugio> oRefugio = refugioService.findById(adopcionDTO.getIdRefugio());
+        if (oRefugio.isEmpty()) throw new RefugioException("El refugio no fue encontrado");
+        Refugio refugio = oRefugio.get();
+        if (adopcion.getEsUrgente()){
+            if (!refugio.puedeAgregarUrgentes()) throw new RefugioException("El refugio no puede crear más publicaciones urgentes debido a que ha alcanzado el máximo permitido");
+            refugio.setCantidadUrgentes(refugio.getCantidadUrgentes()+1);
+        }
+
+        adopcion.setRefugio(refugio);
+        return this.save(adopcion);
+    }
 }
