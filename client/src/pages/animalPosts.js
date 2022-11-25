@@ -106,7 +106,7 @@ export default function Posts() {
   } else {
     return (
       <>
-        <h2>Conocelos</h2>
+        <h2>Adopciones</h2>
         <div className="grid-posts">
           <section className="filters">
             <AnimalFilters

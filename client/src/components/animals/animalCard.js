@@ -36,8 +36,7 @@ export default function AnimalCard({ animal }) {
       </div>
         <Link
           to={`/publicaciones/${animal.idPublicacion}`}
-          className="btn-info"
-        >
+          className="btn-info">
           Adoptar
         </Link>
       </div>
