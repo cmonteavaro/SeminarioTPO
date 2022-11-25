@@ -44,7 +44,8 @@
   overflow: hidden;
   text-overflow: ellipsis;
   display: -webkit-box;
-  -webkit-line-clamp: 7; /* number of lines to show */
+  -webkit-line-clamp: 7;
+  /* number of lines to show */
   line-clamp: 7;
   -webkit-box-orient: vertical;
 }
@@ -72,6 +73,10 @@
   position: absolute;
   bottom: -5px;
   right: -5px;
+}
+
+.tag-urgente .mantine-Badge-root {
+  border-radius: 10px;
 }
 
 .card-img-animal {
@@ -207,7 +212,7 @@
   .btn-info {
     border-radius: 1vh;
   }
-  
+
   .btn-adopt {
     width: 15vw;
   }
