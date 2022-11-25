@@ -4,6 +4,7 @@ import "./filtros.scss";
 
 export default function AnimalFilter(props) {
   const data = props.filtros;
+  const filtrosDict = props.filtrosDict;
 
   return (
     <Navbar bg="light" expand="lg">
@@ -18,6 +19,7 @@ export default function AnimalFilter(props) {
                 <Checkbox
                   value={"Es urgente"}
                   label={"Es urgente"}
+                  checked={filtrosDict["Es urgente"]}
                   onChange={(event) => props.callback(event)}
                 />
               </div>
@@ -31,6 +33,7 @@ export default function AnimalFilter(props) {
                       <Checkbox
                         value={filtro}
                         label={filtro}
+                        checked={filtrosDict[filtro]}
                         onChange={(event) => props.callback(event)}
                       />
                     ))
@@ -46,6 +49,7 @@ export default function AnimalFilter(props) {
                       <Checkbox
                         value={filtro}
                         label={filtro}
+                        checked={filtrosDict[filtro]}
                         onChange={(event) => props.callback(event)}
                       />
                     ))
@@ -60,6 +64,7 @@ export default function AnimalFilter(props) {
                       <Checkbox
                         value={filtro}
                         label={filtro}
+                        checked={filtrosDict[filtro]}
                         onChange={(event) => props.callback(event)}
                       />
                     ))

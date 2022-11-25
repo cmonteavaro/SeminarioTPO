@@ -201,6 +201,13 @@ public class PublicacionesApi {
         return ResponseEntity.ok(resultado);
     }
 
+    @GetMapping("/transitos/fullView")
+    public ResponseEntity<?> getAllTransitosFull() {
+        List<TransitoView> resultado = new ArrayList<>();
+        transitoService.findAll().stream().filter(transito -> !transito.getEstado().equals(EstadoPublicacionAnimalEnum.FINALIZADA)).forEach(transito -> resultado.add(TransitoView.toView(transito)));
+        return ResponseEntity.ok(resultado);
+    }
+
     @GetMapping("/transitos/{id}")
     public ResponseEntity<?> getTransitoById(@PathVariable Long id) {
         Optional<Transito> oTransito = transitoService.findById(id);

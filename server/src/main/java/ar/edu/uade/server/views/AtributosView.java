@@ -27,6 +27,8 @@ public class AtributosView {
 
         av.booleanos = Arrays.stream(PublicacionAnimal.class.getDeclaredFields()).filter(attr -> attr.getType().equals(Boolean.class)).map(attr -> attr.getName().replaceAll("(?=[A-Z]+)", " ").trim().toLowerCase().replaceFirst(attr.getName().substring(0,1),attr.getName().substring(0,1).toUpperCase())).collect(Collectors.toList());
         av.booleanos.remove("Es urgente");
+        av.booleanos.remove("Transporte cubierto");
+        av.booleanos.add("Castrado");
 
         av.multivalores.put(TipoAnimalEnum.class.getSimpleName(),Arrays.stream(TipoAnimalEnum.values()).map(tipo -> tipo.getNombre()).collect(Collectors.toList()));
         av.multivalores.put(TamanioEnum.class.getSimpleName(),Arrays.stream(TamanioEnum.values()).map(tamanio -> tamanio.getNombre()).collect(Collectors.toList()));
