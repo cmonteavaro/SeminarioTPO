@@ -43,7 +43,7 @@ export default function VolunteerCard({ voluntario }) {
             <h6>{voluntario.nombreRefugio}</h6>
           </div>
           <div className="card-right-info">
-            <button className="btn-adopt" onClick={() => setShowForm(true)}>
+            <button className="btn-info" onClick={() => setShowForm(true)}>
               {" "}
               Postularse
             </button>

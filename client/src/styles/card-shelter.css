@@ -39,17 +39,19 @@
 
 .btn-info {
   background-color: green;
-  width: 110px;
+  width: auto;
   height: 30px;
-  border-radius: 0.5vw;
   color: white;
   font-weight: bold;
   display: flex;
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  padding-left: 4px;
-  padding-right: 4px;
+  padding-left: 27px;
+  padding-right: 27px;
+  border-radius: 1vh;
+  margin-right: 5px;
+  border: 0px;
 }
 
 .btn-info:hover {
@@ -77,4 +79,5 @@
   .btn-info {
     border-radius: 1vh;
   }
+
 }
