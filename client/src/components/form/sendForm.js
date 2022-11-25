@@ -17,7 +17,7 @@ async function postularPromise(url = "", data = {}) {
 async function sendForm(url = "", data = {}) {
     Swal.fire({
         title: 'Enviando postulacion',
-        html: 'El refugio recibirá tu solicitud y se ponda en contacto contigo',
+        html: 'El refugio recibirá tu solicitud y se pondra en contacto contigo',
         allowEscapeKey: false,
         allowOutsideClick: false,
         showConfirmButton: false,
