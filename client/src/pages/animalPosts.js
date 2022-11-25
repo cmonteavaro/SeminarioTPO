@@ -5,6 +5,7 @@ import { Loader } from "@mantine/core";
 import NotFound from "./notFound";
 import AnimalFilters from "../components/animals/animalFilters";
 import { applyFilters, init as filtersInit } from "../filters";
+import FiltersEmptySearch from "../components/animals/filtersEmptySearch"
 
 export default function Posts() {
 	const [dataDisplay, setDataDisplay] = useState([]);
@@ -16,43 +17,54 @@ export default function Posts() {
 	// Get the data from the server
 	useEffect(() => {
 		setLoading(true);
-		Promise.all([
-			fetch(`http://localhost:8080/api/publicaciones/adopciones`),
-			fetch(`http://localhost:8080/api/publicaciones/filtros`),
-			])
-			.then(([resAdopciones, resFiltros]) =>
-				Promise.all([resAdopciones.json(), resFiltros.json()])
-			)
-			.then(([dataAdopciones, dataFiltros]) => {
-				setDataDisplay(dataAdopciones);
-				setDataFull(dataAdopciones);
-				setfiltersJSON(dataFiltros);
+		//Primero fetcheamos la info completa para los filtros
+		fetch("http://localhost:8080/api/publicaciones/adopciones/fullView")
+		.then((res) => res.json())
+		.then((dataFullView) => filtersInit(dataFullView))
+		.then(() => {
+			//Luego la info de las cards 
+			Promise.all([
+				fetch(`http://localhost:8080/api/publicaciones/adopciones`),
+				fetch(`http://localhost:8080/api/publicaciones/filtros`),
+				])
+				.then(([resAdopciones, resFiltros]) =>
+					Promise.all([resAdopciones.json(), resFiltros.json()])
+				)
+				.then(([dataAdopciones, titulosFiltros]) => {
+					setfiltersJSON(titulosFiltros);
+					setDataFull(dataAdopciones);
+					//Verificamos si existen filtros ya cargados
+					let SSfilters = JSON.parse(sessionStorage.getItem("filtersAdopciones"));
+					if(SSfilters!==null){
+						setFiltersDict(SSfilters);
+						setDataDisplay(applyFilters([...dataAdopciones], { ...SSfilters }));
+					}else{
+						buildEmptyFiltersDict(titulosFiltros);
+						setDataDisplay(dataAdopciones);
+					}				
+				})
+				.finally(() => {
+					setLoading(false);
+				});
 			})
-			.finally(() => {
-				fetch("http://localhost:8080/api/publicaciones/adopciones/fullView")
-				.then((res) => res.json())
-				.then((dataFullView)=>{
-					filtersInit(dataFullView);
-					setLoading(false);})
-			});
 	}, []);
 
 	// Pass the filters into an array
-	useEffect(() => {
-		if (typeof filtersJSON !== "undefined") {
-			filtersJSON.multivalores.TipoAnimalEnum.map((filtro) =>
+	const buildEmptyFiltersDict = (titulosFiltros) => {
+		if (typeof titulosFiltros !== "undefined") {
+			titulosFiltros.multivalores.TipoAnimalEnum.map((filtro) =>
 				setFiltersDict((prevState) => ({
 					...prevState,
 					[filtro]: false,
 				}))
 			);
-			filtersJSON.multivalores.TamanioEnum.map((filtro) =>
+			titulosFiltros.multivalores.TamanioEnum.map((filtro) =>
 				setFiltersDict((prevState) => ({
 					...prevState,
 					[filtro]: false,
 				}))
 			);
-			filtersJSON.booleanos.map((filtro) =>
+			titulosFiltros.booleanos.map((filtro) =>
 				setFiltersDict((prevState) => ({
 					...prevState,
 					[filtro]: false,
@@ -63,7 +75,7 @@ export default function Posts() {
 				["Es urgente"]: false,
 			}));
 		}
-	}, [filtersJSON]);
+	};
 
 	// Callback function called on AnimalFilters to change the state of the filter given
 	function handleCheckboxToggle(event) {
@@ -72,6 +84,7 @@ export default function Posts() {
 		let filtros = filtersDict;
 		filtros[value] = checked;
 		setFiltersDict(filtros);
+		sessionStorage.setItem("filtersAdopciones",JSON.stringify(filtersDict));
 		setDataDisplay(applyFilters([...dataFull], { ...filtersDict }));
 	}
 
@@ -95,13 +108,14 @@ export default function Posts() {
         <div className="grid-posts">
           <section className="filters">
             <AnimalFilters
-              filtros={filtersJSON}
+              filtros = {filtersJSON}
+			  filtrosDict = {filtersDict}
               callback={handleCheckboxToggle}
             />
           </section>
           <section className="cards">
             {dataDisplay.length < 1 ? (
-						<p> No se encontraron publicaciones para tu busqueda</p>
+						<FiltersEmptySearch/>
 					) : (
 						<ListAnimals props={dataDisplay} />
 					)}

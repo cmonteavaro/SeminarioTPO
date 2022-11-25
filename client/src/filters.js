@@ -4,7 +4,6 @@ const noFilter = (data) => {
 };
 
 const filterByEstadoPublicacion = (data, options) => {
-	//No tiene implementacion visual
 	return data.filter((element) => options.includes(element.estadoPublicacion));
 };
 
@@ -25,13 +24,14 @@ const filterByTamanioActual = (data, options) => {
 };
 
 const filterByTamanioEsperado = (data, options) => {
-	//No tiene implementacion visual
 	//Options es el array de las opciones seleccionadas
+	if (options.length === 0) {
+		return data;
+	}
 	return data.filter((element) => options.includes(element.animal.tamanioEsperado));
 };
 
 const filterByEdad = (data, min, max) => {
-	//No tiene implementacion visual
 	//Min y max definen el rango de edad
 	return data.filter((element) => element.animal.edadInteger >= min && element.animal.edadInteger <= max);
 };
@@ -68,6 +68,10 @@ const filterByTransporteCubierto = (data) => {
 	return data.filter((element) => element.requiereHogarAmplio);
 };
 
+const filterByCastrado = (data) => {
+	return data.filter((element) => element.animal.castrado);
+};
+
 const init = (data) => {
 	fullData = data;
 };
@@ -81,14 +85,14 @@ const config = {
 	"Puede convivir con cachorros": filterByPuedeConvivirConCachorros,
 	"Puede convivir con perros adultos": filterByPuedeConvivirConPerrosAdultos,
 	"Requiere hogar amplio": filterByRequiereHogarAmplio,
-	"Transporte cubierto": filterByTransporteCubierto,
+	Castrado: filterByCastrado,
 
 	//No filter (no se puede/debe filtrar por estos parametros)
 	"Gastos alimentacion cubiertos": noFilter,
 	"Gastos medicos cubiertos": noFilter,
-	Castrado: noFilter,
 	"Esquema completo vacunas": noFilter,
 	Desparasitado: noFilter,
+	"Transporte cubierto": noFilter,
 };
 
 let fullData;
@@ -112,7 +116,7 @@ const applyFilters = (data, filters) => {
 
 	let spreadFullData = [...fullData];
 	//filtra tipo animal y tamanio
-	spreadFullData = filterByTamanioActual(spreadFullData, tamanios);
+	spreadFullData = filterByTamanioEsperado(spreadFullData, tamanios);
 	spreadFullData = filterByTipoAnimal(spreadFullData, tipoAnimal);
 
 	//fitra booleanos
@@ -121,7 +125,6 @@ const applyFilters = (data, filters) => {
 			spreadFullData = config[key](spreadFullData);
 		}
 	}
-
 	const filteredIds = spreadFullData.map((item) => item.idPublicacion);
 	return data.filter((item) => filteredIds.includes(item.idPublicacion));
 };
