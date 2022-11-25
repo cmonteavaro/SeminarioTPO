@@ -40,7 +40,7 @@ async function sendForm(url = "", data = {}) {
         }else{
             Swal.fire({ 
                 title: 'No se ha podido enviar la solicitud',
-                html: 'Lo sentimos, tu solicitud no se ha podido enviar. Verifica que el correo ingresado sea correcto. En caso que lo sea, intentalo nuevamente mas tarde',
+                html: 'Lo sentimos, tu solicitud no se ha podido enviar. Verifica que el correo ingresado sea correcto. En caso que lo sea, intentalo nuevamente mas tarde.',
                 icon: "error",
                 showCancelButton: true,
                 showConfirmButton: false,
