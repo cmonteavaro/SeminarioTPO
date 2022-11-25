@@ -16,4 +16,5 @@ public interface DonacionService {
     Long save(PublicacionDonacion adopcion);
 
     Long saveDTO(DonacionDTO donacionDTO) throws DonacionException, RefugioException;
+    Long updateDTO(DonacionDTO donacionDTO) throws DonacionException, RefugioException;
 }
