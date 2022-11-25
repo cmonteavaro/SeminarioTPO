@@ -20,6 +20,7 @@ export default function TransitCard({ animal }) {
           src={animal.imagenAnimal}
           width={"250px"}
           effect="blur"
+          className="card-img-animal"
         />
         <div className="tag-urgente">{<Tag state={animal.esUrgente} />}</div>
       </div>

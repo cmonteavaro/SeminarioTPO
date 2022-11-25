@@ -7,6 +7,7 @@ import { useParams } from "react-router-dom";
 import { Loader } from "@mantine/core";
 import NotFound from "./notFound";
 import SocialMedia from "../components/rrss/socialMedia"
+import {Link} from 'react-router-dom';
 
 import Modal from "../components/animals/modalPreForm";
 import Form from "../components/form/form";
@@ -67,7 +68,7 @@ export default function AnimalDetail() {
   return (
     <main className="animal-detail">
       <div>
-        <Link to="/adopciones" className="go-back-detail">
+        <Link to="/publicaciones" className="go-back-detail">
           {"<"} Volver atras
         </Link>
       </div>

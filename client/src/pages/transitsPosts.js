@@ -5,6 +5,7 @@ import NotFound from "./notFound";
 import AnimalFilters from "../components/animals/animalFilters";
 import { applyFilters, init as filtersInit } from "../filters";
 import FiltersEmptySearch from "../components/animals/filtersEmptySearch"
+import "../styles/posts.css";
 
 export default function Transits() {
   const [dataDisplay, setDataDisplay] = useState([]);
@@ -89,22 +90,25 @@ export default function Transits() {
     return <NotFound />;
   } else {
     return (
-      <div className="container">
-        <section className="filters">
-          <AnimalFilters
-            filtros={filtersJSON}
-            filtrosDict = {filtersDict}
-            callback={handleCheckboxToggle}
-          />
-        </section>
-        <section className="cards">
-          {dataDisplay.length < 1 ? (
-              <FiltersEmptySearch/>
-            ) : (
-              <ListTransits props={dataDisplay} />
-            )}
-        </section>
-      </div>
+      <>
+        <h2>Transitos</h2>
+        <div className="grid-posts">
+          <section className="filters">
+            <AnimalFilters
+              filtros={filtersJSON}
+              filtrosDict = {filtersDict}
+              callback={handleCheckboxToggle}
+            />
+          </section>
+          <section className="cards">
+            {dataDisplay.length < 1 ? (
+                <FiltersEmptySearch/>
+              ) : (
+                <ListTransits props={dataDisplay} />
+              )}
+          </section>
+        </div>
+      </>
     );
   }
 }

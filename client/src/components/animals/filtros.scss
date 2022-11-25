@@ -11,6 +11,7 @@
     background-color: white;
     border-radius: 1vh;
     width: 15vw;
+    margin-top: 5%;
   }
 }
 
@@ -22,31 +23,35 @@
 
 .filter-section {
   margin: 0.5vh 0;
+
   label {
     padding: 0 2px;
   }
+
   &-container {
     h4 {
       text-align: left;
     }
+
     margin: 1vh 1vw;
   }
 }
 
-.dropwdown-filters{
+.dropwdown-filters {
   background-color: white;
 
   .dropdown-menu {
     width: 16vw !important;
   }
 
-  a{
+  a {
     font-size: 18px;
     font-weight: bold;
     color: green !important;
     margin-left: 0;
   }
-  .mantine-Checkbox-root{
+
+  .mantine-Checkbox-root {
     margin: 1vh 0vw 1vh 1vw;
   }
 }
@@ -60,6 +65,7 @@
   h3 {
     text-align: center;
   }
+
   &-container {
     display: flex;
     flex-direction: column;
@@ -79,21 +85,22 @@
       h4 {
         text-align: start;
       }
+
       margin: 0;
     }
   }
 }
 
-@media screen and (max-width: 992px){
-  .filters{
-    nav{
+@media screen and (max-width: 992px) {
+  .filters {
+    nav {
       width: 100%;
 
-      .show{
+      .show {
         width: 30vw;
       }
 
-      .dropdown-menu{
+      .dropdown-menu {
         width: 55vw !important;
       }
     }
