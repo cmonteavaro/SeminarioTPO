@@ -21,6 +21,7 @@ footer .container {
 
 .icon {
   color: green;
+  transition: all 0.1s ease;
 }
 
 .icons-link {
@@ -32,7 +33,7 @@ footer .container {
 }
 
 .icon:hover {
-  color: var(--accent-color);
+  color: rgb(0, 176, 0);
 }
 
 @media screen and (max-width: 768px) {

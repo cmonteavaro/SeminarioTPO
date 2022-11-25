@@ -4,6 +4,11 @@
   margin: 0 5vw 0 5vw;
 }
 
+.container-perfil {
+  width: 90%;
+  margin: auto;
+}
+
 .links-shelter {
   display: flex;
   flex-direction: column;
@@ -70,10 +75,11 @@
 }
 
 .hero {
-  margin-top: 1vh;
-  height: 60vh;
-  width: 90vw;
-  margin: 1vh 5vw 0 5vw;
+  height: 25vw;
+  width: 100%;
+  object-fit: none;
+  margin-top: 2vw;
+  border-radius: 5px;
 }
 
 .posts-shelter {
@@ -101,9 +107,11 @@
     height: 35vh;
     width: 95vw;
   }
+
   .grid-profile {
     grid-template-columns: 1fr;
   }
+
   .caroussel {
     display: none;
   }
@@ -111,10 +119,12 @@
   .donate {
     align-self: center;
   }
+
   .description-shelter {
     flex-direction: column;
     margin: 1vh 0.5vw;
   }
+
   .logo-name-location {
     flex-direction: column;
   }
@@ -122,6 +132,7 @@
   .links-shelter {
     justify-content: end;
   }
+
   .donate {
     width: 100px;
   }

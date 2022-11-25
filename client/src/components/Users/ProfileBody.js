@@ -85,10 +85,11 @@ const ProfileBody = ({ refugio }) => {
   }, [setVol]);
 
   return (
-    <section>
-      <button className="go-back-detail" onClick={() => navigate(-1)}>
-        {"<"} Volver atras
-      </button>
+    <>
+    <button className="go-back-detail" onClick={() => navigate(-1)}>
+      {"<"} Volver atras
+    </button>
+    <section className="container-perfil">
       <img className="hero" src={Five} alt="Imagen animal" />
       <section className="basic">
         <section className="heading-shelter">
@@ -200,6 +201,7 @@ const ProfileBody = ({ refugio }) => {
         </section>
       </section>
     </section>
+    </>
   );
 };
 
