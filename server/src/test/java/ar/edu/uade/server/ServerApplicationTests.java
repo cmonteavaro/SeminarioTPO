@@ -162,6 +162,20 @@ class ServerApplicationTests {
     }
 
     @Test
+    void modificarRefugio() {
+        Optional<Refugio> optionalRefugio = refugioService.findById(39L);
+        if (optionalRefugio.isPresent()) {
+            Refugio refugio = optionalRefugio.get();
+            List<String> galeria = new ArrayList<>();
+            galeria.add("https://res.cloudinary.com/dypgglzvv/image/upload/v1669477047/SIPI-Refugios/zaguates-galeria1_tx1j2x.jpg");
+            galeria.add("https://res.cloudinary.com/dypgglzvv/image/upload/v1669477047/SIPI-Refugios/zaguates-galeria2_wkpmul.webp");
+            galeria.add("https://res.cloudinary.com/dypgglzvv/image/upload/v1669477047/SIPI-Refugios/zaguates-galeria3_qtz1sg.jpg");
+            refugio.getPerfilRefugio().setGaleriaImagenes(galeria);
+            refugioService.save(refugio);
+        }
+    }
+
+    @Test
     void adopcionStats() {
         for (Adopcion r : adopcionService.findAll()) {
             System.out.println("----------------------------------");

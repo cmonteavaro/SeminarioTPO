@@ -34,7 +34,7 @@ export default function DonationCard({ donacion }) {
       </div>
       <div className="card-bottom">
         <div className="card-shelter">
-          <img src={Logo} className="card-img-shelter" alt="Imagen refugio" />
+          <img src={donacion.fotoPerfilRefugio} className="card-img-shelter" alt="Imagen refugio" />
           <h6>{donacion.nombreRefugio}</h6>
         </div>
         <div className="card-right-info">
