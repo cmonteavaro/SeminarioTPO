@@ -183,6 +183,9 @@ public class PublicacionesApi {
         Optional<Adopcion> oAdopcion = adopcionService.findById(id);
         if (oAdopcion.isPresent()) {
             try {
+                Direccion direccion =  oAdopcion.get().getRefugio().getDireccion();
+                double distancia = utilsServiceImpl.distanciaCoords(formularioDTO.getCoordenadas().get(1), formularioDTO.getCoordenadas().get(0), direccion.getLatitud(), direccion.getLongitud());
+                if(distancia > oAdopcion.get().getRefugio().getRadioAlcance()) throw new RefugioException("El postulante no se encuentra dentro del radio del refugio");
                 emailService.sendMailToRefugioDTO(formularioDTO, oAdopcion.get());
                 emailService.sendMailToPostulanteDTO(formularioDTO, oAdopcion.get());
                 return ResponseEntity.ok().build();

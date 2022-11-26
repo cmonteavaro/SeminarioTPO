@@ -4,6 +4,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.List;
+
 @NoArgsConstructor
 @Getter
 @Setter
@@ -14,4 +16,5 @@ public class FormularioDTO {
     String direccion;
     String correo;
     String notas;
+    List<Float> coordenadas;
 }
