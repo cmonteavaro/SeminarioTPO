@@ -51,28 +51,6 @@ public class PublicacionesApi {
             this.utilsServiceImpl = us;
     }
 
-    @GetMapping("/distance/{idRefugio}")
-    public ResponseEntity<?> getDistance (@RequestBody String direccion, @PathVariable Long idRefugio) {
-        boolean puedeConcretar = false;
-        try {
-            List<Float> coords = utilsServiceImpl.convertirDireccion(direccion);
-            Optional<Refugio> oRefugio = refugioService.findById(idRefugio);
-            if (oRefugio.isPresent()){
-                Refugio r = oRefugio.get();
-                double distancia = utilsServiceImpl.distanciaCoords(coords.get(0),coords.get(1), r.getDireccion().getLatitud(),r.getDireccion().getLongitud());
-                if(distancia < r.getRadioAlcance()) {
-                    puedeConcretar = true;
-                }
-            }
-            else {
-                return ResponseEntity.notFound().build();
-            }
-        } catch (IOException | InterruptedException E) {
-            return ResponseEntity.badRequest().body(E.getMessage());
-        }
-        return ResponseEntity.ok(puedeConcretar);
-    }
-
     @GetMapping("/filtros")
     public ResponseEntity<?> getAllAtributos () {
         return ResponseEntity.ok(AtributosView.toView());
@@ -107,6 +85,14 @@ public class PublicacionesApi {
     public ResponseEntity<?> getAllAdopcionesUrgentes() {
         List<AdopcionView> resultado = new ArrayList<>();
         adopcionService.findAll().stream().filter(x -> x.getEsUrgente() && !x.getEstado().equals(EstadoPublicacionAnimalEnum.FINALIZADA)).forEach(adopcion -> resultado.add(AdopcionView.toView(adopcion)));
+        return ResponseEntity.ok(resultado);
+    }
+
+    @GetMapping("/adopciones/distance")
+    public ResponseEntity<?> getAdopcionesByDistance (@RequestHeader("longitud") Float longitud, @RequestHeader("latitud") Float latitud) {
+        List<PublicacionAnimalCortaView> resultado = new ArrayList<>();
+        List<PublicacionAnimal> pubsAdopcion = adopcionService.findAll().stream().sorted(Comparator.comparing(Adopcion::getEsUrgente).reversed()).filter(adopcion -> !adopcion.getEstado().equals(EstadoPublicacionAnimalEnum.FINALIZADA)).collect(Collectors.toList());
+        pubsAdopcion.stream().filter(adopcion -> utilsServiceImpl.distanciaCoords(latitud,longitud,adopcion.getRefugio().getDireccion().getLatitud(),adopcion.getRefugio().getDireccion().getLongitud()) < adopcion.getRefugio().getRadioAlcance()).collect(Collectors.toList()).forEach(adopcion -> resultado.add(PublicacionAnimalCortaView.toView(adopcion)));
         return ResponseEntity.ok(resultado);
     }
 
@@ -216,6 +202,14 @@ public class PublicacionesApi {
     public ResponseEntity<?> getAllTransitosUrgentes() {
         List<TransitoView> resultado = new ArrayList<>();
         transitoService.findAll().stream().filter(x -> x.getEsUrgente()  && !x.getEstado().equals(EstadoPublicacionAnimalEnum.FINALIZADA)).forEach(transito -> resultado.add(TransitoView.toView(transito)));
+        return ResponseEntity.ok(resultado);
+    }
+
+    @GetMapping("/transitos/distance")
+    public ResponseEntity<?> getTransitosByDistance (@RequestHeader("longitud") Float longitud, @RequestHeader("latitud") Float latitud) {
+        List<PublicacionAnimalCortaView> resultado = new ArrayList<>();
+        List<PublicacionAnimal> pubsTransito = transitoService.findAll().stream().sorted(Comparator.comparing(Transito::getEsUrgente).reversed()).filter(transito -> !transito.getEstado().equals(EstadoPublicacionAnimalEnum.FINALIZADA)).collect(Collectors.toList());
+        pubsTransito.stream().filter(transito -> utilsServiceImpl.distanciaCoords(latitud,longitud,transito.getRefugio().getDireccion().getLatitud(),transito.getRefugio().getDireccion().getLongitud()) < transito.getRefugio().getRadioAlcance()).collect(Collectors.toList()).forEach(transito -> resultado.add(PublicacionAnimalCortaView.toView(transito)));
         return ResponseEntity.ok(resultado);
     }
 
