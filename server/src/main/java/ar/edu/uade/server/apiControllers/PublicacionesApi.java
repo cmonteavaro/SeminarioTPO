@@ -298,11 +298,14 @@ public class PublicacionesApi {
         Optional<Transito> oTransito = transitoService.findById(id);
         if (oTransito.isPresent()) {
             try {
+                Direccion direc =  oTransito.get().getRefugio().getDireccion();
+                double distancia = utilsServiceImpl.distanciaCoords(formularioDTO.getCoordenadas().get(1), formularioDTO.getCoordenadas().get(0), direc.getLatitud(), direc.getLongitud());
+                if(distancia > oTransito.get().getRefugio().getRadioAlcance()) throw new RefugioException("No te encuentras dentro del radio del refugio. Lamentamos el inconveniente");
                 emailService.sendMailToRefugioDTO(formularioDTO, oTransito.get());
                 emailService.sendMailToPostulanteDTO(formularioDTO, oTransito.get());
                 return ResponseEntity.ok().build();
             }catch (Exception e){
-                return ResponseEntity.internalServerError().body(e.getMessage());
+                return ResponseEntity.status(HttpStatus.NOT_ACCEPTABLE).body(e.getMessage());
             }
         } else {
             return ResponseEntity.notFound().build();
