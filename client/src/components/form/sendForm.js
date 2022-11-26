@@ -1,7 +1,7 @@
 import Swal from 'sweetalert2'
 
 async function handleSearch (inputSearch) {
-    let coords;
+    let coords = [];
     await fetch(`https://api.maptiler.com/geocoding/${inputSearch}.json?key=Mdlvp8JndCrWtOqNUat6`)
     .then((response) => response.json())
     .then((s) => {
@@ -10,7 +10,18 @@ async function handleSearch (inputSearch) {
       const geometry = place['geometry'];
       coords = geometry['coordinates'];
     })
-    return coords[0][0];
+    if(typeof(coords[0]) === "number"){
+        console.log(coords)
+        return coords;
+    } else {
+        if(typeof(coords[0][0]) === "number"){
+            console.log(coords[0])
+            return coords[0];
+        } else {
+            return coords[0][0];
+        }
+    }
+    
   }
 
 async function postularPromise(url = "", data = {}) {
