@@ -41,7 +41,7 @@ export default function Form(data) {
             onSubmit={form.onSubmit((values) =>
               sendForm(
                 `http://localhost:8080/api/publicaciones/adopciones/${data.data.idPublicacion}/postular`,
-                values,
+                values
               )
               .catch((e) => console.log(e))
             )}

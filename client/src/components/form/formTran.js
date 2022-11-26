@@ -68,7 +68,7 @@ export default function FormTran(data) {
             <TextInput
               withAsterisk
               label="Direccion"
-              placeholder="Lima 775, CABA, Buenos Aires"
+              placeholder="Lima 775, Monserrat, Buenos Aires, Argentina"
               {...form.getInputProps("direccion")}
             />
             <TextInput

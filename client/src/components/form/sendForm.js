@@ -11,11 +11,9 @@ async function handleSearch (inputSearch) {
       coords = geometry['coordinates'];
     })
     if(typeof(coords[0]) === "number"){
-        console.log(coords)
         return coords;
     } else {
         if(typeof(coords[0][0]) === "number"){
-            console.log(coords[0])
             return coords[0];
         } else {
             return coords[0][0];
