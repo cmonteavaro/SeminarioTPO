@@ -227,11 +227,6 @@
 }
 
 @media (max-width: 1024px) {
-  .card-right svg {
-    width: 2vw;
-    height: 2vw;
-  }
-
   .btn-info {
     border-radius: 1vh;
   }
@@ -245,11 +240,6 @@
 @media (max-width: 768px) {
   .card {
     margin: 1vh 0;
-  }
-
-  .card-right svg {
-    width: 6vw;
-    height: 6vw;
   }
 
   .btn-info {
