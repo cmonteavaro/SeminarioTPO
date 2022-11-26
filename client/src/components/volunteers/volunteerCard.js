@@ -18,20 +18,20 @@ export default function VolunteerCard({ voluntario }) {
       <div className="donation-card">
         <div className="card-heading">
           <h2>{voluntario.titulo}</h2>
-        </div>
-        <div className="card-center-info">
-          <div className="card-left-info">
-            <div className="card-shelter">
-              <IconMapPin color="gray" size={17} stroke={2} />
-              <h6>{voluntario.direccionRefugio.localidad}</h6>
+          <div className="card-center-info">
+            <div className="card-left-info">
+              <div className="card-shelter">
+                <IconMapPin color="gray" size={17} stroke={2} />
+                <h6>{voluntario.direccionRefugio.localidad}</h6>
+              </div>
+              <div className="card-shelter">
+                <IconCalendar color="gray" size={17} stroke={2} />
+                <h6>{voluntario.fechaPublicacion}</h6>
+              </div>
             </div>
-            <div className="card-shelter">
-              <IconCalendar color="gray" size={17} stroke={2} />
-              <h6>{voluntario.fechaPublicacion}</h6>
+            <div className="card-right">
+              <IconVolunteer caso={voluntario.tipoVoluntariado}></IconVolunteer>
             </div>
-          </div>
-          <div className="card-right">
-            <IconVolunteer caso={voluntario.tipoVoluntariado}></IconVolunteer>
           </div>
         </div>
         <div className="card-center">

@@ -25,8 +25,14 @@
   background-color: white;
   display: flex;
   flex-direction: column;
-  justify-content: space-evenly;
+  justify-content: space-between;
 }
+
+.donation-card .card-heading{
+  display: inline-block;
+  margin-top: 1vh;
+}
+
 .volunteer-card {
   width: 250px;
   border: 1px lightgrey solid;
@@ -77,12 +83,12 @@
   position: relative;
   display: flex;
   justify-content: right;
-  margin: 2vh;
+  margin: 2vh;  
 }
 
 .card-right svg {
-  width: 65px;
-  height: 65px;
+  width: 40px;
+  height: 40px;
 }
 
 .tag-urgente {
@@ -116,6 +122,7 @@
   justify-content: space-between;
   align-items: center;
   height: 10px;
+  margin-top: 2vh;
 }
 
 .card-left-info {
@@ -123,7 +130,7 @@
   flex-direction: column;
   justify-content: space-around;
   align-items: left;
-  margin: 1vh;
+  margin: 0vh;
 }
 
 .card-right-info {

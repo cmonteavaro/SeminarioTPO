@@ -12,21 +12,21 @@ export default function DonationCard({ donacion }) {
   return (
     <div className="donation-card">
       <div className="card-heading">
-        <h2>{donacion.titulo}</h2>
-      </div>
-      <div className="card-center-info">
-        <div className="card-left-info">
-          <div className="card-shelter">
-            <IconMapPin color="gray" size={17} stroke={2} />
-            <h6>{donacion.direccionRefugio.localidad}</h6>
+        <h2>{donacion.titulo}</h2>      
+        <div className="card-center-info">
+          <div className="card-left-info">
+            <div className="card-shelter">
+              <IconMapPin color="gray" size={17} stroke={2} />
+              <h6>{donacion.direccionRefugio.localidad}</h6>
+            </div>
+            <div className="card-shelter">
+              <IconCalendar color="gray" size={17} stroke={2} />
+              <h6>{donacion.fechaPublicacion}</h6>
+            </div>
           </div>
-          <div className="card-shelter">
-            <IconCalendar color="gray" size={17} stroke={2} />
-            <h6>{donacion.fechaPublicacion}</h6>
+          <div className="card-right">
+            <IconDonation caso={donacion.tipo}></IconDonation>
           </div>
-        </div>
-        <div className="card-right">
-          <IconDonation caso={donacion.tipo}></IconDonation>
         </div>
       </div>
       <div className="card-center">
