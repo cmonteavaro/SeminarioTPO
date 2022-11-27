@@ -38,20 +38,23 @@
 }
 
 .buscador-maps {
+  padding: 4px;
+  margin-top: 0.5vh;
   margin-right: 10px;
   border-radius: 0.5vw;
-  border-color: #4bc348;
+  border-color: #acd1ab;
   border-style: double;
 }
 
 .boton-maps {
   background-color: green;
-  width: 7vw;
+  width: 6vw;
   height: 3vh;
   border-radius: 0.5vw;
   color: white;
   font-weight: bold;
   border-style: hidden;
+  margin-top: 1.5vh;
 }
 
 .checkbox {

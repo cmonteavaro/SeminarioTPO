@@ -46,6 +46,13 @@ export default function AnimalFilter(props) {
           <h3>Filtros</h3>
           <div className="filtros-container">
             <div className="filter-section-container">
+              <h4>Ubicacion</h4>
+              <div>
+                <input className="buscador-maps" autoComplete="off" id="search" type="text" ref={inputSearch} placeholder="Escribí tu ubicación..."/>
+                <button className="boton-maps" onClick={() => handleSearch(inputSearch.current.value)}>Ubicar</button>
+              </div>
+            </div>
+            <div className="filter-section-container">
               <h4>Urgencia</h4>
               <div className="filter-section">
                 <Checkbox
@@ -102,10 +109,6 @@ export default function AnimalFilter(props) {
                     : null}
               </NavDropdown>
             </div>
-          </div>
-          <div className="maps">
-            <input className="buscador-maps" autoComplete="off" id="search" type="text" ref={inputSearch} placeholder="Escribí tu ubicación..."/>
-            <button className="boton-maps" onClick={() => handleSearch(inputSearch.current.value)}>Ubicar</button>
           </div>
         </nav>
       </Navbar.Collapse>
