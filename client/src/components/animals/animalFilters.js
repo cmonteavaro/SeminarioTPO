@@ -1,10 +1,41 @@
 import { Checkbox } from "@mantine/core";
+import { useRef, useState } from "react";
 import { NavDropdown } from "react-bootstrap";
 import Navbar from "react-bootstrap/Navbar";
 import "./filtros.scss";
 
+
 export default function AnimalFilter(props) {
+
+  async function handleSearch (inputSearch) {
+    let coords = [];
+    await fetch(`https://api.maptiler.com/geocoding/${inputSearch}.json?key=Mdlvp8JndCrWtOqNUat6`)
+    .then((response) => response.json())
+    .then((s) => {
+      const obj = s['features'];
+      const place = obj[0];
+      const geometry = place['geometry'];
+      coords = geometry['coordinates'];
+    })
+    if(typeof(coords[0]) === "number"){
+        setUbicacion(coords);
+        setUsarUbicacion(true);
+    } else {
+        if(typeof(coords[0][0]) === "number"){
+          setUbicacion(coords[0]);
+          setUsarUbicacion(true);
+        } else {
+          setUbicacion(coords[0][0]);
+          setUsarUbicacion(true);
+        }
+    }
+    
+  }
+
   const data = props.filtros;
+  const setUbicacion = props.setUbicacion;
+  const setUsarUbicacion = props.setUsarUbicacion;
+  const inputSearch = useRef();
   const filtrosDict = props.filtrosDict;
 
   return (
@@ -71,6 +102,10 @@ export default function AnimalFilter(props) {
                     : null}
               </NavDropdown>
             </div>
+          </div>
+          <div className="maps">
+            <input className="buscador-maps" autoComplete="off" id="search" type="text" ref={inputSearch} placeholder="Escribí tu ubicación..."/>
+            <button className="boton-maps" onClick={() => handleSearch(inputSearch.current.value)}>Ubicar</button>
           </div>
         </nav>
       </Navbar.Collapse>

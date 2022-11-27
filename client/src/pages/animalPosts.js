@@ -14,6 +14,8 @@ export default function Posts() {
 	const [loading, setLoading] = useState(false);
 	const [filtersJSON, setfiltersJSON] = useState();
 	const [filtersDict, setFiltersDict] = useState({});
+	const [usarUbicacion, setUsarUbicacion] = useState(false);
+	const [ubicacion, setUbicacion] = useState("");
 
 
 	// Get the data from the server
@@ -79,6 +81,21 @@ export default function Posts() {
 		}
 	};
 
+	useEffect(() => {
+		fetch(`http://localhost:8080/api/publicaciones/adopciones/distance`,{
+			method: "GET",
+			headers: {
+				'longitud': ubicacion[0],
+				'latitud': ubicacion[1]
+			}
+		})
+		.then((response) => response.json())
+		.then((data) => {
+			setDataFull(data)
+			setDataDisplay(applyFilters([...data], {...filtersDict}))
+		})
+	},[usarUbicacion]);
+
 	// Callback function called on AnimalFilters to change the state of the filter given
 	function handleCheckboxToggle(event) {
 		const value = event.currentTarget.value;
@@ -113,6 +130,8 @@ export default function Posts() {
               filtros = {filtersJSON}
 			  filtrosDict = {filtersDict}
               callback={handleCheckboxToggle}
+			  setUbicacion={setUbicacion}
+			  setUsarUbicacion={setUsarUbicacion}
             />
           </section>
           <section className="cards">

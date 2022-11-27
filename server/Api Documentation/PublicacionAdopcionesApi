@@ -14,6 +14,13 @@ Obtener todas las publicaciones de Adopciones urgentes
 Método: GET
 Endpoint: http://localhost:8080/api/publicaciones/adopciones/urgentes
 
+Obtener todas las publicaciones de Adopciones que estén dentro del radio del colaborador
+Método: GET
+Endpoint: http://localhost:8080/api/publicaciones/adopciones/distance
+Headers (JSON):
+    longitud: <longitud colaborador>
+    latitud: <latitud colaborador>
+
 Cambiar estado a una publicacion de Adopcion en particular (ID)
 Método: PUT
 Endpoint: http://localhost:8080/api/publicaciones/adopciones/{id}/cambiarEstado

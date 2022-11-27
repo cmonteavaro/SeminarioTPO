@@ -37,6 +37,26 @@
   }
 }
 
+.buscador-maps {
+  margin-right: 10px;
+  border-radius: 0.5vw;
+  border-color: #4bc348;
+  border-style: double;
+}
+
+.boton-maps {
+  background-color: green;
+  width: 7vw;
+  height: 3vh;
+  border-radius: 0.5vw;
+  color: white;
+  font-weight: bold;
+  border-style: hidden;
+}
+
+.checkbox {
+  margin: 0.5vh;
+
 .dropwdown-filters {
   background-color: white;
 
@@ -54,6 +74,7 @@
   .mantine-Checkbox-root {
     margin: 1vh 0vw 1vh 1vw;
   }
+
 }
 
 .filters-bar {
