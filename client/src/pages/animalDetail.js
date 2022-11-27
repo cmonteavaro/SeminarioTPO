@@ -60,9 +60,7 @@ export default function AnimalDetail() {
   let animalRestrictionsFiltered = Object.entries(animalRestrictions).filter(
     ([key, value]) => value === false
   );
-
   if (data.length < 1) return <NotFound />;
-
   return (
     <main className="animal-detail">
       <div>
@@ -71,13 +69,21 @@ export default function AnimalDetail() {
         </button>
       </div>
       <section className="detail">
+        <section className="gallery-detail">
+          {data.animal.galeriaImagenes.length > 0
+            ? data.animal.galeriaImagenes.map((imagen) => (
+                <img src={imagen} alt="Imagen alternativa animal." />
+              ))
+            : null}
+        </section>
         <section className="images-detail">
           <img
-            src={data.animal.galeriaImagenes[0]}
+            src={data.animal.imagenPrincipal}
             className="image-detail-big"
             alt="Imagen animal"
           />
         </section>
+
         <section className="info-detail">
           <div className="info-detail-wrapper">
             <div className="info-detail-heading">
@@ -86,10 +92,8 @@ export default function AnimalDetail() {
                 Fecha de Publicacion: {data.fechaPublicacion}
               </p>
             </div>
-            <div className="info-detail-urgente">
+            <div className="info-detail-tags">
               <Tag state={data.esUrgente} />
-            </div>
-            <div className="info-detail-status">
               <Tag state={data.estadoPublicacion} />
             </div>
           </div>
