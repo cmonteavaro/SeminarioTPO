@@ -152,26 +152,12 @@ class ServerApplicationTests {
             System.out.println(r.getId());
             System.out.println(r.getNombre());
             System.out.println(r.getCorreo());
-            System.out.println("Cantidad actual urgentes: "+r.getCantidadUrgentes());
-            System.out.println("Cantidad maxima urgentes: "+Math.ceil((r.getPublicacionesAdopcion().size()+r.getPublicacionesTransito().size())*0.2));
-            System.out.println("Pub adopcion: "+r.getPublicacionesAdopcion().size());
-            System.out.println("Pub transito: "+r.getPublicacionesTransito().size());
-            System.out.println("Pub donacion: "+r.getPublicacionesDonacionesNoMonetarias().size());
-            System.out.println("Pub voluntariado: "+r.getPublicacionesVoluntariado().size());
-        }
-    }
-
-    @Test
-    void modificarRefugio() {
-        Optional<Refugio> optionalRefugio = refugioService.findById(39L);
-        if (optionalRefugio.isPresent()) {
-            Refugio refugio = optionalRefugio.get();
-            List<String> galeria = new ArrayList<>();
-            galeria.add("https://res.cloudinary.com/dypgglzvv/image/upload/v1669477047/SIPI-Refugios/zaguates-galeria1_tx1j2x.jpg");
-            galeria.add("https://res.cloudinary.com/dypgglzvv/image/upload/v1669477047/SIPI-Refugios/zaguates-galeria2_wkpmul.webp");
-            galeria.add("https://res.cloudinary.com/dypgglzvv/image/upload/v1669477047/SIPI-Refugios/zaguates-galeria3_qtz1sg.jpg");
-            refugio.getPerfilRefugio().setGaleriaImagenes(galeria);
-            refugioService.save(refugio);
+            System.out.println("Cantidad actual urgentes: " + r.getCantidadUrgentes());
+            System.out.println("Cantidad maxima urgentes: " + Math.ceil((r.getPublicacionesAdopcion().size() + r.getPublicacionesTransito().size()) * 0.2));
+            System.out.println("Pub adopcion: " + r.getPublicacionesAdopcion().size());
+            System.out.println("Pub transito: " + r.getPublicacionesTransito().size());
+            System.out.println("Pub donacion: " + r.getPublicacionesDonacionesNoMonetarias().size());
+            System.out.println("Pub voluntariado: " + r.getPublicacionesVoluntariado().size());
         }
     }
 
