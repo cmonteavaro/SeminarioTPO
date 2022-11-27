@@ -7,7 +7,6 @@ import SocialMedia from "../rrss/socialMedia";
 // Import imagenes
 import logorefugio from "../../images/shelters/zaguates.webp";
 
-//Import fotos carrusel
 import One from "../../images/carousel/1.jpg";
 import Two from "../../images/carousel/2.jpg";
 import Three from "../../images/carousel/3.jpg";
