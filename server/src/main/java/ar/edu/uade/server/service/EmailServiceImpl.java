@@ -66,6 +66,7 @@ public class EmailServiceImpl {
 
             javaMailSender.send(mailMessage);
         }catch (Exception e) {
+            System.out.println(e.getMessage());
             throw new MailException("El mail de postulación a adopción no pudo ser enviado al refugio.");
         }
     }

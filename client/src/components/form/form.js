@@ -43,7 +43,7 @@ export default function Form(data) {
                 `http://localhost:8080/api/publicaciones/adopciones/${data.data.idPublicacion}/postular`,
                 values
               )
-                .catch((e) => console.log(e))
+              .catch((e) => console.log(e))
             )}
           >
             <TextInput
@@ -67,7 +67,7 @@ export default function Form(data) {
             <TextInput
               withAsterisk
               label="Direccion"
-              placeholder="Lima 775, CABA, Buenos Aires"
+              placeholder="Lima 775, Monserrat, Buenos Aires, Argentina"
               {...form.getInputProps("direccion")}
             />
             <TextInput
