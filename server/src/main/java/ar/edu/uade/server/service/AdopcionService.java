@@ -19,4 +19,6 @@ public interface AdopcionService {
 
     Long saveDTO(AdopcionDTO adopcionDTO) throws AnimalException, RefugioException;
 
+    Long updateDTO(AdopcionDTO adopcionDTO) throws AnimalException, RefugioException;
+
 }

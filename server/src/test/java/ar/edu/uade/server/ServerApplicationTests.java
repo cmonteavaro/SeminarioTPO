@@ -274,4 +274,14 @@ class ServerApplicationTests {
         idsAEliminar.add(60L);
         idsAEliminar.forEach(id -> repositoryODB.deleteById(Transito.class, id));
     }
+
+    @Test
+    void pubVoluntariadosFix() {
+
+        List<PublicacionVoluntariado> publicacionVoluntariados = voluntariadoService.findAll();
+        for (PublicacionVoluntariado pv: publicacionVoluntariados){
+            System.out.println(pv.getTipo());
+        }
+
+    }
 }

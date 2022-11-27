@@ -10,23 +10,23 @@ import { IconCalendar } from "@tabler/icons";
 
 export default function DonationCard({ donacion }) {
   return (
-    <div className="card">
+    <div className="donation-card">
       <div className="card-heading">
-        <h2>{donacion.titulo}</h2>
-      </div>
-      <div className="card-center-info">
-        <div className="card-left-info">
-          <div className="card-shelter">
-            <IconMapPin color="gray" size={17} stroke={2} />
-            <h6>{donacion.direccionRefugio.localidad}</h6>
+        <h2>{donacion.titulo}</h2>      
+        <div className="card-center-info">
+          <div className="card-left-info">
+            <div className="card-shelter">
+              <IconMapPin color="gray" size={17} stroke={2} />
+              <h6>{donacion.direccionRefugio.localidad}</h6>
+            </div>
+            <div className="card-shelter">
+              <IconCalendar color="gray" size={17} stroke={2} />
+              <h6>{donacion.fechaPublicacion}</h6>
+            </div>
           </div>
-          <div className="card-shelter">
-            <IconCalendar color="gray" size={17} stroke={2} />
-            <h6>{donacion.fechaPublicacion}</h6>
+          <div className="card-right">
+            <IconDonation caso={donacion.tipo}></IconDonation>
           </div>
-        </div>
-        <div className="card-right">
-          <IconDonation caso={donacion.tipo}></IconDonation>
         </div>
       </div>
       <div className="card-center">
@@ -51,13 +51,12 @@ function IconDonation(props) {
   const casos = props.caso;
   switch (casos) {
     case "ABRIGO":
-      return <IconShirtSport></IconShirtSport>;
+      return <IconShirtSport style={{color: "orange"}}></IconShirtSport>;
     case "ALIMENTO":
-      return <IconDogBowl></IconDogBowl>;
-    case "MEDICAMENTO":
-      return <IconPill></IconPill>;
-    // case "OTRO":
-    //     return <IconSquarePlus></IconSquarePlus>;
+      return <IconDogBowl style={{color: "brown"}}></IconDogBowl>;
+    case "MEDICAMENTOS":
+      return <IconPill style={{color: "gray"}}></IconPill>;
+  
   }
-  return <IconSquarePlus></IconSquarePlus>;
+  return <IconSquarePlus style={{color: "black"}}></IconSquarePlus>;
 }

@@ -15,23 +15,23 @@ export default function VolunteerCard({ voluntario }) {
 
   return (
     <>
-      <div className="card">
+      <div className="donation-card">
         <div className="card-heading">
           <h2>{voluntario.titulo}</h2>
-        </div>
-        <div className="card-center-info">
-          <div className="card-left-info">
-            <div className="card-shelter">
-              <IconMapPin color="gray" size={17} stroke={2} />
-              <h6>{voluntario.direccionRefugio.localidad}</h6>
+          <div className="card-center-info">
+            <div className="card-left-info">
+              <div className="card-shelter">
+                <IconMapPin color="gray" size={17} stroke={2} />
+                <h6>{voluntario.direccionRefugio.localidad}</h6>
+              </div>
+              <div className="card-shelter">
+                <IconCalendar color="gray" size={17} stroke={2} />
+                <h6>{voluntario.fechaPublicacion}</h6>
+              </div>
             </div>
-            <div className="card-shelter">
-              <IconCalendar color="gray" size={17} stroke={2} />
-              <h6>{voluntario.fechaPublicacion}</h6>
+            <div className="card-right">
+              <IconVolunteer caso={voluntario.tipoVoluntariado}></IconVolunteer>
             </div>
-          </div>
-          <div className="card-right">
-            <IconVolunteer caso={voluntario.tipoVoluntariado}></IconVolunteer>
           </div>
         </div>
         <div className="card-center">
@@ -43,7 +43,7 @@ export default function VolunteerCard({ voluntario }) {
             <h6>{voluntario.nombreRefugio}</h6>
           </div>
           <div className="card-right-info">
-            <button className="btn-adopt" onClick={() => setShowForm(true)}>
+            <button className="btn-info" onClick={() => setShowForm(true)}>
               {" "}
               Postularse
             </button>
@@ -63,14 +63,12 @@ function IconVolunteer(props) {
   const casos = props.caso;
   switch (casos) {
     case "FOTOGRAFIA":
-      return <AiFillCamera />;
+      return <AiFillCamera  style={{color: "purple"}} />;
     case "TRANSPORTE":
-      return <FaCarAlt />;
+      return <FaCarAlt  style={{color: "blue"}} />;
     case "COMPANIA":
-      return <GiDogHouse />;
-    case "OTRO":
-      return <IoMdPaw />;
-    default:
-      return null;
+      return <GiDogHouse  style={{color: "red"}}/>;
+
   }
+  return <IoMdPaw />;
 }

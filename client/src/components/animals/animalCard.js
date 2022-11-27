@@ -26,13 +26,16 @@ export default function AnimalCard({ animal }) {
       </div>
       <div className="card-bottom">
         <div className="card-shelter">
-          <img src={animal.fotoPerfilRefugio} className="card-img-shelter" alt="Imagen refugio" />
+          <Link to={`/refugios/${animal.idRefugio}`}>
+            <img src={animal.fotoPerfilRefugio} className="card-img-shelter" alt="Imagen refugio" />
+          </Link>
+        <div >
           <p>{animal.nombreRefugio}</p>
         </div>
+      </div>
         <Link
           to={`/publicaciones/${animal.idPublicacion}`}
-          className="btn-info"
-        >
+          className="btn-info">
           Adoptar
         </Link>
       </div>

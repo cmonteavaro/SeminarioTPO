@@ -5,6 +5,7 @@
 @import "../../../node_modules/bootstrap/scss/nav";
 @import "../../../node_modules/bootstrap/scss/navbar";
 @import "../../../node_modules/bootstrap/scss/transitions";
+
 .dropdown-menu:hover {
   --bs-dropdown-link-hover-color: transparent;
   --bs-dropdown-link-hover-bg: transparent;
@@ -38,16 +39,17 @@ nav a {
   color: white;
 }
 
-.dropdown-menu{
+.dropdown-menu {
   background-color: white !important;
-  a{
+
+  a {
     color: black !important;
   }
-  
+
 }
 
 .header-nav-links-container {
-  position:absolute;
+  position: absolute;
   width: 100%;
   display: flex;
   justify-content: center;
@@ -84,6 +86,7 @@ li {
 .links {
   text-decoration: none;
   color: white;
+  font-size: 1.35rem;
 }
 
 .links:visited {
@@ -96,6 +99,7 @@ li {
 
 .active {
   font-weight: bold;
+  font-size: 1.35rem;
 }
 
 @media screen and (max-width: 480px) {
@@ -106,6 +110,7 @@ li {
     width: 15vw;
     padding: 0;
   }
+
   .navbar-brand {
     margin: 0 5vw;
     padding: 0;
