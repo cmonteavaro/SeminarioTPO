@@ -9,6 +9,8 @@ export default function Transits() {
   const [loading, setLoading] = useState(false);
   const [filtersJSON, setfiltersJSON] = useState();
   const [filtersDict, setFiltersDict] = useState({});
+  const [usarUbicacion, setUsarUbicacion] = useState(false);
+	const [ubicacion, setUbicacion] = useState("");
 
   // Get the data from the server
   useEffect(() => {
@@ -43,6 +45,20 @@ export default function Transits() {
     }
   }, [data]);
 
+  useEffect(() => {
+		fetch(`http://localhost:8080/api/publicaciones/transitos/distance`,{
+			method: "GET",
+			headers: {
+				'longitud': ubicacion[0],
+				'latitud': ubicacion[1]
+			}
+		})
+		.then((response) => response.json())
+		.then((data) => {
+			setData(data)
+		})
+	},[usarUbicacion]);
+
   // Callback function called on AnimalFilters to change the state of the filter given
   function handleCheckboxToggle(event) {
     const value = event.currentTarget.value;
@@ -72,6 +88,8 @@ export default function Transits() {
           <AnimalFilters
             filtros={filtersJSON}
             callback={handleCheckboxToggle}
+            setUbicacion={setUbicacion}
+			      setUsarUbicacion={setUsarUbicacion}
           />
         </section>
         <section className="cards">

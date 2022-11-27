@@ -3,23 +3,38 @@ import { useRef, useState } from "react";
 import Navbar from "react-bootstrap/Navbar";
 import "./filtros.scss";
 
+
 export default function AnimalFilter(props) {
-  const data = props.filtros;
-  const [coordenadas, setCoordenadas] = useState([]);
-  const inputSearch = useRef(null);
-  function handleSearch () {
-    fetch(`https://api.maptiler.com/geocoding/${inputSearch.current.value}.json?key=Mdlvp8JndCrWtOqNUat6`)
+
+  async function handleSearch (inputSearch) {
+    let coords = [];
+    await fetch(`https://api.maptiler.com/geocoding/${inputSearch}.json?key=Mdlvp8JndCrWtOqNUat6`)
     .then((response) => response.json())
     .then((s) => {
       const obj = s['features'];
       const place = obj[0];
       const geometry = place['geometry'];
-      const coords = geometry['coordinates'];
-      console.log(coords);
-      return setCoordenadas(coords)
+      coords = geometry['coordinates'];
     })
-
+    if(typeof(coords[0]) === "number"){
+        setUbicacion(coords);
+        setUsarUbicacion(true);
+    } else {
+        if(typeof(coords[0][0]) === "number"){
+          setUbicacion(coords[0]);
+          setUsarUbicacion(true);
+        } else {
+          setUbicacion(coords[0][0]);
+          setUsarUbicacion(true);
+        }
+    }
+    
   }
+
+  const data = props.filtros;
+  const setUbicacion = props.setUbicacion;
+  const setUsarUbicacion = props.setUsarUbicacion;
+  const inputSearch = useRef();
 
   return (
     <Navbar bg="light" expand="lg">
@@ -85,7 +100,7 @@ export default function AnimalFilter(props) {
           </div>
           <div className="maps">
             <input className="buscador-maps" autoComplete="off" id="search" type="text" ref={inputSearch} placeholder="Escribí tu ubicación..."/>
-            <button className="boton-maps" onClick={handleSearch}>Ubicar</button>
+            <button className="boton-maps" onClick={() => handleSearch(inputSearch.current.value)}>Ubicar</button>
           </div>
         </nav>
       </Navbar.Collapse>
