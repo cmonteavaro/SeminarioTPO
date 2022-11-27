@@ -15,5 +15,5 @@
 }
 
 .grid-posts {
-  display: grid;
+  display: flex;
 }

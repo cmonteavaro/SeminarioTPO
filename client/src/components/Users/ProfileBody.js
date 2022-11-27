@@ -85,10 +85,11 @@ const ProfileBody = ({ refugio }) => {
   }, [setVol]);
 
   return (
-    <section>
-      <button className="go-back-detail" onClick={() => navigate(-1)}>
-        {"<"} Volver atras
-      </button>
+    <>
+    <button className="go-back-detail" onClick={() => navigate(-1)}>
+      {"<"} Volver atras
+    </button>
+    <section className="container-perfil">
       <img className="hero" src={Five} alt="Imagen animal" />
       <section className="basic">
         <section className="heading-shelter">
@@ -134,22 +135,12 @@ const ProfileBody = ({ refugio }) => {
             <Title color={refugio.perfilRefugio.color}>Quienes somos</Title>
             <p>{refugio.perfilRefugio.descripcionLarga}</p>
           </article>
-          <section className="caroussel">
-            <Carousel slideSize="100%" height={500} loop>
-              <Carousel.Slide>
-                <img className="carousel" src={One} alt="Imagen animal" />
-              </Carousel.Slide>
-              <Carousel.Slide>
-                <img className="carousel" src={Two} alt="Imagen animal" />
-              </Carousel.Slide>
-              <Carousel.Slide>
-                <img className="carousel" src={Three} alt="Imagen animal" />
-              </Carousel.Slide>
-              <Carousel.Slide>
-                <img className="carousel" src={Four} alt="Imagen animal" />
-              </Carousel.Slide>
-            </Carousel>
-          </section>
+          <div className="description-gallery">
+            <img src={One} />
+            <img src={Two} />
+            <img src={Three} />
+            <img src={Four} />
+          </div>
         </section>
         <section className="posts-shelter">
           <article>
@@ -210,6 +201,7 @@ const ProfileBody = ({ refugio }) => {
         </section>
       </section>
     </section>
+    </>
   );
 };
 

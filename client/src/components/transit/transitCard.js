@@ -20,13 +20,20 @@ export default function TransitCard({ animal }) {
           src={animal.imagenAnimal}
           width={"250px"}
           effect="blur"
+          className="card-img-animal"
         />
         <div className="tag-urgente">{<Tag state={animal.esUrgente} />}</div>
       </div>
       <div className="card-bottom">
         <div className="card-shelter">
-          <img src={Logo} className="card-img-shelter" alt="Imagen refugio" />
+
+        <Link to={`/refugios/${animal.idRefugio}`}>
+            <img src={Logo} className="card-img-shelter" alt="Imagen refugio" />
+          </Link>
+          <div >
           <p>{animal.nombreRefugio}</p>
+        </div>
+
         </div>
         <Link to={`/transitos/${animal.idPublicacion}`} className="btn-info">
           Transitar

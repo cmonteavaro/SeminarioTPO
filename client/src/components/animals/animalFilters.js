@@ -1,5 +1,6 @@
 import { Checkbox } from "@mantine/core";
 import { useRef, useState } from "react";
+import { NavDropdown } from "react-bootstrap";
 import Navbar from "react-bootstrap/Navbar";
 import "./filtros.scss";
 
@@ -35,11 +36,12 @@ export default function AnimalFilter(props) {
   const setUbicacion = props.setUbicacion;
   const setUsarUbicacion = props.setUsarUbicacion;
   const inputSearch = useRef();
+  const filtrosDict = props.filtrosDict;
 
   return (
     <Navbar bg="light" expand="lg">
       <Navbar.Toggle aria-controls="basic-navbar-nav" />
-      <Navbar.Collapse id="basic-navbar-nav">
+      <Navbar.Collapse id="basic-navbar-nav" className="filters-bar">
         <nav className="me-auto filtros">
           <h3>Filtros</h3>
           <div className="filtros-container">
@@ -49,6 +51,7 @@ export default function AnimalFilter(props) {
                 <Checkbox
                   value={"Es urgente"}
                   label={"Es urgente"}
+                  checked={filtrosDict["Es urgente"]}
                   onChange={(event) => props.callback(event)}
                 />
               </div>
@@ -62,6 +65,7 @@ export default function AnimalFilter(props) {
                       <Checkbox
                         value={filtro}
                         label={filtro}
+                        checked={filtrosDict[filtro]}
                         onChange={(event) => props.callback(event)}
                       />
                     ))
@@ -77,6 +81,7 @@ export default function AnimalFilter(props) {
                       <Checkbox
                         value={filtro}
                         label={filtro}
+                        checked={filtrosDict[filtro]}
                         onChange={(event) => props.callback(event)}
                       />
                     ))
@@ -84,18 +89,18 @@ export default function AnimalFilter(props) {
               </div>
             </div>
             <div className="filter-section-container">
-              <h4>Extras</h4>
-              <div className="filter-section">
-                {data.booleanos && data.booleanos.length > 0
-                  ? data.booleanos.map((filtro) => (
-                      <Checkbox
-                        value={filtro}
-                        label={filtro}
-                        onChange={(event) => props.callback(event)}
-                      />
-                    ))
-                  : null}
-              </div>
+              <NavDropdown title="Extras" className="dropwdown-filters">
+                  {data.booleanos && data.booleanos.length > 0
+                    ? data.booleanos.map((filtro) => (
+                        <Checkbox
+                          value={filtro}
+                          label={filtro}
+                          checked={filtrosDict[filtro]}
+                          onChange={(event) => props.callback(event)}
+                        />
+                      ))
+                    : null}
+              </NavDropdown>
             </div>
           </div>
           <div className="maps">

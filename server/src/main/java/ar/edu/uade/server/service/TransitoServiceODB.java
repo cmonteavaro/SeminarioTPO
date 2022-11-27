@@ -64,4 +64,21 @@ public class TransitoServiceODB implements TransitoService {
         refugioService.save(refugio);
         return idGuardado;
     }
+
+    @Override
+    public Long updateDTO(TransitoDTO transitoDTO) throws AnimalException, RefugioException {
+        Transito transito = transitoDTO.toModel();
+        Optional<Animal> oAnimal = animalService.findById(transitoDTO.getIdAnimal());
+        if (oAnimal.isEmpty()) throw new AnimalException("El animal no fue encontrado");
+        transito.setAnimal(oAnimal.get());
+        Optional<Refugio> oRefugio = refugioService.findById(transitoDTO.getIdRefugio());
+        if (oRefugio.isEmpty()) throw new RefugioException("El refugio no fue encontrado");
+        Refugio refugio = oRefugio.get();
+        if (transito.getEsUrgente()){
+            if (!refugio.puedeAgregarUrgentes()) throw new RefugioException("El refugio no puede crear más publicaciones urgentes debido a que ha alcanzado el máximo permitido");
+            refugio.setCantidadUrgentes(refugio.getCantidadUrgentes()+1);
+        }
+        transito.setRefugio(refugio);
+        return this.save(transito);
+    }
 }

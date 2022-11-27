@@ -11,6 +11,22 @@
   justify-content: space-evenly;
 }
 
+.card-h2 {
+  color: black
+}
+
+.donation-card {
+  width: 350px;
+  height: 350px;
+  border: 1px lightgrey solid;
+  border-radius: 10px;
+  padding: 0.5vw;
+  margin: 2vh;
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+}
 .volunteer-card {
   width: 250px;
   border: 1px lightgrey solid;
@@ -44,7 +60,8 @@
   overflow: hidden;
   text-overflow: ellipsis;
   display: -webkit-box;
-  -webkit-line-clamp: 7; /* number of lines to show */
+  -webkit-line-clamp: 7;
+  /* number of lines to show */
   line-clamp: 7;
   -webkit-box-orient: vertical;
 }
@@ -64,14 +81,18 @@
 }
 
 .card-right svg {
-  width: 25px;
-  height: 25px;
+  width: 65px;
+  height: 65px;
 }
 
 .tag-urgente {
   position: absolute;
   bottom: -5px;
   right: -5px;
+}
+
+.tag-urgente .mantine-Badge-root {
+  border-radius: 10px;
 }
 
 .card-img-animal {
@@ -94,7 +115,7 @@
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  height: 60px;
+  height: 10px;
 }
 
 .card-left-info {
@@ -156,16 +177,19 @@
 
 .btn-info {
   background-color: green;
-  width: 10vw;
-  border-radius: 0.5vw;
+  width: auto;
+  height: 30px;
   color: white;
   font-weight: bold;
   display: flex;
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  padding-left: 4px;
-  padding-right: 4px;
+  padding-left: 27px;
+  padding-right: 27px;
+  border-radius: 1vh;
+  margin-right: 5px;
+  border: 0px;
 }
 
 .btn-info:hover {
@@ -179,14 +203,16 @@
 }
 
 .btn-adopt {
-  height: 5vh;
-  width: 10vw;
+  height: 6vh;
   border-radius: 1vw;
-  border: 0px solid black;
   background-color: green;
   color: white;
   font-weight: bold;
   cursor: pointer;
+  margin-top: 2vh;
+  width: 15vw;
+  border: 0px;
+  font-size: large;
 }
 
 .btn-adopt:hover {
@@ -202,9 +228,11 @@
   .btn-info {
     border-radius: 1vh;
   }
+
   .btn-adopt {
     width: 15vw;
   }
+
 }
 
 @media (max-width: 768px) {
@@ -216,13 +244,16 @@
     width: 6vw;
     height: 6vw;
   }
+
   .btn-info {
     width: 120px;
     margin-right: 5px;
   }
+
   .btn-adopt {
     margin-top: 2vh;
     width: 30vw;
     height: 5vh;
   }
+
 }

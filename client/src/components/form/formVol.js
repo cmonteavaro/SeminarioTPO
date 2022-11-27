@@ -1,22 +1,7 @@
 import { TextInput, Group, Textarea } from "@mantine/core";
 import { useForm } from "@mantine/form";
 import "./form.css";
-
-async function sendForm(url = "", data = {}) {
-  const response = await fetch(url, {
-    method: "POST",
-    cors: "no-cors",
-    cache: "no-cache",
-    credentials: "same-origin",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    redirect: "follow",
-    body: JSON.stringify(data),
-  });
-
-  return alert(response.status===200? "Postulacion enviada con exito": "Error al enviar la postulacion");
-}
+import { sendForm } from "./sendForm"
 
 export default function FormExample(data) {
   const form = useForm({
@@ -59,7 +44,6 @@ export default function FormExample(data) {
                 `http://localhost:8080/api/publicaciones/voluntariados/${data.data.idPublicacion}/postular`,
                 values
               )
-                .then((data) => console.log(data))
                 .catch((e) => console.log(e))
             )}
           >

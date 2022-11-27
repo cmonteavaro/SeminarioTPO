@@ -27,7 +27,7 @@ export default function Footer() {
       </div>
       <div className="dedication">
         <h4>
-          Hecho con amor para los pichicos <FaHeart />
+          Hecho con amor para los pichichos <FaHeart />
         </h4>
       </div>
       <div className="container">

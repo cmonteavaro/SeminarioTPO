@@ -2,11 +2,15 @@ footer {
   display: flex;
   flex-direction: row;
   justify-content: space-around;
+  background-color: rgb(226, 226, 226);
+  padding: 1%;
+  margin-top: 3%;
 }
 
 .dedication {
   margin-top: auto;
   margin-bottom: auto;
+  font-size: 1.5rem;
 }
 
 footer .container {
@@ -14,6 +18,11 @@ footer .container {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+}
+
+.icon {
+  color: green;
+  transition: all 0.1s ease;
 }
 
 .icons-link {
@@ -25,10 +34,10 @@ footer .container {
 }
 
 .icon:hover {
-  color: var(--accent-color);
+  color: rgb(0, 176, 0);
 }
 
-@media screen and (max-width: 391px) {
+@media screen and (max-width: 768px) {
   footer {
     flex-direction: column;
   }

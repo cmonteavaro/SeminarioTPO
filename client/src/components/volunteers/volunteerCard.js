@@ -15,7 +15,7 @@ export default function VolunteerCard({ voluntario }) {
 
   return (
     <>
-      <div className="card">
+      <div className="donation-card">
         <div className="card-heading">
           <h2>{voluntario.titulo}</h2>
         </div>
@@ -43,7 +43,7 @@ export default function VolunteerCard({ voluntario }) {
             <h6>{voluntario.nombreRefugio}</h6>
           </div>
           <div className="card-right-info">
-            <button className="btn-adopt" onClick={() => setShowForm(true)}>
+            <button className="btn-info" onClick={() => setShowForm(true)}>
               {" "}
               Postularse
             </button>
@@ -63,14 +63,12 @@ function IconVolunteer(props) {
   const casos = props.caso;
   switch (casos) {
     case "FOTOGRAFIA":
-      return <AiFillCamera />;
+      return <AiFillCamera  style={{color: "purple"}} />;
     case "TRANSPORTE":
-      return <FaCarAlt />;
+      return <FaCarAlt  style={{color: "blue"}} />;
     case "COMPANIA":
-      return <GiDogHouse />;
-    case "OTRO":
-      return <IoMdPaw />;
-    default:
-      return null;
+      return <GiDogHouse  style={{color: "red"}}/>;
+
   }
+  return <IoMdPaw />;
 }
