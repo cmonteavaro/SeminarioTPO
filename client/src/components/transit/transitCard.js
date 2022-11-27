@@ -27,12 +27,12 @@ export default function TransitCard({ animal }) {
       <div className="card-bottom">
         <div className="card-shelter">
 
-        <Link to={`/refugios/${animal.idRefugio}`}>
-            <img src={Logo} className="card-img-shelter" alt="Imagen refugio" />
+          <Link to={`/refugios/${animal.idRefugio}`}>
+            <img src={animal.fotoPerfilRefugio} className="card-img-shelter" alt="Imagen refugio" />
           </Link>
           <div >
-          <p>{animal.nombreRefugio}</p>
-        </div>
+            <p>{animal.nombreRefugio}</p>
+          </div>
 
         </div>
         <Link to={`/transitos/${animal.idPublicacion}`} className="btn-info">

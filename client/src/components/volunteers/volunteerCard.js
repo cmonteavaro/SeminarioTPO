@@ -39,7 +39,7 @@ export default function VolunteerCard({ voluntario }) {
         </div>
         <div className="card-bottom">
           <div className="card-shelter">
-            <img src={Logo} className="card-img-shelter" alt="Imagen refugio" />
+            <img src={voluntario.fotoPerfilRefugio} className="card-img-shelter" alt="Imagen refugio" />
             <h6>{voluntario.nombreRefugio}</h6>
           </div>
           <div className="card-right-info">

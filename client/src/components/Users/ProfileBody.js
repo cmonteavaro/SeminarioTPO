@@ -85,6 +85,7 @@ const ProfileBody = ({ refugio }) => {
   }, [setVol]);
 
   return (
+
     <>
     <button className="go-back-detail" onClick={() => navigate(-1)}>
       {"<"} Volver atras
@@ -94,7 +95,7 @@ const ProfileBody = ({ refugio }) => {
       <section className="basic">
         <section className="heading-shelter">
           <div className="logo-name-location">
-            <Avatar src={logorefugio} size={200} radius={100} mt={-80} />
+            <Avatar src={refugio.perfilRefugio.fotoPerfil} size={200} radius={100} mt={-80} />
             <div style={{ flex: 1, marginLeft: 20 }}>
               <Title
                 color={refugio.perfilRefugio.color}
@@ -136,10 +137,13 @@ const ProfileBody = ({ refugio }) => {
             <p>{refugio.perfilRefugio.descripcionLarga}</p>
           </article>
           <div className="description-gallery">
-            <img src={One} />
-            <img src={Two} />
-            <img src={Three} />
-            <img src={Four} />
+            {
+              refugio.perfilRefugio.galeriaImagenes.map((linkImagen, pos) => {
+                return (
+                    <img key={pos} src={linkImagen} alt={`Foto galeria nro. ${pos}`} />
+                )
+              })
+            }
           </div>
         </section>
         <section className="posts-shelter">

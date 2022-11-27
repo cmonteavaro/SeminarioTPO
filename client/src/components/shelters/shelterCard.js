@@ -11,7 +11,7 @@ export default function ShelterCard({ shelter }) {
         <LazyLoadImage
           alt={"Imagen animal"}
           height={"200px"}
-          src={Logo}
+          src={shelter.fotoPerfil}
           width={"200px"}
           effect="blur"
           className="card-logo-shelter"
