@@ -162,6 +162,24 @@ class ServerApplicationTests {
     }
 
     @Test
+    void modificarRefugio() {
+        Optional<Refugio> optionalRefugio = refugioService.findById(39L);
+        if (optionalRefugio.isPresent()) {
+            Refugio refugio = optionalRefugio.get();
+            refugio.getPerfilRefugio().setFotoPerfil("https://res.cloudinary.com/dypgglzvv/image/upload/v1669325610/SIPI-Refugios/zaguates-logo_mn9dho.jpg");
+            refugio.getPerfilRefugio().setBanner("https://res.cloudinary.com/dypgglzvv/image/upload/v1669401146/SIPI-Refugios/zaguates-banner_ns6qbk.jpg");
+            List<String> galeria = new ArrayList<>();
+            galeria.add("https://res.cloudinary.com/dypgglzvv/image/upload/v1669477047/SIPI-Refugios/zaguates-galeria1_tx1j2x.jpg");
+            galeria.add("https://res.cloudinary.com/dypgglzvv/image/upload/v1669477047/SIPI-Refugios/zaguates-galeria2_wkpmul.webp");
+            galeria.add("https://res.cloudinary.com/dypgglzvv/image/upload/v1669477047/SIPI-Refugios/zaguates-galeria3_qtz1sg.jpg");
+            //galeria.add("https://res.cloudinary.com/dypgglzvv/image/upload/v1669476239/SIPI-Refugios/adopciones-quilmes-galeria4_mvocrk.jpg");
+            //galeria.add("https://res.cloudinary.com/dypgglzvv/image/upload/v1669476239/SIPI-Refugios/adopciones-quilmes-galeria1_hnlhvb.jpg");
+            refugio.getPerfilRefugio().setGaleriaImagenes(galeria);
+            refugioService.save(refugio);
+        }
+    }
+
+    @Test
     void adopcionStats() {
         for (Adopcion r : adopcionService.findAll()) {
             System.out.println("----------------------------------");
