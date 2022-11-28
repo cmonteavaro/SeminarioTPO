@@ -1,12 +1,14 @@
 package ar.edu.uade.server;
 
 import ar.edu.uade.server.model.*;
+import ar.edu.uade.server.model.enums.TipoVoluntariadoEnum;
 import ar.edu.uade.server.repository.RepositoryODB;
 import ar.edu.uade.server.service.*;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import java.time.LocalDate;
 import java.util.*;
 
 @SpringBootTest
@@ -253,7 +255,15 @@ class ServerApplicationTests {
     void getAllAdopciones() {
         List<Adopcion> adopciones = adopcionService.findAll();
         for (Adopcion a: adopciones) {
+            System.out.println("");
+            System.out.println("-----------ADOPCION-------------");
+            System.out.println("");
             System.out.println("Localidad refugio: " + a.getRefugio().getDireccion().getLocalidad());
+            System.out.println("Tipo animal: "+a.getAnimal().getTipoAnimal());
+            System.out.println("Descripcion animal: "+a.getDescripcion());
+            System.out.println("Fecha publicacion: "+a.getFechaPublicacion());
+            System.out.println("Nombre animal: "+a.getAnimal().getNombre());
+            System.out.println("ID: "+a.getId());
         }
     }
 
@@ -261,22 +271,59 @@ class ServerApplicationTests {
     void getAllTransitos() {
         List<Transito> transitos = transitoService.findAll();
         for (Transito t: transitos) {
+            System.out.println("");
+            System.out.println("-----------TRANSITO-------------");
+            System.out.println("");
             System.out.println("ID: " + t.getId());
             System.out.println("Animal: " + t.getAnimal().getNombre());
             System.out.println("Localidad refugio: " + (t.getRefugio().getDireccion() == null ? "nulo" : t.getRefugio().getDireccion().getLocalidad()));
+            System.out.println("Tipo animal: "+t.getAnimal().getTipoAnimal());
+            System.out.println("Descripcion animal: "+t.getDescripcion());
+            System.out.println("Fecha publicacion: "+t.getFechaPublicacion());
         }
     }
 
     @Test
     void eliminarTransitos() {
         RepositoryODB repositoryODB = RepositoryODB.getInstancia();
-
         List<Long> idsAEliminar = new ArrayList<>();
         idsAEliminar.add(24L);
         idsAEliminar.add(26L);
         idsAEliminar.add(27L);
         idsAEliminar.add(60L);
         idsAEliminar.forEach(id -> repositoryODB.deleteById(Transito.class, id));
+    }
+
+    @Test
+    void getAllVoluntariados() {
+        List<PublicacionVoluntariado> voluntariados = voluntariadoService.findAll();
+        for (PublicacionVoluntariado v: voluntariados) {
+            System.out.println("");
+            System.out.println("-----------VOLUNTARIADO-------------");
+            System.out.println("");
+            System.out.println("ID: " + v.getId());
+            System.out.println("Titulo: " + v.getTitulo());
+            System.out.println("Descripcion: " + v.getDescripcion());
+            System.out.println("Fecha publicacion: " + v.getFechaPublicacion());
+            System.out.println("Tipo: "+v.getTipo());
+            System.out.println("Refugio: "+v.getRefugio().getNombre());
+        }
+    }
+
+    @Test
+    void getAllDonaciones() {
+        List<PublicacionDonacion> donaciones = donacionService.findAll();
+        for (PublicacionDonacion d: donaciones) {
+            System.out.println("");
+            System.out.println("-----------DONACION-------------");
+            System.out.println("");
+            System.out.println("ID: " + d.getId());
+            System.out.println("Titulo: " + d.getTitulo());
+            System.out.println("Descripcion: " + d.getDescripcion());
+            System.out.println("Fecha publicacion: " + d.getFechaPublicacion());
+            System.out.println("Tipo: "+d.getTipo());
+            System.out.println("Refugio: "+d.getRefugio().getNombre());
+        }
     }
 
     @Test
