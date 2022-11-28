@@ -344,25 +344,25 @@ class ServerApplicationTests {
             Refugio refugio35 = oRefugio35.get();
             Refugio refugio39 = oRefugio39.get();
 
-            Direccion direccionZaguates = new Direccion();
-            direccionZaguates.setLocalidad("Palermo");
-            direccionZaguates.setCalle("Juan Francisco Seguí");
-            direccionZaguates.setAltura(3775);
-            direccionZaguates.setProvincia("Buenos Aires");
-            direccionZaguates.setCodigoPostal("1425");
-            direccionZaguates.setLatitud(-34.57797868042211f);
-            direccionZaguates.setLongitud(-58.411349358867206f);
-            refugio39.setDireccion(direccionZaguates);
-
-            Direccion direccionPaticorti = new Direccion();
-            direccionPaticorti.setLocalidad("Palermo");
-            direccionPaticorti.setProvincia("Buenos Aires");
-            direccionPaticorti.setCodigoPostal("1425");
-            direccionPaticorti.setCalle("Avenida Santa Fe");
-            direccionPaticorti.setAltura(3880);
-            direccionPaticorti.setLatitud(-34.58383870461199f);
-            direccionPaticorti.setLongitud(-58.418122897358515f);
-            refugio35.setDireccion(direccionPaticorti);
+//            Direccion direccionZaguates = new Direccion();
+//            direccionZaguates.setLocalidad("Palermo");
+//            direccionZaguates.setCalle("Juan Francisco Seguí");
+//            direccionZaguates.setAltura(3775);
+//            direccionZaguates.setProvincia("Buenos Aires");
+//            direccionZaguates.setCodigoPostal("1425");
+//            direccionZaguates.setLatitud(-34.57797868042211f);
+//            direccionZaguates.setLongitud(-58.411349358867206f);
+//            refugio39.setDireccion(direccionZaguates);
+//
+//            Direccion direccionPaticorti = new Direccion();
+//            direccionPaticorti.setLocalidad("Palermo");
+//            direccionPaticorti.setProvincia("Buenos Aires");
+//            direccionPaticorti.setCodigoPostal("1425");
+//            direccionPaticorti.setCalle("Avenida Santa Fe");
+//            direccionPaticorti.setAltura(3880);
+//            direccionPaticorti.setLatitud(-34.58383870461199f);
+//            direccionPaticorti.setLongitud(-58.418122897358515f);
+//            refugio35.setDireccion(direccionPaticorti);
 
 
             System.out.println("-----REFUGIO 35------");
@@ -385,8 +385,8 @@ class ServerApplicationTests {
             System.out.println("Latitud: "+refugio39.getDireccion().getLatitud());
             System.out.println("Longitud: "+refugio39.getDireccion().getLongitud());
 
-            refugioService.save(refugio35);
-            refugioService.save(refugio39);
+//            refugioService.save(refugio35);
+//            refugioService.save(refugio39);
         }
 
     }
