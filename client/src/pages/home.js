@@ -69,7 +69,7 @@ export default function Home() {
             <p>
               A lo largo de nuestra vida, hemos visto una
               enorme cifra de animales que han sido abandonados o que no han
-              recibido amor y, a su vez, una gran cantidad de refugios que no cuentan con la ayuda necesaria.
+              recibido amor y a su vez, una gran cantidad de refugios que no cuentan con la ayuda necesaria.
               Hoy en día a través de las redes sociales hemos podido conectar con personas 
               que tienen el fin de ayudarlos.
             </p>
@@ -109,7 +109,8 @@ export default function Home() {
             <h2>Cómo funciona?</h2>
             <p>
               Si tenes intenciones de colaborar con algún refugio, podes encontrarlos
-              en la sección "Refugios". Si deseas transitar o adoptar
+              en la sección "Refugios". 
+              Si deseas transitar o adoptar
               a algún animal, podrás encontrarlos en la sección "Publicaciones".
             </p>
           </article>
