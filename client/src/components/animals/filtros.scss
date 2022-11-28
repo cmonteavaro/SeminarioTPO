@@ -78,7 +78,6 @@
   .mantine-Checkbox-root {
     margin: 1vh 0vw 1vh 1vw;
   }
-
 }
 
 .filters-bar {
@@ -97,22 +96,9 @@
     justify-content: center;
   }
 }
-
-@media screen and (max-width: 768px) {
-  .filtros {
-    &-container {
-      flex-direction: column;
-    }
-  }
-
-  .filter-section {
-    &-container {
-      h4 {
-        text-align: start;
-      }
-
-      margin: 0;
-    }
+@media screen and (max-width: 1450px) {
+  .buscador-maps {
+    width: 10vw;
   }
 }
 
@@ -129,7 +115,50 @@
         width: 55vw !important;
       }
     }
+  }
+  .filtros-container {
+    flex-direction: row;
+    justify-content: space-around;
+  }
+  .filter-location {
+    display: flex;
+    flex-direction: column;
+    .buscador-maps {
+      width: 20vw;
+    }
+  }
 
+  .boton-maps {
+    width: 9vw;
+  }
+}
 
+@media screen and (max-width: 768px) {
+  .filter-section {
+    &-container {
+      h4 {
+        text-align: start;
+      }
+
+      margin: 0;
+    }
+  }
+  .boton-maps {
+    width: 15vw;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .filtros-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    padding: 5vw;
+  }
+  .buscador-maps {
+    margin-top: 1vh;
+  }
+  .boton-maps {
+    width: 20vw;
+    margin: 5px;
   }
 }

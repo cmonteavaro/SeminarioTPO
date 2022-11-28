@@ -1,7 +1,6 @@
 .grid-transit {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
-  grid-template-rows: 1fr 1fr;
   align-items: stretch;
   padding-left: 3vw;
 }
@@ -14,6 +13,9 @@
 
 @media (max-width: 768px) {
   .grid-transit {
-    grid-template-columns: 1fr;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-content: center;
   }
 }

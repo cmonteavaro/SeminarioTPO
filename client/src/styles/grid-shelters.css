@@ -1,12 +1,11 @@
 .grid-refugios {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  grid-template-rows: 1fr 1fr 1fr;
   align-items: stretch;
   justify-items: center;
 }
 
-@media (max-width: 1024px) {
+@media (max-width: 1440px) {
   .grid-refugios {
     grid-template-columns: 1fr;
   }

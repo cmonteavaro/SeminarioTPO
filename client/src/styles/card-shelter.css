@@ -58,12 +58,21 @@
   opacity: 0.7;
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 1440px) {
+  .container-card-shelter {
+    width: 70vw;
+    height: 30vh;
+    padding: 2vh;
+  }
+}
+
+@media screen and (max-width: 1000px) {
   .container-card-shelter {
     width: 90vw;
     height: 45vh;
     margin: 1vh 0;
     padding: 1.5vh;
+    justify-content: space-around;
   }
 
   .card-center-shelter {
@@ -79,5 +88,4 @@
   .btn-info {
     border-radius: 1vh;
   }
-
 }

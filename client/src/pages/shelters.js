@@ -1,5 +1,5 @@
 import ListShelters from "../components/shelters/shelterCards";
-// import "../styles/posts.css";
+import "../styles/posts.css";
 import { useEffect, useState } from "react";
 import { Loader } from "@mantine/core";
 import NotFound from "./notFound";
