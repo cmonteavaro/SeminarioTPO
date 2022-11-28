@@ -335,4 +335,57 @@ class ServerApplicationTests {
         }
 
     }
+
+    @Test
+    void updateDireccionRefugios(){
+        Optional<Refugio> oRefugio35 = refugioService.findById(35L);
+        Optional<Refugio> oRefugio39 = refugioService.findById(39L);
+        if(oRefugio35.isPresent() && oRefugio39.isPresent()){
+            Refugio refugio35 = oRefugio35.get();
+            Refugio refugio39 = oRefugio39.get();
+
+            Direccion direccionZaguates = new Direccion();
+            direccionZaguates.setLocalidad("Palermo");
+            direccionZaguates.setCalle("Juan Francisco Seguí");
+            direccionZaguates.setAltura(3775);
+            direccionZaguates.setProvincia("Buenos Aires");
+            direccionZaguates.setCodigoPostal("1425");
+            direccionZaguates.setLatitud(-34.57797868042211f);
+            direccionZaguates.setLongitud(-58.411349358867206f);
+            refugio39.setDireccion(direccionZaguates);
+
+            Direccion direccionPaticorti = new Direccion();
+            direccionPaticorti.setLocalidad("Palermo");
+            direccionPaticorti.setProvincia("Buenos Aires");
+            direccionPaticorti.setCodigoPostal("1425");
+            direccionPaticorti.setCalle("Avenida Santa Fe");
+            direccionPaticorti.setAltura(3880);
+            direccionPaticorti.setLatitud(-34.58383870461199f);
+            direccionPaticorti.setLongitud(-58.418122897358515f);
+            refugio35.setDireccion(direccionPaticorti);
+
+
+            System.out.println("-----REFUGIO 35------");
+            System.out.println(refugio35.getNombre());
+            System.out.println("Localidad: "+refugio35.getDireccion().getLocalidad());
+            System.out.println("Provincia: "+refugio35.getDireccion().getProvincia());
+            System.out.println("Codigo Postal: "+refugio35.getDireccion().getCodigoPostal());
+            System.out.println("Calle: "+refugio35.getDireccion().getCalle());
+            System.out.println("Altura: "+refugio35.getDireccion().getAltura());
+            System.out.println("Latitud: "+refugio35.getDireccion().getLatitud());
+            System.out.println("Longitud: "+refugio35.getDireccion().getLongitud());
+
+            System.out.println("-----REFUGIO 39------");
+            System.out.println(refugio39.getNombre());
+            System.out.println("Localidad: "+refugio39.getDireccion().getLocalidad());
+            System.out.println("Provincia: "+refugio39.getDireccion().getProvincia());
+            System.out.println("Codigo Postal: "+refugio39.getDireccion().getCodigoPostal());
+            System.out.println("Calle: "+refugio39.getDireccion().getCalle());
+            System.out.println("Altura: "+refugio39.getDireccion().getAltura());
+            System.out.println("Latitud: "+refugio39.getDireccion().getLatitud());
+            System.out.println("Longitud: "+refugio39.getDireccion().getLongitud());
+
+        }
+
+    }
 }
