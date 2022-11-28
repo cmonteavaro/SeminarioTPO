@@ -91,7 +91,7 @@ const ProfileBody = ({ refugio }) => {
       {"<"} Volver atras
     </button>
     <section className="container-perfil">
-      <img className="hero" src={Five} alt="Imagen animal" />
+      <img className="hero" src={refugio.perfilRefugio.banner} alt="Imagen animal" />
       <section className="basic">
         <section className="heading-shelter">
           <div className="logo-name-location">
