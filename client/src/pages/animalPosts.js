@@ -91,8 +91,12 @@ export default function Posts() {
 		})
 		.then((response) => response.json())
 		.then((data) => {
-			setDataFull(data)
-			setDataDisplay(applyFilters([...data], {...filtersDict}))
+			if(data.length < 1){
+				setDataDisplay([])
+			}else{
+				setDataFull(data)
+				setDataDisplay(applyFilters([...data], {...filtersDict}))
+			}
 		})
 	},[usarUbicacion]);
 
