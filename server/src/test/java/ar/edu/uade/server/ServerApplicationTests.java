@@ -385,6 +385,8 @@ class ServerApplicationTests {
             System.out.println("Latitud: "+refugio39.getDireccion().getLatitud());
             System.out.println("Longitud: "+refugio39.getDireccion().getLongitud());
 
+            refugioService.save(refugio35);
+            refugioService.save(refugio39);
         }
 
     }
