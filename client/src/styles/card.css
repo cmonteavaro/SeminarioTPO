@@ -239,6 +239,7 @@
 @media screen and (max-width: 920px) {
   .card {
     width: 300px;
+    align-self: center;
   }
 }
 
@@ -256,6 +257,30 @@
 
   .btn-info {
     width: 120px;
+    margin-right: 5px;
+  }
+
+  .btn-adopt {
+    margin-top: 2vh;
+    width: 30vw;
+    height: 5vh;
+  }
+}
+
+@media (max-width: 768px) {
+  .card {
+    margin: 1vh 0;
+    width: 90vw;
+    align-self: center;
+    padding: 1vw;
+  }
+  .donation-card {
+    align-self: center;
+    padding: 2vw;
+  }
+
+  .btn-info {
+    width: 90px;
     margin-right: 5px;
   }
 

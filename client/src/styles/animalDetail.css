@@ -19,6 +19,15 @@
   width: fit-content;
 }
 
+.info-detail-tags {
+  display: flex;
+  flex-direction: row;
+}
+
+.info-detail-tags div {
+  margin: 0.5vh;
+}
+
 .images-detail {
   margin: 0.5vh;
 }
@@ -293,6 +302,16 @@
   margin-bottom: 25px;
 }
 
+.image-gallery-detail {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+}
+
+.image-gallery-detail img {
+  width: 150px;
+  border-radius: 1vh;
+}
+
 @media (max-width: 1350px) {
   .detail {
     flex-direction: column;
@@ -306,12 +325,18 @@
   .btn-adopt {
     width: 15vw;
   }
-
+  .convivencia-item {
+    height: 3vh;
+  }
+  .image-detail-big {
+    margin-right: 4vw;
+  }
 }
 
 @media (max-width: 768px) {
   .image-detail-big {
-    width: 70vw;
+    width: 80vw;
+    margin: 0;
   }
 
   .info-detail-description {
@@ -341,13 +366,13 @@
   }
 
   .btn-continue {
-    width: 15vw;
+    width: 30vw;
     border-radius: 1vw;
   }
 
   .btn-exit {
     border-radius: 1vw;
-    width: 12vw;
+    width: 15vw;
   }
 
   .form-content {
@@ -379,5 +404,25 @@
     width: 30vw;
     height: 8vh;
   }
+}
 
+@media screen and (max-width: 600px) {
+  .info-detail-tags {
+    flex-direction: column;
+    justify-content: center;
+    align-content: center;
+  }
+
+  .images-detail {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-content: center;
+  }
+  .image-detail-big {
+    align-self: center;
+    width: 75vw;
+    height: 50vh;
+    margin-bottom: 1vh;
+  }
 }

@@ -1,13 +1,11 @@
-import Zaguates from "../images/shelters/zaguates.webp";
 import Tag from "../components/badge/badge";
-import { FaInstagram, FaFacebook, FaTwitter } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { Loader } from "@mantine/core";
 import NotFound from "./notFound";
-import SocialMedia from "../components/rrss/socialMedia"
-import {Link} from 'react-router-dom';
+import SocialMedia from "../components/rrss/socialMedia";
+import { Link } from "react-router-dom";
 
 import Modal from "../components/animals/modalPreForm";
 import Form from "../components/form/form";
@@ -64,7 +62,7 @@ export default function AnimalDetail() {
   );
 
   if (data.length < 1) return <NotFound />;
-
+  console.log(data);
   return (
     <main className="animal-detail">
       <div>
@@ -75,10 +73,17 @@ export default function AnimalDetail() {
       <section className="detail">
         <section className="images-detail">
           <img
-            src={data.animal.galeriaImagenes[0]}
+            src={data.animal.imagenPrincipal}
             className="image-detail-big"
             alt="Imagen animal"
           />
+          <div className="image-gallery-detail">
+            {data.animal.galeriaImagenes.length > 0
+              ? data.animal.galeriaImagenes.map((imagen) => (
+                  <img src={imagen} alt="Imagen adicional del animal." />
+                ))
+              : null}
+          </div>
         </section>
         <section className="info-detail">
           <div className="info-detail-wrapper">
@@ -91,10 +96,8 @@ export default function AnimalDetail() {
                 Ubicación: {data.direccionRefugio.localidad}
               </p>
             </div>
-            <div className="info-detail-urgente">
+            <div className="info-detail-tags">
               <Tag state={data.esUrgente} />
-            </div>
-            <div className="info-detail-status">
               <Tag state={data.estadoPublicacion} />
             </div>
           </div>
@@ -112,9 +115,7 @@ export default function AnimalDetail() {
             </p>
             <p className="property">
               Tipo Animal:{" "}
-              <span className="property-info">
-                {data.animal.tipoAnimal}
-              </span>
+              <span className="property-info">{data.animal.tipoAnimal}</span>
             </p>
             <p className="property">
               Edad: <span className="property-info">{data.animal.edad}</span>
@@ -156,21 +157,21 @@ export default function AnimalDetail() {
               </span>
             </p>
             <div>
-            <p className="property">
+              <p className="property">
                 <p className="convivencia-animal"> Puede convivir con:</p>
                 <div className="">
-                    <p className="property-info convivencia-item">
-                      Infantes: {isTrue(data.puedeConvivirConInfantes)}
-                    </p>
-                    <p className="property-info convivencia-item">
-                      Gatos: {isTrue(data.puedeConvivirConGatos)}
-                    </p>
-                    <p className="property-info convivencia-item">
-                      Cachorros: {isTrue(data.puedeConvivirConCachorros)}
-                    </p>
-                    <p className="property-info convivencia-item">
-                      Perros Adultos: {isTrue(data.puedeConvivirConPerrosAdultos)}
-                    </p>
+                  <p className="property-info convivencia-item">
+                    Infantes: {isTrue(data.puedeConvivirConInfantes)}
+                  </p>
+                  <p className="property-info convivencia-item">
+                    Gatos: {isTrue(data.puedeConvivirConGatos)}
+                  </p>
+                  <p className="property-info convivencia-item">
+                    Cachorros: {isTrue(data.puedeConvivirConCachorros)}
+                  </p>
+                  <p className="property-info convivencia-item">
+                    Perros Adultos: {isTrue(data.puedeConvivirConPerrosAdultos)}
+                  </p>
                 </div>
               </p>
             </div>
@@ -183,12 +184,16 @@ export default function AnimalDetail() {
             <div className="info-detail-shelter">
               <div className="info-detail-shelter-name">
                 <Link to={`/refugios/${data.idRefugio}`}>
-                  <img src={data.fotoPerfilRefugio} className="card-img-shelter" alt="Imagen refugio" />
+                  <img
+                    src={data.fotoPerfilRefugio}
+                    className="card-img-shelter"
+                    alt="Imagen refugio"
+                  />
                 </Link>
                 <h5>{data.nombreRefugio}</h5>
               </div>
               <div className="info-detail-shelter-links">
-            { <SocialMedia rrss={data.redesSocialesRefugio} /> } 
+                {<SocialMedia rrss={data.redesSocialesRefugio} />}
               </div>
             </div>
             <div className="info-detail-button">

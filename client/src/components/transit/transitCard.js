@@ -1,6 +1,5 @@
 import { Link } from "react-router-dom";
 import "../../styles/card.css";
-import Logo from "../../images/shelters/zaguates.webp";
 
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import "react-lazy-load-image-component/src/effects/blur.css";
@@ -26,14 +25,16 @@ export default function TransitCard({ animal }) {
       </div>
       <div className="card-bottom">
         <div className="card-shelter">
-
           <Link to={`/refugios/${animal.idRefugio}`}>
-            <img src={animal.fotoPerfilRefugio} className="card-img-shelter" alt="Imagen refugio" />
+            <img
+              src={animal.fotoPerfilRefugio}
+              className="card-img-shelter"
+              alt="Imagen refugio"
+            />
           </Link>
-          <div >
+          <div>
             <p>{animal.nombreRefugio}</p>
           </div>
-
         </div>
         <Link to={`/transitos/${animal.idPublicacion}`} className="btn-info">
           Transitar

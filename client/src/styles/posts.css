@@ -16,7 +16,7 @@
 
 .grid-posts {
   display: flex;
-  justify-content: space-evenly;
+  justify-content: space-between;
 }
 
 @media screen and (max-width: 992px) {
