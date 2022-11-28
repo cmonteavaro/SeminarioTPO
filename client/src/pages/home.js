@@ -89,7 +89,7 @@ export default function Home() {
               en búsqueda de hogar o tránsito. 
               Por esta razón, decidimos desarrollar un sitio 
               donde las comunidades, refugios y voluntarios puedan conectar de una forma más 
-              fácil, rapida y centralizada, para poder darles una mejor calidad de vida a cada uno de
+              fácil, rápida y centralizada, para poder darles una mejor calidad de vida a cada uno de
               los animales.
             </p>
           </article>
