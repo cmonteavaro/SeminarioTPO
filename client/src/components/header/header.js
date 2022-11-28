@@ -2,53 +2,51 @@ import { Link, useMatch, useResolvedPath } from "react-router-dom";
 import Logo from "../../images/LogoMiRefugioNavbar.png";
 // import "bootstrap/dist/css/bootstrap.min.css";
 import "./header.scss";
-import Nav from "react-bootstrap/Nav";
-import Navbar from "react-bootstrap/Navbar";
-import NavDropdown from "react-bootstrap/NavDropdown";
+import { FaBars, FaTimes, FaArrowDown } from "react-icons/fa";
+import { useRef } from "react";
 
 export default function NavBar() {
-  const shouldDropdownHighlighted = [
-    "/publicaciones",
-    "/transitos",
-    "/donation_posts",
-    "/voluntariados",
-  ].includes(useResolvedPath().pathname);
+  const navRef = useRef();
+  const showNavbar = () => {
+    navRef.current.classList.toggle("responsive_nav");
+  };
   return (
     <header>
-      <Navbar bg="light" expand="lg">
-        <Navbar.Brand className="logo" href="/">
+      <h3 className="logo" href="/">
+        <Link to="/">
           <img className="logo-img" src={Logo} alt="Perro y Gato mirandose" />
-        </Navbar.Brand>
-        <Navbar.Toggle aria-controls="basic-navbar-nav" />
-        <Navbar.Collapse
-          id="basic-navbar-nav"
-          className="header-nav-links-container"
-        >
-          <Nav className="me-auto">
+        </Link>
+      </h3>
+      <nav ref={navRef}>
+        <ul>
+          <li>
             <CustomLink to="/">Inicio</CustomLink>
-            <NavDropdown
-              title="Publicaciones"
-              id="basic-nav-dropdown"
-              className={shouldDropdownHighlighted ? "active links" : "links"}
-            >
-              <NavDropdown.Item>
-                <CustomLink to="/publicaciones">Adopciones</CustomLink>
-              </NavDropdown.Item>
-              <NavDropdown.Item>
-                <CustomLink to="/transitos">Transitos</CustomLink>
-              </NavDropdown.Item>
-              <NavDropdown.Item>
-                <CustomLink to="/donation_posts">Donaciones</CustomLink>
-              </NavDropdown.Item>
-              <NavDropdown.Item>
-                <CustomLink to="/voluntariados">Voluntariados</CustomLink>
-              </NavDropdown.Item>
-            </NavDropdown>
+          </li>
+          <div class="dropdown">
+            <button class="dropbtn">Publicaciones v</button>
+            <div class="dropdown-content">
+              <CustomLink to="/publicaciones">Adopciones</CustomLink>
+              <CustomLink to="/transitos">Transitos</CustomLink>
+              <CustomLink to="/donation_posts">Donaciones</CustomLink>
+              <CustomLink to="/voluntariados">Voluntariados</CustomLink>
+            </div>
+          </div>
+          {/* Inicio Dropdown */}
+          {/* Fin Dropdown */}
+          <li>
             <CustomLink to="/refugios">Refugios</CustomLink>
+          </li>
+          <li>
             <CustomLink to="/acerca">Acerca de</CustomLink>
-          </Nav>
-        </Navbar.Collapse>
-      </Navbar>
+          </li>
+        </ul>
+        <button className="nav-btn nav-close-btn" onClick={showNavbar}>
+          <FaTimes color="white" />
+        </button>
+      </nav>
+      <button className="nav-btn" onClick={showNavbar}>
+        <FaBars color="white" />
+      </button>
     </header>
   );
 }

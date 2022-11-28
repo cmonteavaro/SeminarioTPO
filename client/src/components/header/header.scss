@@ -6,25 +6,12 @@
 @import "../../../node_modules/bootstrap/scss/navbar";
 @import "../../../node_modules/bootstrap/scss/transitions";
 
-.dropdown-menu:hover {
-  --bs-dropdown-link-hover-color: transparent;
-  --bs-dropdown-link-hover-bg: transparent;
-}
-
-.dropdown-item {
-  margin: 0;
-}
-
-.navbar-brand {
-  display: flex;
-}
-
 a {
   color: white;
   text-decoration: none;
 }
 
-nav {
+header {
   background-color: green;
   margin-bottom: 3vh;
 }
@@ -39,14 +26,6 @@ nav a {
   color: white;
 }
 
-.dropdown-menu {
-  background-color: white !important;
-
-  a {
-    color: black !important;
-  }
-}
-
 .header-nav-links-container {
   position: absolute;
   width: 100%;
@@ -56,7 +35,6 @@ nav a {
 }
 
 .logo {
-  margin-right: auto;
   margin-left: 1vw;
   display: flex;
 }
@@ -120,4 +98,115 @@ li {
     margin: 0 5vw;
     padding: 0;
   }
+}
+
+header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 80px;
+  padding: 0 2rem;
+}
+
+header .nav-btn {
+  padding: 5px;
+  cursor: pointer;
+  background: transparent;
+  border: none;
+  outline: none;
+  visibility: hidden;
+  opacity: 0;
+  font-size: 1.8rem;
+}
+
+header div,
+nav {
+  display: flex;
+  align-items: center;
+}
+
+ul {
+  display: flex;
+  justify-content: center;
+  align-content: center;
+}
+
+.dropdown {
+  margin: 0.8vw;
+}
+
+.dropdown-content {
+  display: none;
+}
+
+.dropbtn {
+  background-color: transparent;
+  border: 0px;
+  color: white;
+  font-size: 1.35rem;
+  cursor: pointer;
+}
+
+.dropdown:hover .dropdown-content {
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  background-color: green;
+  top: 50px;
+  border-radius: 1vh;
+  z-index: 99;
+}
+
+@media only screen and (max-width: 1024px) {
+  header .nav-btn {
+    visibility: visible;
+    opacity: 1;
+    display: flex;
+    justify-content: center;
+    align-content: center;
+  }
+
+  ul {
+    flex-direction: column;
+  }
+
+  .dropdown:hover .dropdown-content {
+    flex-direction: column;
+    position: initial;
+  }
+  .dropdown {
+    flex-direction: column;
+  }
+  header nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 1.5rem;
+    transition: 1s;
+    transform: translateY(-100vh);
+  }
+
+  header .responsive_nav {
+    transform: none;
+    background-color: green;
+  }
+
+  nav .nav-close-btn {
+    position: absolute;
+    top: 2rem;
+    right: 2rem;
+  }
+
+  nav a {
+    font-size: 1.5rem;
+  }
+}
+
+@media screen and (min-width: 920px) {
 }
