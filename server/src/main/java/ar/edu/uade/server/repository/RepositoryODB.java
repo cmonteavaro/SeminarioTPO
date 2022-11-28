@@ -11,19 +11,21 @@ import javax.persistence.*;
 public class RepositoryODB {
 
     private static RepositoryODB instancia;
-    private EntityManagerFactory emf;
-    private EntityManager em;
+    private static EntityManagerFactory emf;
+    private static EntityManager em;
 
 
     private RepositoryODB(){
-        this.emf = Persistence.createEntityManagerFactory("db/Refugios.odb");
-        this.em = emf.createEntityManager();
-        System.out.println("Apertura de OBD");
     }
 
     public static RepositoryODB getInstancia(){
-        if(instancia == null)
+        if (instancia == null)
             instancia = new RepositoryODB();
+        if(emf == null) {
+            emf = Persistence.createEntityManagerFactory("db/Refugios.odb");
+            em = emf.createEntityManager();
+            System.out.println("Apertura de OBD");
+        }
         return instancia;
     }
 
