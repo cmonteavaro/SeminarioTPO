@@ -65,12 +65,13 @@ export default function Home() {
             src={Mila}
           />
           <article className="info l">
-            <h2>Nuestra Motivacion</h2>
+            <h2>Nuestra motivación</h2>
             <p>
-              Nuestra Motivacion A lo largo de nuestra vida, hemos visto una
-              gran cantidad de animales que han sido abandonados o que no han
-              recibido amor, hoy en dia con las redes sociales hemos podidos
-              conectar con personas que tienen el fin de ayudarlos.
+              A lo largo de nuestra vida, hemos visto una
+              enorme cifra de animales que han sido abandonados o que no han
+              recibido amor y, a su vez, una gran cantidad de refugios que no cuentan con la ayuda necesaria.
+              Hoy en día a través de las redes sociales hemos podido conectar con personas 
+              que tienen el fin de ayudarlos.
             </p>
           </article>
           <article className="background">
@@ -82,12 +83,14 @@ export default function Home() {
             <img src={House} />
           </article>
           <article className="info r">
-            <h2>MiRefugio</h2>
+            <h2>Mi Refugio</h2>
             <p>
-              Nuestro fin es poder encontrar a todos los animales un transito o
-              un hogar. Conectamos refugios con adoptantes, transitantes y
-              colaboradores para poder darles una mejor vida a cada uno de
-              ellos.
+              Nuestro fin es poder facilitar la conexión entre las personas y aquellos animales que
+              en búsqueda de hogar o tránsito. 
+              Por esta razón, decidimos desarrollar un sitio 
+              donde las comunidades, refugios y voluntarios puedan conectar de una forma más 
+              fácil, rapida y centralizada, para poder darles una mejor calidad de vida a cada uno de
+              los animales.
             </p>
           </article>
           <img
@@ -103,11 +106,11 @@ export default function Home() {
             src={Milo}
           />
           <article className="info l">
-            <h2>Como funciona?</h2>
+            <h2>Cómo funciona?</h2>
             <p>
-              Si tienes intenciones de ayudar a algun refugio, puedes buscarlo
-              en la seccion de refugios. Pero si quieres transitar o adoptar
-              algun animal, puedes encontrarlos en la seccion de publicaciones.
+              Si tenes intenciones de colaborar con algún refugio, podes encontrarlos
+              en la sección "Refugios". Si deseas transitar o adoptar
+              a algún animal, podrás encontrarlos en la sección "Publicaciones".
             </p>
           </article>
         </section>
@@ -121,7 +124,7 @@ export default function Home() {
               </div>
               <div>
                 <img className="stats-img" src={Transit} />
-                <p className="stats-info">+300 transitos</p>
+                <p className="stats-info">+300 tránsitos</p>
               </div>
             </article>
             <article className="row">
