@@ -20,30 +20,38 @@ export default function AnimalFilter(props) {
     })
     if(typeof(coords[0]) === "number"){
         setUbicacion(coords);
-        setUsarUbicacion(true);
     } else {
         if(typeof(coords[0][0]) === "number"){
           setUbicacion(coords[0]);
-          setUsarUbicacion(true);
         } else {
           setUbicacion(coords[0][0]);
-          setUsarUbicacion(true);
         }
     }
-    
+    setUsarUbicacion(true);
+    setUbicacionString(inputSearch);
   }
 
-  function clearLocation() {
-    setUbicacion([]);
-    setUsarUbicacion(false);
+  function clearLocationFilter() {
+    clearLocation();
+    emptyLocationSearchBar();
+  }
+
+  function emptyLocationSearchBar(){
     inputSearch.current.value = "";
   }
 
   const data = props.filtros;
+  const ubicacionTextFromSS = props.ubicacionTextFromSS;
   const setUbicacion = props.setUbicacion;
   const setUsarUbicacion = props.setUsarUbicacion;
+  const clearFilters = props.clearFilters;
   const inputSearch = useRef();
+  if (inputSearch.current!==undefined && ubicacionTextFromSS){
+    inputSearch.current.value = ubicacionTextFromSS
+  }
   const filtrosDict = props.filtrosDict;
+  const setUbicacionString = props.setUbicacionString;
+  const clearLocation = props.clearLocation;
 
   return (
     <Navbar bg="light" expand="lg">
@@ -54,13 +62,13 @@ export default function AnimalFilter(props) {
             <hr className="linea"></hr>
           <div className="filtros-container">
             <div className="filter-section-container">
-              <button className="boton-maps boton-limpiar-flitros clickable" onClick={() => {}}>Limpiar filtros</button>
+              <button className="boton-maps boton-limpiar-flitros clickable" onClick={() => {emptyLocationSearchBar(); clearFilters();}}>Limpiar filtros</button>
               <h4>Ubicacion</h4>
               <div>
                 <input className="buscador-maps" autoComplete="off" id="search" type="text" ref={inputSearch} placeholder="Lima 775, Monserrat, Buenos Aires"/>
                 <div className="ubicacion-buttons">
                   <button className="boton-maps clickable" onClick={() => handleSearch(inputSearch.current.value)}>Ubicar</button>
-                  <FiTrash2 size={25} className="trash-icon clickable" onClick={clearLocation}/>
+                  <FiTrash2 size={25} className="trash-icon clickable" onClick={clearLocationFilter}/>
                 </div>
               </div>
             </div>
@@ -80,12 +88,13 @@ export default function AnimalFilter(props) {
               <div className="filter-section">
                 {data.multivalores.TipoAnimalEnum &&
                 data.multivalores.TipoAnimalEnum.length > 0
-                  ? data.multivalores.TipoAnimalEnum.map((filtro) => (
+                  ? data.multivalores.TipoAnimalEnum.map((filtro,i) => (
                       <Checkbox
                         value={filtro}
                         label={filtro}
                         checked={filtrosDict[filtro]}
                         onChange={(event) => props.callback(event)}
+                        key={i}
                       />
                     ))
                   : null}
@@ -96,12 +105,13 @@ export default function AnimalFilter(props) {
               <div className="filter-section">
                 {data.multivalores.TamanioEnum &&
                 data.multivalores.TamanioEnum.length > 0
-                  ? data.multivalores.TamanioEnum.map((filtro) => (
+                  ? data.multivalores.TamanioEnum.map((filtro,i) => (
                       <Checkbox
                         value={filtro}
                         label={filtro}
                         checked={filtrosDict[filtro]}
                         onChange={(event) => props.callback(event)}
+                        key={i}
                       />
                     ))
                   : null}
@@ -110,12 +120,13 @@ export default function AnimalFilter(props) {
             <div className="filter-section-container">
               <NavDropdown title="Extras" className="dropwdown-filters">
                   {data.booleanos && data.booleanos.length > 0
-                    ? data.booleanos.map((filtro) => (
+                    ? data.booleanos.map((filtro,i) => (
                         <Checkbox
                           value={filtro}
                           label={filtro}
                           checked={filtrosDict[filtro]}
                           onChange={(event) => props.callback(event)}
+                          key={i}
                         />
                       ))
                     : null}
