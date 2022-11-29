@@ -65,7 +65,7 @@ export default function Home() {
             src={Mila}
           />
           <article className="info r">
-          <h2>Nuestra motivación</h2>
+          <h2 className="titulo">Nuestra motivación</h2>
             <p className="parrafo">
               A lo largo de nuestra vida, hemos visto una
               enorme cifra de animales que han sido abandonados o que no han
@@ -83,13 +83,13 @@ export default function Home() {
             <img src={House} />
           </article>
           <article className="info r">
-            <h2>Mi Refugio</h2>
-            <p  className="parrafo">
+            <h2 className="titulo">Mi Refugio</h2>
+            <p className="parrafo">
               Nuestro fin es poder facilitar la conexión entre las personas y aquellos animales que
               en búsqueda de hogar o tránsito. 
               Por esta razón, decidimos desarrollar un sitio 
               donde las comunidades, refugios y voluntarios puedan conectar de una forma más 
-              fácil, rapida y centralizada, para poder darles una mejor calidad de vida a cada uno de
+              fácil, rápida y centralizada, para poder darles una mejor calidad de vida a cada uno de
               los animales.
             </p>
           </article>
@@ -106,7 +106,7 @@ export default function Home() {
             src={Milo}
           />
           <article className="info r">
-          <h2>Cómo funciona?</h2>
+          <h2  className="titulo">Cómo funciona?</h2>
             <p className="parrafo">
              Si tenes intenciones de colaborar con algún refugio, podes encontrarlos
               en la sección "Refugios". Si deseas transitar o adoptar

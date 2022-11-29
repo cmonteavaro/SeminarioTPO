@@ -85,9 +85,10 @@
   width: 50%;
 }
 
-.stats h2 {
+.stats h2, .titulo {
   font-size: xx-large;
 }
+
 
 .center {
   display: flex;
