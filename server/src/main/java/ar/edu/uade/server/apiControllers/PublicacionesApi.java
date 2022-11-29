@@ -168,7 +168,7 @@ public class PublicacionesApi {
             try {
                 Direccion direccion =  oAdopcion.get().getRefugio().getDireccion();
                 double distancia = utilsServiceImpl.distanciaCoords(formularioDTO.getCoordenadas().get(1), formularioDTO.getCoordenadas().get(0), direccion.getLatitud(), direccion.getLongitud());
-                if(distancia > oAdopcion.get().getRefugio().getRadioAlcance()) throw new RefugioException("No te encuentras dentro del radio del refugio. Lamentamos el inconveniente");
+                if(distancia > oAdopcion.get().getRefugio().getRadioAlcance()) throw new RefugioException("No te encuentras dentro del alcance del refugio. Te recomendamos que filtres tu busqueda por direccion");
                 emailService.sendMailToRefugioDTO(formularioDTO, oAdopcion.get());
                 emailService.sendMailToPostulanteDTO(formularioDTO, oAdopcion.get());
                 return ResponseEntity.ok().build();
@@ -291,7 +291,7 @@ public class PublicacionesApi {
             try {
                 Direccion direc =  oTransito.get().getRefugio().getDireccion();
                 double distancia = utilsServiceImpl.distanciaCoords(formularioDTO.getCoordenadas().get(1), formularioDTO.getCoordenadas().get(0), direc.getLatitud(), direc.getLongitud());
-                if(distancia > oTransito.get().getRefugio().getRadioAlcance()) throw new RefugioException("No te encuentras dentro del radio del refugio. Lamentamos el inconveniente");
+                if(distancia > oTransito.get().getRefugio().getRadioAlcance()) throw new RefugioException("No te encuentras dentro del alcance del refugio. Te recomendamos que filtres tu busqueda por direccion");
                 emailService.sendMailToRefugioDTO(formularioDTO, oTransito.get());
                 emailService.sendMailToPostulanteDTO(formularioDTO, oTransito.get());
                 return ResponseEntity.ok().build();
