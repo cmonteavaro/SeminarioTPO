@@ -104,6 +104,7 @@
 .card-img-animal {
   width: 250px;
   height: 300px;
+  object-fit: cover;
   border-radius: 10px;
   padding-top: 2px;
   padding-bottom: 2px;
@@ -247,7 +248,7 @@
 @media (max-width: 768px) {
   .card {
     margin: 1vh 0;
-    width: 60vw;
+    width: 90vw;
     align-self: center;
     padding: 1vw;
   }
@@ -266,30 +267,7 @@
     width: 30vw;
     height: 5vh;
   }
-}
 
-@media (max-width: 768px) {
-  .card {
-    margin: 1vh 0;
-    width: 90vw;
-    align-self: center;
-    padding: 1vw;
-  }
-  .donation-card {
-    align-self: center;
-    padding: 2vw;
-  }
-
-  .btn-info {
-    width: 70px;
-    margin-right: 5px;
-  }
-
-  .btn-adopt {
-    margin-top: 2vh;
-    width: 30vw;
-    height: 5vh;
-  }
   .card-shelter-end {
     margin-top: 0.5vh;
   }

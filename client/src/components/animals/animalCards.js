@@ -6,7 +6,7 @@ export default function ListAnimals({ props }) {
     <>
       <div className="grid-animales">
         {props && props.length > 0
-          ? props.map((animal) => <AnimalCard animal={animal} />)
+          ? props.map((animal,i) => <AnimalCard animal={animal} key={i}/>)
           : null}
       </div>
     </>

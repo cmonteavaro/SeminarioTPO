@@ -15,6 +15,7 @@ export default function Transits() {
   const [filtersDict, setFiltersDict] = useState({});
   const [usarUbicacion, setUsarUbicacion] = useState(false);
 	const [ubicacion, setUbicacion] = useState("");
+  const [ubicacionString, setUbicacionString] = useState("");
 
   // Get the data from the server
   useEffect(() => {
@@ -34,15 +35,27 @@ export default function Transits() {
           setfiltersJSON(titulosFiltros);
           setDataFull(dataTransitos);
           let SSfilters = JSON.parse(sessionStorage.getItem("filtersTransitos"));
+          let SSubicacion =  JSON.parse(sessionStorage.getItem("ubicacion"));
+          let SSubicacionString = sessionStorage.getItem("ubicacionString");
 					if(SSfilters!==null){
 						setFiltersDict(SSfilters);
-						setDataDisplay(applyFilters([...dataTransitos], { ...SSfilters }));
+            if(SSubicacion!==null){
+							setUbicacion(SSubicacion)
+							setUsarUbicacion(true)
+							setUbicacionString(SSubicacionString)
+						}else{
+							setDataDisplay(applyFilters([...dataTransitos], { ...SSfilters }));
+						}
 					}else{
 						buildEmptyFiltersDict(titulosFiltros);
-						setDataDisplay(dataTransitos);
-					}				
-          
-          
+            if(SSubicacion !== null){
+							setUbicacion(SSubicacion);
+							setUsarUbicacion(true);
+							setUbicacionString(SSubicacionString)
+						}else{
+							setDataDisplay(dataTransitos);
+						}
+					}
         })
         .finally(() => {
             setLoading(false);
@@ -67,19 +80,38 @@ export default function Transits() {
   };
 
   useEffect(() => {
-		fetch(`http://localhost:8080/api/publicaciones/transitos/distance`,{
-			method: "GET",
-			headers: {
-				'longitud': ubicacion[0],
-				'latitud': ubicacion[1]
-			}
-		})
-		.then((response) => response.json())
-		.then((data) => {
-			setDataFull(data)
-      setDataDisplay(applyFilters([...data], { ...filtersDict }));
-		})
-	},[usarUbicacion]);
+    if(usarUbicacion){
+      fetch(`http://localhost:8080/api/publicaciones/transitos/distance`,{
+        method: "GET",
+        headers: {
+          'longitud': ubicacion[0],
+          'latitud': ubicacion[1]
+        }
+      })
+      .then((response) => response.json())
+      .then((data) => {
+        if(data.length < 1){
+					setDataDisplay([])
+				}else{
+          setDataFull(data)
+          setDataDisplay(applyFilters([...data], { ...filtersDict }));
+          sessionStorage.setItem("ubicacion",JSON.stringify(ubicacion));
+					sessionStorage.setItem("ubicacionString",ubicacionString);
+        }
+      })
+    }else{
+      fetch(`http://localhost:8080/api/publicaciones/transitos`)
+			.then((response) => response.json())
+			.then((data) => {
+				if(data.length < 1){
+					setDataDisplay([])
+				}else{
+					setDataFull(data)
+					setDataDisplay(applyFilters([...data], {...filtersDict}))
+				}
+			})
+    }
+	},[usarUbicacion, ubicacion, filtersDict]);
 
   // Callback function called on AnimalFilters to change the state of the filter given
   function handleCheckboxToggle(event) {
@@ -91,6 +123,20 @@ export default function Transits() {
     sessionStorage.setItem("filtersTransitos",JSON.stringify(filtersDict));
     setDataDisplay(applyFilters([...dataFull], { ...filtersDict }));
   }
+
+  function clearFilters(){
+		clearLocation();
+		buildEmptyFiltersDict(filtersJSON);
+		sessionStorage.removeItem("filtersTransitos")
+	}
+
+	function clearLocation(){
+		setUsarUbicacion(false);
+		setUbicacion([]);
+		setUbicacionString("");
+		sessionStorage.removeItem("ubicacion")
+		sessionStorage.removeItem("ubicacionString")
+	}
 
   if (loading) {
     return (
@@ -117,6 +163,10 @@ export default function Transits() {
               callback={handleCheckboxToggle}
               setUbicacion={setUbicacion}
 			        setUsarUbicacion={setUsarUbicacion}
+              setUbicacionString={setUbicacionString}
+              clearFilters={clearFilters}
+              clearLocation={clearLocation}
+              ubicacionTextFromSS={ubicacionString}
             />
           </section>
           <section className="cards">

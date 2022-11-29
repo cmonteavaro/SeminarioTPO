@@ -60,7 +60,7 @@ Body: {
           "correo": "jhon.doe@gmail.com",
           "telefono": "1123456789",
           "linkDonacionesMonetarias": "mercadopago.com.ar",
-          "radioAlcance":30,
+          "radioAlcance":20,
           "redesSociales":[
               {
               "link":"facebook.com",

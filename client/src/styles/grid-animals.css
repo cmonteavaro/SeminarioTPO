@@ -5,7 +5,13 @@
   padding-left: 1vw;
 }
 
-@media (max-width: 1400px) {
+@media (min-width: 1600px) {
+  .grid-animales {
+    padding-right: 5vw;
+  }
+}
+
+@media (max-width: 1500px) {
   .grid-animales {
     grid-template-columns: 1fr 1fr;
     padding: 0;
@@ -13,8 +19,6 @@
   }
 }
 
-@media (max-width: 920px) {
-}
 @media (max-width: 768px) {
   .grid-animales {
     display: flex;

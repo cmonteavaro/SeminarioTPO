@@ -8,14 +8,14 @@ import { applyFilters, init as filtersInit } from "../filters";
 import FiltersEmptySearch from "../components/animals/filtersEmptySearch"
 
 export default function Posts() {
-
 	const [dataDisplay, setDataDisplay] = useState([]);
 	const [dataFull, setDataFull] = useState([]);
 	const [loading, setLoading] = useState(false);
 	const [filtersJSON, setfiltersJSON] = useState();
 	const [filtersDict, setFiltersDict] = useState({});
 	const [usarUbicacion, setUsarUbicacion] = useState(false);
-	const [ubicacion, setUbicacion] = useState("");
+	const [ubicacion, setUbicacion] = useState([]);
+	const [ubicacionString, setUbicacionString] = useState("");
 
 
 	// Get the data from the server
@@ -39,12 +39,26 @@ export default function Posts() {
 					setDataFull(dataAdopciones);
 					//Verificamos si existen filtros ya cargados
 					let SSfilters = JSON.parse(sessionStorage.getItem("filtersAdopciones"));
+					let SSubicacion =  JSON.parse(sessionStorage.getItem("ubicacion"));
+					let SSubicacionString = sessionStorage.getItem("ubicacionString");
 					if(SSfilters!==null){
 						setFiltersDict(SSfilters);
-						setDataDisplay(applyFilters([...dataAdopciones], { ...SSfilters }));
+						if(SSubicacion!==null){
+							setUbicacion(SSubicacion)
+							setUsarUbicacion(true)
+							setUbicacionString(SSubicacionString)
+						}else{
+							setDataDisplay(applyFilters([...dataAdopciones], { ...SSfilters }));
+						}
 					}else{
 						buildEmptyFiltersDict(titulosFiltros);
-						setDataDisplay(dataAdopciones);
+						if(SSubicacion !== null){
+							setUbicacion(SSubicacion);
+							setUsarUbicacion(true);
+							setUbicacionString(SSubicacionString)
+						}else{
+							setDataDisplay(dataAdopciones);
+						}
 					}				
 				})
 				.finally(() => {
@@ -82,19 +96,38 @@ export default function Posts() {
 	};
 
 	useEffect(() => {
-		fetch(`http://localhost:8080/api/publicaciones/adopciones/distance`,{
-			method: "GET",
-			headers: {
-				'longitud': ubicacion[0],
-				'latitud': ubicacion[1]
-			}
-		})
-		.then((response) => response.json())
-		.then((data) => {
-			setDataFull(data)
-			setDataDisplay(applyFilters([...data], {...filtersDict}))
-		})
-	},[usarUbicacion]);
+		if(usarUbicacion){
+			fetch(`http://localhost:8080/api/publicaciones/adopciones/distance`,{
+				method: "GET",
+				headers: {
+					'longitud': ubicacion[0],
+					'latitud': ubicacion[1]
+				}
+			})
+			.then((response) => response.json())
+			.then((data) => {
+				if(data.length < 1){
+					setDataDisplay([])
+				}else{
+					setDataFull(data)
+					setDataDisplay(applyFilters([...data], {...filtersDict}))
+					sessionStorage.setItem("ubicacion",JSON.stringify(ubicacion));
+					sessionStorage.setItem("ubicacionString",ubicacionString);
+				}
+			})
+		}else{
+			fetch(`http://localhost:8080/api/publicaciones/adopciones`)
+			.then((response) => response.json())
+			.then((data) => {
+				if(data.length < 1){
+					setDataDisplay([])
+				}else{
+					setDataFull(data)
+					setDataDisplay(applyFilters([...data], {...filtersDict}))
+				}
+			})
+		}
+	},[usarUbicacion, ubicacion, filtersDict]);
 
 	// Callback function called on AnimalFilters to change the state of the filter given
 	function handleCheckboxToggle(event) {
@@ -105,6 +138,20 @@ export default function Posts() {
 		setFiltersDict(filtros);
 		sessionStorage.setItem("filtersAdopciones",JSON.stringify(filtersDict));
 		setDataDisplay(applyFilters([...dataFull], { ...filtersDict }));
+	}
+
+	function clearFilters(){
+		clearLocation();
+		buildEmptyFiltersDict(filtersJSON);
+		sessionStorage.removeItem("filtersAdopciones")
+	}
+
+	function clearLocation(){
+		setUsarUbicacion(false);
+		setUbicacion([]);
+		setUbicacionString("");
+		sessionStorage.removeItem("ubicacion")
+		sessionStorage.removeItem("ubicacionString")
 	}
 
 	if (loading) {
@@ -132,6 +179,10 @@ export default function Posts() {
               callback={handleCheckboxToggle}
 			  setUbicacion={setUbicacion}
 			  setUsarUbicacion={setUsarUbicacion}
+			  setUbicacionString={setUbicacionString}
+			  clearFilters={clearFilters}
+			  clearLocation={clearLocation}
+			  ubicacionTextFromSS={ubicacionString}
             />
           </section>
           <section className="cards">

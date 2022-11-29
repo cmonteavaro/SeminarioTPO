@@ -53,7 +53,7 @@ export default function TransitDetail() {
       </div>
       <section className="detail">
         <section className="images-detail">
-          <img src={Coco} className="image-detail-big" alt="Imagen animal" />
+          <img src={data.animal.galeriaImagenes[0]} className="image-detail-big" alt="Imagen animal" />
         </section>
         <section className="info-detail">
           <div className="info-detail-wrapper">

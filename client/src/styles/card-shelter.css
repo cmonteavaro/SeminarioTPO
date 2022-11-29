@@ -8,6 +8,7 @@
   border: 1px solid lightgray;
   display: flex;
   flex-direction: column;
+  justify-content: space-around;
 }
 
 .card-logo-shelter {
@@ -33,7 +34,7 @@
   margin-top: 3vh;
 }
 
-.card-shelter-end h2 {
+.card-shelter-end h3 {
   margin-right: 1vw;
 }
 
@@ -65,7 +66,7 @@
     padding: 1vh;
     justify-content: space-around;
   }
-  .card-shelter-end h2 {
+  .card-shelter-end h3 {
     font-size: medium;
   }
   .card-shelter-end {
@@ -79,7 +80,6 @@
     height: 45vh;
     margin: 1vh 0;
     padding: 1.5vh;
-    justify-content: space-evenly;
   }
 
   .card-center-shelter {
@@ -92,7 +92,7 @@
     margin: 0.5vh;
   }
 
-  .card-shelter-end h2 {
+  .card-shelter-end h3 {
     font-size: medium;
   }
 
