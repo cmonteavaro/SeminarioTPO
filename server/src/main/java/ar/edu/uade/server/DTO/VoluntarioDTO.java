@@ -17,7 +17,7 @@ import java.time.format.DateTimeFormatter;
 @Setter
 public class VoluntarioDTO {
 
-    private long id;
+    private Long id;
     private TipoVoluntariadoEnum tipo;
     private String titulo;
     private String descripcion;

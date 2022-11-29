@@ -11,11 +11,11 @@ import java.time.format.DateTimeFormatter;
 @Setter
 @Getter
 public class DonacionDTO {
-    private long idPublicacion;
+    private Long idPublicacion;
     private String titulo;
     private String descripcion;
     private TipoDonacionEnum tipo;
-    private long idRefugio;
+    private Long idRefugio;
     private String fechaPublicacion;
 
     public PublicacionDonacion toModel() {

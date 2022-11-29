@@ -50,12 +50,12 @@ Método: PUT
 Endpoint: http://localhost:8080/api/publicaciones/transitos
 Body:
 {
-    "idPublicacion": 19
-    "descripcion":"Carlitos es muy tranquilo, le encanta jugar con chicos y que lo saquen a pasear",
+    "idPublicacion": 19,
+    "descripcion":"Carlitos es muy tranquilo, le gusta jugar con sus muñecos",
     "idAnimal":12,
     "idRefugio":2,
     "necesitaPatio":true,
-    "puedeConvivirConInfantes":true,
+    "puedeConvivirConInfantes":false,
     "puedeConvivirConGatos":false,
     "puedeConvivirConCachorros":true,
     "puedeConvivirConPerrosAdultos":true,

@@ -13,6 +13,7 @@ Modificar una Publicación de Voluntariado
 Método: PUT
 Endpoint: http://localhost:8080/api/publicaciones/voluntariados
 Body:{
+          "idPublicacion": 2,
           "tipo":"TRANSPORTE",
           "titulo":"Buscamos Transporte!",
           "descripcion":"En nuestro refugio estamos necesitando voluntarios para sacarle fotos a nuestros animalitos",
