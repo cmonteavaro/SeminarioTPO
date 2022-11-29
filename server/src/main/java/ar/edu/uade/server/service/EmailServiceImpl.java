@@ -64,7 +64,10 @@ public class EmailServiceImpl {
             mailMessage.setSubject(subject);
             helper.setText(msgBody,true);
 
-            javaMailSender.send(mailMessage);
+            Thread thread = new Thread( () -> {
+                javaMailSender.send(mailMessage);
+            });
+            thread.start();
         }catch (Exception e) {
             System.out.println(e.getMessage());
             throw new MailException("El mail de postulación a adopción no pudo ser enviado al refugio.");
@@ -81,7 +84,10 @@ public class EmailServiceImpl {
             mailMessage.setSubject(subject);
             helper.setText(msgBody,true);
 
-            javaMailSender.send(mailMessage);
+            Thread thread = new Thread( () -> {
+                javaMailSender.send(mailMessage);
+            });
+            thread.start();
         } catch (Exception e) {
             throw new MailException("El mail de postulación a adopción no pudo ser enviado al postulante.");
         }

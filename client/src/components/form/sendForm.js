@@ -48,7 +48,9 @@ async function sendForm(url = "", data = {}) {
         didOpen: async () => {
         Swal.showLoading();
         postularPromise(url,data)
-        .then((httpRes)=>Swal.close({httpRes: httpRes}));
+        .then(async (httpRes)=>{
+            await new Promise(resolve => setTimeout(resolve, 2000));  
+            Swal.close({httpRes: httpRes})});
         },
     }).then( async (swalRes) => {
         if(swalRes.httpRes.status===200){
