@@ -10,6 +10,7 @@ import lombok.Setter;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Getter
 @Setter
@@ -22,6 +23,7 @@ public class TransitoView {
     private String nombreRefugio;
     private String fotoPerfilRefugio;
     private Direccion direccionRefugio;
+    private List<RedSocialView> redesSocialesRefugio;
 
     //Publicacion
     private Long idPublicacion;
@@ -53,6 +55,7 @@ public class TransitoView {
         view.nombreRefugio = transito.getRefugio().getNombre();
         view.fotoPerfilRefugio = transito.getRefugio().getPerfilRefugio().getFotoPerfil();
         view.direccionRefugio = transito.getRefugio().getDireccion();
+        view.redesSocialesRefugio = transito.getRefugio().getRedesSociales().stream().map(RedSocialView::toView).collect(Collectors.toList());
         //Publicacion
         view.idPublicacion = transito.getId();
         view.descripcion = transito.getDescripcion();

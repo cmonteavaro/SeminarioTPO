@@ -19,6 +19,7 @@ public class AnimalView {
     private String tamanioEsperado;
     private String edad;
     private String tipoAnimal;
+    private Integer edadInteger;
     private Boolean castrado;
     private Boolean esquemaCompletoVacunas;
     private Boolean desparasitado;
@@ -32,6 +33,7 @@ public class AnimalView {
         view.tamanioActual = animal.getTamanioActual().getNombre();
         view.tamanioEsperado = animal.getTamanioEsperado().getNombre();
         view.edad = animal.getEdad();
+        view.edadInteger = animal.getEdadInteger();
         view.tipoAnimal = animal.getTipoAnimal().getNombre();
         view.castrado = animal.getCastrado();
         view.esquemaCompletoVacunas = animal.getEsquemaCompletoVacunas();

@@ -17,8 +17,8 @@ import java.time.format.DateTimeFormatter;
 @Setter
 public class VoluntarioDTO {
 
-    private Long id;
-    private TipoVoluntariadoEnum tipo;
+    private Long idPublicacion;
+    private TipoVoluntariadoEnum tipoVoluntariado;
     private String titulo;
     private String descripcion;
     private Long idRefugio;
@@ -28,8 +28,8 @@ public class VoluntarioDTO {
         DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 
         PublicacionVoluntariado publicacionVoluntariado = new PublicacionVoluntariado();
-        publicacionVoluntariado.setId(this.id);
-        publicacionVoluntariado.setTipo(this.tipo);
+        publicacionVoluntariado.setId(this.idPublicacion);
+        publicacionVoluntariado.setTipo(this.tipoVoluntariado);
         publicacionVoluntariado.setTitulo(this.titulo);
         publicacionVoluntariado.setDescripcion(this.descripcion);
         publicacionVoluntariado.setFechaPublicacion(LocalDate.parse(this.fechaPublicacion,dateTimeFormatter));

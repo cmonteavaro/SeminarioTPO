@@ -5,6 +5,7 @@
   margin: 2vh;
   padding: 1vh;
   border-radius: 1vh;
+  border: 1px solid lightgray;
   display: flex;
   flex-direction: column;
 }
@@ -38,19 +39,45 @@
 
 .btn-info {
   background-color: green;
-  width: 90px;
+  width: auto;
   height: 30px;
-  border-radius: 0.5vw;
   color: white;
   font-weight: bold;
   display: flex;
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  padding-left: 4px;
-  padding-right: 4px;
+  padding-left: 27px;
+  padding-right: 27px;
+  border-radius: 1vh;
+  margin-right: 5px;
+  border: 0px;
 }
 
 .btn-info:hover {
   opacity: 0.7;
+}
+
+@media screen and (max-width: 768px) {
+  .container-card-shelter {
+    width: 90vw;
+    height: 45vh;
+    margin: 1vh 0;
+    padding: 1.5vh;
+  }
+
+  .card-center-shelter {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .card-shelter-end h2 {
+    font-size: medium;
+  }
+
+  .btn-info {
+    border-radius: 1vh;
+  }
+
 }

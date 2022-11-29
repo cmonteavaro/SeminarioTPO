@@ -1,5 +1,5 @@
 import { Link, useMatch, useResolvedPath } from "react-router-dom";
-import Logo from "../../images/LogoMiRefugio.png";
+import Logo from "../../images/LogoMiRefugioNavbar.png";
 // import "bootstrap/dist/css/bootstrap.min.css";
 import "./header.scss";
 import Nav from "react-bootstrap/Nav";
@@ -7,6 +7,7 @@ import Navbar from "react-bootstrap/Navbar";
 import NavDropdown from "react-bootstrap/NavDropdown";
 
 export default function NavBar() {
+  const shouldDropdownHighlighted = ["/publicaciones", "/transitos", "/donation_posts", "/voluntariados"].includes(useResolvedPath().pathname);
   return (
     <header>
       <Navbar bg="light" expand="lg">
@@ -14,10 +15,10 @@ export default function NavBar() {
           <img className="logo-img" src={Logo} alt="Perro y Gato mirandose" />
         </Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
-        <Navbar.Collapse id="basic-navbar-nav">
+        <Navbar.Collapse id="basic-navbar-nav" className="header-nav-links-container">
           <Nav className="me-auto">
             <CustomLink to="/">Inicio</CustomLink>
-            <NavDropdown title="Publicaciones" id="basic-nav-dropdown">
+            <NavDropdown title="Publicaciones" id="basic-nav-dropdown" className= {shouldDropdownHighlighted ? "active links" : "links"}>
               <NavDropdown.Item>
                 <CustomLink to="/publicaciones">Adopciones</CustomLink>
               </NavDropdown.Item>

@@ -1,11 +1,3 @@
-// .navegacion {
-//   display: flex;
-//   flex-direction: row;
-//   justify-content: center;
-//   align-items: center;
-//   background-color: rgb(84, 142, 165);
-//   margin-bottom: 3vh;
-// }
 @import "../../../node_modules/bootstrap/scss/functions";
 @import "../../../node_modules/bootstrap/scss/variables";
 @import "../../../node_modules/bootstrap/scss/mixins";
@@ -13,7 +5,7 @@
 @import "../../../node_modules/bootstrap/scss/nav";
 @import "../../../node_modules/bootstrap/scss/navbar";
 @import "../../../node_modules/bootstrap/scss/transitions";
-// @import "../../../node_modules/bootstrap/scss/bootstrap.scss";
+
 .dropdown-menu:hover {
   --bs-dropdown-link-hover-color: transparent;
   --bs-dropdown-link-hover-bg: transparent;
@@ -28,12 +20,12 @@
 }
 
 a {
-  color: #008000;
+  color: white;
   text-decoration: none;
 }
 
 nav {
-  background-color: rgb(84, 142, 165);
+  background-color: green;
   margin-bottom: 3vh;
 }
 
@@ -44,6 +36,24 @@ nav a {
 
 #basic-nav-dropdown {
   padding: 0;
+  color: white;
+}
+
+.dropdown-menu {
+  background-color: white !important;
+
+  a {
+    color: black !important;
+  }
+
+}
+
+.header-nav-links-container {
+  position: absolute;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  z-index: 99;
 }
 
 .logo {
@@ -75,28 +85,22 @@ li {
 
 .links {
   text-decoration: none;
-  color: black;
+  color: white;
+  font-size: 1.35rem;
 }
 
 .links:visited {
-  color: black;
+  color: white;
 }
 
 .links:hover {
-  color: var(--accent-color);
+  font-weight: bold;
 }
 
 .active {
   font-weight: bold;
-  color: var(--accent-color);
+  font-size: 1.35rem;
 }
-
-// .header .logo {
-//   display: block;
-//   float: left;
-//   font-size: 2em;
-//   text-decoration: none;
-// }
 
 @media screen and (max-width: 480px) {
   .logo-img {
@@ -106,6 +110,7 @@ li {
     width: 15vw;
     padding: 0;
   }
+
   .navbar-brand {
     margin: 0 5vw;
     padding: 0;

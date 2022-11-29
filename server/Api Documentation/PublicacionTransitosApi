@@ -10,6 +10,13 @@ Obtener todas las publicaciones de Transitos urgentes
 Método: GET
 Endpoint: http://localhost:8080/api/publicaciones/transitos/urgentes
 
+Obtener todas las publicaciones de Transitos que estén dentro del radio del colaborador
+Método: GET
+Endpoint: http://localhost:8080/api/publicaciones/transitos/distance
+Headers (JSON):
+    longitud: <longitud colaborador>
+    latitud: <latitud colaborador>
+
 Cambiar estado a una publicacion de Transito en particular (ID)
 Método: PUT
 Endpoint: http://localhost:8080/api/publicaciones/transitos/{id}/cambiarEstado

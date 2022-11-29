@@ -1,0 +1,135 @@
+@import "../../../node_modules/bootstrap/scss/functions";
+@import "../../../node_modules/bootstrap/scss/variables";
+@import "../../../node_modules/bootstrap/scss/mixins";
+@import "../../../node_modules/bootstrap/scss/dropdown";
+@import "../../../node_modules/bootstrap/scss/nav";
+@import "../../../node_modules/bootstrap/scss/navbar";
+@import "../../../node_modules/bootstrap/scss/transitions";
+
+.filters {
+  nav {
+    background-color: white;
+    border-radius: 1vh;
+    width: 15vw;
+    margin-top: 5%;
+  }
+}
+
+.filtersContainer {
+  padding: 0.5vh 3vh;
+  background-color: white;
+  border-radius: 1vh;
+}
+
+.filter-section {
+  margin: 0.5vh 0;
+
+  label {
+    padding: 0 2px;
+  }
+
+  &-container {
+    h4 {
+      text-align: left;
+    }
+
+    margin: 1vh 1vw;
+  }
+}
+
+.buscador-maps {
+  padding: 4px;
+  margin-top: 0.5vh;
+  margin-right: 10px;
+  border-radius: 0.5vw;
+  border-color: #acd1ab;
+  border-style: double;
+}
+
+.boton-maps {
+  background-color: green;
+  width: 6vw;
+  height: 3vh;
+  border-radius: 0.5vw;
+  color: white;
+  font-weight: bold;
+  border-style: hidden;
+  margin-top: 1.5vh;
+}
+
+.checkbox {
+  margin: 0.5vh;
+}
+
+.dropwdown-filters {
+  background-color: white;
+
+  .dropdown-menu {
+    width: 16vw !important;
+  }
+
+  a {
+    font-size: 18px;
+    font-weight: bold;
+    color: green !important;
+    margin-left: 0;
+  }
+
+  .mantine-Checkbox-root {
+    margin: 1vh 0vw 1vh 1vw;
+  }
+
+}
+
+.filters-bar {
+  justify-content: center;
+  width: 100%;
+}
+
+.filtros {
+  h3 {
+    text-align: center;
+  }
+
+  &-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .filtros {
+    &-container {
+      flex-direction: column;
+    }
+  }
+
+  .filter-section {
+    &-container {
+      h4 {
+        text-align: start;
+      }
+
+      margin: 0;
+    }
+  }
+}
+
+@media screen and (max-width: 992px) {
+  .filters {
+    nav {
+      width: 100%;
+
+      .show {
+        width: 30vw;
+      }
+
+      .dropdown-menu {
+        width: 55vw !important;
+      }
+    }
+
+
+  }
+}

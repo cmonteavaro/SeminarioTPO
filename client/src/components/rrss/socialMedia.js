@@ -1,6 +1,6 @@
 import { FaInstagram, FaFacebook, FaTwitter } from "react-icons/fa";
-
-const getTag = (tagName, link, color) => {
+import "./socialMedia.css";
+const getTag = (tagName, link, color = "black") => {
   switch (tagName) {
     case "FaInstagram":
       return (

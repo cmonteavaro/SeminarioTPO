@@ -6,6 +6,31 @@
   padding: 0.5vw;
   margin: 2vh;
   background-color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+}
+
+.card-h2 {
+  color: black
+}
+
+.donation-card {
+  width: 350px;
+  height: 350px;
+  border: 1px lightgrey solid;
+  border-radius: 10px;
+  padding: 0.5vw;
+  margin: 2vh;
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.donation-card .card-heading{
+  display: inline-block;
+  margin-top: 1vh;
 }
 
 .volunteer-card {
@@ -37,6 +62,16 @@
   margin: 1vh;
 }
 
+.card-center p {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 7;
+  /* number of lines to show */
+  line-clamp: 7;
+  -webkit-box-orient: vertical;
+}
+
 .card-left {
   position: relative;
   display: flex;
@@ -48,12 +83,12 @@
   position: relative;
   display: flex;
   justify-content: right;
-  margin: 2vh;
+  margin: 2vh;  
 }
 
 .card-right svg {
-  width: 25px;
-  height: 25px;
+  width: 40px;
+  height: 40px;
 }
 
 .tag-urgente {
@@ -62,9 +97,14 @@
   right: -5px;
 }
 
+.tag-urgente .mantine-Badge-root {
+  border-radius: 10px;
+}
+
 .card-img-animal {
   width: 250px;
   height: 300px;
+  object-fit: cover;
   border-radius: 10px;
   padding-top: 2px;
   padding-bottom: 2px;
@@ -82,7 +122,8 @@
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  height: 60px;
+  height: 10px;
+  margin-top: 2vh;
 }
 
 .card-left-info {
@@ -90,7 +131,7 @@
   flex-direction: column;
   justify-content: space-around;
   align-items: left;
-  margin: 1vh;
+  margin: 0vh;
 }
 
 .card-right-info {
@@ -113,6 +154,7 @@
 
 .card-shelter p {
   margin-left: 5px;
+  font-size: 0.8rem;
 }
 
 .card-volunteer-info {
@@ -143,17 +185,19 @@
 
 .btn-info {
   background-color: green;
-  width: 90px;
+  width: auto;
   height: 30px;
-  border-radius: 0.5vw;
   color: white;
   font-weight: bold;
   display: flex;
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  padding-left: 4px;
-  padding-right: 4px;
+  padding-left: 27px;
+  padding-right: 27px;
+  border-radius: 1vh;
+  margin-right: 5px;
+  border: 0px;
 }
 
 .btn-info:hover {
@@ -166,16 +210,48 @@
   border-radius: 10px;
 }
 
+.btn-adopt {
+  height: 6vh;
+  border-radius: 1vw;
+  background-color: green;
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+  margin-top: 2vh;
+  width: 15vw;
+  border: 0px;
+  font-size: large;
+}
+
+.btn-adopt:hover {
+  opacity: 0.8;
+}
+
 @media (max-width: 1024px) {
-  .card-right svg {
-    width: 2vw;
-    height: 2vw;
+  .btn-info {
+    border-radius: 1vh;
   }
+
+  .btn-adopt {
+    width: 15vw;
+  }
+
 }
 
 @media (max-width: 768px) {
-  .card-right svg {
-    width: 6vw;
-    height: 6vw;
+  .card {
+    margin: 1vh 0;
   }
+
+  .btn-info {
+    width: 120px;
+    margin-right: 5px;
+  }
+
+  .btn-adopt {
+    margin-top: 2vh;
+    width: 30vw;
+    height: 5vh;
+  }
+
 }

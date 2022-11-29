@@ -5,6 +5,9 @@
   font-weight: 400; NORMAL
   font-weight: 700; NEGRITA
 */
+html {
+  overflow-y:scroll;
+}
 
 * {
   margin: 0;
@@ -43,5 +46,9 @@ h6 {
 a {
   text-decoration: none;
   /* Esto lo cambie porque sinceramente no veo un carajo */
-  color: gray;
+  color: black;
+}
+
+main {
+  padding: 0 2vw;
 }

@@ -2,6 +2,10 @@ Obtener todas las publicaciones de Adopciones no finalizadas
 Método: GET
 Endpoint: http://localhost:8080/api/publicaciones/adopciones
 
+Obtener todas las publicaciones de Adopciones no finalizadas con la totalidad de los datos
+Método: GET
+Endpoint: http://localhost:8080/api/publicaciones/adopciones/fullView
+
 Obtener una publicacion de Adopcion en particular (ID)
 Método: GET
 Endpoint: http://localhost:8080/api/publicaciones/adopciones/id
@@ -9,6 +13,13 @@ Endpoint: http://localhost:8080/api/publicaciones/adopciones/id
 Obtener todas las publicaciones de Adopciones urgentes
 Método: GET
 Endpoint: http://localhost:8080/api/publicaciones/adopciones/urgentes
+
+Obtener todas las publicaciones de Adopciones que estén dentro del radio del colaborador
+Método: GET
+Endpoint: http://localhost:8080/api/publicaciones/adopciones/distance
+Headers (JSON):
+    longitud: <longitud colaborador>
+    latitud: <latitud colaborador>
 
 Cambiar estado a una publicacion de Adopcion en particular (ID)
 Método: PUT
