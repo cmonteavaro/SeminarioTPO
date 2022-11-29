@@ -37,6 +37,14 @@
   }
 }
 
+.ubicacion-buttons {
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  margin-top: 1.2vh;
+  gap: 1vw;
+}
+
 .buscador-maps {
   padding: 4px;
   margin-top: 0.5vh;
@@ -44,6 +52,7 @@
   border-radius: 0.5vw;
   border-color: #acd1ab;
   border-style: double;
+  width: 80%;
 }
 
 .boton-maps {
@@ -54,11 +63,18 @@
   color: white;
   font-weight: bold;
   border-style: hidden;
-  margin-top: 1.5vh;
+}
+
+.clickable {
+  cursor: pointer;
 }
 
 .checkbox {
   margin: 0.5vh;
+}
+
+.trash-icon {
+  color: green;
 }
 
 .dropwdown-filters {
