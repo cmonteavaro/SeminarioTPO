@@ -21,6 +21,12 @@
   border-radius: 1vh;
 }
 
+
+.boton-limpiar-flitros {
+  margin-bottom: 1vw;
+  margin-top: 0.5vw;
+}
+
 .filter-section {
   margin: 0.5vh 0;
 
@@ -35,6 +41,14 @@
 
     margin: 1vh 1vw;
   }
+}
+
+.linea {
+  background-color: green;
+  width: 50%;
+  margin: auto;
+  height: 3px;
+  border-radius: 20%;
 }
 
 .ubicacion-buttons {
@@ -57,7 +71,8 @@
 
 .boton-maps {
   background-color: green;
-  width: 6vw;
+  width: fit-content;
+  padding: 0 10%;
   height: 3vh;
   border-radius: 0.5vw;
   color: white;

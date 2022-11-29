@@ -50,9 +50,11 @@ export default function AnimalFilter(props) {
       <Navbar.Toggle aria-controls="basic-navbar-nav" />
       <Navbar.Collapse id="basic-navbar-nav" className="filters-bar">
         <nav className="me-auto filtros">
-          <h3>Filtros</h3>
+            <h3>Filtros</h3>
+            <hr className="linea"></hr>
           <div className="filtros-container">
             <div className="filter-section-container">
+              <button className="boton-maps boton-limpiar-flitros clickable" onClick={() => {}}>Limpiar filtros</button>
               <h4>Ubicacion</h4>
               <div>
                 <input className="buscador-maps" autoComplete="off" id="search" type="text" ref={inputSearch} placeholder="Lima 775, Monserrat, Buenos Aires"/>
