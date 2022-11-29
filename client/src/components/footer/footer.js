@@ -12,7 +12,7 @@ export default function Footer() {
   return (
     <footer>
       <div className="container">
-        <h3>Siguenos</h3>
+        <h3>Síguenos</h3>
         <div className="icons-link">
           <a className="icons-footer" href="www.instagram.com">
             <FaInstagram size={30} className="icon" title="Icono Instagram" />
@@ -27,11 +27,11 @@ export default function Footer() {
       </div>
       <div className="dedication">
         <h4>
-          Hecho con amor para los pichicos <FaHeart />
+          Hecho con amor para los pichichos <FaHeart />
         </h4>
       </div>
       <div className="container">
-        <h3>Algun problema?</h3>
+        <h3>Algún problema?</h3>
         <p>Contactate con nosotros</p>
         <div className="icons-link">
           <a

@@ -5,8 +5,8 @@
 }
 
 .image-row {
-  width: 200px;
-  height: 250px;
+  width: 350px;
+  height: 400px;
   border-radius: 10px;
 }
 
@@ -98,6 +98,13 @@
   width: 5%;
 }
 
+.parrafo {
+  margin-top: 2vw;
+  text-align: justify;
+  margin-right: 2vw;
+  font-size: 20px;
+}
+
 @media screen and (max-width: 391px) {
   .info {
     width: auto;
@@ -158,3 +165,4 @@
     width: 12%;
   }
 }
+

@@ -1,12 +1,13 @@
 import Zaguates from "../images/shelters/zaguates.webp";
 import Tag from "../components/badge/badge";
 import { FaInstagram, FaFacebook, FaTwitter } from "react-icons/fa";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { Loader } from "@mantine/core";
 import NotFound from "./notFound";
 import SocialMedia from "../components/rrss/socialMedia"
+import {Link} from 'react-router-dom';
 
 import Modal from "../components/animals/modalPreForm";
 import Form from "../components/form/form";
@@ -67,9 +68,9 @@ export default function AnimalDetail() {
   return (
     <main className="animal-detail">
       <div>
-        <button className="go-back-detail" onClick={() => navigate(-1)}>
+        <Link to="/publicaciones" className="go-back-detail">
           {"<"} Volver atras
-        </button>
+        </Link>
       </div>
       <section className="detail">
         <section className="images-detail">
@@ -84,7 +85,10 @@ export default function AnimalDetail() {
             <div className="info-detail-heading">
               <h2>{data.animal.nombre}</h2>
               <p className="fecha-publicacion">
-                Fecha de Publicacion: {data.fechaPublicacion}
+                Fecha de Publicación: {data.fechaPublicacion}
+              </p>
+              <p className="ubicacion">
+                Ubicación: {data.direccionRefugio.localidad}
               </p>
             </div>
             <div className="info-detail-urgente">
@@ -107,6 +111,12 @@ export default function AnimalDetail() {
               </span>
             </p>
             <p className="property">
+              Tipo Animal:{" "}
+              <span className="property-info">
+                {data.animal.tipoAnimal}
+              </span>
+            </p>
+            <p className="property">
               Edad: <span className="property-info">{data.animal.edad}</span>
             </p>
             <p className="property">
@@ -116,43 +126,54 @@ export default function AnimalDetail() {
               </span>
             </p>
             <p className="property">
+              Vacunacion Completa:{" "}
+              <span className="property-info">
+                {isTrue(data.animal.esquemaCompletoVacunas)}
+              </span>
+            </p>
+            <p className="property">
               Desparasitado:{" "}
               <span className="property-info">
                 {isTrue(data.animal.desparasitado)}
               </span>
             </p>
             <p className="property">
-              Medicacion: <span className="property-info">{"Si"}</span>
+              Necesita Patio:{" "}
+              <span className="property-info">
+                {isTrue(data.necesitaPatio)}
+              </span>
             </p>
-
+            <p className="property">
+              Necesita Hogar Amplio:{" "}
+              <span className="property-info">
+                {isTrue(data.requiereHogarAmplio)}
+              </span>
+            </p>
+            <p className="property">
+              Transporte Cubierto:{" "}
+              <span className="property-info">
+                {isTrue(data.transporteCubierto)}
+              </span>
+            </p>
             <div>
-              <p className="property">
-                Puede convivir con:
-                <div>
-                  <ul className="convivencia-animal">
-                    <li className="property-info convivencia-item">
+            <p className="property">
+                <p className="convivencia-animal"> Puede convivir con:</p>
+                <div className="">
+                    <p className="property-info convivencia-item">
                       Infantes: {isTrue(data.puedeConvivirConInfantes)}
-                    </li>
-                    <li className="property-info convivencia-item">
+                    </p>
+                    <p className="property-info convivencia-item">
                       Gatos: {isTrue(data.puedeConvivirConGatos)}
-                    </li>
-                    <li className="property-info convivencia-item">
+                    </p>
+                    <p className="property-info convivencia-item">
                       Cachorros: {isTrue(data.puedeConvivirConCachorros)}
-                    </li>
-                    <li className="property-info convivencia-item">
-                      Perros Adultos:{" "}
-                      {isTrue(data.puedeConvivirConPerrosAdultos)}
-                    </li>
-                  </ul>
+                    </p>
+                    <p className="property-info convivencia-item">
+                      Perros Adultos: {isTrue(data.puedeConvivirConPerrosAdultos)}
+                    </p>
                 </div>
               </p>
             </div>
-            <p className="property">
-              Vacunas:{" "}
-              <span className="property-info">
-                {isTrue(data.animal.esquemaCompletoVacunas)}
-              </span>
-            </p>
           </div>
 
           <article className="info-detail-description">
@@ -161,8 +182,8 @@ export default function AnimalDetail() {
           <div className="info-detail-footer">
             <div className="info-detail-shelter">
               <div className="info-detail-shelter-name">
-              <Link to={`/refugios/${data.idRefugio}`}>
-                  <img src={Zaguates} className="card-img-shelter" alt="Imagen refugio" />
+                <Link to={`/refugios/${data.idRefugio}`}>
+                  <img src={data.fotoPerfilRefugio} className="card-img-shelter" alt="Imagen refugio" />
                 </Link>
                 <h5>{data.nombreRefugio}</h5>
               </div>

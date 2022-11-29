@@ -85,15 +85,17 @@ const ProfileBody = ({ refugio }) => {
   }, [setVol]);
 
   return (
-    <section>
-      <button className="go-back-detail" onClick={() => navigate(-1)}>
-        {"<"} Volver atras
-      </button>
-      <img className="hero" src={Five} alt="Imagen animal" />
+
+    <>
+    <button className="go-back-detail" onClick={() => navigate(-1)}>
+      {"<"} Volver atras
+    </button>
+    <section className="container-perfil">
+      <img className="hero" src={refugio.perfilRefugio.banner} alt="Imagen animal" />
       <section className="basic">
         <section className="heading-shelter">
           <div className="logo-name-location">
-            <Avatar src={logorefugio} size={200} radius={100} mt={-80} />
+            <Avatar src={refugio.perfilRefugio.fotoPerfil} size={200} radius={100} mt={-80} />
             <div style={{ flex: 1, marginLeft: 20 }}>
               <Title
                 color={refugio.perfilRefugio.color}
@@ -134,22 +136,15 @@ const ProfileBody = ({ refugio }) => {
             <Title color={refugio.perfilRefugio.color}>Quienes somos</Title>
             <p>{refugio.perfilRefugio.descripcionLarga}</p>
           </article>
-          <section className="caroussel">
-            <Carousel slideSize="100%" height={500} loop>
-              <Carousel.Slide>
-                <img className="carousel" src={One} alt="Imagen animal" />
-              </Carousel.Slide>
-              <Carousel.Slide>
-                <img className="carousel" src={Two} alt="Imagen animal" />
-              </Carousel.Slide>
-              <Carousel.Slide>
-                <img className="carousel" src={Three} alt="Imagen animal" />
-              </Carousel.Slide>
-              <Carousel.Slide>
-                <img className="carousel" src={Four} alt="Imagen animal" />
-              </Carousel.Slide>
-            </Carousel>
-          </section>
+          <div className="description-gallery">
+            {
+              refugio.perfilRefugio.galeriaImagenes.map((linkImagen, pos) => {
+                return (
+                    <img key={pos} src={linkImagen} alt={`Foto galeria nro. ${pos}`} />
+                )
+              })
+            }
+          </div>
         </section>
         <section className="posts-shelter">
           <article>
@@ -210,6 +205,7 @@ const ProfileBody = ({ refugio }) => {
         </section>
       </section>
     </section>
+    </>
   );
 };
 

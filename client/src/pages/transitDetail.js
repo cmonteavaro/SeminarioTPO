@@ -58,10 +58,16 @@ export default function TransitDetail() {
         <section className="info-detail">
           <div className="info-detail-wrapper">
             <div className="info-detail-heading">
-              <h2>{data.animal.nombre}</h2>
+            <h2>{data.animal.nombre}</h2>
               <p className="fecha-publicacion">
-                Fecha de Publicacion: {data.fechaPublicacion}
+                Fecha de Publicación: {data.fechaPublicacion}
               </p>
+              <p className="ubicacion">
+                Ubicación: {data.direccionRefugio.localidad}
+              </p>
+            </div>
+            <div className="info-detail-urgente">
+              <Tag state={data.esUrgente} />
             </div>
             <div className="info-detail-status">
               <Tag state={data.estadoPublicacion} />
@@ -73,23 +79,31 @@ export default function TransitDetail() {
               Tamaño Actual:{" "}
               <span className="property-info">{data.animal.tamanioActual}</span>
             </p>
-            {/* <p className="property">
+            <p className="property">
               Tamaño Esperado:{" "}
               <span className="property-info">
                 {data.animal.tamanioEsperado}
               </span>
-            </p> */}
+            </p>
+            <p className="property">
+              Tipo Animal:{" "}
+              <span className="property-info">
+                {data.animal.tipoAnimal}
+              </span>
+            </p>
             <p className="property">
               Edad: <span className="property-info">{data.animal.edad}</span>
             </p>
-            {/* <p className="property">
-              Nacimiento:{" "}
-              <span className="property-info">{data.animal.fechaNac}</span>
-            </p> */}
             <p className="property">
               Castrado:{" "}
               <span className="property-info">
                 {isTrue(data.animal.castrado)}
+              </span>
+            </p>
+            <p className="property">
+              Vacunacion Completa:{" "}
+              <span className="property-info">
+                {isTrue(data.animal.esquemaCompletoVacunas)}
               </span>
             </p>
             <p className="property">
@@ -98,34 +112,53 @@ export default function TransitDetail() {
                 {isTrue(data.animal.desparasitado)}
               </span>
             </p>
-            {/* <p className="property">
-              Medicacion: <span className="property-info">{"Si"}</span>
-            </p> */}
-            {/* <p className="property">
-              Vacunas:{" "}
+            <p className="property">
+              Necesita Patio:{" "}
               <span className="property-info">
-                {isTrue(data.animal.esquemaCompletoVacunas)}
+                {isTrue(data.necesitaPatio)}
               </span>
-            </p> */}
+            </p>
+            <p className="property">
+              Necesita Hogar Amplio:{" "}
+              <span className="property-info">
+                {isTrue(data.requiereHogarAmplio)}
+              </span>
+            </p>
+            <p className="property">
+              Duración Mínima: <span className="property-info">{data.duracionMinima}</span>
+            </p>
             <div>
-              <p className="property">
-                Puede convivir con:
-                <div>
-                  <ul className="convivencia-animal">
-                    <li className="property-info convivencia-item">
+            <p className="property">
+                <p className="convivencia-animal"> Puede convivir con:</p>
+                <div className="">
+                    <p className="property-info convivencia-item">
                       Infantes: {isTrue(data.puedeConvivirConInfantes)}
-                    </li>
-                    <li className="property-info convivencia-item">
+                    </p>
+                    <p className="property-info convivencia-item">
                       Gatos: {isTrue(data.puedeConvivirConGatos)}
-                    </li>
-                    <li className="property-info convivencia-item">
+                    </p>
+                    <p className="property-info convivencia-item">
                       Cachorros: {isTrue(data.puedeConvivirConCachorros)}
-                    </li>
-                    <li className="property-info convivencia-item">
-                      Perros Adultos:{" "}
-                      {isTrue(data.puedeConvivirConPerrosAdultos)}
-                    </li>
-                  </ul>
+                    </p>
+                    <p className="property-info convivencia-item">
+                      Perros Adultos: {isTrue(data.puedeConvivirConPerrosAdultos)}
+                    </p>
+                </div>
+              </p>
+            </div>
+            <div>
+            <p className="property">
+                <p className="convivencia-animal"> Gastos Cubiertos:</p>
+                <div className="">
+                    <p className="property-info convivencia-item">
+                      Transporte: {isTrue(data.transporteCubierto)}
+                    </p>
+                    <p className="property-info convivencia-item">
+                      Medicos: {isTrue(data.gastosMedicosCubiertos)}
+                    </p>
+                    <p className="property-info convivencia-item">
+                      Alimentacion: {isTrue(data.gastosAlimentacionCubiertos)}
+                    </p>
                 </div>
               </p>
             </div>
@@ -138,10 +171,10 @@ export default function TransitDetail() {
             <div className="info-detail-shelter">
               <div className="info-detail-shelter-name">
                 <Link to={`/refugios/${data.idRefugio}`}>
-                  <img src={Zaguates} className="card-img-shelter" alt="Imagen refugio" />
+                  <img src={data.fotoPerfilRefugio} className="card-img-shelter" alt="Imagen refugio" />
                 </Link>
                 <h5>{data.nombreRefugio}</h5>
-             </div>
+              </div>
              
               <div className="info-detail-shelter-links">
               { <SocialMedia rrss={data.redesSocialesRefugio} /> } 

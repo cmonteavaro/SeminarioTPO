@@ -5,39 +5,45 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 import java.util.Optional;
 
+import javax.annotation.PreDestroy;
 import javax.persistence.*;
-
 @Repository
 public class RepositoryODB {
 
     private static RepositoryODB instancia;
-    private EntityManagerFactory emf;
-    private EntityManager em;
+    private static EntityManagerFactory emf;
+    private static EntityManager em;
+
 
     private RepositoryODB(){
-        this.emf = null;
-        this.em = null;
     }
 
     public static RepositoryODB getInstancia(){
-        if(instancia == null)
+        if (instancia == null)
             instancia = new RepositoryODB();
+        if(emf == null) {
+            emf = Persistence.createEntityManagerFactory("db/Refugios.odb");
+            em = emf.createEntityManager();
+            System.out.println("Apertura de OBD");
+        }
         return instancia;
     }
 
-    //Abro DB - Si no existe la crea
-    private void conexionOBD() {
-        this.emf = Persistence.createEntityManagerFactory("db/Refugios.odb");
-        this.em = this.emf.createEntityManager();
-    }
-
-    // Cierro DB
-    private void desconexionOBD() {
+    @PreDestroy
+    public void closeODB(){
         this.em.close();
         this.emf.close();
+        System.out.println("Cierre de OBD");
     }
 
-    //Persistir
+    private void conexionOBD() {
+//        this.em = this.emf.createEntityManager();
+    }
+
+    private void desconexionOBD() {
+//        this.em.close();
+    }
+
     public <T> T saveOBD(T aux){
         T retorno;
         this.conexionOBD();

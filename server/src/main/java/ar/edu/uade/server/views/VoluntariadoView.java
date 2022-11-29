@@ -24,7 +24,7 @@ public class VoluntariadoView {
     private Direccion direccionRefugio;
 
     //Publicacion
-    private long idPublicacion;
+    private Long idPublicacion;
     private TipoVoluntariadoEnum tipoVoluntariado;
     private String titulo;
     private String descripcion;

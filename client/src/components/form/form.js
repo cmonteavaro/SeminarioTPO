@@ -1,21 +1,6 @@
 import { TextInput, Group, Textarea } from "@mantine/core";
 import { useForm } from "@mantine/form";
-
-async function sendForm(url = "", data = {}) {
-  const response = await fetch(url, {
-    method: "POST",
-    cors: "no-cors",
-    cache: "no-cache",
-    credentials: "same-origin",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    redirect: "follow",
-    body: JSON.stringify(data),
-  });
-
-  return alert(response.status===200? "Postulacion enviada con exito": "Error al enviar la postulacion");
-}
+import { sendForm } from "./sendForm"
 
 export default function Form(data) {
   const form = useForm({
@@ -58,8 +43,7 @@ export default function Form(data) {
                 `http://localhost:8080/api/publicaciones/adopciones/${data.data.idPublicacion}/postular`,
                 values
               )
-                .then((data) => console.log(data))
-                .catch((e) => console.log(e))
+              .catch((e) => console.log(e))
             )}
           >
             <TextInput
@@ -83,7 +67,7 @@ export default function Form(data) {
             <TextInput
               withAsterisk
               label="Direccion"
-              placeholder="Lima 775, CABA, Buenos Aires"
+              placeholder="Lima 775, Monserrat, Buenos Aires, Argentina"
               {...form.getInputProps("direccion")}
             />
             <TextInput

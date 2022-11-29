@@ -51,28 +51,6 @@ public class PublicacionesApi {
             this.utilsServiceImpl = us;
     }
 
-    @GetMapping("/distance/{idRefugio}")
-    public ResponseEntity<?> getDistance (@RequestBody String direccion, @PathVariable Long idRefugio) {
-        boolean puedeConcretar = false;
-        try {
-            List<Float> coords = utilsServiceImpl.convertirDireccion(direccion);
-            Optional<Refugio> oRefugio = refugioService.findById(idRefugio);
-            if (oRefugio.isPresent()){
-                Refugio r = oRefugio.get();
-                double distancia = utilsServiceImpl.distanciaCoords(coords.get(0),coords.get(1), r.getDireccion().getLatitud(),r.getDireccion().getLongitud());
-                if(distancia < r.getRadioAlcance()) {
-                    puedeConcretar = true;
-                }
-            }
-            else {
-                return ResponseEntity.notFound().build();
-            }
-        } catch (IOException | InterruptedException E) {
-            return ResponseEntity.badRequest().body(E.getMessage());
-        }
-        return ResponseEntity.ok(puedeConcretar);
-    }
-
     @GetMapping("/filtros")
     public ResponseEntity<?> getAllAtributos () {
         return ResponseEntity.ok(AtributosView.toView());
@@ -110,6 +88,14 @@ public class PublicacionesApi {
         return ResponseEntity.ok(resultado);
     }
 
+    @GetMapping("/adopciones/distance")
+    public ResponseEntity<?> getAdopcionesByDistance (@RequestHeader("longitud") Float longitud, @RequestHeader("latitud") Float latitud) {
+        List<PublicacionAnimalCortaView> resultado = new ArrayList<>();
+        List<PublicacionAnimal> pubsAdopcion = adopcionService.findAll().stream().sorted(Comparator.comparing(Adopcion::getEsUrgente).reversed()).filter(adopcion -> !adopcion.getEstado().equals(EstadoPublicacionAnimalEnum.FINALIZADA)).collect(Collectors.toList());
+        pubsAdopcion.stream().filter(adopcion -> utilsServiceImpl.distanciaCoords(latitud,longitud,adopcion.getRefugio().getDireccion().getLatitud(),adopcion.getRefugio().getDireccion().getLongitud()) < adopcion.getRefugio().getRadioAlcance()).collect(Collectors.toList()).forEach(adopcion -> resultado.add(PublicacionAnimalCortaView.toView(adopcion)));
+        return ResponseEntity.ok(resultado);
+    }
+
     @PostMapping("/adopciones")
     public ResponseEntity<?> crearPublicacionAdopcion(@RequestBody AdopcionDTO adopcionDTO){
         try {
@@ -122,7 +108,7 @@ public class PublicacionesApi {
     @PutMapping("/adopciones")
     public ResponseEntity<?> modificarPublicacionAdopcion(@RequestBody AdopcionDTO adopcionDTO){
         try {
-            adopcionService.saveDTO(adopcionDTO);
+            adopcionService.updateDTO(adopcionDTO);
             return ResponseEntity.status(HttpStatus.CREATED).build();
         }catch (Exception e){
             return ResponseEntity.badRequest().eTag(e.getMessage()).build();
@@ -183,11 +169,14 @@ public class PublicacionesApi {
         Optional<Adopcion> oAdopcion = adopcionService.findById(id);
         if (oAdopcion.isPresent()) {
             try {
+                Direccion direccion =  oAdopcion.get().getRefugio().getDireccion();
+                double distancia = utilsServiceImpl.distanciaCoords(formularioDTO.getCoordenadas().get(1), formularioDTO.getCoordenadas().get(0), direccion.getLatitud(), direccion.getLongitud());
+                if(distancia > oAdopcion.get().getRefugio().getRadioAlcance()) throw new RefugioException("No te encuentras dentro del radio del refugio. Lamentamos el inconveniente");
                 emailService.sendMailToRefugioDTO(formularioDTO, oAdopcion.get());
                 emailService.sendMailToPostulanteDTO(formularioDTO, oAdopcion.get());
                 return ResponseEntity.ok().build();
             }catch (Exception e){
-                return ResponseEntity.internalServerError().body(e.getMessage());
+                return ResponseEntity.status(HttpStatus.NOT_ACCEPTABLE).body(e.getMessage());
             }
         } else {
             return ResponseEntity.notFound().build();
@@ -198,6 +187,13 @@ public class PublicacionesApi {
     public ResponseEntity<?> getAllTransitos() {
         List<PublicacionAnimalCortaView> resultado = new ArrayList<>();
         transitoService.findAll().stream().sorted(Comparator.comparing(Transito::getEsUrgente).reversed()).filter(transito -> !transito.getEstado().equals(EstadoPublicacionAnimalEnum.FINALIZADA)).collect(Collectors.toList()).forEach(transito -> resultado.add(PublicacionAnimalCortaView.toView(transito)));
+        return ResponseEntity.ok(resultado);
+    }
+
+    @GetMapping("/transitos/fullView")
+    public ResponseEntity<?> getAllTransitosFull() {
+        List<TransitoView> resultado = new ArrayList<>();
+        transitoService.findAll().stream().filter(transito -> !transito.getEstado().equals(EstadoPublicacionAnimalEnum.FINALIZADA)).forEach(transito -> resultado.add(TransitoView.toView(transito)));
         return ResponseEntity.ok(resultado);
     }
 
@@ -219,6 +215,14 @@ public class PublicacionesApi {
         return ResponseEntity.ok(resultado);
     }
 
+    @GetMapping("/transitos/distance")
+    public ResponseEntity<?> getTransitosByDistance (@RequestHeader("longitud") Float longitud, @RequestHeader("latitud") Float latitud) {
+        List<PublicacionAnimalCortaView> resultado = new ArrayList<>();
+        List<PublicacionAnimal> pubsTransito = transitoService.findAll().stream().sorted(Comparator.comparing(Transito::getEsUrgente).reversed()).filter(transito -> !transito.getEstado().equals(EstadoPublicacionAnimalEnum.FINALIZADA)).collect(Collectors.toList());
+        pubsTransito.stream().filter(transito -> utilsServiceImpl.distanciaCoords(latitud,longitud,transito.getRefugio().getDireccion().getLatitud(),transito.getRefugio().getDireccion().getLongitud()) < transito.getRefugio().getRadioAlcance()).collect(Collectors.toList()).forEach(transito -> resultado.add(PublicacionAnimalCortaView.toView(transito)));
+        return ResponseEntity.ok(resultado);
+    }
+
     @PostMapping("/transitos")
     public ResponseEntity<?> crearPublicacionTransito(@RequestBody TransitoDTO transitoDTO){
         try {
@@ -232,7 +236,7 @@ public class PublicacionesApi {
     @PutMapping("/transitos")
     public ResponseEntity<?> modificarPublicacionTransito(@RequestBody TransitoDTO transitoDTO){
         try {
-            transitoService.saveDTO(transitoDTO);
+            transitoService.updateDTO(transitoDTO);
             return ResponseEntity.status(HttpStatus.CREATED).build();
         }catch (Exception e){
             return ResponseEntity.badRequest().eTag(e.getMessage()).build();
@@ -288,11 +292,14 @@ public class PublicacionesApi {
         Optional<Transito> oTransito = transitoService.findById(id);
         if (oTransito.isPresent()) {
             try {
+                Direccion direc =  oTransito.get().getRefugio().getDireccion();
+                double distancia = utilsServiceImpl.distanciaCoords(formularioDTO.getCoordenadas().get(1), formularioDTO.getCoordenadas().get(0), direc.getLatitud(), direc.getLongitud());
+                if(distancia > oTransito.get().getRefugio().getRadioAlcance()) throw new RefugioException("No te encuentras dentro del radio del refugio. Lamentamos el inconveniente");
                 emailService.sendMailToRefugioDTO(formularioDTO, oTransito.get());
                 emailService.sendMailToPostulanteDTO(formularioDTO, oTransito.get());
                 return ResponseEntity.ok().build();
             }catch (Exception e){
-                return ResponseEntity.internalServerError().body(e.getMessage());
+                return ResponseEntity.status(HttpStatus.NOT_ACCEPTABLE).body(e.getMessage());
             }
         } else {
             return ResponseEntity.notFound().build();
@@ -329,7 +336,7 @@ public class PublicacionesApi {
     @PutMapping("/voluntariados")
     public ResponseEntity<?> modificarPublicacionVoluntariado(@RequestBody VoluntarioDTO voluntarioDTO) {
         try {
-            voluntarioService.saveDTO(voluntarioDTO);
+            voluntarioService.updateDTO(voluntarioDTO);
             return ResponseEntity.status(HttpStatus.CREATED).build();
         } catch (Exception e) {
             return ResponseEntity.badRequest().eTag(e.getMessage()).build();
@@ -396,7 +403,7 @@ public class PublicacionesApi {
     @PutMapping("/donaciones")
     public ResponseEntity<?> modificarPublicacionDonacion(@RequestBody DonacionDTO donacionDTO){
         try {
-            donacionService.saveDTO(donacionDTO);
+            donacionService.updateDTO(donacionDTO);
             return ResponseEntity.status(HttpStatus.CREATED).build();
         }catch (Exception e){
             return ResponseEntity.badRequest().eTag(e.getMessage()).build();

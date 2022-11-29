@@ -64,12 +64,12 @@ export default function Home() {
             alt="Perro mirando a una pileta"
             src={Mila}
           />
-          <article className="info l">
-            <h2>Nuestra motivación</h2>
-            <p>
+          <article className="info r">
+          <h2>Nuestra motivación</h2>
+            <p className="parrafo">
               A lo largo de nuestra vida, hemos visto una
               enorme cifra de animales que han sido abandonados o que no han
-              recibido amor y a su vez, una gran cantidad de refugios que no cuentan con la ayuda necesaria.
+              recibido amor y, a su vez, una gran cantidad de refugios que no cuentan con la ayuda necesaria.
               Hoy en día a través de las redes sociales hemos podido conectar con personas 
               que tienen el fin de ayudarlos.
             </p>
@@ -84,12 +84,12 @@ export default function Home() {
           </article>
           <article className="info r">
             <h2>Mi Refugio</h2>
-            <p>
+            <p  className="parrafo">
               Nuestro fin es poder facilitar la conexión entre las personas y aquellos animales que
               en búsqueda de hogar o tránsito. 
               Por esta razón, decidimos desarrollar un sitio 
               donde las comunidades, refugios y voluntarios puedan conectar de una forma más 
-              fácil, rápida y centralizada, para poder darles una mejor calidad de vida a cada uno de
+              fácil, rapida y centralizada, para poder darles una mejor calidad de vida a cada uno de
               los animales.
             </p>
           </article>
@@ -105,19 +105,18 @@ export default function Home() {
             alt="Perro mirando a una pileta"
             src={Milo}
           />
-          <article className="info l">
-            <h2>Cómo funciona?</h2>
-            <p>
-              Si tenes intenciones de colaborar con algún refugio, podes encontrarlos
-              en la sección "Refugios". 
-              Si deseas transitar o adoptar
+          <article className="info r">
+          <h2>Cómo funciona?</h2>
+            <p className="parrafo">
+             Si tenes intenciones de colaborar con algún refugio, podes encontrarlos
+              en la sección "Refugios". Si deseas transitar o adoptar
               a algún animal, podrás encontrarlos en la sección "Publicaciones".
             </p>
           </article>
         </section>
         <section className="stats">
           <section className="column">
-            <h2>Al dia de hoy hemos logrado...</h2>
+            <h2>Al día de hoy hemos logrado...</h2>
             <article className="row">
               <div>
                 <img className="stats-img" src={HappyDog} />
@@ -147,3 +146,4 @@ export default function Home() {
     </section>
   );
 }
+
