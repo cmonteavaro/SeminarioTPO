@@ -21,6 +21,12 @@
   border-radius: 1vh;
 }
 
+
+.boton-limpiar-flitros {
+  margin-bottom: 1vw;
+  margin-top: 0.5vw;
+}
+
 .filter-section {
   margin: 0.5vh 0;
 
@@ -37,6 +43,22 @@
   }
 }
 
+.linea {
+  background-color: green;
+  width: 50%;
+  margin: auto;
+  height: 3px;
+  border-radius: 20%;
+}
+
+.ubicacion-buttons {
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  margin-top: 1.2vh;
+  gap: 1vw;
+}
+
 .buscador-maps {
   padding: 4px;
   margin-top: 0.5vh;
@@ -44,21 +66,30 @@
   border-radius: 0.5vw;
   border-color: #acd1ab;
   border-style: double;
+  width: 80%;
 }
 
 .boton-maps {
   background-color: green;
-  width: 6vw;
+  width: fit-content;
+  padding: 0 10%;
   height: 3vh;
   border-radius: 0.5vw;
   color: white;
   font-weight: bold;
   border-style: hidden;
-  margin-top: 1.5vh;
+}
+
+.clickable {
+  cursor: pointer;
 }
 
 .checkbox {
   margin: 0.5vh;
+}
+
+.trash-icon {
+  color: green;
 }
 
 .dropwdown-filters {

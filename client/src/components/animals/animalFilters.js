@@ -2,6 +2,7 @@ import { Checkbox } from "@mantine/core";
 import { useRef, useState } from "react";
 import { NavDropdown } from "react-bootstrap";
 import Navbar from "react-bootstrap/Navbar";
+import {FiTrash2} from "react-icons/fi";
 import "./filtros.scss";
 
 
@@ -32,6 +33,12 @@ export default function AnimalFilter(props) {
     
   }
 
+  function clearLocation() {
+    setUbicacion([]);
+    setUsarUbicacion(false);
+    inputSearch.current.value = "";
+  }
+
   const data = props.filtros;
   const setUbicacion = props.setUbicacion;
   const setUsarUbicacion = props.setUsarUbicacion;
@@ -43,13 +50,18 @@ export default function AnimalFilter(props) {
       <Navbar.Toggle aria-controls="basic-navbar-nav" />
       <Navbar.Collapse id="basic-navbar-nav" className="filters-bar">
         <nav className="me-auto filtros">
-          <h3>Filtros</h3>
+            <h3>Filtros</h3>
+            <hr className="linea"></hr>
           <div className="filtros-container">
             <div className="filter-section-container">
+              <button className="boton-maps boton-limpiar-flitros clickable" onClick={() => {}}>Limpiar filtros</button>
               <h4>Ubicacion</h4>
               <div>
                 <input className="buscador-maps" autoComplete="off" id="search" type="text" ref={inputSearch} placeholder="Lima 775, Monserrat, Buenos Aires"/>
-                <button className="boton-maps" onClick={() => handleSearch(inputSearch.current.value)}>Ubicar</button>
+                <div className="ubicacion-buttons">
+                  <button className="boton-maps clickable" onClick={() => handleSearch(inputSearch.current.value)}>Ubicar</button>
+                  <FiTrash2 size={25} className="trash-icon clickable" onClick={clearLocation}/>
+                </div>
               </div>
             </div>
             <div className="filter-section-container">
