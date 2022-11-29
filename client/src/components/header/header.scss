@@ -16,7 +16,7 @@ header {
   margin-bottom: 3vh;
 }
 
-nav a {
+.nav a {
   padding: 0;
   margin: 0 1vw;
 }
@@ -87,10 +87,7 @@ li {
 
 @media screen and (max-width: 768px) {
   .logo-img {
-    display: flex;
-    justify-content: center;
-    align-content: center;
-
+    width: 12vw;
     padding: 0;
   }
 
@@ -120,7 +117,7 @@ header .nav-btn {
 }
 
 header div,
-nav {
+.nav {
   display: flex;
   align-items: center;
 }
@@ -152,7 +149,7 @@ ul {
   flex-direction: column;
   position: absolute;
   background-color: green;
-  top: 50px;
+  top: 30px;
   border-radius: 1vh;
   z-index: 99;
 }
@@ -177,7 +174,7 @@ ul {
   .dropdown {
     flex-direction: column;
   }
-  header nav {
+  header .nav {
     position: fixed;
     top: 0;
     left: 0;
@@ -195,15 +192,16 @@ ul {
   header .responsive_nav {
     transform: none;
     background-color: green;
+    z-index: 99;
   }
 
-  nav .nav-close-btn {
+  .nav .nav-close-btn {
     position: absolute;
     top: 2rem;
     right: 2rem;
   }
 
-  nav a {
+  .nav a {
     font-size: 1.5rem;
   }
 }

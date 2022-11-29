@@ -17,7 +17,7 @@ export default function NavBar() {
           <img className="logo-img" src={Logo} alt="Perro y Gato mirandose" />
         </Link>
       </h3>
-      <nav ref={navRef}>
+      <nav className="nav" ref={navRef}>
         <ul>
           <li>
             <CustomLink to="/">Inicio</CustomLink>

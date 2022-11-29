@@ -2,19 +2,18 @@
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   align-items: stretch;
-  padding-left: 3vw;
+  padding-left: 1vw;
 }
 
-@media (max-width: 1440px) {
+@media (max-width: 1400px) {
   .grid-animales {
     grid-template-columns: 1fr 1fr;
+    padding: 0;
+    gap: 3vw 5vh;
   }
 }
 
 @media (max-width: 920px) {
-  .grid-animales {
-    grid-template-columns: 1fr 1fr;
-  }
 }
 @media (max-width: 768px) {
   .grid-animales {

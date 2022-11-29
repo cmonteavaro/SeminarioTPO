@@ -197,6 +197,7 @@
   border-radius: 1vh;
   margin-right: 5px;
   border: 0px;
+  align-self: center;
 }
 
 .btn-info:hover {
@@ -280,7 +281,7 @@
   }
 
   .btn-info {
-    width: 90px;
+    width: 70px;
     margin-right: 5px;
   }
 
@@ -288,5 +289,8 @@
     margin-top: 2vh;
     width: 30vw;
     height: 5vh;
+  }
+  .card-shelter-end {
+    margin-top: 0.5vh;
   }
 }
