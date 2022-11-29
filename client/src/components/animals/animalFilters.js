@@ -48,7 +48,7 @@ export default function AnimalFilter(props) {
             <div className="filter-section-container">
               <h4>Ubicacion</h4>
               <div>
-                <input className="buscador-maps" autoComplete="off" id="search" type="text" ref={inputSearch} placeholder="Calle Altura, Localidad"/>
+                <input className="buscador-maps" autoComplete="off" id="search" type="text" ref={inputSearch} placeholder="Lima 775, Monserrat, Buenos Aires"/>
                 <button className="boton-maps" onClick={() => handleSearch(inputSearch.current.value)}>Ubicar</button>
               </div>
             </div>
