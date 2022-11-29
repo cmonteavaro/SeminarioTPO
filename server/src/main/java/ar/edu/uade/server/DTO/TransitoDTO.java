@@ -23,12 +23,12 @@ public class TransitoDTO {
     private Boolean puedeConvivirConPerrosAdultos;
     private Boolean requiereHogarAmplio;
     private Boolean transporteCubierto;
-    private Boolean esUrgente;
-    private String fechaPublicacion;
-    private String estado;
     private Boolean gastosAlimentacionCubiertos;
     private Boolean gastosMedicosCubiertos;
     private Integer duracionMinima;
+    private Boolean esUrgente;
+    private String fechaPublicacion;
+    private String estado;
 
     public Transito toModel() {
         DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");

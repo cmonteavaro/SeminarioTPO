@@ -2,12 +2,11 @@ Crear una Publicacion de Donacion
 Método: POST
 Endpoint: http://localhost:8080/api/publicaciones/donaciones
 Body: {
-          "tipo":"ABRIGO",
           "titulo":"Buscamos voluntarios!",
           "descripcion":"En nuestro refugio necesitamos mantas para perritos bebes que ingresaron hace una semana",
+          "tipo":"ABRIGO",
           "idRefugio":1,
           "fechaPublicacion":"14/10/2022",
-          "estaActiva":true
       }
 
 Modificar una Publicación de Donacion
@@ -15,9 +14,9 @@ Método: PUT
 Endpoint: http://localhost:8080/api/publicaciones/donaciones
 Body:{
           "idPublicacion": 1,
-          "tipo":"ABRIGO",
           "titulo":"Buscamos mantas grandes!",
           "descripcion":"En nuestro refugio necesitamos mantas para perritos bebes que ingresaron hace una semana",
+          "tipo":"ABRIGO",
           "idRefugio":1,
           "fechaPublicacion":"14/10/2022"
      }

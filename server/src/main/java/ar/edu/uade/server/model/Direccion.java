@@ -21,14 +21,14 @@ public class Direccion {
     private String localidad;
     private String codigoPostal;
     private String provincia;
-    private float latitud;
-    private float longitud;
+    private Float latitud;
+    private Float longitud;
 
     public Direccion() {
 
     }
 
-    public void convertirDireccion () throws IOException, InterruptedException {
+    public void convertirDireccion() throws IOException, InterruptedException {
 
         Geocoder geocoder = new Geocoder();
         ObjectMapper mapper = new ObjectMapper();
