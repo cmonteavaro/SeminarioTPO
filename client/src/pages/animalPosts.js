@@ -82,23 +82,25 @@ export default function Posts() {
 	};
 
 	useEffect(() => {
-		fetch(`http://localhost:8080/api/publicaciones/adopciones/distance`,{
-			method: "GET",
-			headers: {
-				'longitud': ubicacion[0],
-				'latitud': ubicacion[1]
-			}
-		})
-		.then((response) => response.json())
-		.then((data) => {
-			if(data.length < 1){
-				setDataDisplay([])
-			}else{
-				setDataFull(data)
-				setDataDisplay(applyFilters([...data], {...filtersDict}))
-			}
-		})
-	},[usarUbicacion]);
+		if(usarUbicacion){
+			fetch(`http://localhost:8080/api/publicaciones/adopciones/distance`,{
+				method: "GET",
+				headers: {
+					'longitud': ubicacion[0],
+					'latitud': ubicacion[1]
+				}
+			})
+			.then((response) => response.json())
+			.then((data) => {
+				if(data.length < 1){
+					setDataDisplay([])
+				}else{
+					setDataFull(data)
+					setDataDisplay(applyFilters([...data], {...filtersDict}))
+				}
+			})
+		}
+	},[usarUbicacion,ubicacion]);
 
 	// Callback function called on AnimalFilters to change the state of the filter given
 	function handleCheckboxToggle(event) {
