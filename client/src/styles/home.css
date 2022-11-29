@@ -5,8 +5,8 @@
 }
 
 .image-row {
-  width: 200px;
-  height: 250px;
+  width: 350px;
+  height: 400px;
   border-radius: 10px;
 }
 
@@ -85,9 +85,10 @@
   width: 50%;
 }
 
-.stats h2 {
+.stats h2, .titulo {
   font-size: xx-large;
 }
+
 
 .center {
   display: flex;
@@ -96,6 +97,13 @@
 
 .thankYou {
   width: 5%;
+}
+
+.parrafo {
+  margin-top: 2vw;
+  text-align: justify;
+  margin-right: 2vw;
+  font-size: 20px;
 }
 
 @media screen and (max-width: 391px) {
@@ -158,3 +166,4 @@
     width: 12%;
   }
 }
+

@@ -126,6 +126,17 @@ export default function Posts() {
 					setDataDisplay(applyFilters([...data], {...filtersDict}))
 				}
 			})
+		}else{
+			fetch(`http://localhost:8080/api/publicaciones/adopciones`)
+			.then((response) => response.json())
+			.then((data) => {
+				if(data.length < 1){
+					setDataDisplay([])
+				}else{
+					setDataFull(data)
+					setDataDisplay(applyFilters([...data], {...filtersDict}))
+				}
+			})
 		}
 	},[usarUbicacion, ubicacion, filtersDict]);
 
