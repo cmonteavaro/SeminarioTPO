@@ -12,7 +12,7 @@
 }
 
 .card-h2 {
-  color: black
+  color: black;
 }
 
 .donation-card {
@@ -28,7 +28,7 @@
   justify-content: space-between;
 }
 
-.donation-card .card-heading{
+.donation-card .card-heading {
   display: inline-block;
   margin-top: 1vh;
 }
@@ -83,7 +83,7 @@
   position: relative;
   display: flex;
   justify-content: right;
-  margin: 2vh;  
+  margin: 2vh;
 }
 
 .card-right svg {
@@ -198,6 +198,7 @@
   border-radius: 1vh;
   margin-right: 5px;
   border: 0px;
+  align-self: center;
 }
 
 .btn-info:hover {
@@ -235,12 +236,25 @@
   .btn-adopt {
     width: 15vw;
   }
+}
 
+@media screen and (max-width: 920px) {
+  .card {
+    width: 300px;
+    align-self: center;
+  }
 }
 
 @media (max-width: 768px) {
   .card {
     margin: 1vh 0;
+    width: 90vw;
+    align-self: center;
+    padding: 1vw;
+  }
+  .donation-card {
+    align-self: center;
+    padding: 1vw;
   }
 
   .btn-info {
@@ -254,4 +268,7 @@
     height: 5vh;
   }
 
+  .card-shelter-end {
+    margin-top: 0.5vh;
+  }
 }

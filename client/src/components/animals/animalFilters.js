@@ -2,30 +2,30 @@ import { Checkbox } from "@mantine/core";
 import { useRef, useState } from "react";
 import { NavDropdown } from "react-bootstrap";
 import Navbar from "react-bootstrap/Navbar";
-import {FiTrash2} from "react-icons/fi";
+import { FiTrash2 } from "react-icons/fi";
 import "./filtros.scss";
 
-
 export default function AnimalFilter(props) {
-
-  async function handleSearch (inputSearch) {
+  async function handleSearch(inputSearch) {
     let coords = [];
-    await fetch(`https://api.maptiler.com/geocoding/${inputSearch}.json?key=Mdlvp8JndCrWtOqNUat6`)
-    .then((response) => response.json())
-    .then((s) => {
-      const obj = s['features'];
-      const place = obj[0];
-      const geometry = place['geometry'];
-      coords = geometry['coordinates'];
-    })
-    if(typeof(coords[0]) === "number"){
-        setUbicacion(coords);
+    await fetch(
+      `https://api.maptiler.com/geocoding/${inputSearch}.json?key=Mdlvp8JndCrWtOqNUat6`
+    )
+      .then((response) => response.json())
+      .then((s) => {
+        const obj = s["features"];
+        const place = obj[0];
+        const geometry = place["geometry"];
+        coords = geometry["coordinates"];
+      });
+    if (typeof coords[0] === "number") {
+      setUbicacion(coords);
     } else {
-        if(typeof(coords[0][0]) === "number"){
-          setUbicacion(coords[0]);
-        } else {
-          setUbicacion(coords[0][0]);
-        }
+      if (typeof coords[0][0] === "number") {
+        setUbicacion(coords[0]);
+      } else {
+        setUbicacion(coords[0][0]);
+      }
     }
     setUsarUbicacion(true);
     setUbicacionString(inputSearch);
@@ -36,7 +36,7 @@ export default function AnimalFilter(props) {
     emptyLocationSearchBar();
   }
 
-  function emptyLocationSearchBar(){
+  function emptyLocationSearchBar() {
     inputSearch.current.value = "";
   }
 
@@ -46,8 +46,8 @@ export default function AnimalFilter(props) {
   const setUsarUbicacion = props.setUsarUbicacion;
   const clearFilters = props.clearFilters;
   const inputSearch = useRef();
-  if (inputSearch.current!==undefined && ubicacionTextFromSS){
-    inputSearch.current.value = ubicacionTextFromSS
+  if (inputSearch.current !== undefined && ubicacionTextFromSS) {
+    inputSearch.current.value = ubicacionTextFromSS;
   }
   const filtrosDict = props.filtrosDict;
   const setUbicacionString = props.setUbicacionString;
@@ -58,17 +58,41 @@ export default function AnimalFilter(props) {
       <Navbar.Toggle aria-controls="basic-navbar-nav" />
       <Navbar.Collapse id="basic-navbar-nav" className="filters-bar">
         <nav className="me-auto filtros">
-            <h3>Filtros</h3>
-            <hr className="linea"></hr>
+          <h3>Filtros</h3>
+          <hr className="linea"></hr>
           <div className="filtros-container">
             <div className="filter-section-container">
-              <button className="boton-maps boton-limpiar-flitros clickable" onClick={() => {emptyLocationSearchBar(); clearFilters();}}>Limpiar filtros</button>
+              <button
+                className="boton-maps boton-limpiar-flitros clickable"
+                onClick={() => {
+                  emptyLocationSearchBar();
+                  clearFilters();
+                }}
+              >
+                Limpiar filtros
+              </button>
               <h4>Ubicacion</h4>
               <div>
-                <input className="buscador-maps" autoComplete="off" id="search" type="text" ref={inputSearch} placeholder="Lima 775, Monserrat, Buenos Aires"/>
+                <input
+                  className="buscador-maps"
+                  autoComplete="off"
+                  id="search"
+                  type="text"
+                  ref={inputSearch}
+                  placeholder="Lima 775, Monserrat, Buenos Aires"
+                />
                 <div className="ubicacion-buttons">
-                  <button className="boton-maps clickable" onClick={() => handleSearch(inputSearch.current.value)}>Ubicar</button>
-                  <FiTrash2 size={25} className="trash-icon clickable" onClick={clearLocationFilter}/>
+                  <button
+                    className="boton-maps clickable"
+                    onClick={() => handleSearch(inputSearch.current.value)}
+                  >
+                    Ubicar
+                  </button>
+                  <FiTrash2
+                    size={25}
+                    className="trash-icon clickable"
+                    onClick={clearLocationFilter}
+                  />
                 </div>
               </div>
             </div>
@@ -88,7 +112,7 @@ export default function AnimalFilter(props) {
               <div className="filter-section">
                 {data.multivalores.TipoAnimalEnum &&
                 data.multivalores.TipoAnimalEnum.length > 0
-                  ? data.multivalores.TipoAnimalEnum.map((filtro,i) => (
+                  ? data.multivalores.TipoAnimalEnum.map((filtro, i) => (
                       <Checkbox
                         value={filtro}
                         label={filtro}
@@ -105,7 +129,7 @@ export default function AnimalFilter(props) {
               <div className="filter-section">
                 {data.multivalores.TamanioEnum &&
                 data.multivalores.TamanioEnum.length > 0
-                  ? data.multivalores.TamanioEnum.map((filtro,i) => (
+                  ? data.multivalores.TamanioEnum.map((filtro, i) => (
                       <Checkbox
                         value={filtro}
                         label={filtro}
@@ -119,17 +143,17 @@ export default function AnimalFilter(props) {
             </div>
             <div className="filter-section-container">
               <NavDropdown title="Extras" className="dropwdown-filters">
-                  {data.booleanos && data.booleanos.length > 0
-                    ? data.booleanos.map((filtro,i) => (
-                        <Checkbox
-                          value={filtro}
-                          label={filtro}
-                          checked={filtrosDict[filtro]}
-                          onChange={(event) => props.callback(event)}
-                          key={i}
-                        />
-                      ))
-                    : null}
+                {data.booleanos && data.booleanos.length > 0
+                  ? data.booleanos.map((filtro, i) => (
+                      <Checkbox
+                        value={filtro}
+                        label={filtro}
+                        checked={filtrosDict[filtro]}
+                        onChange={(event) => props.callback(event)}
+                        key={i}
+                      />
+                    ))
+                  : null}
               </NavDropdown>
             </div>
           </div>

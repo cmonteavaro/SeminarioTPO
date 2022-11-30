@@ -1,7 +1,5 @@
 import { Link } from "react-router-dom";
 import "../../styles/card.css";
-import Logo from "../../images/shelters/zaguates.webp";
-
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import "react-lazy-load-image-component/src/effects/blur.css";
 import Tag from "../badge/badge";
@@ -10,7 +8,7 @@ export default function AnimalCard({ animal }) {
   return (
     <div className="card">
       <div className="card-heading">
-        <h2>{animal.nombreAnimal}</h2>
+        <h3>{animal.nombreAnimal}</h3>
         <Tag state={animal.estadoPublicacion} />
       </div>
       <div className="card-center">
@@ -27,15 +25,20 @@ export default function AnimalCard({ animal }) {
       <div className="card-bottom">
         <div className="card-shelter">
           <Link to={`/refugios/${animal.idRefugio}`}>
-            <img src={animal.fotoPerfilRefugio} className="card-img-shelter" alt="Imagen refugio" />
+            <img
+              src={animal.fotoPerfilRefugio}
+              className="card-img-shelter"
+              alt="Imagen refugio"
+            />
           </Link>
-        <div >
-          <p>{animal.nombreRefugio}</p>
+          <div>
+            <p>{animal.nombreRefugio}</p>
+          </div>
         </div>
-      </div>
         <Link
           to={`/publicaciones/${animal.idPublicacion}`}
-          className="btn-info">
+          className="btn-info"
+        >
           Adoptar
         </Link>
       </div>

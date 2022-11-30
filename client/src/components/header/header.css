@@ -1,0 +1,73 @@
+header {
+  background-color: green;
+  margin-bottom: 1vh;
+
+  display: flex;
+  justify-content: space-between;
+  padding: 0 2rem;
+}
+
+.nav {
+  display: flex;
+
+  align-items: center;
+}
+
+.logo-img {
+  width: 5vw;
+  float: left;
+}
+
+.nav ul {
+  display: flex;
+  justify-content: center;
+  align-content: center;
+}
+
+.nav ul li {
+  display: inline;
+  list-style: none;
+  margin: 1vw;
+}
+
+.nav ul li a {
+  color: white;
+}
+
+.nav-btn {
+  display: none;
+}
+.dropdown {
+  background-color: transparent;
+  color: white;
+  border: 0;
+  margin: 1vw;
+  font-size: 1.35rem;
+}
+.links {
+  text-decoration: none;
+  color: white;
+  font-size: 1.35rem;
+}
+
+.links:visited {
+  color: white;
+}
+
+.active {
+  font-weight: bold;
+  font-size: 1.35rem;
+  color: white;
+}
+.menu-dropdown {
+  background-color: green;
+}
+
+@media screen and (max-width: 768px) {
+  .nav {
+    display: hidden;
+  }
+  .nav-btn {
+    display: block;
+  }
+}

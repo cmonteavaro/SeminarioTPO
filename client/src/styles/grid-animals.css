@@ -1,19 +1,29 @@
 .grid-animales {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
-  grid-template-rows: 1fr 1fr;
   align-items: stretch;
-  padding-left: 3vw;
+  padding-left: 1vw;
 }
 
-@media (max-width: 1024px) {
+@media (min-width: 1600px) {
+  .grid-animales {
+    padding-right: 5vw;
+  }
+}
+
+@media (max-width: 1500px) {
   .grid-animales {
     grid-template-columns: 1fr 1fr;
+    padding: 0;
+    gap: 3vw 5vh;
   }
 }
 
 @media (max-width: 768px) {
   .grid-animales {
-    grid-template-columns: 1fr;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
   }
 }

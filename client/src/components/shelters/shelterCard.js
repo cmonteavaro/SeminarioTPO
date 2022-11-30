@@ -1,7 +1,7 @@
 import SocialMedia from "../rrss/socialMedia";
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import { Link } from "react-router-dom";
-import Logo from "../../images/shelters/zaguates.webp";
+
 import "../../styles/card-shelter.css";
 
 export default function ShelterCard({ shelter }) {
@@ -23,7 +23,7 @@ export default function ShelterCard({ shelter }) {
         </div>
       </div>
       <div className="card-shelter-end">
-        <h2>{shelter.nombre}</h2>
+        <h3>{shelter.nombre}</h3>
         <Link to={`/refugios/${shelter.id}`} className="btn-info">
           Acceder
         </Link>

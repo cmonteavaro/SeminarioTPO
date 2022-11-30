@@ -4,6 +4,7 @@ import { Route, Routes } from "react-router-dom";
 import { lazy, Suspense } from "react";
 import Footer from "./components/footer/footer";
 import { Loader } from "@mantine/core";
+import NavbarNEW from "./components/header/headerMantine";
 
 const Home = lazy(() => import("./pages/home"));
 const AnimalPosts = lazy(() => import("./pages/animalPosts"));
@@ -21,7 +22,8 @@ const TransitDetail = lazy(() => import("./pages/transitDetail"));
 function App() {
   return (
     <>
-      <NavBar />
+      {/* <NavBar /> */}
+      <NavbarNEW />
       <main>
         <Suspense fallback={<Loader color="lime" />}>
           <Routes>

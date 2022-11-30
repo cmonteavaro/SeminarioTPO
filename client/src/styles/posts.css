@@ -16,4 +16,11 @@
 
 .grid-posts {
   display: flex;
+  justify-content: space-between;
+}
+
+@media screen and (max-width: 992px) {
+  .grid-posts {
+    flex-direction: column;
+  }
 }

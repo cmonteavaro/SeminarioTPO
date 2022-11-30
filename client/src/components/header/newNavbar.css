@@ -1,0 +1,150 @@
+.navigation {
+  width: 100%;
+  height: 7vh;
+  display: grid;
+  grid-template-columns: 25% 50% 25%;
+  padding: 0.5rem 0rem;
+  background-color: green;
+  color: white;
+  box-shadow: 0 2px 2px 2px rgba(9, 9, 9, 0.23);
+  font-size: 1.35rem;
+  margin-bottom: 1vh;
+}
+.navigation-menu ul {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+}
+.navigation-menu li {
+  list-style-type: none;
+  margin: 0 1rem;
+}
+.navigation-menu li a {
+  text-decoration: none;
+  display: block;
+  width: 100%;
+}
+.hamburger {
+  border: 0;
+  height: 40px;
+  width: 40px;
+  padding: 0.5rem;
+  cursor: pointer;
+  transition: background-color 0.2s ease-in-out;
+  position: absolute;
+  right: 25px;
+  display: none;
+  color: white;
+  background-color: transparent;
+}
+
+.menu-item:hover {
+  background-color: transparent;
+}
+
+.menu-item:hover .links:hover {
+  font-weight: bold;
+}
+
+.dropdown:hover {
+  cursor: pointer;
+}
+
+.logo-img {
+  height: 7vh;
+  margin-left: 5vw;
+}
+
+.dropdown {
+  background-color: transparent;
+  color: white;
+  border: 0;
+  margin: 1vw;
+  font-size: 1.35rem;
+}
+.links {
+  text-decoration: none;
+  color: white;
+  font-size: 1.35rem;
+}
+
+.links:visited {
+  color: white;
+}
+
+.active {
+  font-weight: bold;
+  font-size: 1.35rem;
+  color: white;
+}
+.menu-dropdown {
+  background-color: white;
+}
+
+.menu-dropdown .links {
+  color: black;
+}
+
+.menu-dropdown .active {
+  color: black;
+  font-weight: bold;
+}
+@media screen and (max-width: 1195px) {
+  .logo-img {
+    width: 7vw;
+    height: auto;
+  }
+  .navigation {
+    height: 7vh;
+    display: flex;
+    align-items: center;
+  }
+  .contenedor-boton {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1.5rem;
+  }
+  .hamburger {
+    display: flex;
+    align-items: center;
+    padding: 0;
+  }
+
+  .hamburger svg {
+    height: 8vh;
+  }
+  .navigation-menu ul {
+    display: none;
+  }
+  .navigation-menu ul {
+    position: absolute;
+    top: 60px;
+    left: 0;
+
+    display: none;
+    flex-direction: column;
+
+    width: 100%;
+    height: 100vh;
+    background-color: green;
+  }
+  .navigation-menu li {
+    text-align: center;
+    margin: 0;
+  }
+  .navigation-menu li a {
+    width: 100%;
+    padding: 1.5rem 0;
+  }
+  .navigation-menu.expanded ul {
+    display: block;
+  }
+}
+
+@media screen and (max-width: 800px) {
+  .logo-img {
+    width: 10vw;
+  }
+}
