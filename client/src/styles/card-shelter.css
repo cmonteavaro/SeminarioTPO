@@ -1,6 +1,6 @@
 .container-card-shelter {
   width: 30vw;
-  height: 32vh;
+  height: 35vh;
   background-color: white;
   margin: 2vh;
   padding: 1vh;
@@ -31,7 +31,7 @@
   display: flex;
   justify-content: space-between;
   align-items: baseline;
-  margin-top: 1vh;
+  margin-top: 0;
 }
 
 .card-shelter-end h3 {
