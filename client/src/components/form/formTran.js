@@ -32,7 +32,7 @@ export default function FormTran(data) {
     <div className="form">
       <div className="form-content">
         <div className="form-header">
-          <h2>Formulario Transito</h2>
+          <h2>Formulario Tránsito</h2>
           <button class="btn-exit" onClick={data.onClose}>
             X
           </button>
@@ -61,13 +61,13 @@ export default function FormTran(data) {
             />
             <TextInput
               withAsterisk
-              label="Telefono"
+              label="Teléfono"
               placeholder="2995763899"
               {...form.getInputProps("telefono")}
             />
             <TextInput
               withAsterisk
-              label="Direccion"
+              label="Dirección"
               placeholder="Lima 775, Monserrat, Buenos Aires, Argentina"
               {...form.getInputProps("direccion")}
             />
