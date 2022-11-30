@@ -80,7 +80,7 @@ export default function NavbarNEW() {
                     setIsNavExpanded(false);
                   }}
                 >
-                  Transitos
+                  Tránsitos
                 </CustomLink>
               </Menu.Item>
               <Menu.Item className="menu-item">

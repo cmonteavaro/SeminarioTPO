@@ -79,9 +79,17 @@
   color: white;
 }
 .menu-dropdown {
-  background-color: green;
+  background-color: white;
 }
 
+.menu-dropdown .links {
+  color: black;
+}
+
+.menu-dropdown .active {
+  color: black;
+  font-weight: bold;
+}
 @media screen and (max-width: 1195px) {
   .logo-img {
     width: 7vw;
