@@ -62,7 +62,6 @@ export default function AnimalDetail() {
   );
 
   if (data.length < 1) return <NotFound />;
-  console.log(data);
   return (
     <main className="animal-detail">
       <div>

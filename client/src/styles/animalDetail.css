@@ -331,6 +331,7 @@
   }
   .image-detail-big {
     margin-right: 4vw;
+    object-fit: cover;
   }
 }
 

@@ -1,7 +1,7 @@
 import { Link, useMatch, useResolvedPath } from "react-router-dom";
 import Logo from "../../images/LogoMiRefugioNavbar.png";
 // import "bootstrap/dist/css/bootstrap.min.css";
-import "./header.css";
+
 import { FaBars, FaTimes } from "react-icons/fa";
 import { Menu } from "@mantine/core";
 import { useState } from "react";
