@@ -402,4 +402,11 @@ class ServerApplicationTests {
         }
 
     }
+
+    @Test
+    public void fixdescripcion(){
+        PublicacionVoluntariado pub = voluntariadoService.findById(56L).get();
+        pub.setTitulo("Buscamos gente para pasear!");
+        voluntariadoService.save(pub);
+    }
 }
