@@ -154,7 +154,7 @@ export default function Transits() {
   } else {
     return (
       <>
-        <h2>Transitos</h2>
+        <h2>Tránsitos</h2>
         <div className="grid-posts">
           <section className="filters">
             <AnimalFilters
