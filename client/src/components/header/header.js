@@ -1,38 +1,44 @@
 import { Link, useMatch, useResolvedPath } from "react-router-dom";
 import Logo from "../../images/LogoMiRefugioNavbar.png";
 // import "bootstrap/dist/css/bootstrap.min.css";
-import "./header.scss";
-import { FaBars, FaTimes, FaArrowDown } from "react-icons/fa";
-import { useRef } from "react";
+import "./header.css";
+import { FaBars, FaTimes } from "react-icons/fa";
+import { Menu } from "@mantine/core";
+import { useState } from "react";
 
 export default function NavBar() {
-  const navRef = useRef();
-  const showNavbar = () => {
-    navRef.current.classList.toggle("responsive_nav");
-  };
+  const [burgerOpen, setBurgerOpen] = useState(false);
+
   return (
     <header>
-      <h3 className="logo" href="/">
-        <Link to="/">
-          <img className="logo-img" src={Logo} alt="Perro y Gato mirandose" />
-        </Link>
-      </h3>
-      <nav className="nav" ref={navRef}>
+      <Link to="/">
+        <img className="logo-img" src={Logo} alt="Perro y Gato mirandose" />
+      </Link>
+      <nav className="nav">
         <ul>
           <li>
             <CustomLink to="/">Inicio</CustomLink>
           </li>
-          <div class="dropdown">
-            <button class="dropbtn">Publicaciones v</button>
-            <div class="dropdown-content">
-              <CustomLink to="/publicaciones">Adopciones</CustomLink>
-              <CustomLink to="/transitos">Transitos</CustomLink>
-              <CustomLink to="/donation_posts">Donaciones</CustomLink>
-              <CustomLink to="/voluntariados">Voluntariados</CustomLink>
-            </div>
-          </div>
-          {/* Inicio Dropdown */}
-          {/* Fin Dropdown */}
+          <Menu>
+            <Menu.Target>
+              <button className="dropdown">Publicaciones</button>
+            </Menu.Target>
+
+            <Menu.Dropdown className="menu-dropdown">
+              <Menu.Item>
+                <CustomLink to="/publicaciones">Adopciones</CustomLink>
+              </Menu.Item>
+              <Menu.Item>
+                <CustomLink to="/transitos">Transitos</CustomLink>
+              </Menu.Item>
+              <Menu.Item>
+                <CustomLink to="/donation_posts">Donaciones</CustomLink>
+              </Menu.Item>
+              <Menu.Item>
+                <CustomLink to="/voluntariados">Voluntariados</CustomLink>
+              </Menu.Item>
+            </Menu.Dropdown>
+          </Menu>
           <li>
             <CustomLink to="/refugios">Refugios</CustomLink>
           </li>
@@ -40,11 +46,11 @@ export default function NavBar() {
             <CustomLink to="/acerca">Acerca de</CustomLink>
           </li>
         </ul>
-        <button className="nav-btn nav-close-btn" onClick={showNavbar}>
-          <FaTimes color="white" />
-        </button>
       </nav>
-      <button className="nav-btn" onClick={showNavbar}>
+      <button
+        className={burgerOpen ? "show" : "nav-btn"}
+        onClick={() => setBurgerOpen(true)}
+      >
         <FaBars color="white" />
       </button>
     </header>
